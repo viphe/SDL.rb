@@ -18,20 +18,29 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
+# Work-around a bug in NetBeans (http://netbeans.org/bugzilla/show_bug.cgi?id=188653)
+if ENV["NB_EXEC_EXTEXECUTION_PROCESS_UUID"]
+  $:[0] = File.join(File.dirname(__FILE__),'../../lib')
+  $:.unshift(File.join(File.dirname(__FILE__),'../../test'))
+end
+
+if RUBY_VERSION < '1.9.0'
+  $KCODE = 'u'
+  require 'jcode'
+end
 
 module SDL4R
-  
+
+  require 'rubygems'
   require 'bigdecimal'
   require 'test/unit'
+
+  require "sdl4r/tag"
   
-  require File.dirname(__FILE__) + '/../../lib/sdl4r/tag'
+  require 'sdl4r/sdl_test_case'
 
   class ParserTest < Test::Unit::TestCase
-
-    @@zone_offset = Rational(Time.now.utc_offset,  24 * 60 * 60)
-
-
-    public
+    include SdlTestCase
 
     def test_empty
       root = Tag.new("root")
@@ -49,7 +58,7 @@ module SDL4R
       assert_equal(0, tag1.attributes.size, "attributes")
 
       # Tag with namespace
-      tag1 = parse_one_tag1("ns1:tag1")
+      tag1 = SDL4R::read("ns1:tag1").child("ns1", "tag1")
       assert_equal("tag1", tag1.name, "name" )
       assert_equal("ns1", tag1.namespace, "namespace" )
     end
@@ -139,9 +148,14 @@ EOS
       tag1 = parse_one_tag1("tag1 2005/12/05")
       date = tag1.value
       assert_equal(Date.civil(2005, 12, 5), date, "date value")
+
+      # check negative years
+      tag1 = parse_one_tag1("tag1 -145/12/23");
+      date = tag1.value
+      assert_equal(Date.civil(-145, 12, 23), date, "negative year")
     end
 
-    def test_time
+    def test_time_span
       tag1 = parse_one_tag1(
         "tag1 time=12:23:56 short_time=00:12:32.423" +
         " long_time=30d:15:23:04.023 before=-00:02:30")
@@ -162,7 +176,7 @@ EOS
         tag1.attribute("before"),
         "before");
     end
-
+    
     def test_date_time
       tag1 = parse_one_tag1(
         "tag1 date1=2008/06/01 12:34" +
@@ -179,7 +193,7 @@ EOS
         local_civil_date(1999, 12, 31, 23, 59, 58),
         tag1.attribute("date2"),
         "date2");
-      assert_equal(
+      assert_equal_date_time(
         local_civil_date(2000, 5, 1, 12, 1, Rational(35997, 1000)),
         tag1.attribute("date3"),
         "date3");
@@ -195,11 +209,23 @@ EOS
         local_civil_date(1807, 11, 11, 22, 28, Rational(13888, 1000), Rational(-85, 240)),
         tag1.attribute("date6"),
         "date6");
+
+      tag1 = parse_one_tag1("tag1 2008/06/01 5d:12:34") # not a datetime: a date + a timespan
+      assert_equal Date.civil(2008, 6, 1), tag1.values[0]
+      assert_equal SdlTimeSpan.new(5, 12, 34), tag1.values[1]
+
+      # Check that the timezone is correct when and where day saving time is in use
+# FIXME: neither DateTime/Date nor Time seem to handle zones and DST correctly.
+#      tag1 = parse_one_tag1("tag1 2001/01/01 12:00:00-CET") # winter time
+#      assert_equal(local_civil_date(2001, 01, 01, 12, 0, 0, Rational(1, 24)), tag1.value)
+#      tag1 = parse_one_tag1("tag1 2001/07/01 12:00:00-CET") # summer time
+#      assert_equal(local_civil_date(2001, 01, 01, 12, 0, 0, Rational(2, 24)), tag1.value)
     end
 
     def test_numbers
       tag1 = parse_one_tag1(
-        "tag1 123 3000000000 456l 789L 123.45f 67.8F 910.11 12.13d 1415.16D 171.8BD 1.920bd 12345678901234567890BD")
+        "tag1 123 3000000000 456l 789L 123.45f 67.8F" +
+          " 910.11 12.13d 1415.16D 171.8BD 1.920bd 12345678901234567890BD -13.05")
       values = tag1.values
       assert_equal(123, values[0])
       assert_equal(3000000000, values[1])
@@ -213,6 +239,7 @@ EOS
       assert_equal(BigDecimal("171.8"), values[9])
       assert_equal(BigDecimal("1.920"), values[10])
       assert_equal(BigDecimal("12345678901234567890"), values[11])
+      assert_equal(-13.05, values[12])
 
       assert_raise SdlParseError do
         parse_one_tag1("tag1 123.2.2")
@@ -325,6 +352,11 @@ EOS
       assert_raise SdlParseError do
         SDL4R::read "tag1 '\\"
       end
+
+      if SDL4R::supports_unicode_identifiers?
+        kanji = SDL4R::read("kanji '日'").child
+        assert_equal "日", kanji.value
+      end
     end
 
     def test_backquote_strings
@@ -380,17 +412,111 @@ EOS
       assert_equal expected, root
     end
 
+    def test_identifiers
+      root = SDL4R::read("my_ns:my_tag my_ns2:my_attr=-13.8")
+
+      assert_equal "my_ns", root.child.namespace
+      assert_equal "my_tag", root.child.name
+      assert_equal({ "my_ns2:my_attr" => -13.8 }, root.child.attributes)
+
+      root = SDL4R::read("_my_ns:_my_tag _my_ns2:_my_attr=-13.8")
+      assert_equal "_my_ns", root.child.namespace
+      assert_equal "_my_tag", root.child.name
+      assert_equal({ "_my_ns2:_my_attr" => -13.8 }, root.child.attributes)
+
+      root = SDL4R::read("my.ns:my.tag my.ns2:my.attr=-13.8")
+      assert_equal "my.ns", root.child.namespace
+      assert_equal "my.tag", root.child.name
+      assert_equal({ "my.ns2:my.attr" => -13.8 }, root.child.attributes)
+
+      root = SDL4R::read("my$ns:my$tag my$ns2:my$attr=-13.8")
+      assert_equal "my$ns", root.child.namespace
+      assert_equal "my$tag", root.child.name
+      assert_equal({ "my$ns2:my$attr" => -13.8 }, root.child.attributes)
+
+      if SDL4R::supports_unicode_identifiers?
+        root = SDL4R::read("京都:アイスクリーム 京都:味=`いちご`")
+        assert_equal "京都", root.child.namespace
+        assert_equal "アイスクリーム", root.child.name
+        assert_equal({ "京都:味" => 'いちご' }, root.child.attributes)
+      end
+    end
+
+    def test_empty_block
+      tag1 = parse_one_tag1("tag1 {\n}")
+      assert_equal [], tag1.values
+      assert_equal({}, tag1.attributes)
+      assert_equal [], tag1.children
+
+      tag1 = parse_one_tag1("tag1 {}")
+      assert_equal [], tag1.values
+      assert_equal({}, tag1.attributes)
+      assert_equal [], tag1.children
+    end
+
+    def test_anonymous_tags
+      tag = SDL4R::read('123').child
+      assert_equal "", tag.namespace
+      assert_equal "content", tag.name
+      assert_equal [123], tag.values
+      assert_equal({}, tag.attributes)
+
+      tag = SDL4R::read('123 attr=456').child
+      assert_equal "", tag.namespace
+      assert_equal "content", tag.name
+      assert_equal [123], tag.values
+      assert_equal({"attr" => 456}, tag.attributes)
+
+      tag = SDL4R::read('"abc"').child
+      assert_equal "", tag.namespace
+      assert_equal "content", tag.name
+      assert_equal ["abc"], tag.values
+      assert_equal({}, tag.attributes)
+
+      tag = SDL4R::read('`abc`').child
+      assert_equal "", tag.namespace
+      assert_equal "content", tag.name
+      assert_equal ["abc"], tag.values
+      assert_equal({}, tag.attributes)
+
+      tag = SDL4R::read("'\\\\'").child
+      assert_equal "", tag.namespace
+      assert_equal "content", tag.name
+      assert_equal ["\\"], tag.values
+      assert_equal({}, tag.attributes)
+
+      assert_raise SDL4R::SdlParseError do SDL4R::read("attr=123") end
+
+      # Anonymous tags inside tags
+      tag = SDL4R::read(<<-EOS).child
+      files {
+        "/home/s-austin/price.txt"
+        `/home/spiderman/tarantula_porn.avi` size="200Mb"
+      }
+      EOS
+
+      child = tag.child
+      assert_equal '', child.namespace
+      assert_equal 'content', child.name
+      assert_equal ["/home/s-austin/price.txt"], child.values
+
+      child = tag.children[1]
+      assert_equal '', child.namespace
+      assert_equal 'content', child.name
+      assert_equal ["/home/spiderman/tarantula_porn.avi"], child.values
+    end
+
     def test_parse_error
       # WARNING: the line and col of an error is not accurate science. The goal here is to point to
       # coordinates that are useful to the user.
-      # Exampe for a string litteral that spans over several line, some errors could be point to
-      # the start or to the end without too much ambiguity.
+      # For example, if we have a string literal spanning over several lines, some errors could be
+      # pointing to the start or to the end without too much ambiguity.
       # Consequently, feel free to change the coordinates, if a change in the implementation
       # modifies the x/y of the error and they still make sense.
       assert_error_xy "=", 1, 1
-      assert_error_xy "tag1 xyz", 1, 6
-      assert_error_xy "tag1 \\\nxyz", 2, 1
-      assert_error_xy "tag1 \\\n   xyz", 2, 4
+      assert_error_xy "tag1 xyz", 1, 9
+      assert_error_xy "tag1 \\\nxyz", 2, 4
+      assert_error_xy "tag1 \\\n   xyz", 2, 7
       
       source = <<EOS
 -- my comment
@@ -404,7 +530,7 @@ murder_plot 123 \\
       * \\
       length=789
 EOS
-      assert_error_xy source, 3, 6
+      assert_error_xy source, 3, 7
 
       assert_error_xy 'tag1 "text\\"', 1, 13
 
@@ -437,15 +563,8 @@ EOS
 
       rescue
         return $! if $!.is_a? SdlParseError
-        raise AssertionFailedError, "was expecting a SdlParseError"
+        raise Test::Unit::AssertionFailedError, "was expecting a SdlParseError"
       end
-    end
-
-    # Creates and returns a DateTime where an unspecified +zone_offset+ means 'the local zone
-    # offset' (contrarily to DateTime#civil())
-    def local_civil_date(year, month, day, hour = 0, min = 0, sec = 0, zone_offset = nil)
-      zone_offset ||= @@zone_offset
-      return DateTime.civil(year, month, day, hour, min, sec, zone_offset)
     end
 
     def parse_one_tag1(text)

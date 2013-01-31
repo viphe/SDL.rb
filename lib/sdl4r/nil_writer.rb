@@ -18,6 +18,35 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
-module SDL4R # :nodoc:
-  require File.dirname(__FILE__) + '/sdl4r/tag'
+module SDL4R
+  
+  # A do-nothing SDL writer (it will still go through the given blocks though).
+  #
+  class NilWriter
+      include AbstractWriter
+    
+    def start_element(namespace, name = nil)
+    end
+
+    def start_tag(namespace, name = nil)
+    end
+    
+    def end_element
+    end
+
+    def end_tag
+    end
+
+    def start_body
+    end
+    
+    def end_body
+    end
+
+    def attribute(namespace, name, value = MISSING_PARAMETER)
+    end
+
+    def value(*values)
+    end
+  end
 end

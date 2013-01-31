@@ -18,6 +18,13 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
-module SDL4R # :nodoc:
-  require File.dirname(__FILE__) + '/sdl4r/tag'
+module SDL4R
+  
+  # Thrown by Writer when trying to access a method while in the unappropriate state.
+  class InvalidOperationError < StandardError
+    def initialize(*args)
+      super(*args)
+    end
+  end
+  
 end

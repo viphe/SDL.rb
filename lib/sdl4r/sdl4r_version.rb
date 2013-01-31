@@ -18,6 +18,7 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
-module SDL4R # :nodoc:
-  require File.dirname(__FILE__) + '/sdl4r/tag'
+module SDL4R
+  # Version of the SDL library.
+  VERSION = "0.9.11"
 end

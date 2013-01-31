@@ -19,6 +19,11 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
+# Work-around a bug in NetBeans (http://netbeans.org/bugzilla/show_bug.cgi?id=188653)
+if ENV["NB_EXEC_EXTEXECUTION_PROCESS_UUID"]
+  $:[0] = File.join(File.dirname(__FILE__),'../../lib')
+  $:.unshift(File.join(File.dirname(__FILE__),'../../test'))
+end
 
 if RUBY_VERSION < '1.9.0'
   $KCODE = 'u'
@@ -30,15 +35,14 @@ module SDL4R
   require 'fileutils'
   require 'pathname'
   require 'date'
-
   require 'test/unit'
-  require File.dirname(__FILE__) + '/../../lib/sdl4r'
+  
+  require 'sdl4r'
 
-  # SDL unit tests.
-  #
-  # @author Daniel Leuck
-  #
+  require 'sdl4r/sdl_test_case'
+
   class SDL4RTest < Test::Unit::TestCase
+    include SdlTestCase
     
     # Tag datastructure tests
     TAG = "Tag"
@@ -53,7 +57,7 @@ module SDL4R
     DATE_DECLARATIONS = "Date Declarations"
     TIME_SPAN_DECLARATIONS = "Time Span Declarations"
     DATE_TIME_DECLARATIONS = "Date Time Declarations"
-    BINARY_DECLARATIONS = "Binary Declarations";
+    BINARY_DECLARATIONS = "Binary Declarations"
 
     # Structure Tests
     EMPTY_TAG = "Empty Tag"
@@ -126,25 +130,25 @@ module SDL4R
     end
 
     def test_tag_write_parse_basic_types
-      test_tag_write_parse @@root_basic_types
+      check_tag_write_parse @@root_basic_types
     end
 
     def test_tag_write_parse_structures
-      test_tag_write_parse @@root_structures
+      check_tag_write_parse @@root_structures
     end
 
     #
     # Does a to_s/parse test on the specified Tag (+root+)
     #
-    def test_tag_write_parse(root)
+    def check_tag_write_parse(root)
 #      puts '========================================'
 #      puts root.to_s
 #      puts '========================================'
 
-      write_parse_root = Tag.new("test").read(root.to_s).child("root");
+      write_parse_root = Tag.new("test").read(root.to_s).child("root")
 
-#      File.open("d:\\dev\\tmp\\root.sdl", "w") { |io| io.write(root.to_string) }
-#      File.open("d:\\dev\\tmp\\root_reparsed.sdl", "w") { |io| io.write(write_parse_root.to_string) }
+      File.open("/tmp/root.sdl", "w") { |io| io.write(root.to_string) }
+      File.open("/tmp/root_reparsed.sdl", "w") { |io| io.write(write_parse_root.to_string) }
 
       assert_tags_equal(root, write_parse_root, "write/parse")
     end
@@ -229,11 +233,13 @@ module SDL4R
 
       # Testing decimals (BigDouble in Java)...
       assert_equal(
-        root.child("decimal1").value, 0, NUMBER_DECLARATIONS);
+        root.child("decimal1").value, 0, NUMBER_DECLARATIONS)
       assert_equal(
-        root.child("decimal2").value, 11.111111, NUMBER_DECLARATIONS);
+        root.child("decimal2").value, 11.111111, NUMBER_DECLARATIONS)
       assert_equal(
-        root.child("decimal3").value, 234535.3453453453454345345341242343, NUMBER_DECLARATIONS);
+        root.child("decimal3").value,
+        BigDecimal.new('234535.3453453453454345345341242343'),
+        NUMBER_DECLARATIONS)
     end
 
     def test_booleans
@@ -248,7 +254,7 @@ module SDL4R
     def test_null
       root = @@root_basic_types
 
-      assert_equal(root.child("nothing").value, nil, NULL_DECLARATION);
+      assert_equal(root.child("nothing").value, nil, NULL_DECLARATION)
     end
       
     def test_dates
@@ -276,7 +282,7 @@ module SDL4R
       assert_equal(
         root.child("time6").value, SdlTimeSpan.new(0,12,30,23,0), TIME_SPAN_DECLARATIONS)
       assert_equal(
-        root.child("time7").value, SdlTimeSpan.new(0,12,30,23,100), TIME_SPAN_DECLARATIONS)
+        SdlTimeSpan.new(0,12,30,23,100), root.child("time7").value, TIME_SPAN_DECLARATIONS)
       assert_equal(
         root.child("time8").value, SdlTimeSpan.new(0,12,30,23,120), TIME_SPAN_DECLARATIONS)
       assert_equal(
@@ -401,23 +407,23 @@ module SDL4R
       root = @@root_structures
 
       assert_equal(
-        root.child("atts1").attributes, {"name" => "joe"}, ATTRIBUTES);
-      assert_equal(root.child("atts2").attributes, {"size" => 5}, ATTRIBUTES);
+        root.child("atts1").attributes, {"name" => "joe"}, ATTRIBUTES)
+      assert_equal(root.child("atts2").attributes, {"size" => 5}, ATTRIBUTES)
       assert_equal(
-        root.child("atts3").attributes, {"name" => "joe","size" => 5}, ATTRIBUTES);
+        root.child("atts3").attributes, {"name" => "joe","size" => 5}, ATTRIBUTES)
       assert_equal(
         root.child("atts4").attributes, {"name"=>"joe","size"=>5,"smoker"=>false},
-        ATTRIBUTES);
+        ATTRIBUTES)
       assert_equal(
-        root.child("atts5").attributes, {"name"=>"joe","smoker"=>false}, ATTRIBUTES);
+        root.child("atts5").attributes, {"name"=>"joe","smoker"=>false}, ATTRIBUTES)
       assert_equal(
-        root.child("atts6").attributes, {"name"=>"joe","smoker"=>false}, ATTRIBUTES);
-      assert_equal(root.child("atts7").attributes, {"name"=>"joe"}, ATTRIBUTES);
+        root.child("atts6").attributes, {"name"=>"joe","smoker"=>false}, ATTRIBUTES)
+      assert_equal(root.child("atts7").attributes, {"name"=>"joe"}, ATTRIBUTES)
       assert_equal(
         root.child("atts8").attributes,
         {"name"=>"joe","size"=>5,"smoker"=>false,
           "text"=>"hi","birthday"=>Date.civil(1972,5,23)},
-        ATTRIBUTES);
+        ATTRIBUTES)
       assert_equal(
         root.child("atts9").attribute("key"), SDL4R::SdlBinary("mykey"), ATTRIBUTES)
     end
@@ -446,7 +452,7 @@ module SDL4R
       assert_equal(
         root.child("valatts5").attributes,
         {"size"=>5, "smoker"=>false},
-        VALUES_AND_ATTRIBUTES);
+        VALUES_AND_ATTRIBUTES)
 
       assert_equal(
         root.child("valatts6").values, ["joe", "is a\n nice guy"], VALUES_AND_ATTRIBUTES)
@@ -469,7 +475,7 @@ module SDL4R
       assert_equal(
         root.child("valatts8").attributes,
         {"size"=>5, "smoker"=>false},
-        VALUES_AND_ATTRIBUTES);
+        VALUES_AND_ATTRIBUTES)
 
       assert_equal(
         root.child("valatts9").values,["joe", "is a\n nice guy"], VALUES_AND_ATTRIBUTES)
@@ -509,21 +515,106 @@ module SDL4R
 
       matrix = root.child("matrix")
 
-      assert_equal([[1,2,3],[4,5,6]], matrix.children_values("content"), CHILDREN);
+      assert_equal([[1,2,3],[4,5,6]], matrix.children_values("content"), CHILDREN)
     end
 
     def test_namespaces
       root = @@root_structures
-      assert_equal(8, root.children(true, "person", nil).size, NAMESPACES);
+      assert_equal(8, root.children(true, "person", nil).size, NAMESPACES)
 
-      grandparent2 = root.child("grandparent3");
+      grandparent3 = root.child("grandparent3")
 
       # get only the attributes for Akiko in the public namespace
       assert_equal(
-        grandparent2.child(true, "daughter").attributes("public"),
         {"name"=>"Akiko", "birthday"=>Date.civil(1976,04,18)},
-        NAMESPACES);
+        grandparent3.child(true, "daughter").attributes("public"),
+        NAMESPACES)
     end
 
+    def test_validate_identifier
+      assert_nothing_raised { SDL4R::validate_identifier('myName') }
+      assert_nothing_raised { SDL4R::validate_identifier('my-name') }
+      assert_nothing_raised { SDL4R::validate_identifier('my_name') }
+      assert_nothing_raised { SDL4R::validate_identifier('_my-name') }
+      assert_nothing_raised { SDL4R::validate_identifier('my_name_') }
+      assert_nothing_raised { SDL4R::validate_identifier('com.ikayzo.foo') }
+      assert_nothing_raised { SDL4R::validate_identifier('com.ikayzo.foo$1') }
+      
+      if SDL4R::supports_unicode_identifiers?
+        assert_nothing_raised { SDL4R::validate_identifier('まName') }
+        assert_nothing_raised { SDL4R::validate_identifier('myNäme') }
+        assert_nothing_raised { SDL4R::validate_identifier('なまえ') }
+      end
+
+      assert_raise ArgumentError do SDL4R::validate_identifier('1myName') end
+      assert_raise ArgumentError do SDL4R::validate_identifier('$myName') end
+      assert_raise ArgumentError do SDL4R::validate_identifier('.myName') end
+      assert_raise ArgumentError do SDL4R::validate_identifier('my Name') end
+      assert_raise ArgumentError do SDL4R::validate_identifier(' myName') end
+      assert_raise ArgumentError do SDL4R::validate_identifier('myName ') end
+    end
+
+    def test_coerce_or_fail
+      # Most basic types are considered to be tested in other tests (like ParserTest)
+      tag = Tag.new "tag1"
+      assert_raise ArgumentError do tag.add_value(Object.new) end
+      assert_raise ArgumentError do tag.add_value([1, 2, 3]) end
+      assert_raise ArgumentError do tag.add_value({"a" => "b"}) end
+
+      # check translation of Rational
+      tag.add_value(Rational(3, 10))
+      assert_equal [0.3], tag.values
+    end
+
+    def test_format_times
+      # Using DateTime
+      date = DateTime.civil(1989, 11, 13, 14, 15, 37)
+      assert_equal "1989/11/13 14:15:37", SDL4R::format(date)
+
+      date = DateTime.civil(1989, 11, 13, 14, 15, 37, Rational(-5, 24))
+      assert_equal "1989/11/13 14:15:37-GMT-05:00", SDL4R::format(date)
+
+      date = DateTime.civil(1989, 11, 13, 14, 15, 37055.to_r/1000)
+      assert_equal "1989/11/13 14:15:37.055", SDL4R::format(date)
+
+      date = DateTime.civil(1989, 11, 13, 14, 15, 37055.to_r/1000, Rational(6, 24))
+      assert_equal "1989/11/13 14:15:37.055-GMT+06:00", SDL4R::format(date)
+
+      # Using Time
+      time = Time.gm(1989, 11, 13, 14, 15, 37)
+      assert_equal "1989/11/13 14:15:37", SDL4R::format(time)
+
+      time = Time.gm(1989, 11, 13, 14, 15, 37, 55000)
+      assert_equal "1989/11/13 14:15:37.055", SDL4R::format(time)
+    end
+
+    # Date parsing tests using Time rather than DateTime
+    def test_time
+      SDL4R::use_datetime = false
+      begin
+         # no timezone
+        root = SDL4R::read("tag1 1998/05/12 12:34:56.768")
+        assert_kind_of Time, root.child.value
+        assert_equal_date_time Time.local(1998, 05, 12, 12, 34, 56, 768000), root.child.value
+
+        root = SDL4R::read("tag1 1998/05/12 12:34:56.768-UTC")
+        assert_equal_date_time Time.utc(1998, 05, 12, 12, 34, 56, 768000), root.child.value
+
+        root = SDL4R::read("tag1 1998/05/12 12:34:56.768-JST")
+        assert_equal_date_time Time.xmlschema("1998-05-12T12:34:56.768-07:00"), root.child.value
+
+        root = SDL4R::read("tag1 1998/05/12 12:34:56.768-GMT-01:00")
+        assert_equal_date_time Time.xmlschema("1998-05-12T12:34:56.768-01:00"), root.child.value
+       
+      ensure
+        SDL4R::use_datetime = true
+      end
+    end
+    
+    def test_format_strings
+      assert_equal '""', SDL4R::format("")
+      assert_equal '"a"', SDL4R::format("a")
+      assert_equal '"ab"', SDL4R::format("ab")
+    end
   end
 end
