@@ -267,11 +267,11 @@ EOS
     def xtest_option_omit_nil_properties
       o = OpenStruct.new(:a => 1, :b => nil)
 
-      serializer = Serializer.new(:omit_nil_properties => false)
+      serializer = Serializer.new(:omit_nil_properties? => false)
       tag = serializer.serialize(o)
       assert_equal({ "a" => 1, "b" => nil }, tag.attributes)
 
-      serializer = Serializer.new(:omit_nil_properties => true)
+      serializer = Serializer.new(:omit_nil_properties? => true)
       tag = serializer.serialize(o)
       assert_equal({ "a" => 1 }, tag.attributes)
     end

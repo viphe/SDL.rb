@@ -22,9 +22,9 @@
 module SDL4R
 
   require 'ostruct'
-	require 'forwardable'
+  require 'forwardable'
   
-  require 'sdl4r/serialization'
+  require 'sdl4r/object_mapper'
   require 'sdl4r/abstract_writer'
   require 'sdl4r/nil_writer'
 
@@ -58,17 +58,17 @@ module SDL4R
   #
   class Serializer
     extend Forwardable
-    include Serialization, AbstractWriter
+    include AbstractWriter
 
     @@DEFAULT_OPTIONS = {
-      :omit_nil_properties => false,
+      :omit_nil_properties? => false,
       :default_namespace => ""
     }
     
     attr_reader :options
     attr_reader :writer
 
-		def_delegators :@writer, :start_body, :end_body, :value, :attribute
+    def_delegators :@writer, :start_body, :end_body, :value, :attribute
 
     #
     # _writer_:: underlying output writer (defaults to a Writer+StringIO)
@@ -89,7 +89,7 @@ module SDL4R
       raise ArgumentError, "writer should be a SDL4R::AbstractWriter" \
         unless writer.kind_of? SDL4R::AbstractWriter
 
-			super()
+      super()
       
       @writer = writer
       @options = {}.merge(@@DEFAULT_OPTIONS).merge!(options)
@@ -101,15 +101,15 @@ module SDL4R
     # _name_:: name of the Tag to create (can be +nil+ for a root Tag)
     #
     def start_element(namespace, name = nil, &block)
-			namespace, name = @options[:default_namespace], namespace unless name
+      namespace, name = @options[:default_namespace], namespace unless name
 
       @writer.start_element(namespace, name)
-			if block_given?
-				block[self]
-				end_element
-			else
-				@depth += 1
-			end
+      if block_given?
+        block[self]
+        end_element
+      else
+        @depth += 1
+      end
     end
 
     # Ends the currently written Tag.    
@@ -121,25 +121,25 @@ module SDL4R
     # Serializes the given object into the underlying writer.
     #
     def write_object(o)
-			# do a blank run with a NilWriter in order to count object appearances
-			normal_writer = @writer
-			begin
-				@writer = NilWriter.new
-				start_recording
-				serialize_impl(o)
-			ensure
-				stop_recording
-				@writer = normal_writer
-			end
+      # do a blank run with a NilWriter in order to count object appearances
+      normal_writer = @writer
+      begin
+        @writer = NilWriter.new
+        start_recording
+        serialize_impl(o)
+      ensure
+        stop_recording
+        @writer = normal_writer
+      end
 
       serialize_impl(o)
 
       nil
     end
 
-		def serialize(o)
-			write_object(o)
-		end
+    def serialize(o)
+      write_object(o)
+    end
 
     # Serializes 'o' into the underlying writer.
     # Dislike #serialize this method doesn't perform any final operation like assigning object ids
@@ -151,21 +151,21 @@ module SDL4R
     #
     def serialize_impl(o)
       # insert object ids/refs
-			ref = reference_object(o)
-			if ref.multi_ref?
-				if ref.count == 1
+      ref = reference_object(o)
+      if ref.multi_ref?
+        if ref.count == 1
           if @depth == 0
             # repetition of the root object in the graph
             start_tag OBJECT_ID_ATTR_NAME
             @writer.value ref.oid
             end_tag
           else
-					  @writer.attribute('', OBJECT_ID_ATTR_NAME, ref.oid)
+            @writer.attribute('', OBJECT_ID_ATTR_NAME, ref.oid)
           end
-				else
-					@writer.attribute('', OBJECT_REF_ATTR_NAME, ref.oid)
+        else
+          @writer.attribute('', OBJECT_REF_ATTR_NAME, ref.oid)
           return # make sure we don't loop in the graph
-				end
+        end
       end
 
       # object data serialization
@@ -237,7 +237,7 @@ module SDL4R
 
       elsif SDL4R::is_coercible?(value)
         # SDL literal type
-        unless value.nil? and @options[:omit_nil_properties]
+        unless value.nil? and @options[:omit_nil_properties?]
           if @depth == 0 # at root level we use tags with single values rather than attributes
             start_tag(name)
             @writer.value(value)

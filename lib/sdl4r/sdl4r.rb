@@ -23,7 +23,6 @@ require 'bigdecimal'
 require 'date'
 
 require 'sdl4r/sdl4r_version'
-require 'sdl4r/serializer'
 
 # Utility methods and general constants for SDL4R.
 #
@@ -32,7 +31,8 @@ require 'sdl4r/serializer'
 module SDL4R
   
   require 'sdl4r/writer'
-  
+  require 'sdl4r/serializer'
+
   MAX_INTEGER_32 = 2**31 - 1
   MIN_INTEGER_32 = -(2**31)
   

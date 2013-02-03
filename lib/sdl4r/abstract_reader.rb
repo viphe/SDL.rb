@@ -9,7 +9,6 @@
 module SDL4R
 
   require 'sdl4r/sdl4r'
-  require 'sdl4r/tag'
 
   # Abstract reader of a SDL stream.
   #
@@ -58,7 +57,7 @@ module SDL4R
     end
 
     # @return [Array] an array of the attributes of the traversed SDL node structured as follows:
-    #   <code>[ [["ns1", "attr1"], 123], [["", "attr2"], true] ]</code>
+    #   <code>[ ["ns1", "attr1", 123], ["", "attr2", true] ]</code>
     # @abstract
     def attributes
       raise "abstract method"
@@ -73,7 +72,7 @@ module SDL4R
       raise "abstract method"
     end
 
-    # @return the value of the attribute at the specified index.
+    # @return the attribute at the specified index: <code>[namespace, name, value]</code>.
     # @abstract
     def attribute_at(index)
       raise "abstract method"
@@ -97,25 +96,26 @@ module SDL4R
       raise "abstract method"
     end
 
-    # Synonym of #values
-    # @abstract
+    # @return the first of the values or nil if there are none
     def value
-      values
+      v = values
+      v ? v.first : nil
     end
 
-    # @abstract
     def values?
-      if @element
-        !@element.values.empty?
-      else
-        !@value.nil?
-      end
+      v = values
+      v ? v.count : 0
     end
 
-    # Synonym of #values?
+    # Indicates whether the current element is self-closing i.e. has no content. Depending on the reader an element
+    # might have no sub-elements and still not be self-closing. Possible example with SDL markup:
+    #
+    #  self_closing 123
+    #  not_self_closing name="empty block" {}
+    #
     # @abstract
-    def value?
-      values?
+    def self_closing?
+      raise "abstract_method"
     end
 
     # Reads the next node in the SDL structure.

@@ -19,27 +19,80 @@
 #++
 
 module SDL4R
-  # Used internally by Reader for keeping track of its state.
-  # It shouldn't be used directly as it is subject to changes as Reader is modified.
+
+  # Used internally by SDL readers for keeping track of their state.
   class Element
 
     attr_accessor :self_closing
-    attr_reader :name, :prefix, :attributes, :values
+    attr_reader :name, :prefix, :attributes, :values, :children
 
     def initialize(prefix, name)
       @prefix = prefix
       @name = name
       @attributes = []
       @values = []
+      @children = []
+      @child_index = 0
       @self_closing = false
     end
 
     def add_attribute(prefix, name, value)
-      @attributes << [[prefix, name], value]
+      @attributes << [prefix, name, value]
     end
 
-    def add_value(value)
-      @values << value
+    # @return the value of the specified attribute
+    def attribute(prefix, name = nil)
+      if name
+        prefix, name = prefix.to_s, name.to_s
+      else
+        prefix, name = '', prefix.to_s
+      end
+
+      attributes.each do |attr|
+        return attr[2] if attr[0] == prefix && attr[1] == name
+      end
+
+      nil
+    end
+
+    #  @return the attribute at the specified index: <code>[namespace, name, value]</code>.
+    def attribute_at(index)
+      attributes[index]
+    end
+
+    def attribute_count
+      attributes.size
+    end
+
+    def attributes?
+      attributes.length > 0
+    end
+
+    def add_value(*values)
+      @values.concat(values)
+    end
+    alias_method :add_values, :add_value
+
+    def add_all_values(enumerable)
+      if enumerable.is_a? Array
+        @values.concat(enumerable)
+      else
+        enumerable.each { |item| @values << item }
+      end
+    end
+
+    def add_child(prefix, name, child)
+      @children << [prefix, name, child]
+    end
+
+    def next_child
+      if @child_index < @children.length
+        child = @children[@child_index]
+        @child_index += 1
+        child
+      else
+        nil
+      end
     end
 
     self.freeze

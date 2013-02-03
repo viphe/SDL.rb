@@ -28,11 +28,13 @@ module SDL4R
   require 'sdl4r/sdl_binary'
   require 'sdl4r/tokenizer'
   require 'sdl4r/element'
+  require 'sdl4r/reader_with_element'
   require 'sdl4r/abstract_reader'
 
   # Implementation of a pull parser for SDL designed after the model of Nokogiri::XML::Reader.
   #
   class Reader < AbstractReader
+    include ReaderWithElement
 
     # @private
     def self.add_values_handler(map, handler)
@@ -149,6 +151,9 @@ module SDL4R
     # doesn't traverse).
     attr_reader :depth
 
+    attr_reader :element
+    protected :element
+
     def initialize(io)
       raise ArgumentError, "io == nil" if io.nil?
       raise ArgumentError, "io is not an IO" unless io.respond_to?(:gets)
@@ -156,7 +161,6 @@ module SDL4R
       @io = io
       @tokenizer = Tokenizer.new(@io)
       @element = nil
-      @element_pool = []
       @depth = 1
 
       clear_node()
@@ -171,54 +175,6 @@ module SDL4R
       @io.rewind
     end
 
-    # @return [Array] an array of the attributes structured as follows:
-    #   <code>[ [["ns1", "attr1"], 123], [["", "attr2"], true] ]</code>
-    def attributes
-      @element ? @element.attributes.clone : nil
-    end
-
-    # @return the value of the specified attribute.
-    #
-    # @overload attribute(name)
-    # @overload attribute(prefix, name)
-    def attribute(prefix, name = nil)
-      return nil unless @element
-
-      if name
-        prefix, name = prefix.to_s, name.to_s
-      else
-        prefix, name = '', prefix.to_s
-      end
-
-      @element.attributes.each do |attr|
-        return attr[1] if attr[0][0] == prefix && attr[0][1] == name
-      end
-      return nil
-    end
-
-    # @return the value of the attribute at the specified index.
-    def attribute_at(index)
-      if @element
-        @element.attributes[index]
-      else
-        nil
-      end
-    end
-
-    # @return [Integer] number of attributes in the current element
-    def attribute_count
-      @element ? @element.attributes.size : 0
-    end
-
-    # @return [boolean] whether the current element has attributes.
-    def attributes?
-      @element && @element.attributes.size > 0
-    end
-
-    def self_closing?
-      @element ? @element.self_closing : false
-    end
-
     def clear_node
       @node_type = nil
       @prefix = nil
@@ -226,7 +182,6 @@ module SDL4R
     end
     private :clear_node
 
-    # @return the values of the current node, nil if there are none.
     def values
       if @element
         values = @element.values

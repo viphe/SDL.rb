@@ -20,7 +20,7 @@
 
 module SDL4R
   
-  require 'sdl4r/serialization'
+  require 'sdl4r/object_mapper'
   
   # Deserializes between SDL and Ruby objects.
   #
