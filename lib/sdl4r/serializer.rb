@@ -26,7 +26,6 @@ module SDL4R
   
   require 'sdl4r/object_mapper'
   require 'sdl4r/abstract_writer'
-  require 'sdl4r/nil_writer'
 
   # Allows to serialize/deserialize between SDL and Ruby objects.
   #
@@ -60,31 +59,16 @@ module SDL4R
     extend Forwardable
     include AbstractWriter
 
-    @@DEFAULT_OPTIONS = {
-      :omit_nil_properties? => false,
-      :default_namespace => ""
-    }
-    
-    attr_reader :options
-    attr_reader :writer
+    attr_reader :writer, :object_mapper
 
     def_delegators :@writer, :start_body, :end_body, :value, :attribute
 
     #
     # _writer_:: underlying output writer (defaults to a Writer+StringIO)
     #
-    # === options:
-    #
-    #  [:omit_nil_properties]
-    #  if true, nil object properties are not exported to the serialized SDL (default: false)
-    #  [:default_namespace]
-    #  the default namespace of the generated tags (default: ""). This namespace doesn't apply to
-    #  attributes.
-    #
-    def initialize(writer = nil, options = nil)
+    def initialize(writer = nil, object_mapper = ObjectMapper.new)
       writer, options = nil, writer if writer.kind_of? Hash and options.nil?
       writer ||= Writer.new
-      options ||= {}
 
       raise ArgumentError, "writer should be a SDL4R::AbstractWriter" \
         unless writer.kind_of? SDL4R::AbstractWriter
@@ -92,7 +76,7 @@ module SDL4R
       super()
       
       @writer = writer
-      @options = {}.merge(@@DEFAULT_OPTIONS).merge!(options)
+      @object_mapper = object_mapper
       @depth = 0
     end
 
@@ -121,6 +105,7 @@ module SDL4R
     # Serializes the given object into the underlying writer.
     #
     def write_object(o)
+
       # do a blank run with a NilWriter in order to count object appearances
       normal_writer = @writer
       begin

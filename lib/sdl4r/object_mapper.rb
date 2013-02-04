@@ -19,7 +19,9 @@
 #++
 
 module SDL4R
-  
+
+  require 'sdl4r/element_writer'
+
   # Support object for serialization-related classes.
   #
   class ObjectMapper
@@ -33,6 +35,16 @@ module SDL4R
         :default_attribute_namespace => ''
     }.freeze
 
+    #
+    # === options:
+    #
+    #  [:omit_nil_properties]
+    #  if true, nil object properties are not exported to the serialized SDL (default: false)
+    #  [:default_element_namespace]
+    #  the default namespace of the generated tags (default: ""). This namespace doesn't apply to
+    #  attributes.
+    #  [:default_attribute_namespace]
+    #
     def initialize(options = nil)
       @next_oid = 1
       @ref_by_oid = {}
@@ -76,19 +88,123 @@ module SDL4R
     # @yield [namespace, name, value, type]
     # @yieldparam namespace [String] namespace of the property
     # @yieldparam name [String] name of the property
-    # @yieldparam value value of the property
-    # @yieldparam type [Symbol] :element for a child element, :attribute for an attribute
+    # @yieldparam value
+    #     value of the property (can be a SDL-coercible value - tag/attribute value - or any object - element -)
+    # @yieldparam type [Symbol]
+    #     :element for a child element]
+    #     :attribute for an attribute
+    #     :value for one or several (i.e. Enumerable) values (no namespace/name provided)
     #
     def each_property(object, &block)
+      return if object.nil?
+
+      custom_serializable = object.respond_to?(:to_sdl)
+
+      if not custom_serializable and collection?(object)
+        each_collection_property(object, &block)
+        return
+      end
+
+      if handle_object_repetition(object, &block)
+        return
+      end
+
+      if custom_serializable
+        replacement = handle_custom_serializable(object)
+        if not replacement === object and handle_object_repetition(replacement, &block)
+          return
+        else
+          object = replacement
+        end
+      end
+
       case object
         when OpenStruct
           each_hash_property(object.marshal_dump, &block)
         when Hash
           each_hash_property(object, &block)
+        when Tag
+          each_tag_property(object, &block)
+        when Element
+          each_element_property(object, &block)
         else
           each_plain_object_property(object, &block)
       end
     end
+
+    # @return true if the object has been handled completely
+    def handle_object_repetition(object, &block)
+      # Elements and Tags are considered verbatim: no cycle or repetition detection.
+      # Also, temporary Tags/Elements emitted for custom serialization, would end up having systematic oids.
+      return false if object.is_a? Element or object.is_a? Tag
+
+      ref = reference_object(object)
+
+      if ref.multi_ref?
+        if ref.count == 1
+          block.call(element_namespace, oid_attr, ref.oid, :attribute)
+        else
+          block.call(element_namespace, oref_attr, ref.oid, :attribute)
+          return true # just a reference to the object
+        end
+      end
+
+      false
+    end
+    private :handle_object_repetition
+
+    # @return the object that replaces the specified one
+    def handle_custom_serializable(object)
+      method = object.method :to_sdl
+      if method.arity == 0
+        # to_sdl() ==> no writer parameter
+        object.to_sdl
+
+      else
+        # to_sdl(writer)
+        writer = ElementWriter.new
+        result = object.to_sdl(writer)
+        if result.nil? or result === writer
+          writer.root
+        else
+          result
+        end
+      end
+    end
+    private :handle_custom_serializable
+
+    def each_collection_property(collection, &block)
+      collection.each { |item|
+        block.call('', SDL4R::ANONYMOUS_TAG_NAME, item, :element)
+      }
+    end
+    private :each_collection_property
+
+    def each_tag_property(tag, &block)
+      block.call(nil, nil, tag.values, :value)
+
+      tag.attributes { |namespace, name, value|
+        block.call(namespace, name, value, :attribute)
+      }
+
+      tag.children { |child|
+        block.call(child.namespace, child.name, child, :element)
+      }
+    end
+    private :each_tag_property
+
+    def each_element_property(element, &block)
+      block.call(nil, nil, element.values, :value)
+
+      element.attributes.each { |namespace, name, value|
+        block.call(namespace, name, value, :attribute)
+      }
+
+      element.children.each { |namespace, name, child|
+        block.call(namespace, name, child, :element)
+      }
+    end
+    private :each_element_property
 
     def each_hash_property(hash, &block)
       hash.each_pair { |key, value|
@@ -108,7 +224,7 @@ module SDL4R
       return false unless SDL4R::valid_identifier?(name)
 
       if collection?(value)
-        each_collection_property_impl(name, value, &block)
+        block.call(element_namespace, name, value, :element)
 
       elsif SDL4R::is_coercible?(value)
         # SDL literal type
@@ -121,13 +237,6 @@ module SDL4R
       end
     end
     private :each_property_impl
-
-    # @param name [String]
-    # @param collection [Enumerable]
-    def each_collection_property_impl(name, collection, &block)
-        block.call(element_namespace, name, collection, :element)
-    end
-    private :each_collection_property_impl
 
     def each_plain_object_property(o, &block)
       processed_properties = {}
@@ -256,7 +365,8 @@ module SDL4R
         end
         
         ref = Ref.new(self, object, oid)
-        @ref_by_oid[oid] = @ref_by_object[object.object_id] = ref
+        @ref_by_oid[oid] = ref
+        @ref_by_object[object.__id__] = ref
       end
 
       ref.inc
@@ -266,7 +376,7 @@ module SDL4R
     # Returns the Ref corresponding to the specified object or nil if not found.
     #
     def get_object_ref(object)
-      @ref_by_object[object.object_id]
+      @ref_by_object[object.__id__]
     end
 
     # Indicates whether the specified property is a serializable property for the given object.

@@ -8,7 +8,11 @@ module SDL4R
   require 'sdl4r/element'
   require 'sdl4r/reader_with_element'
 
-  # An reader that turns object graphs into a SDL stream as per SDL serialization.
+  # A reader that turns object graphs into a SDL stream as per SDL serialization.
+  #
+  # If an encountered object responds to #to_sdl(AbstractWriter), this method is called. The result must be +nil+ if
+  # there is nothing else to do. If the result is not nil, then the encountered object is substituted by that
+  # result.
   #
   class ObjectReader < AbstractReader
     include ReaderWithElement
@@ -28,9 +32,13 @@ module SDL4R
 
     # Reads the whole graph once in order to determine the minimal amount of object ids.
     def record_object_graph
-      @object_mapper.start_recording
-      each { } # go through the whole graph
-      @object_mapper.stop_recording
+      begin
+        @object_mapper.start_recording
+        each { } # go through the whole graph
+      ensure
+        @object_mapper.stop_recording
+      end
+
       rewind
     end
     private :record_object_graph
@@ -64,31 +72,25 @@ module SDL4R
         element.add_value(object)
 
       else
-        # handle repetitions of objects
-        ref = @object_mapper.reference_object(object)
-        if ref.multi_ref?
-          if ref.count == 1
-            if depth == 0
-              # can't have an attribute in the root object, so we use an ad hoc child
-              element.add_child(@object_mapper.element_namespace, @object_mapper.oid_attr, ref.oid)
-            else
-              element.add_attribute(@object_mapper.attribute_namespace, @object_mapper.oid_attr, ref.oid)
-            end
-          else
-            element.add_attribute(@object_mapper.attribute_namespace, @object_mapper.oref_attr, ref.oid)
-            element.self_closing = true
-            return # make sure we don't loop in the graph
-          end
-        end
-
         @object_mapper.each_property(object) do |prop_namespace, prop_name, value, type|
-          type = :element if type == :attribute and depth == 0 # no attribute at root level
+          if depth == 0
+            case type
+              when :attribute
+                type = :element # no attribute at root level
+              when :value
+                next  # no value at root level
+              else
+                # ignore
+            end
+          end
 
           case type
             when :element
               element.add_child(prop_namespace, prop_name, value)
             when :attribute
               element.add_attribute(prop_namespace, prop_name, value)
+            when :value
+              element.add_values(value)
             else
               # ignore
           end
@@ -101,7 +103,7 @@ module SDL4R
 
     def enter_collection(prefix, name, collection)
       if depth > 0 and collection.all? { |item| SDL4R::is_coercible?(item) }
-        element.add_all_values(collection)
+        element.add_values(collection)
       else
         collection.each { |item|
           element.add_child('', SDL4R::ANONYMOUS_TAG_NAME, item)

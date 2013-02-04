@@ -138,22 +138,65 @@ module SDL4R
     end
     
     # Writes the given objects to the underlying stream.
-    # @param [Object, Tag] o1, o2, ... Tags or objects to serialize
+    #
+    # @overload write(*objects)
+    #   @param [#namespace, #name] objects objects to serialize as sub-elements
+    # @overload write(name, *objects)
+    #   @param [String, Symbol] name name of the sub-elements
+    #   @param [Tag, Object] objects objects to serialize as sub-elements (their names or namespaces are ignored)
+    # @overload write(name, *objects)
+    #   @param [String, Symbol] namespace namespace of the sub-elements
+    #   @param [String, Symbol] name name of the sub-elements
+    #   @param [Tag, Object] objects objects to serialize as sub-elements (their names or namespaces are ignored)
+    #
     def write(*args)
-      args.each do |o|
-        if o.is_a? Tag
-          write_tag o
+      return if args.empty?
+
+      # determine if name/namespace were provided
+      first = args[0]
+      if first.is_a? String or first.is_a? Symbol
+        second = args[1]
+        name_specified = true
+        if second.is_a? String or second.is_a? Symbol
+          namespace = first.to_s
+          name = second.to_s
+          args.slice!(0, 2)
         else
-          write_object o
+          namespace = ''
+          name = first.to_s
+          args.delete_at(0)
         end
+      else
+        name_specified = false
+        namespace = nil
+        name = nil
+      end
+
+      args.each do |o|
+        unless name_specified
+          name = o.name
+          namespace = o.respond_to?(:namespace) ? o.namespace : nil
+        end
+
+        write_impl(namespace, name, o)
       end
       
       self
     end
+
+    # Called by #write for each object to write and with resolved name and namespace.
+    def write_impl(namespace, name, o)
+      if o.is_a? Tag
+        write_tag namespace, name, o
+      else
+        write_object namespace, name, o
+      end
+    end
+    protected :write_impl
     
     # Writes the specified Tag.
-    def write_tag(tag)
-      element(tag.namespace, tag.name) do
+    def write_tag(namespace, name, tag)
+      element(namespace, name) do
         values(*tag.values)
         
         # Attributes are written in lexicographic order.
@@ -175,21 +218,23 @@ module SDL4R
         end
         
         tag.children do |child|
-          write_tag(child)
+          write_tag(child.namespace, child.name, child)
         end
       end
       
       self
     end
+    private :write_tag
     
     # Serializes the specified Object.
 		#
 		# @return self
-    def write_object(o)
+    def write_object(namespace, name, o)
       @serializer ||= Serializer.new(self)
       @serializer.serialize(o)
       self
     end
+    private :write_object
 
     # Flushes any underlying IO or buffer needing flushing.
     # Don't forget to call this when overwriting.

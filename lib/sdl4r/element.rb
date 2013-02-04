@@ -21,10 +21,15 @@
 module SDL4R
 
   # Used internally by SDL readers for keeping track of their state.
+  #
+  # Element is a kind of lightweight and raw Tag, which can have simple objects as child elements.
+  # This allows for refined behaviors in ObjectReader.
+  #
   class Element
 
     attr_accessor :self_closing
     attr_reader :name, :prefix, :attributes, :values, :children
+    alias_method :namespace, :prefix
 
     def initialize(prefix, name)
       @prefix = prefix
@@ -69,17 +74,19 @@ module SDL4R
     end
 
     def add_value(*values)
-      @values.concat(values)
-    end
-    alias_method :add_values, :add_value
-
-    def add_all_values(enumerable)
-      if enumerable.is_a? Array
-        @values.concat(enumerable)
+      if values.length == 1 and (first = values[0]).is_a? Enumerable
+        if first.is_a? Array
+          @values.concat(first)
+        else
+          first.each { |item|
+            @values << item
+          }
+        end
       else
-        enumerable.each { |item| @values << item }
+        @values.concat(values)
       end
     end
+    alias_method :add_values, :add_value
 
     def add_child(prefix, name, child)
       @children << [prefix, name, child]

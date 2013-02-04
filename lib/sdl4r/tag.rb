@@ -563,7 +563,7 @@ module SDL4R
     #
     # Raises +ArgumentError+ if the key is not a legal SDL identifier (see
     # SDL4R#validate_identifier), or the namespace is non-blank and is not a legal SDL identifier,
-    # or thevalue is not a legal SDL type
+    # or the value is not a legal SDL type
     #
     def set_attribute(namespace, key, value = MISSING_PARAMETER)
       if MISSING_PARAMETER.equal? value
@@ -844,7 +844,7 @@ module SDL4R
     #
     def to_string(indent = "\t")
       writer = Writer.new(:indent => indent)
-      writer.write_tag(self)
+      writer.write(self)
       writer.io.string
     end
 

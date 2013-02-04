@@ -13,9 +13,14 @@ module SDL4R
     include SdlTestCase
 
     def collect_each_property(object)
-      properties = []
 
       object_mapper = ObjectMapper.new
+
+      object_mapper.start_recording
+      object_mapper.each_property(object) {}
+      object_mapper.stop_recording
+
+      properties = []
       object_mapper.each_property(object) { |*args|
         properties.push(args)
       }
@@ -63,10 +68,17 @@ module SDL4R
     end
 
     def test_each_property
-      assert_equal collect_each_property(nil), []
+      assert_equal [], collect_each_property(nil)
 
       assert_equal [], collect_each_property([])
-      assert_equal [], collect_each_property([1, 2, 3]) # arrays are not supposed to have properties
+      assert_equal(
+          [
+              ['', SDL4R::ANONYMOUS_TAG_NAME, 1, :element],
+              ['', SDL4R::ANONYMOUS_TAG_NAME, 2, :element],
+              ['', SDL4R::ANONYMOUS_TAG_NAME, 3, :element]
+          ],
+          collect_each_property([1, 2, 3])
+      )
 
       # Hashes (attributes)
       assert_equal [], collect_each_property({})

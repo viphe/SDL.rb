@@ -321,5 +321,147 @@ module SDL4R
       assert_equal 'b', reader.name
       assert_equal root_oid, reader.attribute(:oref)
     end
+
+    def test_tag_as_root
+      tag = Tag.new("ns1", "singer") do
+        set_attribute(:name, 'Bob')
+        new_child :song do
+          self << "is this love"
+          set_attribute :title, 'feeling?'
+        end
+      end
+
+      reader = ObjectReader.new(tag)
+
+      assert_not_nil reader.read # root
+
+      assert_equal reader, reader.read # name
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'name', reader.name
+      assert_equal %W(Bob), reader.values
+      assert_equal [], reader.attributes
+
+      assert_equal reader, reader.read # name end
+      assert_equal AbstractReader::TYPE_END_ELEMENT, reader.node_type
+
+      assert_equal reader, reader.read # song
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal 'song', reader.name
+      assert_equal ['is this love'], reader.values
+      assert_equal [['', 'title', 'feeling?']], reader.attributes
+    end
+
+    def test_tag_under_root
+      tag = Tag.new("ns1", "singer") do
+        set_attribute(:name, 'Bob')
+        new_child :song do
+          self << "is this love"
+          set_attribute :title, 'feeling?'
+        end
+      end
+
+      reader = ObjectReader.new(tag.name => tag)
+
+      assert_not_nil reader.read # root
+
+      assert_equal reader, reader.read # tag1
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'singer', reader.name
+      assert_equal [], reader.values
+      assert_equal [['', 'name', 'Bob']], reader.attributes
+
+      assert_equal reader, reader.read # song
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal 'song', reader.name
+      assert_equal ['is this love'], reader.values
+      assert_equal [['', 'title', 'feeling?']], reader.attributes
+    end
+
+    def test_element_under_root
+      element = Element.new('ns1', 'e1')
+      element.add_attribute('', 'name', 'Bob')
+      element.add_child('ns3', 'e3', Element.new('ns2', 'e2'))
+
+      reader = ObjectReader.new(element.name => element)
+
+      assert_not_nil reader.read # root
+
+      assert_equal reader, reader.read # e1
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'e1', reader.name
+      assert_equal [], reader.values
+      assert_equal [['', 'name', 'Bob']], reader.attributes
+
+      assert_equal reader, reader.read # e3
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal 'e3', reader.name
+      assert_equal [], reader.values
+      assert_equal [], reader.attributes
+    end
+
+    class SerializableA
+
+      def title
+        '=== serializable a ==='
+      end
+
+      def to_sdl
+        Tag.new(:serializable_a) do
+          set_attribute(:title, 'serializable A')
+          new_child :kid do
+            set_attribute :tall, true
+          end
+        end
+      end
+
+    end
+
+    class SerializableB
+
+      def title
+        '=== serializable b ==='
+      end
+
+      def to_sdl(writer)
+        writer.values('serializable B')
+      end
+
+    end
+
+    def test_object_with_to_sdl1
+      reader = ObjectReader.new(:a => SerializableA.new)
+
+      assert_not_nil reader.read # root
+
+      assert_equal reader, reader.read # a
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'a', reader.name
+      assert_equal [], reader.values
+      assert_equal [['', 'title', 'serializable A']], reader.attributes
+
+      assert_equal reader, reader.read # kid
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'kid', reader.name
+      assert_equal [], reader.values
+      assert_equal [['', 'tall', true]], reader.attributes
+    end
+
+    def test_object_with_to_sdl2
+      reader = ObjectReader.new(:b => SerializableB.new)
+
+      assert_not_nil reader.read # root
+
+      assert_equal reader, reader.read # b
+      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
+      assert_equal '', reader.prefix
+      assert_equal 'b', reader.name
+      assert_equal ['serializable B'], reader.values
+      assert_equal [], reader.attributes
+    end
   end
 end
