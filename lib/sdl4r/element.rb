@@ -42,11 +42,13 @@ module SDL4R
     end
 
     def add_attribute(prefix, name, value)
+      raise "bad args #{prefix.inspect} #{name.inspect}" if prefix.nil? or name.nil?
       @attributes << [prefix, name, value]
     end
 
     # @return the value of the specified attribute
     def attribute(prefix, name = nil)
+      raise 'prefix is nil' unless prefix
       if name
         prefix, name = prefix.to_s, name.to_s
       else

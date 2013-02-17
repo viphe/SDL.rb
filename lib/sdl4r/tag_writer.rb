@@ -29,10 +29,20 @@ module SDL4R
     # Used to discriminate an unprovided parameter from +nil+.
     # @private
     MISSING_PARAMETER = Object.new # :nodoc:
-    
-    # @param [Tag] root tag (written data is added to this Tag)
+
+    # @override [Tag]
+    # @override [Tag, ObjectMapper]
+    # @override [ObjectMapper]
     #
-    def initialize(root = Tag.new(SDL4R::ROOT_TAG_NAME))
+    # @param [Tag] root tag (written data is added to this Tag)
+    # @param [ObjectMapper] object_mapper used during serialization operations
+    #
+    def initialize(root = nil, object_mapper = ObjectMapper.new)
+      root, object_mapper = nil, root if root.is_a? ObjectMapper
+      root = Tag.new(SDL4R::ROOT_TAG_NAME) unless root
+
+      self.object_mapper = object_mapper
+
       @root = root
       @stack = [ root ]
     end
@@ -45,6 +55,10 @@ module SDL4R
     def current
       @stack.last
     end
+
+    def depth
+      @stack.length - 1
+    end
     
     def start_element(namespace, name = nil, &block)
       namespace, name = '', namespace unless name
@@ -53,7 +67,7 @@ module SDL4R
 
       child = current.new_child(namespace, name)
       @stack << child
-   
+
       if block_given?
         block[self]
         end_element

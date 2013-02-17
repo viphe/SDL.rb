@@ -53,7 +53,7 @@ module SDL4R
       @eof_reached = false
     end
 
-    # Returns the currently traversed Element or nil if none is.
+    # @return [Element] the currently traversed Element or nil if none is.
     def element
       @stack.last
     end

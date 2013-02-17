@@ -48,18 +48,22 @@ module SDL4R
       @eol = options[:eol]
       @string_quote = options[:string_quote]
       raise ArgumentError,
-        "invalid string quote <#{@string_quote}>" unless @string_quote =~ /\A["`]\Z/
+        "invalid string quote <#@string_quote>" unless @string_quote =~ /\A["`]\Z/
     end
     
     # @param [IO, Pathname, String] out
     #   the IO, Pathname of the file or String to write to (defaults to a StringIO)
     # @param [Hash] options options of the created Writer
-    # @option options [String] :indent_text text used in order to indent lines (default: "\t")
-    # @option options [String] :eol end-of-line (default: "\n")
-    # @option options [String] :string_quote either '"' or '`'
+    # @option [String] options :indent_text text used in order to indent lines (default: "\t")
+    # @option [String] options :eol end-of-line (default: "\n")
+    # @option [String] options :string_quote either '"' or '`'
+    # @param [ObjectMapper] object_mapper support object for serialization
     #
-    def initialize(out = nil, options = nil)
+    def initialize(out = nil, options = nil, object_mapper = ObjectMapper.new)
       out, options = nil, out if options.nil? and out.is_a? Hash
+
+      self.object_mapper = object_mapper
+
       initialize_options(options)
       
       @depth = 0
@@ -76,13 +80,13 @@ module SDL4R
       
       case out
       when Pathname
-        @io = out.open("w")
+        @io = out.open('w')
         autoclose = true
       when String
-        @io = StringIO.new(out, "w")
+        @io = StringIO.new(out)
         autoclose = true
       when nil
-        @io = StringIO.new("", "w")
+        @io = StringIO.new('')
         autoclose = true
       else
         @io = out
@@ -96,7 +100,7 @@ module SDL4R
     end
     
     # The underlying IO.
-    attr_reader :io
+    attr_reader :io, :depth
     
     # Closes the underlying IO.
     def close
@@ -125,13 +129,13 @@ module SDL4R
     # @return [self]
     #
     def start_element(namespace, name = nil)
-      namespace, name = "", namespace unless name
-      
+      namespace, name = '', namespace unless name
+
       start_body if [:anonymous, :values, :attributes].include? @status
       indent
-      
+
       if namespace and not namespace.to_s.empty?
-        raise ArgumentError, "empty element name" if name.to_s.empty?
+        raise ArgumentError, 'empty element name' if name.to_s.empty?
         
         @io << namespace << ':' << name
         @status = :values
@@ -148,7 +152,9 @@ module SDL4R
           @status = :values
         end
       end
-      
+
+      @depth += 1
+
       self
     end
     
@@ -159,10 +165,11 @@ module SDL4R
       if @status == :body
         end_body
       else
+        @depth -= 1
         new_line
         @status = @depth == 0 ? :top : :body
       end
-      
+
       @last_value_was_date = false
     end
     
@@ -172,7 +179,6 @@ module SDL4R
       @io << ' ' unless [:top, :body, :anonymous].include? @status
       @io << '{'
       new_line
-      @depth += 1
       @status = :body
       self
     end
@@ -180,10 +186,11 @@ module SDL4R
     # Writes the end of a tag body to the underlying IO.
     # @return [self]
     def end_body
-      raise InvalidOperationError, "can't end body at top level" if @depth == 0
-      
-      @io << @eol unless @status == :body
+      raise InvalidOperationError, 'can\'t end body at top level' if @depth <= 0
+
       @depth -= 1
+
+      @io << @eol unless @status == :body
       indent
       @io << '}'
       new_line
@@ -202,7 +209,7 @@ module SDL4R
     # Writes one value or several.
     #
     def value(*values)
-      # Start an anonymous tag if possible
+      # if not at the start of a tag, start an anonymous one if possible
       start_element(SDL4R::ANONYMOUS_TAG_NAME) if [:top, :body].include? @status
       
       raise InvalidOperationError, @status unless [:anonymous, :values].include? @status
@@ -238,9 +245,10 @@ module SDL4R
     #   @param [Object] value attribute value
     # 
     def attribute(namespace, name, value = MISSING_PARAMETER)
+      raise "bad arguments #{namespace.inspect}, #{name.inspect}" if namespace.nil? or name.nil?
       raise InvalidOperationError, @status unless [:values, :attributes].include? @status
       
-      value, name, namespace = name, namespace, "" if MISSING_PARAMETER.equal? value
+      value, name, namespace = name, namespace, '' if MISSING_PARAMETER.equal? value
       namespace = namespace.id2name if namespace.is_a? Symbol
       name = name.id2name if name.is_a? Symbol
       

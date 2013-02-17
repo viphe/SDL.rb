@@ -19,7 +19,7 @@
 #++
 
 # Work-around a bug in NetBeans (http://netbeans.org/bugzilla/show_bug.cgi?id=188653)
-if ENV["NB_EXEC_EXTEXECUTION_PROCESS_UUID"]
+if ENV['NB_EXEC_EXTEXECUTION_PROCESS_UUID']
   $:[0] = File.join(File.dirname(__FILE__),'../../lib')
   $:.unshift(File.join(File.dirname(__FILE__),'../../test'))
 end
@@ -33,38 +33,62 @@ module SDL4R
   require 'sdl4r'
   require 'sdl4r/tag_writer'
 
-  require "sdl4r/sdl_test_case"
+  require 'sdl4r/sdl_test_case'
 
   class SerializerTest < Test::Unit::TestCase
     include SdlTestCase
 
+    # Serializes the given object to a Tag structure and returns the root Tag.
+    def serialize_to_tag(*args)
+      writer = TagWriter.new
+      writer.write(*args)
+      writer.root
+    end
+    protected :serialize_to_tag
+
+    def test_values_at_root_level
+      root = serialize_to_tag([1, :abc, nil])
+      assert_equal(<<EOS, SDL4R::dump(root))
+1 "abc" null
+EOS
+    end
+
+    def test_attributes_at_root_level
+      mole = OpenStruct.new(:vision => 0.5)
+      root = serialize_to_tag(mole)
+      assert_equal(<<EOS, SDL4R::dump(root))
+vision 0.5F
+EOS
+    end
+
     def test_basic_open_struct
-      tag_writer = TagWriter.new
-      serializer = Serializer.new(tag_writer)
+      serializer = TagWriter.new
 
       car = OpenStruct.new
-      car.brand = "Opel"
+      car.brand = 'Opel'
       car.wheels = 4
       car.max_speed = 223.5
       car.radio = OpenStruct.new
-      car.radio.brand = "Pioneer"
+      car.radio.brand = 'Pioneer'
       car.radio.signal_noise_ratio = 90
       car.radio.construction_date = Date.civil(2005, 12, 5)
 
       # serialize and check
-      serializer.serialize(car)
-      tag = tag_writer.root
+      serializer.write(:car => car)
+      tag = serializer.root
 
       assert_equal SDL4R::ROOT_TAG_NAME, tag.name
-      assert_equal({}, tag.attributes, "the root tag cannot have attributes")
-      assert_equal 4, tag.children.length
-      assert_equal car.brand, tag.child('brand').value
-      assert_equal car.wheels, tag.child('wheels').value
-      assert_equal car.max_speed, tag.child('max_speed').value
+      assert_equal({}, tag.attributes, 'the root tag cannot have attributes')
+
+      car_tag = tag.child(:car)
+      assert_equal 1, car_tag.children.length
+      assert_equal car.brand, car_tag.attribute('brand')
+      assert_equal car.wheels, car_tag.attribute('wheels')
+      assert_equal car.max_speed, car_tag.attribute('max_speed')
       assert_equal(
         { 'brand' => car.radio.brand, 'signal_noise_ratio' => car.radio.signal_noise_ratio,
           'construction_date' => car.radio.construction_date },
-        tag.child('radio').attributes)
+        car_tag.child('radio').attributes)
       assert !car.radio.has_children?
 
       # deserialize and check
@@ -115,11 +139,11 @@ module SDL4R
 
     end
 
-    def xtest_serialize_object_and_property_access
+    def test_serialize_object_and_property_access
       o = SerializeA.new(10, 20, 30, 40, 50)
 
-      serializer = Serializer.new
-      tag = serializer.serialize(o)
+      serializer = TagWriter.new
+      tag = serializer.write(:o => o).root.child(:o)
 
       assert_equal 10, tag.attribute('a')
       assert_equal 20, tag.attribute('b')
@@ -131,37 +155,36 @@ module SDL4R
       assert_equal 50, tag.attribute('e')
     end
 
-    def xtest_serialize_array_property
+    def test_serialize_array_property
       o = OpenStruct.new
       o.array1 = [ 407, 5, 2.3 ]
       o.array2 = []
-      o.array3 = [ OpenStruct.new(:values => [1, nil]), OpenStruct.new(:flavor => 'strawberry') ]
+      o.array3 = [ OpenStruct.new(:some_values => [1, nil]), OpenStruct.new(:flavor => 'strawberry') ]
 
-      tag_writer = TagWriter.new
-      serializer = Serializer.new(tag_writer)
-      serializer.serialize({:o => o})
-      top_tag = tag_writer.root
+      serializer = TagWriter.new
+      serializer.write(:o => o)
+      top_tag = serializer.root
       o_tag = top_tag.child('o')
 
       assert_equal [ 407, 5, 2.3 ], o_tag.child('array1').values
       assert_equal [], o_tag.child('array2').values
 
-      array3_tags = o_tag.children(false, 'array3')
-      assert_equal [1, nil], array3_tags[0].child('values').values
-      assert_equal 'strawberry', array3_tags[1].attribute('flavor')
+      array3_tag = o_tag.child('array3')
+      assert_equal [1, nil], array3_tag.children[0].child('some_values').values
+      assert_equal %w{strawberry}, array3_tag.children[1].child('flavor').values
     end
 
-    def xtest_serialize_hash
+    def test_serialize_hash
       top = OpenStruct.new
 
-      serializer = Serializer.new
+      serializer = TagWriter.new
       top.h = {}
-      tag = serializer.serialize(top)
+      tag = serializer.write(top).root
       assert_equal top.h, tag.child('h').attributes
 
-      serializer = Serializer.new
+      serializer = TagWriter.new
       top.h = { "a" => 10, "b" => "xyz", "c" => nil }
-      tag = serializer.serialize(top)
+      tag = serializer.write(top).root
       assert_equal top.h, tag.child('h').attributes
     end
 
@@ -180,7 +203,7 @@ module SDL4R
       attr_accessor :page, :title
     end
 
-    def xtest_deserialize_object
+    def test_deserialize_object
       tag = SDL4R::read(<<EOS
 books {
   book title="My Life, My Potatoes" {
@@ -264,19 +287,19 @@ EOS
       assert_nil top.books[1].conclusion
     end
 
-    def xtest_option_omit_nil_properties
+    def test_option_omit_nil_properties
       o = OpenStruct.new(:a => 1, :b => nil)
 
-      serializer = Serializer.new(:omit_nil_properties? => false)
-      tag = serializer.serialize(o)
-      assert_equal({ "a" => 1, "b" => nil }, tag.attributes)
+      serializer = TagWriter.new(ObjectMapper.new(:omit_nil_properties => false))
+      tag = serializer.write(:o => o).root.child
+      assert_equal({ 'a' => 1, 'b' => nil }, tag.attributes)
 
-      serializer = Serializer.new(:omit_nil_properties? => true)
-      tag = serializer.serialize(o)
-      assert_equal({ "a" => 1 }, tag.attributes)
+      serializer = TagWriter.new(ObjectMapper.new(:omit_nil_properties => true))
+      tag = serializer.write(:o => o).root.child
+      assert_equal({ 'a' => 1 }, tag.attributes)
     end
 
-    def xtest_deserialize_anonymous
+    def test_deserialize_anonymous
       tag = SDL4R::read(<<EOS
 colors {
   "red"
@@ -306,7 +329,7 @@ EOS
       assert_equal "in the dark", top.alone
     end
 
-    def xtest_deserialize_root_as_hash
+    def test_deserialize_root_as_hash
       tag = SDL4R::read(<<EOS
 fingers 7
 matrix {
@@ -322,7 +345,7 @@ EOS
       assert_equal [[1, 2, 3], [4, 5, 6]], top["matrix"]
     end
 
-    def xtest_deserialized_properties_priorities
+    def test_deserialized_properties_priorities
       top = SDL4R::load(<<EOS
 fruit name="BANANA" {
   name "banana"
@@ -373,37 +396,39 @@ EOS
       o2.slave = o3
       o3.slave = o1
 
-      serializer = Serializer.new(tag_writer = TagWriter.new)
-      serializer.serialize(top)
-      root = tag_writer.root
+      serializer = TagWriter.new
+      serializer.write(top)
+      root = serializer.root
 
-      assert_equal 3, root.child_count
+      assert_equal 1, root.child_count
+      worker_tag = root.children[0]
 
-      o1_tag = root.children[0]
-      o2_tag = root.children[1]
-      o4_tag = root.children[2]
+      assert_equal 3, worker_tag.child_count
+      o1_tag = worker_tag.children[0]
+      o2_tag = worker_tag.children[1]
+      o4_tag = worker_tag.children[2]
 
-      assert_equal '1', o1_tag.attribute('name')
-      assert_not_nil o1_tag.attribute('oid')
-      assert_equal o1_tag.attribute('oid'), o1_tag.child('myself').attribute('oref')
+      assert_equal '1', o1_tag.child('name').value
+      assert_not_nil o1_tag.child('oid').value
+      assert_equal o1_tag.child('oid').value, o1_tag.child('myself').attribute('oref')
 
-      assert_equal o2_tag.attribute('oref'), o1_tag.child('slave').attribute('oid')
+      assert_equal o2_tag.child('oref').value, o1_tag.child('slave').attribute('oid')
       assert_equal '2', o1_tag.child('slave').attribute('name')
-      assert_equal o1_tag.attribute('oid'), o1_tag.child('slave').child('master').attribute('oref')
+      assert_equal o1_tag.child('oid').value, o1_tag.child('slave').child('master').attribute('oref')
 
       o3_tag = o1_tag.child('slave').child('slave')
       assert_not_nil o3_tag
       assert_equal '3', o3_tag.attribute('name')
-      assert_equal o1_tag.attribute('oid'), o3_tag.child('slave').attribute('oref')
-      
-      assert_nil o2_tag.attribute('name')
-      assert_not_nil o2_tag.attribute('oref')
+      assert_equal o1_tag.child('oid').value, o3_tag.child('slave').attribute('oref')
 
-      assert_nil o4_tag.attribute('oid')
-      assert_equal '4', o4_tag.attribute('name')
+      assert_nil o2_tag.attribute('name')
+      assert_not_nil o2_tag.child('oref').value
+
+      assert_nil o4_tag.child('oid')
+      assert_equal '4', o4_tag.child('name').value
     end
 
-    def xtest_deserialize_object2
+    def test_deserialize_object2
       tag = SDL4R::read(<<EOS
 robot 'A' oid=14
 robot 'B' oid=57 {
@@ -437,7 +462,7 @@ EOS
       end
     end
 
-    def xtest_from_sdl
+    def test_from_sdl
       serializer = Serializer.new
       def serializer.new_plain_object(tag, o = nil, parent_object = nil)
         if tag.name == 'player'
@@ -473,24 +498,30 @@ EOS
         @lastname = lastname
       end
 
-      def to_sdl(serializer = Serializer.new)
-        serializer.attribute("fullname", @firstname + ' ' + @lastname)
+      def to_sdl(writer)
+        writer.attribute(:fullname, @firstname + ' ' + @lastname)
       end
     end
 
-    def xtest_to_sdl
+    def test_to_sdl
       s = SDL4R::dump(:knight => ToSdlA.new('Lancelot', 'du Lac'))
       assert_equal("knight fullname=\"Lancelot du Lac\"\n", s)
 
-      s = SDL4R::dump(:knight => [ToSdlA.new('Lancelot', 'du Lac'), ToSdlA.new('Perceval', 'Halla')])
-      assert_equal(
-        "knight fullname=\"Lancelot du Lac\"\n" +
-          "knight fullname=\"Perceval Halla\"\n",
-        s)
+      s = SDL4R::dump(:knights => [ToSdlA.new('Lancelot', 'du Lac'), ToSdlA.new('Perceval', 'Halla')])
+      assert_equal(<<EOS.gsub(/^ +/, ''), s)
+knights {
+\t{
+\t\tfullname "Lancelot du Lac"
+\t}
+\t{
+\t\tfullname "Perceval Halla"
+\t}
+}
+EOS
     end
 
-    def xtest_default_namespace
-      serializer = Serializer.new(:default_namespace => "ns")
+    def test_default_namespace
+      serializer = TagWriter.new(ObjectMapper.new(:default_namespace => "ns"))
 
       origin = OpenStruct.new(:name => "Bourgogne")
       wine1 = OpenStruct.new(:color => "red", :origin => origin)

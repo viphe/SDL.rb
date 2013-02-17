@@ -21,6 +21,7 @@
 module SDL4R
 
   require 'sdl4r/element_writer'
+  require 'sdl4r/nil_writer'
 
   # Support object for serialization-related classes.
   #
@@ -270,17 +271,24 @@ module SDL4R
     end
     private :each_plain_object_property
 
-    # Writes a reference to an Object already encountered in the stream.
-    # This method is a support for handling cycles in object graphs.
+    # Go through the given object graph and records occurrences of objects.
+    # This method is useful when a SDL writer needs to minimize appearances of object ids.
     #
-    # @param name tag name
-    # @param oid the identifier of the object
-    # @param object_mapper support for serialization
-    #
-    def write_object_ref(writer, name, oid)
-      writer.start_element name
-      writer.attribute(oref_attr, oid)
-      writer.end_element
+    def record(namespace, name, object)
+      return if @recording
+
+      # do a blank run with a NilWriter in order to count object appearances
+      writer = NilWriter.new(self)
+      begin
+        start_recording
+        if name.nil?
+          writer.write(object)
+        else
+          writer.write(namespace, name, object)
+        end
+      ensure
+        stop_recording
+      end
     end
 
     def start_recording
@@ -294,7 +302,7 @@ module SDL4R
       end
     end
     
-    # Resets the cache of object references/ids and the underlying IO if writing.
+    # Resets the cache of object references/ids.
     def flush
       @ref_by_oid.clear
       @ref_by_object.clear
@@ -335,16 +343,6 @@ module SDL4R
         else
           true # by default
         end
-      end
-
-      # Writes a Tag representing this Ref with the specified writer.
-      #
-      # _name_:: name of the created Tag (if +nil+, the definition Tag name - i.e. the name of the
-      #   first Tag representing the referenced object - is used)
-      #
-      def write_object_ref(writer, name)
-        name ||= tag_name
-        @object_mapper.write_object_ref(writer, name, @oid)
       end
 
     end

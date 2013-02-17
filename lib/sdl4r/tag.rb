@@ -191,7 +191,7 @@ module SDL4R
     # Returns the created child Tag.
     #
     def new_child(*args, &block)
-      return add_child Tag.new(*args, &block)
+      add_child Tag.new(*args, &block)
     end
   
     # Add a child to this Tag.
@@ -201,9 +201,9 @@ module SDL4R
     # Returns the added child.
     #
     def add_child(child)
-      raise ArgumentError, "child is nil" unless child
+      raise ArgumentError, 'child should be a Tag' unless child.is_a? Tag
       @children.push(child)
-      return child
+      child
     end
 
     # Adds the given object as a child if it is a +Tag+, as an attribute if it is a Hash

@@ -21,11 +21,20 @@
 module SDL4R
   
   # Abstract writer of a SDL stream.
-  # 
+  #
   # @abstract
   #
   module AbstractWriter
-    
+
+    attr_accessor :object_mapper
+
+
+    # @return [Integer] 0 at the root level and a higher int otherwise.
+    # @abstract
+    def depth
+      raise 'not implemented'
+    end
+
     # Writes the declaration of a tag.
     # No validity check as for legal characters is performed on +name+ and +namespace+.
     #
@@ -40,7 +49,7 @@ module SDL4R
     # @return [self]
     #
     def start_element(namespace, name = nil)
-      raise "not implemented"
+      raise 'not implemented'
     end
 
     # (see #start_element)
@@ -52,7 +61,7 @@ module SDL4R
     #
     # @abstract
     def end_element
-      raise "not implemented"
+      raise 'not implemented'
     end
 
     # (see #end_element)
@@ -65,7 +74,7 @@ module SDL4R
     #
     # @abstract
     def start_body
-      raise "not implemented"
+      raise 'not implemented'
     end
     
     # Writes the end of a tag body to the underlying stream.
@@ -73,7 +82,7 @@ module SDL4R
     #
     # @abstract
     def end_body
-      raise "not implemented"
+      raise 'not implemented'
     end
     
     # Writes a tag. The tag is closed when the method exits.
@@ -89,8 +98,11 @@ module SDL4R
     #
     def element(n1, n2 = nil)
       start_element n1, n2
-      yield if block_given?
-      end_element
+      begin
+        yield if block_given?
+      ensure
+        end_element
+      end
       self
     end
 
@@ -106,7 +118,7 @@ module SDL4R
     # @return [self]
     #
     def value(*values)
-      raise "not implemented"
+      raise 'not implemented'
     end
 
     # (see #value)
@@ -134,13 +146,17 @@ module SDL4R
     # @return [self]
     # 
     def attribute(namespace, name, value = MISSING_PARAMETER)
-      raise "not implemented"
+      raise 'not implemented'
     end
     
     # Writes the given objects to the underlying stream.
     #
     # @overload write(*objects)
-    #   @param [#namespace, #name] objects objects to serialize as sub-elements
+    #   @param [Tag, Object] objects
+    #       Objects to serialize as anonymous sub-elements or
+    #       Tags to write under their own names.
+    #       Nameless Objects are serialized directly into the current element, while Tags are always written as
+    #       sub-elements.
     # @overload write(name, *objects)
     #   @param [String, Symbol] name name of the sub-elements
     #   @param [Tag, Object] objects objects to serialize as sub-elements (their names or namespaces are ignored)
@@ -174,72 +190,182 @@ module SDL4R
 
       args.each do |o|
         unless name_specified
-          name = o.name
-          namespace = o.respond_to?(:namespace) ? o.namespace : nil
+          if depth > 0 and (o.is_a? Tag or o.is_a? Element)
+            namespace = o.namespace
+            name = o.name
+          else
+            namespace = nil
+            name = nil
+          end
         end
 
+        @object_mapper.record(namespace, name, o) unless o.is_a? Tag
         write_impl(namespace, name, o)
       end
       
       self
     end
 
-    # Called by #write for each object to write and with resolved name and namespace.
+    # Called by #write for each object to write with resolved name and namespace.
     def write_impl(namespace, name, o)
-      if o.is_a? Tag
-        write_tag namespace, name, o
+      if @object_mapper.collection?(o)
+        write_collection_impl(namespace, name, o)
+
       else
-        write_object namespace, name, o
+        start_element(namespace, name) if name
+        begin
+          if o.is_a? Tag
+            write_tag o
+          else
+            write_object(o, namespace == '' && name == SDL4R::ANONYMOUS_TAG_NAME)
+          end
+
+        ensure
+          end_element if name
+        end
       end
     end
     protected :write_impl
     
-    # Writes the specified Tag.
-    def write_tag(namespace, name, tag)
-      element(namespace, name) do
-        values(*tag.values)
-        
-        # Attributes are written in lexicographic order.
-        if tag.has_attributes?
-          all_attributes_hash = tag.attributes
-          all_attributes_array = all_attributes_hash.sort { |a, b|
-            namespace1, name1 = a[0].split(':')
-            namespace1, name1 = "", namespace1 if name1.nil?
-            namespace2, name2 = b[0].split(':')
-            namespace2, name2 = "", namespace2 if name2.nil?
+    # Writes the specified Tag into the SDL stream.
+    # The default implementation translates the Tag tree into lower-level calls.
+    #
+    # @param [Tag] tag the tag to write
+    #
+    # @return self
+    #
+    def write_tag(tag)
+      is_root = (depth <= 0)
+      values(*tag.values) unless is_root # otherwise ignored
 
-            diff = namespace1 <=> namespace2
-            diff == 0 ? name1 <=> name2 : diff
-          }
-          
-          all_attributes_array.each do |attribute_name, attribute_value|
+      # Attributes are written in lexicographic order.
+      if tag.has_attributes?
+        all_attributes_hash = tag.attributes
+        all_attributes_array = all_attributes_hash.sort { |a, b|
+          namespace1, name1 = a[0].split(':')
+          namespace1, name1 = '', namespace1 if name1.nil?
+          namespace2, name2 = b[0].split(':')
+          namespace2, name2 = '', namespace2 if name2.nil?
+
+          diff = namespace1 <=> namespace2
+          diff == 0 ? name1 <=> name2 : diff
+        }
+
+        omit_nil_properties = @object_mapper.omit_nil_properties?
+
+        all_attributes_array.each do |attribute_name, attribute_value|
+          next if attribute_value.nil? and omit_nil_properties
+
+          if is_root
+            element(@object_mapper.element_namespace, attribute_name) { value(attribute_value) }
+          else
             attribute(attribute_name, attribute_value)
           end
         end
-        
-        tag.children do |child|
-          write_tag(child.namespace, child.name, child)
+      end
+
+      tag.children do |child|
+        element child.namespace, child.name do
+          write_tag child
         end
       end
-      
+
       self
     end
-    private :write_tag
+    protected :write_tag
     
-    # Serializes the specified Object.
+    # Writes a given object as a named sub-element of the current one.
+    # Called by #write for anything that is not a Tag or an Element.
 		#
 		# @return self
-    def write_object(namespace, name, o)
-      @serializer ||= Serializer.new(self)
-      @serializer.serialize(o)
+    #
+    def write_object(object, attributes_as_elements = false)
+      if SDL4R::is_coercible?(object)
+        value(object)
+
+      else
+        omit_nil_properties = @object_mapper.omit_nil_properties?
+
+        @object_mapper.each_property(object) do |prop_namespace, prop_name, val, type|
+          next if val.nil? and omit_nil_properties
+
+          if depth <= 0
+            case type
+              when :attribute
+                type = :element # no attribute at root level
+              when :value
+                next  # no value at root level
+              else
+                # ignore
+            end
+          end
+
+          type = :element if attributes_as_elements and type == :attribute
+
+          case type
+            when :element
+              write_impl(prop_namespace, prop_name, val)
+            when :attribute
+              attribute(prop_namespace, prop_name, val)
+            when :value
+              if val.is_a? Array
+                value(*val)
+              else
+                value(val)
+              end
+            else
+              # ignore
+          end
+        end
+      end
+
       self
     end
-    private :write_object
+    protected :write_object
+
+    # Writes the given collection inside the current element.
+    #
+    # @param [Enumerable] collection the collection to write
+    def write_collection_impl(namespace, name, collection)
+      is_root = depth <= 0
+      is_value_collection = collection.all? { |item| SDL4R::is_coercible?(item) }
+
+      if is_value_collection
+        if is_root
+          # values are not supported at root level directly: wrap them in an anonymous tag
+          element '', SDL4R::ANONYMOUS_TAG_NAME do
+            write_collection_as_values(collection)
+          end
+
+        else
+          start_element namespace, name if name
+          write_collection_as_values(collection)
+          end_element if name
+        end
+
+      else
+        element namespace, name do
+          collection.each { |item|
+            write_impl('', SDL4R::ANONYMOUS_TAG_NAME, item)
+          }
+        end
+      end
+    end
+    private :write_collection_impl
+
+    def write_collection_as_values(collection)
+      if collection.is_a? Array
+        values(*collection)
+      else
+        collection.each { |item| value(item) }
+      end
+    end
+    private :write_collection_as_values
 
     # Flushes any underlying IO or buffer needing flushing.
     # Don't forget to call this when overwriting.
     def flush
-      @serializer.flush if @serializer
+      @object_mapper.flush
     end
   end
 end

@@ -23,18 +23,28 @@ module SDL4R
   # A do-nothing SDL writer (it will still go through the given blocks though).
   #
   class NilWriter
-      include AbstractWriter
+    include AbstractWriter
+
+    def initialize(object_mapper = ObjectMapper.new)
+      self.object_mapper = object_mapper
+      @depth = 0
+    end
+    attr_reader :depth
     
     def start_element(namespace, name = nil)
+      @depth += 1
     end
 
     def start_tag(namespace, name = nil)
+      start_element(namespace, name)
     end
     
     def end_element
+      @depth -= 1
     end
 
     def end_tag
+      end_element
     end
 
     def start_body

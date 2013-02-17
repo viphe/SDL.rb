@@ -19,15 +19,15 @@ Then, you can start reading SDL documents:
 
     require 'pathname'
     require 'sdl4r'
-
+    
     root = SDL4R::read(Pathname.new("my_directory/my_config.sdl"))
     puts root.attribute("port")
 
 Or you can create SDL documents with the API:
-
+    
     require 'fileutils'
     require 'sdl4r'
-
+    
     root = SDL4R::Tag.new("root") do
         new_child("server") do
             set_attribute("port", 1234)
@@ -38,7 +38,7 @@ Or you can create SDL documents with the API:
     }
 
 which will write the following in your file:
-
+    
     server port=1234
 
 == SDL Documents
@@ -52,14 +52,14 @@ SDL documents are made up of Tags. A Tag contains
 * 0 or more children (optional)
 
 For the SDL code:
-
+  
   size 4
   smoker false
 
 
 Assuming this code is in a file called <tt>values.sdl</tt>, the values can be read
 using the following code (ignoring exceptions):
-
+  
   root = Tag.new("root").read(Pathname.new("values.sdl"))
   size = root.child("size").value
   smoker = root.child("smoker").value
@@ -71,7 +71,7 @@ attributes, and (if it has a body) child tags.  In the example above, the
 attributes, and no bodies.
 
 SDL is often used for simple key-value mappings.  To simplify things Tag
-has the methods getValue and setValue which operate on the first element in
+has the methods value and value= which operate on the first element in
 the values list.  Also notice SDL understands types which are determined
 using type inference.
 
@@ -112,7 +112,7 @@ demonstrates the use of anonymous tags.
 
     # If we have a handle on the "greetings" tag we can access the
     # anonymous child tag by calling
-    #    Tag child1 = greetingTag.getChild("content");
+    #    Tag child1 = greetingTag.child("content");
 
 == String literals
 
@@ -299,7 +299,7 @@ An example SDL file:
 
     # To retrieve the files as a list of strings
     #
-    #     List files = tag.getChild("files").getChildrenValues("content");
+    #     List files = tag.child("files").children_values("content");
     #
     # We us the name "content" because the files tag has two children, each of
     # which are anonymous tags (values with no name.)  These tags are assigned
@@ -312,7 +312,7 @@ An example SDL file:
 
     # To retrieve the values from the matrix (as a list of lists)
     #
-    #     List rows = tag.getChild("matrix").getChildrenValues("content");
+    #     List rows = tag.child("matrix").children_values("content");
 
 
 Example of getting the "location" attribute from the "daughter" tag
@@ -360,12 +360,19 @@ Alternatively you can use the following options when launching the Ruby interpre
 
     /path/to/ruby -Ku -rjcode
 
+== Ruby Support
+
+SDL4R has been tested on:
+
+ * Ruby 1.8.7
+ * Ruby 1.9
+ * JRuby 1.5.1
 
 == License
 
 Simple Declarative Language (SDL) for Ruby
 
-Copyright 2005 Ikayzo, inc.
+Copyright 2005-2013 Ikayzo, inc.
 
 This program is free software. You can distribute or modify it under the
 terms of the GNU Lesser General Public License version 2.1 as published by

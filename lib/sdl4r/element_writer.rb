@@ -37,16 +37,24 @@ module SDL4R
     attr_reader :root
 
     # @param root [Element] the root Element to build upon (defaults to )
-    def initialize(root = Element.new('', SDL4R::ANONYMOUS_TAG_NAME))
+    def initialize(root = Element.new('', SDL4R::ANONYMOUS_TAG_NAME), object_mapper = ObjectMapper.new)
       raise 'root must be an Element' unless root.is_a? Element
+
+      self.object_mapper = object_mapper
+
       @root = root
       @stack = [@root]
     end
 
+    # @return [Element] currently written Element
     def current
       @stack.last
     end
     protected :current
+
+    def depth
+      @stack.length - 1
+    end
 
     def start_element(namespace, name = nil)
       if name.nil?
@@ -83,7 +91,7 @@ module SDL4R
 
     def attribute(namespace, name, value = MISSING_PARAMETER)
       if value == MISSING_PARAMETER
-        namespace, name, value = nil, namespace.to_s, name
+        namespace, name, value = '', namespace.to_s, name
       else
         namespace, name = namespace.to_s, name.to_s
       end

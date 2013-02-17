@@ -331,12 +331,10 @@ module SDL4R
     return Serializer.new.deserialize(tag)
   end
 
-  # Dumps the specified object to a given output or returns the corresponding SDL string if output
-  # is +nil+.
+  # Dumps the specified object to a given output or returns the corresponding SDL string if output is +nil+.
   #
-  # _o_:: the root object (equivalent to a root SDL tag, therefore it's values and attributes are
-  #   NOT dumped. See below for an example.)
-  # _output_:: an output as accepted by Tag#write or +nil+ in order to convert to a SDL string.
+  # @param o Object dumped into SDL (via AbstractWriter#write)
+  # @param output AbstractWriter or any legal input of Writer#new
   #
   # example:
   #
@@ -352,11 +350,11 @@ module SDL4R
   #   }
   #
   def self.dump(o, output = nil)
-    serializer = Serializer.new(output)
-		serializer.serialize(o)
+    writer = output.is_a? AbstractWriter ? output : Writer.new(output)
+		writer.write(o)
 
     if output.nil?
-			serializer.writer.io.string
+			writer.io.string
     else
 			output
     end

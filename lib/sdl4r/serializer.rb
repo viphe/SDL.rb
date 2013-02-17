@@ -104,7 +104,7 @@ module SDL4R
 
     # Serializes the given object into the underlying writer.
     #
-    def write_object(o)
+    def write_object(namespace, name, o)
 
       # do a blank run with a NilWriter in order to count object appearances
       normal_writer = @writer
@@ -121,6 +121,7 @@ module SDL4R
 
       nil
     end
+    protected :write_object
 
     def serialize(o)
       write_object(o)
@@ -134,7 +135,7 @@ module SDL4R
     #   if true (default) 'o' is serialized in a new tag, otherwise the current one (in the writer)
     #   is used
     #
-    def serialize_impl(o)
+    def write_object_impl(namespace, name, o)
       # insert object ids/refs
       ref = reference_object(o)
       if ref.multi_ref?
@@ -168,8 +169,8 @@ module SDL4R
         end
       end
     end
+    private :write_object_impl
 
-    private :serialize_impl
 
     def serialize_hash(hash)
       hash.each_pair { |key, value|
