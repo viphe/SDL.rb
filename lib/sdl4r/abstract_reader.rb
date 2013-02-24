@@ -14,7 +14,7 @@ module SDL4R
   #
   # @abstract
   #
-  class AbstractReader
+  module AbstractReader
 
     TYPE_ELEMENT = :ELEMENT
     TYPE_END_ELEMENT = :END_ELEMENT
@@ -22,45 +22,45 @@ module SDL4R
 
     # @abstract
     def rewindable?
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Resets the position of this reader to the beginning of the SDL stream. Note that some readers are not rewindable.
     # @abstract
     def rewind
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Type of the traversed SDL node (e.g. TYPE_ELEMENT).
     # @abstract
     def node_type
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Prefix (namespace) of the traversed SDL node.
     # @abstract
     def prefix
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Name of the traversed SDL node.
     # @abstract
     def name
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Depth of the current SDL node. Depth of top nodes is 1 (0 would be the root that the Reader
     # doesn't traverse).
     # @abstract
     def depth
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return [Array] an array of the attributes of the traversed SDL node structured as follows:
     #   <code>[ ["ns1", "attr1", 123], ["", "attr2", true] ]</code>
     # @abstract
     def attributes
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return the value of the specified attribute.
@@ -69,31 +69,31 @@ module SDL4R
     # @overload attribute(prefix, name)
     # @abstract
     def attribute(prefix, name = nil)
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return the attribute at the specified index: <code>[namespace, name, value]</code>.
     # @abstract
     def attribute_at(index)
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return [Integer] number of attributes in the current element
     # @abstract
     def attribute_count
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return [boolean] whether the current element has attributes.
     # @abstract
     def attributes?
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return the values of the current node, nil if there are none.
     # @abstract
     def values
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # @return the first of the values or nil if there are none
@@ -115,7 +115,7 @@ module SDL4R
     #
     # @abstract
     def self_closing?
-      raise "abstract_method"
+      raise 'abstract_method'
     end
 
     # Reads the next node in the SDL structure.
@@ -132,7 +132,7 @@ module SDL4R
     #   has been reached.
     # @abstract
     def read
-      raise "abstract method"
+      raise 'abstract method'
     end
 
     # Enumerates all the parsed nodes and calls the given block.
@@ -197,6 +197,8 @@ module SDL4R
           when TYPE_END_ELEMENT
             tag = stack.pop
             yield tag if !only_top_tags or depth <= 1
+
+          else
         end
       end
     end

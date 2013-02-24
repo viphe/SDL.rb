@@ -161,17 +161,17 @@ EOS
       o.array2 = []
       o.array3 = [ OpenStruct.new(:some_values => [1, nil]), OpenStruct.new(:flavor => 'strawberry') ]
 
-      serializer = TagWriter.new
-      serializer.write(:o => o)
-      top_tag = serializer.root
-      o_tag = top_tag.child('o')
+      top_tag = serialize_to_tag(:o => o)
+      o_tag = top_tag.child(:o)
 
       assert_equal [ 407, 5, 2.3 ], o_tag.child('array1').values
       assert_equal [], o_tag.child('array2').values
+      assert_equal Hash.new, o_tag.child(:array2).attributes
 
-      array3_tag = o_tag.child('array3')
-      assert_equal [1, nil], array3_tag.children[0].child('some_values').values
-      assert_equal %w{strawberry}, array3_tag.children[1].child('flavor').values
+      array3_tags = o_tag.children('array3')
+      assert_equal 2, array3_tags.size
+      assert_equal [1, nil], array3_tags[0].child('some_values').values
+      assert_equal 'strawberry', array3_tags[1].attribute('flavor')
     end
 
     def test_serialize_hash
@@ -400,32 +400,27 @@ EOS
       serializer.write(top)
       root = serializer.root
 
-      assert_equal 1, root.child_count
-      worker_tag = root.children[0]
+      assert_equal 3, root.child_count # o1, o2 and o4
+      o1_tag, o2_tag, o4_tag = *root.children
 
-      assert_equal 3, worker_tag.child_count
-      o1_tag = worker_tag.children[0]
-      o2_tag = worker_tag.children[1]
-      o4_tag = worker_tag.children[2]
+      assert_equal '1', o1_tag.attribute(:name)
+      assert_not_nil o1_tag.attribute(:oid), 'o1 should have an oid as referenced later in the graph'
+      assert_equal o1_tag.attribute(:oid), o1_tag.child(:myself).attribute(:oref)
 
-      assert_equal '1', o1_tag.child('name').value
-      assert_not_nil o1_tag.child('oid').value
-      assert_equal o1_tag.child('oid').value, o1_tag.child('myself').attribute('oref')
+      assert_equal o2_tag.attribute(:oref), o1_tag.child(:slave).attribute(:oid)
+      assert_equal '2', o1_tag.child(:slave).attribute(:name)
+      assert_equal o1_tag.attribute(:oid), o1_tag.child(:slave).child(:master).attribute(:oref)
 
-      assert_equal o2_tag.child('oref').value, o1_tag.child('slave').attribute('oid')
-      assert_equal '2', o1_tag.child('slave').attribute('name')
-      assert_equal o1_tag.child('oid').value, o1_tag.child('slave').child('master').attribute('oref')
-
-      o3_tag = o1_tag.child('slave').child('slave')
+      o3_tag = o1_tag.child(:slave).child(:slave)
       assert_not_nil o3_tag
-      assert_equal '3', o3_tag.attribute('name')
-      assert_equal o1_tag.child('oid').value, o3_tag.child('slave').attribute('oref')
+      assert_equal '3', o3_tag.attribute(:name)
+      assert_equal o1_tag.attribute(:oid), o3_tag.child(:slave).attribute(:oref)
 
-      assert_nil o2_tag.attribute('name')
-      assert_not_nil o2_tag.child('oref').value
+      assert_nil o2_tag.attribute(:name)
+      assert_not_nil o2_tag.attribute(:oref)
 
-      assert_nil o4_tag.child('oid')
-      assert_equal '4', o4_tag.child('name').value
+      assert_nil o4_tag.attribute(:oid)
+      assert_equal '4', o4_tag.attribute(:name)
     end
 
     def test_deserialize_object2
@@ -507,16 +502,10 @@ EOS
       s = SDL4R::dump(:knight => ToSdlA.new('Lancelot', 'du Lac'))
       assert_equal("knight fullname=\"Lancelot du Lac\"\n", s)
 
-      s = SDL4R::dump(:knights => [ToSdlA.new('Lancelot', 'du Lac'), ToSdlA.new('Perceval', 'Halla')])
+      s = SDL4R::dump(:knight => [ToSdlA.new('Lancelot', 'du Lac'), ToSdlA.new('Perceval', 'Halla')])
       assert_equal(<<EOS.gsub(/^ +/, ''), s)
-knights {
-\t{
-\t\tfullname "Lancelot du Lac"
-\t}
-\t{
-\t\tfullname "Perceval Halla"
-\t}
-}
+knight fullname="Lancelot du Lac"
+knight fullname="Perceval Halla"
 EOS
     end
 

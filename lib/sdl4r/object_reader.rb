@@ -14,8 +14,8 @@ module SDL4R
   # there is nothing else to do. If the result is not nil, then the encountered object is substituted by that
   # result.
   #
-  class ObjectReader < AbstractReader
-    include ReaderWithElement
+  class ObjectReader
+    include AbstractReader, ReaderWithElement
 
     # @param root root of the object graph to read from
     # @param object_mapper [ObjectMapper]

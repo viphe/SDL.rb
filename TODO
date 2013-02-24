@@ -1,6 +1,4 @@
-[x] Is Base64 really compatible with the format defined in the Java version ?
-    ==> Seems so after having implemented more of the standard tests.
-[ ] Add more unit tests
+[x] Add more unit tests
     [x] Attribute tests
     [x] Date tests
     [x] Date + time test
@@ -10,14 +8,11 @@
     [x] Sub tags tests
     [x] "null" value test
     [x] Comment tests
-    [ ] Bad syntax tests
-[ ] Test write (unit tests)
-    [ ] Dates
-    [ ] Numbers
-[A] Use YARD in order to generate documentation ?
+    [x] Bad syntax tests
+[f] Use YARD in order to generate documentation ?
     ==> alternatively, I tried to generate some RDoc templates but none worked in Rake...
-[ ] BUG: the line number is too high by 1 (the column is correct).
-[/] Fix the differences between test_basic_types.sdl and what is generated from the parsed structure
+[x] @BUG the line number is too high by 1 (the column is correct).
+[x] Fix the differences between test_basic_types.sdl and what is generated from the parsed structure
     [x] chars
     [x] longs
     [x] doubles
@@ -28,44 +23,32 @@
     [x] times
         [x] negative times
     [x] datetimes
-        [/] zone codes
+        [x] zone codes
         ==> Time only works in UTC, which means that the original zone code is lost.
         ==> DateTime doesn't give the zone code but only the offset.
-        [ ] Use TzTime? Use a custom object that knows whether a time zone was specified?
+        [f] Use TzTime? Use a custom object that knows whether a time zone was specified?
             ==> http://tztime.rubyforge.org/
             ==> along with TzInfo: http://tzinfo.rubyforge.org/
-[ ] See how Ruby floats relate to Java floats and doubles.
-[ ] Add tests for the SDL class
-[ ] Allow unicode characters in identifiers.
-[ ] FUTURE: It might be useful to allow people to replace the standard types by their own. This
+            ==> We could provide a sdl4r/tztime.rb, which would change the behavior of SDL4R so that
+                it uses TzTimes and TzInfos.
+[x] Add tests for the SDL class
+[x] Allow unicode characters in identifiers.
+[x] FUTURE: It might be useful to allow people to replace the standard types by their own. This
     could be useful for dates or numbers, for instance.
-[N] To install a gem in the Netbeans gems repository, it needs to run as an administrator.
-    Otherwise, it fails silently.
-[ ] FUTURE: Consider being able to read text files that are not UTF-8(?)
-[ ] BUG: the report on the line no in errors is off by 1 (at least in some cases)
-[x] Return copies or original arrays in Tag?
-    ==> we return the implementation Arrays or Hashes (or whatever) for efficiency.
-        However, we ask the users not to assume anything as we might protect the returned objects in
-        the future.
-[ ] Tag.hash: the implementation is not very efficient.
+    ==> possible for times, not for dates or numbers
+[f] FUTURE: Consider being able to read text files that are not UTF-8(?)
+    ==> The burden is on the IO object, the regexp take care of the rest (a priori).
+[x] BUG: the report on the line no in errors is off by 1 (at least in some cases)
+[f] Tag.hash: the implementation is not very efficient.
     ==> Difficult to make better and still simple
     ==> Maybe possible when it's frozen.
-[ ] FUTURE: xpath, ypath ==> sdlpath(?)
-[ ] FUTURE: evenemential parsing(?)
-[ ] FUTURE: add a way to insert a tag after or before another(?)
-[ ] FUTURE: allow some way of generating YAML(?)
-[ ] FUTURE: allow to turn a YAML structure into a SDL one(?)
-[ ] BUG: "rake package" tries to archive the contents twice: once with the command that I configure
-    in Rakefile, once with a zip command that can't work on my machine (zip is not installed). Why?
-    At least, the first archive is created and seems correct.
-[ ] FUTURE: Would we need a "write" method in SDL4R?
-[x] Add tests and release a RC or beta version
-[x] Make the methods of Tag that take a block have a better yield doc/completion
-    ==> I added :yields: RDoc directives, which doesn't look like it's helping but I guess that's
-        all I can do for now.
+[x] FUTURE: evenemential parsing(?)
+    ==> via the pull parser
+[x] FUTURE: pull parser(?)
+[f] FUTURE: Would we need a "write" method in SDL4R?
+    ==> Na, there's already Tag.write(), I guess.
 [N] Never call a class "Test" => it can easily conflict with the "Test" module of Test::Unit and
     then, it becomes quite difficult to understand why.
-[ ] Input relevant URLs on http://rubygems.org
 [x] What prevents from doing the following?
     tag.values << IO.new("toto.txt")
     ==> It doesn't break the behavior as long as the value type is OK. Even if it is not allowed,
@@ -75,38 +58,395 @@
     ==> Minor change: we return nil for the methods were nothing was really returned explicitely
         (for the time being).
 [x] If there is any success, maybe create/recreate the Rubyforge site for the support.
-[ ] Should we allow to create a Tag without a name (== "content") for anonymous Tags?
-[x] It would be cool to be able to write this:
-
-    Tag.new "toto" do |tag|
-        tag << 123
-    end
-
-    ==> We can detect whether there is an argument or not.
-
-Note that instance_eval() doesn't allow to pass parameters right now.
-[ ] Add latest doc access to RubyForge:
+[x] Should we allow to create a Tag without a name (== "content") for anonymous Tags?
+    ==> It seems natural.
+[x] Add latest doc access to RubyForge:
     ==> Rake task?
 
-[x] Is it right to translate the SDL
-        attr1=null
-    into the XML
-        attr1="null"
-    ?
-    Should we remove the attribute altogether? Check the Java version => same in Java
-    ==> Maybe provide an options Hash in to_xml_string():
-            :uri_by_namespace => {...} (breaks the old interface)
-            :hide_null_attributes => true|false
-[x] Where we accept Arrays (operator <<, for instance), let's accept Enumerable or something like
-	that.
-[ ] Implement the [] operator in order to access attributes:
+[x] IDEA: marshaller? easy object <=> SDL read/write?
+    SEE SPECS @ Ikayzo: http://www.ikayzo.org/confluence/display/SDL/Draft+-+Serialization+with+SDL
+[f] IDEA: add an option to the XML export allowing to write anonymous nodes as XML tag content?
+[f] IDEA: add an option to the XML export allowing to export without formatting?
+    ==> If you want to generate fancy XML, there are libraries to do it and it's not that difficult
+        from SDL.
+[x] BUG: line continuation is not handled properly (skipping chars etc).
+[f] BUG: the rake task 'gen_rubyforge' doesn't work under 1.9 (only 1.8.7)
+    ==> when Hanna is not installed the CHANGELOG HTML file must have a different name.
+[x] Future: object dump/load as YAML does
+    SEE SPECS @ Ikayzo: http://www.ikayzo.org/confluence/display/SDL/Draft+-+Serialization+with+SDL
+    - add to_sdl(4r) to Object
+
+    - for each object:
+        - if it is an array => export values
+            - what if one of the values is a basic object? scan once first? series of anonymous tags with one value?
+        - if it is a hash?
+        - if String, dates etc => values
+        - otherwise create subtags
+        - for each variable
+            - create an attribute if simple value
+            - create a subtag otherwise
+        - what about fields that we don't want to serialize?
+        - what about references? We would need something like:
+            product _oid="&243" {
+                producer _oid="*189"
+            }
+          or
+            product &243 price=345.99 {
+                producer *189
+                code "123732u98r456"
+            }
+        - use Class.allocate() to have a blank object on deserialization.
+
+[v] Have to_string implement options ==> builder
+[x] Put the docs online
+[x] BUG: in Ruby 1.9.2
+<internal:lib/rubygems/custom_require>:29:in `require': no such file to load -- test/sdl4r/../../lib
+/sdl4r/tag (LoadError)
+        from <internal:lib/rubygems/custom_require>:29:in `require'
+        from test/sdl4r/parser_test.rb:27:in `<module:SDL4R>'
+        from test/sdl4r/parser_test.rb:22:in `<top (required)>'
+        from C:/Ruby192/lib/ruby/1.9.1/rake/rake_test_loader.rb:5:in `load'
+        from C:/Ruby192/lib/ruby/1.9.1/rake/rake_test_loader.rb:5:in `block in <main>'
+        from C:/Ruby192/lib/ruby/1.9.1/rake/rake_test_loader.rb:5:in `each'
+        from C:/Ruby192/lib/ruby/1.9.1/rake/rake_test_loader.rb:5:in `<main>'
+    ==> This is a problem triggered by the work-around I used in order to run tests individually in
+        Netbeans. Removed the work-around.
+[x] Generate the static site with something like Jekyll (http://wiki.github.com/mojombo/jekyll)
+    ==> Done with Nanoc
+[x] Add a page for the SyntaxHighlighter Brush (plus a test page).
+[x] Add a contact page or paragraph
+[x] Add a readme page (generated from the rdoc readme)
+    ==> We link to the RDoc for the time being.
+====================================================================================================
+[x] Add a line about the support of of 1.9 in README (1.9.1 and 1.9.2)
+[x] Clean up the Rakefile and see whether that Rubyforge upload task is necessary.
+    ==> Easier to upload the site manually: I removed the code.
+[f] Optimization: cache strings in order not to duplicate them (especially tag names?)
+    ==> can be done outside of SDL4R if necessary
+[x] Add a constant for "content".
+    ==> ANONYMOUS_TAG_NAME
+    ==> Also added ROOT_TAG_NAME
+[x] Fixed missing Parser.parse_error() error.
+[x] BUG: this is parsed
+        vegetable {
+        }
+    while this is not
+        vegetable {}
+
+    ==> It seems this is not supported by the Java parser. Is it invalid/valid syntax?
+    ==> It will be in the next version of SDL.
+    ==> Supported by the latest pull parser in the Ruby version
+[x] BUG: '$' is a valid identifier character and it is not accepted.
+====================================================================================================
+[x] Check that if you write 2 values, a date and a timespan, you get both normally when you load.
+    ==> Considered as a bug in the language spec by Dan.
+[x] BUG: negative years seem not to be supported in dates (somehow mistaken for integers: -4712/01/01)
+[x] Allow Symbols as attribute/child names
+    [x] Tag#new
+    [x] Tag#new_child
+    [x] Tag#set_attribute
+    [x] Tests for Tag#<<
+[f] Allow
+        Tag.new('myTag') << { 'tool' => { 'name' => 'hammer', 'price' => 19.99 } }
+    in order to create hierarchies of Tags easily.
+    ==> It's cool but is it really useful?
+    ==> people could use deserialization to do the same
+[x] Warning: sdl4r/tag.rb:600: warning: shadowing outer local variable - namespace
+    ==> Verify fix
+[x] Warning: sdl4r/parser/tokenizer.rb:489: warning: character class has duplicated range: /[\w_$-\.]/
+    ==> Verify fix
+[x] BUG: Seems that the Java version doesn't support time zones stated as "+01:00" for instance. Only 3 letters codes?
+	==> Should be "-GMT+01:00"
+[x] BUG: timezones should support only:
+        1. -JST (a zone code alone)
+        2. -GMT+02:30 (custom zone offset based on GMT and not any other code - well, maybe UTC -)
+    ==> We also support -JST+00:30 because it is not so complicated.
+[N] NOTE: Date.Format.ZONES seems to be the richest reference of zones in the standard API
+[x] Deserialization: custom object class support
+[x] Deserialization: custom value types (not SDL)
+    ==> Could be done by redefining Serializer#set_serializable_property() for instance.
+    ==> will also be possible in #from_sdl(), I guess
+[x] Deserialization: idiom detection
+    ==> Vectors, matrices
+[x] Deserialization: anonymous tags
+[x] Serialization/Deserialization: attribute/instance variable access priority rules
+    ==> 1. property accessor if both accessors defined
+        2. direct variable access otherwise
+    [x] Test
+[x] Serialization: Hash rather than OpenStruct as default
+[x] Serialization: omit nil attributes option
+[x] Serialization/Deserialization: object references, object cycles
+[x] Spec and Impl of Serialization: handling of arrays, collections, etc
+    [x] Specification
+    [x] Serialization implementation
+    [x] Deserialization implementation
+    [x] Detect when there are several child tags with the same name and create corresponding array
+[x] Test deserialization of root tag as a Hash
+[x] Serialization & Deserialization of Hashes
+    [x] Serialization Implementation
+    [x] Deserialization Implementation
+[x] Deserialization: test values
+[x] Serializer: make a better idiom for new_collection_tag()
+    ==> Replace by get_collection_item_name() ?
+    ==> Fix the method signatures and visibilities
+[x] Deserialization: test object property priorities
+[x] Test that a lonely anonymous tag gives a simple value and not an array in the results
+[x] Test that we generate a child tag with values if property value is an array of SDL values
+[x] Implement from_sdl(), to_sdl()
+    ==> may need new accessors and better interface in Serializer
+    ==> to_sdl(serializer)
+[x] SDL4R dump()/load()
+[x] Serialization: test nil values for properties or inside arrays, matrices, etc
+[f] Memory optimization: use a map of the strings for SDL identifiers in Parser
+    ==> With the new Reader nothing prevents from implementing it outside of SDL4R.
+[f] Memory optimization: the profiling test under JRuby takes a LOT of memory
+    ==> It seems ok now.
+[x] Option for the namespace in the serialization.
+[f] Option to disable Unicode identifiers? ==> not so important
+[x] Use ruby-prof
+    ==> Lot of time spent in the reader
+    ==> Lot of time spent wherever there are lots of tests (IFs or CASEs)
+[x] Use jruby-prof
+    [x] Profile Ruby script (==> read_jprof.rb)
+[N] Test with JRuby in mode -Djruby.compat.version=RUBY1_9
+[N] Be clear about the difference between /.../ and /.../u
+    ==> /.../u regexps will refuse to work with not-UTF8 strings as far as I know.
+    ==> /.../ regexps might or might not be UTF8 compatible depending on the context (Ruby
+        implementation, global options, etc).
+[x] Do not generate the doc for the tests.
+[x] Consider using Yardoc (http://yardoc.org/) in order to generate the documentation.
+[x] BUG: Parser.get_time_zone_offset() should take the year and the month in order to calculate
+    the offset (when there is a zone code) because there can be saving day saving time depending on
+    the year.
+    ==> The code should be correct but I can't find a way to calculate the DST offset for a zone and
+        a date. Providing this date and zone to DateTime.strptime() doesn't work (the DST factor is
+        ignored). TO FIX LATER in Parser.get_time_zone_offset().
+[x] IDEA: pull parser
+    ==> Ruby 1.9: 19% faster
+    ==> JRuby (--1.8): 43% faster
+[x] BUG: SDL4R#format() seems to return a US-ASCII string for DateTimes (because of strftime()?)
+[x] Test SDL4R#format() with Time instances.
+[x] BUG: Under Ruby187, we have the following kind of warnings:
+        E:/dev/sdl/sdl4r/lib/sdl4r/serializer.rb:463: warning: instance variable @food not initialized
+    when calling instance_variable_get() on an object. The warning is completely unnecessary.
+    ==> We now check the variable exists beforehand with instance_variable_defined?()
+[x] Use TZInfo for timezones
+    [f] Wrap TimezonePeriod to avoid accessing unpublished elements of TZInfo.
+        ==> too much work + can be broken easily
+[x] Declare TZInfo in the dependencies of the gem
+[x] Test the TZINfo refactor under JRuby 1.8/1.9 and Ruby 1.9
+[x] BUG: Parser error when running tests under "JRuby --1.9"
+    ==> Look into it even if the support of 1.9 in JRuby is not complete
+    ==> JRuby --1.9 doesn't support encodings specifications right now
+[f] Use TZTime optionaly
+    [f] Use TZTime::LocalTime::Builder.get_time_zone() instead of the basic TZInfo::Timezone.get().
+    ==> Hmmm: it seems TZTime never passed v0.1.0, which doesn't work in 1.9.2.
+[x] A date should be created with seconds and milliseconds separate + the TZInfo
+    (and not the offset)
+[x] Add a method or an option to create Time instead of DateTime so that switching is easy
+    [x] 4 tests: DateTime, Time, DateTime + TZInfo, Time + TZInfo
+[x] BUG in Netbeans: the chosen Ruby runtime of the project doesn't determine what library files
+    are open on navigation (when you change the runtime from 1.8 to 1.9 for instance).
+    ==> Reported
+[x] TZAbbreviationDB doesn't work in 1.8.7 ==> CSV.open/CSV.foreach (not the same arguments in the
+    two versions).
+[x] Make all the test cases include SdlTestCase and put the Netbeans work-around there, uncommented.
+[x] Make tests with Nokogiri in order to understand the order of the events and the availability of
+    the info (e.g. attributes) on different points.
+    ==> It seems Nokogiri doesn't emit all the nodes for which there are constants:
+        TYPE_ELEMENT
+        TYPE_END_ELEMENT
+        TYPE_SIGNIFICANT_WHITESPACE
+        TYPE_TEXT
+        Therefore, no attributes, no document, no simple whitespace, etc. We can these are used
+        only internally.
+[x] Make Reader more like the one in Nokogiri (i.e. interface).
+[x] Fix parse error test for the pull parser
+[x] ditch the old parser.
+[x] Go deep in what forces me to have path algebra in require commands in source files.
+    ==> path start at the dirs of the load path: they are not relative to the current file.
+    ==> Fixed
+===================================================================== 26-dec-2010
+[x] Use RVM (http://rvm.beginrescueend.com/) in order to handle tests in the different environments.
+    ==> Not unless I'm using Linux.
+    ==> created .rvmrc
+===================================================================== 2012-10-16
+[x] install Rubies (JRuby, Ruby187)
+[x] allow for several RVM configurations
+  ==> several rvmrc files: .rvmrc will be a symlink
+[x] @bug Rakefile:
+  [x] @NOTE Gem.required_location is deprecated with no replacement. It will be removed on or after 2011-11-01.
+  [x] @WARNING 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
+[x] do not commit .rvmrc ==> .gitignore
+[ ] need to commit "Gemfile"?
+[ ] +Element should be renamed in something more appropriate and less confusing (with Tag)
+  --> Node? NodeWriter?
+  --> Event? EventWriter?
+  --> RawElement?
+[ ] +Element attributes should be in a special object rather than an Array perhaps
+  --> in order to allow to reuse the arrays
+[x] serializing flattens empty collections and collections that contain only one element
+      { 'name' => [ {:o1 => 123} ] } becomes name o1_attr=123
+      { 'name' => [] } becomes nothing!
+    what about?
+      name {
+        o1_attr=123
+      }
+      name {} # even though this might be ignored later when deserializing
+    ==> fixed in ObjectReader
+[x] ObjectReader
+  [x] should be able to read Elements as SDL structure
+  [x] should be able to read Tags as SDL structure
+  [x] to_sdl should be implemented through a special ElementWriter
+[x] +ObjectMapper need write_object_ref() anymore? ==> removed
+[ ] +ObjectMapper should have a mode where no oid is emitted but cycles are detected
+  --> fast mode: cycles are not supported, writer is passed to to_sdl() (default mode?)
+  --> slow mode: cycles are supported, ElementWriter is passed to to_sdl()
+    --> only possible if the writer is rewindable
+    --> if writing to a TagWriter, no need to record in theory
+[ ] +AbstractReader should be a module rather than a class? At least, should be consistent with
+  AbstractWriter
+  [ ] +Serializer should be a module containing write() renamed to whatever Nokogiri names it.
+  [ ] +Deserializer should be a module working with AbstractReader in order to implement from_sdl()
+[x] should Serializer be an AbstractWriter? In order to avoid code like:
+    serializer.start_tag
+    serializer.writer.value 123 # the access to writer is not really safe or convenient
+    serializer.end_tag
+    ==> yes, it should
+[ ] +Reader #rewind() probably doesn't work as expected --> write test
+[ ] (A) +serialization design issue with collections of objects
+    {:student => [{:name => :John}, {:name => :Paul}]
+  should give us
+    student name="John"
+    student name="Paul"
+  rather than the JSON-like (makes sense as far as serialization goes but makes no SDL sense)
+    student {
+        {
+            name "John"
+        }
+        {
+            name "Paul"
+        }
+    }
+  --> the main question is what to do when deserializing to OpenStructs?
+    If we serialize an empty collection or a singleton collection, deserializing doesn't tell us
+    that it was a collection. Perhaps, this is acceptable but leads to fields being equal to
+    - nil : empty collection
+    - one object : singleton collection
+    - an array : collection.size > 2
+    after deserialization
+  --> fixing this should probably happen at the ObjectMapper really
+    --> need hooks to construct new objects and set properties
+    --> could eventually support ROXML annotations
+[ ] +Serializer
+  [x] in SDL4R::dump(o, output), output could be an AbstractWriter too
+  [ ] if the writer is a TagWriter, we could save recording the graph
+    [ ] allow to provide custom id and ref attribtues (often there are some)
+[x] Serialization should be refactored into an ObjectMapper with support for
+  - creating objects
+  - creating refs
+  - getting/setting the OID
+[ ] AbstractWriter.write_ref(name, oid, object_mapper)
+[ ] ObjectWriter
+  --> deserializer = AbstractReader + ObjectWriter
+[x] ObjectReader
+  --> serializer = ObjectReader + AbstractWriter
+  ==> we could implement Serializer as above but it would be slightly inefficient
+  [ ] implement in a similar way as ObjectReader
+[ ] AbstractReader.restartable? and restart() in AbstractReader
+  --> if resettable, we can make 2 passes to avoid providing an OID for each object
+  --> if not resettable, an OID is always assigned
+[ ] a way to save from outputting the oid for every object would be to go through the object
+  graph twice
+	[ ] only if no natural identification is available
+	[ ] @BUG Serializer.write_object now makes 2 runs every time it is called even internally
+[ ] replace method aliases by delegating so that aliased methods can be
+  overwritten in derived classes (esp. AbstractWriter)
+    values = instance_method(:value)
+  [ ] lib/sdl4r/sdl_binary.rb
+  [ ] lib/sdl4r/sdl_time_span.rb
+  [x] lib/sdl4r/abstract_writer.rb
+  [ ] lib/sdl4r/serializer.rb
+  [ ] lib/sdl4r/tag_writer.rb
+  [ ] lib/sdl4r/reader.rb
+  [ ] lib/sdl4r/tag.rb
+  [ ] lib/sdl4r/sdl4r_tzinfo.rb
+[ ] fix tests
+  [x] Serializer.new now takes a Writer (either provide a default or fix calls)
+  [x] pb with BigDecimal
+[ ] Create git repository
+  [x] branch Ikayzo's project SDL.rb
+  [ ] ignore TODO or clean beforehand
+  [ ] ignore static site at first
+  [f] remove Ikayzo copyright from file headers
+[ ] Move from rubyforge to Github
+  [f] rename? (SDL always refer to DirectX and the Simple DirectMedia Layer)
+  [ ] convert README to README.md(?)
+  [ ] try to redirect from rubyforge to Github
+  [ ] change the site URL in the gem spec
+  [ ] refactor static site in order to leverage Github features
+  [ ] redeploy gem in standard repository
+  [ ] deploy redirect page in sourceforge project (or simply add link in front page)
+=====================================================================
+[x] Make a builder => extract features from Tag to a Builder. ?
+    In Nokogiri, a builder is a way to create a DOM structure, it seems.
+    ==> Might rather need an Emitter to convert to text.
+[x] Why not a builder and an emitter that have the same interface, thus allowing to generate Tags or text depending on
+    the choice. We could do something similar with Reader and a "Climber" class. Serializer could work with one or the other
+    ==> done with writer
+[ ] Get the version from some common (Rakefile?) place in Nanoc
+    ==> Version is now declared in sdl4r.sdl4r_version.
+[ ] Add a modification date to site pages?
+[ ] Fix documentation of Deserializer
+[ ] Base the deserializer on the Reader rather than the DOM structure.
+[ ] If the emitter allows it, base the serializer on it rather than on the DOM structure.
+    ==> use a flush() method in order to circumvent the growing id cache pb
+[ ] Rakefile Tasks for profiling : --debug -I"E:/dev/sdl/sdl4r/lib" -I"E:/dev/sdl/sdl4r/test"
+[ ] Parser unit tests for numbers
+[ ] @FUTURE See how Ruby floats relate to Java floats and doubles.
+[ ] @FUTURE xpath, ypath ==> spath(?)
+[ ] @FUTURE add a way to insert a tag after or before another or at some index(?)
+[ ] @FUTURE allow some way of generating YAML(?)
+[ ] @FUTURE allow to turn a YAML structure into a SDL one(?)
+[ ] @BUG "rake package" tries to archive the contents twice: once with the command that I configure
+    in Rakefile, once with a zip command that can't work on my machine (zip is not installed). Why?
+    At least, the first archive is created and seems correct.
+[ ] +ONWAIT Implement the [] operator in order to access attributes:
     ["attr"] <=> attribute("attr")
     ["ns:attr"] <=> attribute("ns", "attr") (should we allow this?)
     ["ns", "attr"] <=> attribute("ns", "attr")
     Should we allow attribute("ns:attr")?
-[ ] IDEA: marshaller? easy object <=> SDL read/write?
+    ==> Mmmm, but it could also mean "get child with that name". Let's wait.
+    ==> Also, it could be used for something like a xpath operator
 [ ] Check the coverage and make the tests better.
-[ ] IDEA: add an option to the XML export allowing to write anonymous nodes as XML tag content?
-[ ] IDEA: add an option to the XML export allowing to export without formatting?
-[x] BUG: line continuation is not handled properly (skipping chars etc).
-[ ] BUG: the rake task 'gen_rubyforge' doesn't work under 1.9 (only 1.8.7)
+[x] Look into performances, compared to YAML or XML parsers
+    ==> All efficient parsers in the Ruby world seem to be implemented in C.
+    ==> Compared to Nokogiri, it is nearly 20 times slower.
+[ ] Future: SDL + ERB to have dynamic config templates
+    see http://github.com/binarylogic/settingslogic
+[ ] Document Rakefile and dependencies
+[ ] Future (not necessarily for Ruby): SDL parser ==> SAX
+[ ] Serialization: option to choose between attribute or child tag generation for instance variables
+[x] reader_test: more tests of the interface
+[x] Move Reader/etc to directory sdl4r?
+[x] Deliver v0.9.10 or v1.0
+[ ] Update the README to include the use of Reader, TZInfo and Time
+[ ] Update the serialization spec: push back the optional (and very discussable) features to the end of the document.
+[ ] Check whether there isn't some kind of current node path notion in Nokogiri.
+[ ] To avoid generating OIDs for every object, we can use OIDs only to avoid cycles (during the
+    serialization of one single object).
+[ ] Simplify Tag by creating a TagWriter consistent with Writer
+  [ ] Move fancy features (blocks, etc) to TagWriter
+  [ ] More tests
+[ ] Make Serializer use a Writer or a TagWriter
+    The trick here is that it changes the handling of OIDs
+[ ] Signal Netbeans editor bug concerning the <<-EOS syntax
+[ ] Determine what the << operator should do on a Writer.
+[ ] Implement a "minimal output option set" for the Writer (backquotes, no line return, etc)
+[x] @BUG SDL4R::format_string() emits character literals for one-char strings
+[ ] Do not recreate a new Serializer for every call to AbstractWriter#write_object().
+[x] new TagWriter
+[ ] We could use a Serializer.flush method in order to reset the cache of references.
+    Coupled with an autoflush option, this allows scenarios where emitting SDL as in a log file (continuous)
+    or just an object structure.
+

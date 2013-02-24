@@ -336,21 +336,21 @@ module SDL4R
   # @param o Object dumped into SDL (via AbstractWriter#write)
   # @param output AbstractWriter or any legal input of Writer#new
   #
-  # example:
+  # @example
   #
-  #   food = OpenStruct.new(:name => 'french fries', 'comment' => 'eat with bier')
-  #   food.fan = OpenStruct.new(:firstname => 'Homer')
+  #     food = OpenStruct.new(:name => 'french fries', 'comment' => 'eat with bier')
+  #     food.fan = OpenStruct.new(:firstname => 'Homer')
   #
-  #   puts SDL4R::dump(:food => food)
+  #     puts SDL4R::dump(:food => food)
   #
-  # gives us
+  #   gives us
   #
-  #   food comment="eat with bier" name="french fries" {
-  #     fan firstname="Homer"
-  #   }
+  #     food comment="eat with bier" name="french fries" {
+  #       fan firstname="Homer"
+  #     }
   #
   def self.dump(o, output = nil)
-    writer = output.is_a? AbstractWriter ? output : Writer.new(output)
+    writer = (output.is_a? AbstractWriter) ? output : Writer.new(output)
 		writer.write(o)
 
     if output.nil?

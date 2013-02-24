@@ -206,7 +206,14 @@ module SDL4R
       self
     end
 
-    # Called by #write for each object to write with resolved name and namespace.
+    # Called by #write for each object to write.
+    #
+    # @param [String] namespace namespace of +o+ or +nil+ if +name+ is +nil+ (see below)
+    # @param [String] name
+    #   name of the element to contain +o+ or +nil+ if +o+ is to be written directly at the current level
+    #
+    # @return self
+    #
     def write_impl(namespace, name, o)
       if @object_mapper.collection?(o)
         write_collection_impl(namespace, name, o)
@@ -224,6 +231,8 @@ module SDL4R
           end_element if name
         end
       end
+
+      self
     end
     protected :write_impl
     
@@ -292,11 +301,14 @@ module SDL4R
           if depth <= 0
             case type
               when :attribute
-                type = :element # no attribute at root level
-              when :value
-                next  # no value at root level
+                type = :element # at root level, attributes are turned into elements
+              when :value # emit value into anonymous tags at root level
+                element '', SDL4R::ANONYMOUS_TAG_NAME do
+                  value val
+                end
+                next
               else
-                # ignore
+                # nothing special otherwise
             end
           end
 
@@ -344,11 +356,9 @@ module SDL4R
         end
 
       else
-        element namespace, name do
-          collection.each { |item|
-            write_impl('', SDL4R::ANONYMOUS_TAG_NAME, item)
-          }
-        end
+        collection.each { |item|
+          write_impl(namespace, name, item)
+        }
       end
     end
     private :write_collection_impl

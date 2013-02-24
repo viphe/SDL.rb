@@ -7,8 +7,8 @@ module SDL4R
 
   # Utility Module allowing implementing methods of AbstractReader related to the current element.
   #
-  #   class MyReader < AbstractReader
-  #     include ReaderWithElement
+  #   class MyReader
+  #     include AbstractReader, ReaderWithElement
   #
   #     def element
   #       return @current_element # instance of Element

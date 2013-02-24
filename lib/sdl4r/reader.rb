@@ -33,8 +33,8 @@ module SDL4R
 
   # Implementation of a pull parser for SDL designed after the model of Nokogiri::XML::Reader.
   #
-  class Reader < AbstractReader
-    include ReaderWithElement
+  class Reader
+    include AbstractReader, ReaderWithElement
 
     # @private
     def self.add_values_handler(map, handler)
@@ -155,8 +155,8 @@ module SDL4R
     protected :element
 
     def initialize(io)
-      raise ArgumentError, "io == nil" if io.nil?
-      raise ArgumentError, "io is not an IO" unless io.respond_to?(:gets)
+      raise ArgumentError, 'io == nil' if io.nil?
+      raise ArgumentError, 'io is not an IO' unless io.respond_to?(:gets)
 
       @io = io
       @tokenizer = Tokenizer.new(@io)
