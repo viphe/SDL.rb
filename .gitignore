@@ -6,3 +6,5 @@
 /doc/org/.svn/
 /doc/org/ikayzo/.svn/
 .rvmrc*
+.idea/
+Gemfile*
