@@ -3,7 +3,7 @@
 
 #--
 # Simple Declarative Language (SDL) for Ruby
-# Copyright 2005 Ikayzo, inc.
+# Copyright 2013 Ikayzo, inc.
 #
 # This program is free software. You can distribute or modify it under the 
 # terms of the GNU Lesser General Public License version 2.1 as published by  
@@ -25,6 +25,8 @@ require 'date'
 # Gathers utility methods.
 # 
 module SDL4R
+  
+  require 'sdl4r/sdl4r_date'
   
   MAX_INTEGER_32 = 2**31 - 1
   MIN_INTEGER_32 = -(2**31)

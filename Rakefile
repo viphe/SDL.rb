@@ -1,92 +1,73 @@
-require 'rake'
-require 'rake/clean'
-require 'rake/testtask' 
-require 'rake/gempackagetask'
-require 'rake/packagetask'
+# encoding: utf-8
+
 require 'rubygems'
-
-if Gem.required_location("hanna", "hanna/rdoctask.rb")
-  puts "using Hanna RDoc template"
-  require 'hanna/rdoctask'
-else
-  puts "using standard RDoc template"
-  require 'rake/rdoctask'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
 end
+require 'rake'
+require 'jeweler'
 
-spec = Gem::Specification.new do |s|
-  s.platform = Gem::Platform::RUBY
-  s.summary = "Simple Declarative Language for Ruby library"
-  s.name = 'sdl4r'
-  s.version = '0.9.7'
-  s.requirements << 'none'
-  s.require_path = 'lib'
-  s.authors = ['Philippe Vosges', 'Daniel Leuck']
-  s.email = 'sdl-users@ikayzo.org'
-  s.rubyforge_project = 'sdl4r'
-  s.homepage = 'http://www.ikayzo.org/confluence/display/SDL/Home'
-  s.files = FileList['lib/sdl4r.rb', 'lib/sdl4r/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*', 'doc/**/*'].to_a
-  s.test_files = FileList[ 'test/**/*test.rb' ].to_a
-  s.description = <<EOF
-  The Simple Declarative Language provides an easy way to describe lists, maps,
-  and trees of typed data in a compact, easy to read representation.
-  For property files, configuration files, logs, and simple serialization
-  requirements, SDL provides a compelling alternative to XML and Properties
-  files.
+#-spec = Gem::Specification.new do |s|
+#-  s.platform = Gem::Platform::RUBY
+#-  s.summary = "Simple Declarative Language for Ruby library"
+#-  s.name = 'sdl4r'
+#-  s.version = '0.9.7'
+#-  s.requirements << 'none'
+#-  s.require_path = 'lib'
+#-  s.authors = ['Philippe Vosges', 'Daniel Leuck']
+#-  s.email = 'sdl-users@ikayzo.org'
+#-  s.rubyforge_project = 'sdl4r'
+#-  s.homepage = 'http://www.ikayzo.org/confluence/display/SDL/Home'
+#-  s.files = FileList['lib/sdl4r.rb', 'lib/sdl4r/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*', 'doc/**/*'].to_a
+#-  s.test_files = FileList[ 'test/**/*test.rb' ].to_a
+#-  s.description = <<EOF
+
+
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "sdl4r"
+  gem.homepage = "http://github.com/viphe/SDL.rb"
+  gem.license = "LGPL"
+  gem.summary = %Q{Simple Declarative Language for Ruby library}
+  gem.description = <<EOF
+The Simple Declarative Language provides an easy way to describe lists, maps, and trees of typed data in a compact, easy to read representation. For property files, configuration files, logs, and simple serialization requirements, SDL provides a compelling alternative to XML and Properties files.
 EOF
+  gem.email = "philippe.vosges@gmail.com"
+  gem.authors = ["Philippe Vosges"]
+  # dependencies defined in Gemfile
+end
+Jeweler::RubygemsDotOrgTasks.new
+
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
 end
 
-Rake::PackageTask.new(spec.name, spec.version) do |p|
-  p.need_zip = true
-  p.need_tar = false
-  p.need_tar_gz = false
-  p.need_tar_bz2 = false
-  #p.package_files.include("lib/sdl4r/**/*.rb")
-
-  # If "zip" is not available, we try 7-zip.
-  system("zip")
-  p.zip_command = "7z a -tzip" if $?.exitstatus == 127
-end
-
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.need_zip = true
-  pkg.need_tar = true
-end
-
-Rake::RDocTask.new do |rd|
-  files = ['README', 'LICENSE', 'CHANGELOG', 'lib/**/*.rb', 'doc/**/*.rdoc', 'test/**/*.rb']
-  rd.main = 'README'
-  rd.rdoc_files.include(files)
-  rd.rdoc_files.exclude("lib/scratchpad.rb")
-  rd.rdoc_dir = "doc"
-  rd.title = "RDoc: Simple Declarative Language for Ruby"
-  rd.options << '--charset' << 'utf-8'
-  rd.options << '--line-numbers'
-  rd.options << '--inline-source'
-end
-
-gen_rubyforge = task :gen_rubyforge => [:rdoc] do
-  # Modify the front page of the Rubyforge front page
-  File.open("doc/files/CHANGELOG.html", "r:UTF-8") do |f|
-    changelog = f.read
-    if changelog =~ /(<div id='content'>.*?)<div id='footer-push'>/im
-      changelog = $1
-      new_front_page = File.open("rubyforge/index.html", "r:UTF-8") do |f2|
-        f2.read.gsub(
-          /<!-- CHANGELOG_START -->.*?<!-- CHANGELOG_END -->/m,
-          "<!-- CHANGELOG_START -->\n" + changelog + "\n<!-- CHANGELOG_END -->")
-      end
-      File.open("rubyforge/index.html", "w:UTF-8") do |f2|
-        f2.write new_front_page
-      end
-    else
-      puts "couldn't extract info from changelog"
-    end
+if RUBY_VERSION =~ /^1\.8/
+  require 'rcov/rcovtask'
+  Rcov::RcovTask.new do |test|
+    test.libs << 'test'
+    test.pattern = 'test/**/test_*.rb'
+    test.verbose = true
+    test.rcov_opts << '--exclude "gems/*"'
   end
 end
-gen_rubyforge.comment = "Includes the CHANGELOG into the Rubyforge front page"
 
-Rake::TestTask.new do |t|
-  t.libs << "lib"
-  t.test_files = FileList['test/**/*test.rb']
-  t.verbose = true
+task :default => :test
+
+require 'rdoc/task'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = "sdl4r #{version}"
+  rdoc.rdoc_files.include('README*')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end

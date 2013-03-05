@@ -1,5 +1,12 @@
+*.swp
+*~
+.rvmrc
 .svn
 /doc/.svn/
 /doc/index-files/.svn/
 /doc/org/.svn/
 /doc/org/ikayzo/.svn/
+/nbproject/private/
+.idea
+nbproject
+Gemfile.lock
