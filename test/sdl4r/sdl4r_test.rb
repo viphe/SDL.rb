@@ -233,7 +233,7 @@ module SDL4R
       assert_equal(
         root.child("decimal2").value, 11.111111, NUMBER_DECLARATIONS);
       assert_equal(
-        root.child("decimal3").value, 234535.3453453453454345345341242343, NUMBER_DECLARATIONS);
+        root.child("decimal3").value, BigDecimal('234535.3453453453454345345341242343'), NUMBER_DECLARATIONS);
     end
 
     def test_booleans
