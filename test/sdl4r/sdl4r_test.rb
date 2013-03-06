@@ -32,7 +32,9 @@ module SDL4R
   require 'date'
 
   require 'test/unit'
-  require File.dirname(__FILE__) + '/../../lib/sdl4r'
+  require 'sdl4r'
+  require 'sdl4r/sdl4r_date'
+  SDL4R::enable_exotic_dates
 
   # SDL unit tests.
   #
