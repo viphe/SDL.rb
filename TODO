@@ -110,3 +110,5 @@ Note that instance_eval() doesn't allow to pass parameters right now.
 [ ] IDEA: add an option to the XML export allowing to export without formatting?
 [x] BUG: line continuation is not handled properly (skipping chars etc).
 [ ] BUG: the rake task 'gen_rubyforge' doesn't work under 1.9 (only 1.8.7)
+
+[ ] need to merge java_dates branch into latest

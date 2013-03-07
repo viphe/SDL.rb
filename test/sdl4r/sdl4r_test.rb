@@ -33,8 +33,6 @@ module SDL4R
 
   require 'test/unit'
   require 'sdl4r'
-  require 'sdl4r/sdl4r_date'
-  SDL4R::enable_exotic_dates
 
   # SDL unit tests.
   #

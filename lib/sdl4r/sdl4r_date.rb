@@ -25,14 +25,6 @@ require 'date'
 #
 class << SDL4R
   
-  # Enables the support of exotic dates (e.g. dates beyond end of month) by replacing
-  # SDL4R#new_date_time by SDL4R#new_exotic_date_time
-  def enable_exotic_dates
-    def self.new_date_time(*args)
-      new_exotic_date_time(*args)
-    end
-  end
-  
   # Creates and returns a DateTime.
   # This method supports non-standard values for fields, like negative ones for hours. Contrarily to DateTime, negative
   # values can modify values of other fields.

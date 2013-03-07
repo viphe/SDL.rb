@@ -26,8 +26,6 @@ require 'date'
 # 
 module SDL4R
   
-  require 'sdl4r/sdl4r_date'
-  
   MAX_INTEGER_32 = 2**31 - 1
   MIN_INTEGER_32 = -(2**31)
   
@@ -127,6 +125,8 @@ module SDL4R
       return o.to_s
     end
   end
+  
+  @@use_exotic_dates = false
 
   # Creates and returns the object representing a datetime (DateTime in the default implementation).
   # This method is, by default, called by the Parser class.
@@ -139,8 +139,20 @@ module SDL4R
   #   end
   #
   def self.new_date_time(year, month, day, hour, min, sec, time_zone_offset)
-    DateTime.civil(year, month, day, hour, min, sec, time_zone_offset)
+    unless @@use_exotic_dates
+      DateTime.civil(year, month, day, hour, min, sec, time_zone_offset)
+    else
+      new_exotic_date_time(year, month, day, hour, min, sec, time_zone_offset)
+    end
   end
+  
+  # Enables the support of exotic dates (e.g. dates beyond end of month).
+  # DateTime creation will be slower than the normal bare and strict creation
+  def self.enable_exotic_dates
+    require 'sdl4r/sdl4r_date'
+    @@use_exotic_dates = true
+  end
+  
     
   # Coerce the type to a standard SDL type or raises an ArgumentError.
   #
