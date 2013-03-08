@@ -36,8 +36,8 @@ module SDL4R
 		def initialize(description, line_no, position, line = nil)
 			super(
 				"#{description} Line " + ((line_no.nil? or line_no < 0)? "unknown" : line_no.to_s) +
-					", Position " + ((position.nil? or position < 0)? "unknown" : position.to_s) + $/ +
-          (line ? line + (position ? " " * (position - 1) : "") + "^" : ""))
+					", Position " + ((position.nil? or position < 0)? "unknown" : position.to_s) + "\n" +
+          ((line and position >= 0)? line + (position ? " " * (position - 1) : "") + "^" : ""))
           
 			@line = line_no
 			@position = position

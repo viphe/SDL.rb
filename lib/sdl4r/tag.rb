@@ -25,8 +25,8 @@ module SDL4R
   require 'open-uri'
   require 'stringio'
   
-  require File.dirname(__FILE__) + '/sdl4r'
-  require File.dirname(__FILE__) + '/parser'
+  require 'sdl4r/sdl4r'
+  require 'sdl4r/reader'
 
   # SDL documents are made of Tags.
   #
@@ -56,18 +56,54 @@ module SDL4R
     #
     # Use at the beginning of a method in order to have correctly defined parameters:
     #   def foo(namespace, name = nil)
-    #     namespace, name = to_nns namespace, name
+    #     namespace, name = to_ns_n namespace, name
     #   end
     #
-    def to_nns(namespace, name)
+    # Also converts Symbols to Strings.
+    #
+    def to_ns_n(namespace, name)
+      namespace = namespace.id2name if namespace.is_a? Symbol
+      name = name.id2name if name.is_a? Symbol
+      
       if name.nil? and not namespace.nil?
         name = namespace
         namespace = ""
       end
       return namespace, name
     end
-    private :to_nns
-    
+    private :to_ns_n
+
+    # Returns [recursive, namespace, name] based on the parameters.
+    # Allows:
+    #   to_rec_ns_n()
+    #   to_rec_ns_n(recursive)
+    #   to_rec_ns_n(recursive, name)
+    #   to_rec_ns_n(name)
+    #   to_rec_ns_n(namespace, name)
+    #   to_rec_ns_n(recursive, namespace, name)
+    #
+    def to_rec_ns_n(*args)
+      raise ArgumentError, "too many arguments: #{args.length}" if args.length > 3
+
+      recursive = false
+      if args.length > 0 and (args[0].is_a? TrueClass or args[0].is_a? FalseClass)
+        recursive = args.shift
+      elsif args.length > 2
+        raise ArgumentError, "too many or wrong arguments: #{args.length}"
+      end
+
+      namespace = nil # we look at any namespace by default
+      namespace = args.shift if args.length == 2
+      namespace = namespace.id2name if namespace.is_a? Symbol
+
+      name = nil
+      name = args.shift if args.length == 1
+      name = name.id2name if name.is_a? Symbol
+
+      return recursive, namespace, name
+    end
+    private :to_rec_ns_n
+
     # Creates an empty tag in the given namespace.  If the +namespace+ is nil
     # it will be coerced to an empty String.
     #
@@ -104,7 +140,8 @@ module SDL4R
     # and is not a legal SDL identifier.
     #
     def initialize(namespace, name = nil, &block)
-      namespace, name = to_nns namespace, name
+      namespace, name = to_ns_n namespace, name
+
 
       raise ArgumentError, "tag namespace must be a String" unless namespace.is_a? String
       raise ArgumentError, "tag name must be a String" unless name.is_a? String
@@ -165,6 +202,7 @@ module SDL4R
     # Returns the added child.
     #
     def add_child(child)
+      raise ArgumentError, "child is nil" unless child
       @children.push(child)
       return child
     end
@@ -200,6 +238,7 @@ module SDL4R
         add_child(o)
       elsif o.is_a?(Hash)
         o.each_pair { |key, value|
+          key = key.to_s if key.is_a? Symbol
           namespace, key = key.split(/:/) if key.match(/:/)
           namespace ||= ""
           set_attribute(namespace, key, value)
@@ -209,7 +248,7 @@ module SDL4R
       elsif o.is_a? Enumerable
         o.each { |item|
           if item.is_a? Enumerable and not item.is_a? String
-            anonymous = new_child("content")
+            anonymous = new_child(ANONYMOUS_TAG_NAME)
             anonymous << item
           else
             self << item
@@ -286,11 +325,8 @@ module SDL4R
     #   tag.children(false, "name") # => children of name "name"
     #   tag.children(false, "ns", nil) # => children of namespace "ns"
     #
-    def children(recursive = false, namespace = nil, name = :DEFAULT, &block) # :yields: child
-      if name == :DEFAULT
-        name = namespace
-        namespace = nil
-      end
+    def children(*args, &block) # :yields: child
+      recursive, namespace, name = to_rec_ns_n(*args)
 
       if block_given?
         each_child(recursive, namespace, name, &block)
@@ -316,6 +352,8 @@ module SDL4R
     #
     # _name_:: if nil, all children are considered (nil by default).
     def children_values(name = nil)
+      name = name.id2name if name.is_a? Symbol
+      
       children_values = []
       each_child(false, name) { |child|
         case child.values.size
@@ -330,9 +368,11 @@ module SDL4R
       return children_values
     end
 
-    #   child
-    #   child(name)
-    #   child(recursive, name)
+    #   child # => first child
+    #   child(name) # => first child of specified name (any namespace)
+    #   child(true, name) # => first child (or descendant) of specified name (any namspace)
+    #   child(namespace, name) # => first child of specified namespace and name
+    #   child(recursive, namespace, name)
     #
     # Get the first child with the given name, optionally using a recursive search.
     # 
@@ -341,16 +381,13 @@ module SDL4R
     # 
     # Returns the first child tag having the given name or +nil+ if no such child exists
     #
-    def child(recursive = false, name = nil)
-      if name.nil?
-        name = recursive
-        recursive = false
-      end
-      
-      unless name
+    def child(*args)
+      recursive, namespace, name = to_rec_ns_n(*args)
+
+      if namespace.nil? and name.nil?
         return @children.first
       else
-        each_child(recursive, name) { |child| return child }
+        each_child(recursive, namespace, name) { |child| return child }
       end
     end
 
@@ -358,8 +395,16 @@ module SDL4R
     #
     # _name_:: name of the searched child Tag
     #
-    def has_child?(name)
-      !child(name).nil?
+    #   has_child?(name)
+    #   has_child?(namespace, name)
+    #
+    def has_child?(namespace, name = :DEFAULT)
+      if name == :DEFAULT
+        name = namespace
+        namespace = nil
+      end
+      
+      !child(namespace, name).nil?
     end
 
     # Indicates whether there are children Tag.
@@ -492,11 +537,15 @@ module SDL4R
     #
     def values=(someValues)
       @values.clear()
-      someValues.to_a.each { |v|
+      someValues.each { |v|
         # this is required to ensure validation of types
         add_value(v)
       }
       nil
+    end
+
+    def has_values?
+      !@values.empty?
     end
   
     #   set_attribute(key, value)
@@ -515,13 +564,14 @@ module SDL4R
     #
     def set_attribute(namespace, key, value = :default)
       if value == :default
-        value = key
-        key = namespace
-        namespace = ""
+        value, key, namespace = key, namespace, ""
       end
+      namespace = namespace.id2name if namespace.is_a? Symbol
+      key = key.id2name if key.is_a? Symbol
 
-      raise ArgumentError, "attribute namespace must be a String" unless namespace.is_a? String
-      raise ArgumentError, "attribute key must be a String" unless key.is_a? String
+      raise ArgumentError,
+        "attribute namespace must be a String or a Symbol" unless namespace.is_a? String
+      raise ArgumentError, "attribute key must be a String or a Symbol" unless key.is_a? String
       raise ArgumentError, "attribute key cannot be empty" if key.empty?
 
       SDL4R.validate_identifier(namespace) unless namespace.empty?
@@ -544,7 +594,7 @@ module SDL4R
     #
     #
     def attribute(namespace, key = nil)
-      namespace, key = to_nns namespace, key
+      namespace, key = to_ns_n namespace, key
       attributes = @attributesByNamespace[namespace]
       return attributes.nil? ? nil : attributes[key]
     end
@@ -557,7 +607,7 @@ module SDL4R
     #   has_attribute?(namespace, key)
     #
     def has_attribute?(namespace = nil, key = nil)
-      namespace, key = to_nns namespace, key
+      namespace, key = to_ns_n namespace, key
 
       if namespace or key
         attributes = @attributesByNamespace[namespace]
@@ -567,6 +617,10 @@ module SDL4R
         attributes { return true }
         return false
       end
+    end
+
+    def has_attributes?
+      !@attributesByNamespace.empty?
     end
     
     # Returns a Hash of the attributes of the specified +namespace+ (default is all) or enumerates
@@ -582,6 +636,8 @@ module SDL4R
     # qualified names (e.g. "meat:color"). If "", attributes of the default namespace are returned.
     #
     def attributes(namespace = nil, &block) # :yields: namespace, key, value
+      namespace = namespace.id2name if namespace.is_a? Symbol
+      
       if block_given?
         each_attribute(namespace, &block)
         
@@ -589,8 +645,8 @@ module SDL4R
         if namespace.nil?
           hash = {}
 
-          each_attribute do | namespace, key, value |
-            qualified_name = namespace.empty? ? key : namespace + ':' + key
+          each_attribute do | attr_namespace, key, value |
+            qualified_name = attr_namespace.empty? ? key : attr_namespace + ':' + key
             hash[qualified_name] = value
           end
 
@@ -613,7 +669,7 @@ module SDL4R
     # Returns the value of the removed attribute or +nil+ if it didn't exist.
     #
     def remove_attribute(namespace, key = nil)
-      namespace, key = to_nns namespace, key
+      namespace, key = to_ns_n namespace, key
       attributes = @attributesByNamespace[namespace]
       return attributes.nil? ? nil : attributes.delete(key)
     end
@@ -625,6 +681,7 @@ module SDL4R
       if namespace.nil?
         @attributesByNamespace.clear
       else
+        namespace = namespace.id2name if namespace.is_a? Symbol
         @attributesByNamespace.delete(namespace)
       end
     end
@@ -663,9 +720,9 @@ module SDL4R
     #
     def set_attributes(namespace, attribute_hash = nil)
       if attribute_hash.nil?
-        attribute_hash = namespace
-        namespace = ""
+        attribute_hash, namespace = namespace, ""
       end
+      namespace = namespace.id2name if namespace.is_a? Symbol
       
       raise ArgumentError, "namespace can't be nil" if namespace.nil?
       raise ArgumentError, "attribute_hash should be a Hash" unless attribute_hash.is_a? Hash
@@ -693,10 +750,10 @@ module SDL4R
     # Raises +ArgumentError+ if the name is not a legal SDL identifier
     # (see SDL4R#validate_identifier).
     #
-    def name=(a_name)
-      a_name = a_name.to_s
-      SDL4R.validate_identifier(a_name)
-      @name = a_name
+    def name=(name)
+      name = name.id2name if name.is_a? Symbol
+      SDL4R.validate_identifier(name)
+      @name = name
     end
   
     # The namespace to set. +nil+ will be coerced to the empty string.
@@ -704,10 +761,10 @@ module SDL4R
     # Raises +ArgumentError+ if the namespace is non-blank and is not
     # a legal SDL identifier (see SDL4R#validate_identifier)
     #
-    def namespace=(a_namespace)
-      a_namespace = a_namespace.to_s
-      SDL4R.validate_identifier(a_namespace) unless a_namespace.empty?
-      @namespace = a_namespace
+    def namespace=(namespace)
+      namespace = namespace.id2name if namespace.is_a? Symbol
+      SDL4R.validate_identifier(namespace) unless namespace.empty?
+      @namespace = namespace
     end
         
     # Adds all the tags specified in the given IO, String, Pathname or URI to this Tag.
@@ -737,7 +794,7 @@ module SDL4R
       io = yield
 
       begin
-        Parser.new(io).parse.each do |tag|
+        SDL4R::Reader.from_io(io).each_tag(true) do |tag|
           add_child(tag)
         end
 
@@ -772,8 +829,11 @@ module SDL4R
       else
         first = true
         children do |child|
-          io << $/ unless first
-          first = false
+          if first
+            first = false
+          else
+            io << $/
+          end
           io << child.to_s
         end
       end
@@ -803,7 +863,7 @@ module SDL4R
       s = ""
       s << line_prefix
       
-      if name == "content" && namespace.empty?
+      if name == ANONYMOUS_TAG_NAME && namespace.empty?
         skip_value_space = true
       else
         skip_value_space = false
@@ -812,13 +872,19 @@ module SDL4R
       end
 
       # output values
+      previous_value = nil
       values do |value|
         if skip_value_space
           skip_value_space = false
         else
           s << " "
         end
-        s << SDL4R.format(value, true, line_prefix, indent)
+        if value.is_a?(SdlTimeSpan) and previous_value.is_a?(Date)
+          s << value.to_s(true)
+        else
+          s << SDL4R.format(value, true, line_prefix, indent)
+        end
+        previous_value = value
       end
 
       # output attributes
@@ -850,7 +916,7 @@ module SDL4R
 
     # Returns a string representation of the children tags.
     #
-    # _linePrefix_:: A prefix to insert before every line.
+    # _linePrefix_:: a prefix to insert before every line.
     # _s_:: a String that receives the string representation
     #
     # TODO: break up long lines using the backslash
@@ -930,12 +996,18 @@ module SDL4R
           end
         end
       end
-      
+
       # output values
       unless @values.empty?
         i = 0
         @values.each do |value|
-          s << " _val" << i.to_s << "=\"" << SDL4R.format(value, false) << "\""
+          s << " _val" << i.to_s << "=\""
+          if value.is_a? String
+            s << value_string_to_xml(value, true)
+          else
+            s << SDL4R.format(value, false)
+          end
+          s << "\""
           i += 1
         end
       end
@@ -947,7 +1019,13 @@ module SDL4R
           unless omit_null_attributes and attribute_value.nil?
             s << " "
             s << "#{attribute_namespace}:" unless attribute_namespace.empty?
-            s << attribute_name << "=\"" << SDL4R.format(attribute_value, false) << ?"
+            s << attribute_name << "=\""
+            if attribute_value.is_a? String
+              s << value_string_to_xml(attribute_value, true)
+            else
+              s << SDL4R.format(attribute_value, false)
+            end
+            s << ?"
           end
         end
       end
@@ -967,5 +1045,19 @@ module SDL4R
   
       return s
     end
+
+    # @private
+    def value_string_to_xml(s, in_quotes = true)
+      s = s.clone
+      if in_quotes
+        s.gsub!(/"/, "&quot;")
+        s.gsub!(/'/, "&apos;")
+      end
+      s.gsub!(/</, "&gt;")
+      s.gsub!(/>/, "&lt;")
+      s.gsub!(/&/, "&amp;")
+      s
+    end
+    private :value_string_to_xml
   end
 end

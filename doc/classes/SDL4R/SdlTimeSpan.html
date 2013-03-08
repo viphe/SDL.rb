@@ -51,36 +51,37 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000010">new</a></li>
+              <li><a href="#M000055">new</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000035">&lt;=&gt;</a></li>
-              <li><a href="#M000034">==</a></li>
-              <li><a href="#M000013">day</a></li>
-              <li><a href="#M000012">days</a></li>
-              <li><a href="#M000033">eql?</a></li>
-              <li><a href="#M000032">hash</a></li>
-              <li><a href="#M000015">hour</a></li>
-              <li><a href="#M000014">hours</a></li>
-              <li><a href="#M000020">milliseconds</a></li>
-              <li><a href="#M000017">min</a></li>
-              <li><a href="#M000016">minutes</a></li>
-              <li><a href="#M000026">negate</a></li>
-              <li><a href="#M000027">roll_days</a></li>
-              <li><a href="#M000028">roll_hours</a></li>
-              <li><a href="#M000031">roll_milliseconds</a></li>
-              <li><a href="#M000029">roll_minutes</a></li>
-              <li><a href="#M000030">roll_seconds</a></li>
-              <li><a href="#M000019">sec</a></li>
-              <li><a href="#M000018">seconds</a></li>
-              <li><a href="#M000011">sign</a></li>
-              <li><a href="#M000036">to_s</a></li>
-              <li><a href="#M000022">total_hours</a></li>
-              <li><a href="#M000025">total_milliseconds</a></li>
-              <li><a href="#M000023">total_minutes</a></li>
-              <li><a href="#M000024">total_seconds</a></li>
-              <li><a href="#M000021">usec</a></li>
+              <li><a href="#M000081">&lt;=&gt;</a></li>
+              <li><a href="#M000080">==</a></li>
+              <li><a href="#M000058">day</a></li>
+              <li><a href="#M000057">days</a></li>
+              <li><a href="#M000079">eql?</a></li>
+              <li><a href="#M000078">hash</a></li>
+              <li><a href="#M000060">hour</a></li>
+              <li><a href="#M000059">hours</a></li>
+              <li><a href="#M000065">milliseconds</a></li>
+              <li><a href="#M000062">min</a></li>
+              <li><a href="#M000061">minutes</a></li>
+              <li><a href="#M000066">msec</a></li>
+              <li><a href="#M000072">negate</a></li>
+              <li><a href="#M000073">roll_days</a></li>
+              <li><a href="#M000074">roll_hours</a></li>
+              <li><a href="#M000077">roll_milliseconds</a></li>
+              <li><a href="#M000075">roll_minutes</a></li>
+              <li><a href="#M000076">roll_seconds</a></li>
+              <li><a href="#M000064">sec</a></li>
+              <li><a href="#M000063">seconds</a></li>
+              <li><a href="#M000056">sign</a></li>
+              <li><a href="#M000082">to_s</a></li>
+              <li><a href="#M000068">total_hours</a></li>
+              <li><a href="#M000071">total_milliseconds</a></li>
+              <li><a href="#M000069">total_minutes</a></li>
+              <li><a href="#M000070">total_seconds</a></li>
+              <li><a href="#M000067">usec</a></li>
             </ol>
           </div>
           <div id='context'>
@@ -121,8 +122,8 @@
             </div>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000010'>
-                <a name='M000010'></a>
+              <div class='method public-class' id='method-M000055'>
+                <a name='M000055'></a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(*args)</span>
@@ -139,52 +140,52 @@
                   <pre>SdlTimeSpan.new(totalMilliseconds)</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000055-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 76</span>&#x000A;76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;77:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;78:         <span class="ruby-identifier">initialize_total_milliseconds</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>])&#x000A;79:       <span class="ruby-keyword kw">else</span>&#x000A;80:         <span class="ruby-identifier">initialize_days_hours_minutes</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;81:       <span class="ruby-keyword kw">end</span>&#x000A;82:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000055-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 76</span>&#x000A;76:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;77:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;78:         <span class="ruby-identifier">initialize_total_milliseconds</span>(<span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>])&#x000A;79:       <span class="ruby-keyword kw">else</span>&#x000A;80:         <span class="ruby-identifier">initialize_days_hours_minutes</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)&#x000A;81:       <span class="ruby-keyword kw">end</span>&#x000A;82:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000035'>
-                <a name='M000035'></a>
+              <div class='method public-instance' id='method-M000081'>
+                <a name='M000081'></a>
                 <div class='synopsis'>
                   <span class='name'>&lt;=&gt;</span>
                   <span class='arguments'>(other)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000035-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000081-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000035-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 229</span>&#x000A;229:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)&#x000A;230:       <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">total_milliseconds</span>&#x000A;231:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000081-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 233</span>&#x000A;233:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)&#x000A;234:       <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">total_milliseconds</span>&#x000A;235:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000034'>
-                <a name='M000034'></a>
+              <div class='method public-instance' id='method-M000080'>
+                <a name='M000080'></a>
                 <div class='synopsis'>
                   <span class='name'>==</span>
                   <span class='arguments'>(other)</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="SdlTimeSpan.html#M000033">eql?</a>
+                  Alias for <a href="SdlTimeSpan.html#M000079">eql?</a>
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000013'>
-                <a name='M000013'></a>
+              <div class='method public-instance' id='method-M000058'>
+                <a name='M000058'></a>
                 <div class='synopsis'>
                   <span class='name'>day</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="SdlTimeSpan.html#M000012">days</a>
+                  Alias for <a href="SdlTimeSpan.html#M000057">days</a>
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000012'>
-                <a name='M000012'></a>
+              <div class='method public-instance' id='method-M000057'>
+                <a name='M000057'></a>
                 <div class='synopsis'>
                   <span class='name'>days</span>
                   <span class='arguments'>()</span>
@@ -195,14 +196,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000057-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 92</span>&#x000A;92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">days</span>&#x000A;93:       <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>)&#x000A;94:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000057-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 92</span>&#x000A;92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">days</span>&#x000A;93:       <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>)&#x000A;94:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000033'>
-                <a name='M000033'></a>
+              <div class='method public-instance' id='method-M000079'>
+                <a name='M000079'></a>
                 <div class='synopsis'>
                   <span class='name'>eql?</span>
                   <span class='arguments'>(other)</span>
@@ -213,14 +214,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000033-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000079-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000033-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 222</span>&#x000A;222:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">other</span>)&#x000A;223:       <span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">SdlTimeSpan</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">total_milliseconds</span>&#x000A;224:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000079-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 226</span>&#x000A;226:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">other</span>)&#x000A;227:       <span class="ruby-identifier">other</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">SdlTimeSpan</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">total_milliseconds</span>&#x000A;228:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000032'>
-                <a name='M000032'></a>
+              <div class='method public-instance' id='method-M000078'>
+                <a name='M000078'></a>
                 <div class='synopsis'>
                   <span class='name'>hash</span>
                   <span class='arguments'>()</span>
@@ -231,26 +232,26 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000032-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000078-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000032-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 216</span>&#x000A;216:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>&#x000A;217:       <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">hash</span>&#x000A;218:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000078-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 220</span>&#x000A;220:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>&#x000A;221:       <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">hash</span>&#x000A;222:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000015'>
-                <a name='M000015'></a>
+              <div class='method public-instance' id='method-M000060'>
+                <a name='M000060'></a>
                 <div class='synopsis'>
                   <span class='name'>hour</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="SdlTimeSpan.html#M000014">hours</a>
+                  Alias for <a href="SdlTimeSpan.html#M000059">hours</a>
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000014'>
-                <a name='M000014'></a>
+              <div class='method public-instance' id='method-M000059'>
+                <a name='M000059'></a>
                 <div class='synopsis'>
                   <span class='name'>hours</span>
                   <span class='arguments'>()</span>
@@ -261,14 +262,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000014-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000059-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000014-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 99</span>&#x000A; 99:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hours</span>&#x000A;100:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)&#x000A;101:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000059-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 99</span>&#x000A; 99:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hours</span>&#x000A;100:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)&#x000A;101:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000020'>
-                <a name='M000020'></a>
+              <div class='method public-instance' id='method-M000065'>
+                <a name='M000065'></a>
                 <div class='synopsis'>
                   <span class='name'>milliseconds</span>
                   <span class='arguments'>()</span>
@@ -279,26 +280,26 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000020-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000065-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000020-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 125</span>&#x000A;125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">milliseconds</span>&#x000A;126:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span>&#x000A;127:         (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span>&#x000A;128:         (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>) <span class="ruby-operator">-</span>&#x000A;129:         (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>) <span class="ruby-operator">-</span>&#x000A;130:         (<span class="ruby-identifier">seconds</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;131:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000065-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 125</span>&#x000A;125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">milliseconds</span>&#x000A;126:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span>&#x000A;127:         (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span>&#x000A;128:         (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>) <span class="ruby-operator">-</span>&#x000A;129:         (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>) <span class="ruby-operator">-</span>&#x000A;130:         (<span class="ruby-identifier">seconds</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;131:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000017'>
-                <a name='M000017'></a>
+              <div class='method public-instance' id='method-M000062'>
+                <a name='M000062'></a>
                 <div class='synopsis'>
                   <span class='name'>min</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="SdlTimeSpan.html#M000016">minutes</a>
+                  Alias for <a href="SdlTimeSpan.html#M000061">minutes</a>
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000016'>
-                <a name='M000016'></a>
+              <div class='method public-instance' id='method-M000061'>
+                <a name='M000061'></a>
                 <div class='synopsis'>
                   <span class='name'>minutes</span>
                   <span class='arguments'>()</span>
@@ -309,14 +310,26 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000016-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000061-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000016-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 106</span>&#x000A;106:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">minutes</span>&#x000A;107:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span>&#x000A;108:         ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span>&#x000A;109:           <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)&#x000A;110:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000061-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 106</span>&#x000A;106:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">minutes</span>&#x000A;107:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span>&#x000A;108:         ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span>&#x000A;109:           <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)&#x000A;110:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000026'>
-                <a name='M000026'></a>
+              <div class='method public-instance' id='method-M000066'>
+                <a name='M000066'></a>
+                <div class='synopsis'>
+                  <span class='name'>msec</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Alias for <a href="SdlTimeSpan.html#M000065">milliseconds</a>
+                  </p>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000072'>
+                <a name='M000072'></a>
                 <div class='synopsis'>
                   <span class='name'>negate</span>
                   <span class='arguments'>()</span>
@@ -328,14 +341,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000026-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000072-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000026-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 165</span>&#x000A;165:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">negate</span>&#x000A;166:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">-</span><span class="ruby-ivar">@totalMilliseconds</span>)&#x000A;167:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000072-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 169</span>&#x000A;169:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">negate</span>&#x000A;170:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">-</span><span class="ruby-ivar">@totalMilliseconds</span>)&#x000A;171:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000027'>
-                <a name='M000027'></a>
+              <div class='method public-instance' id='method-M000073'>
+                <a name='M000073'></a>
                 <div class='synopsis'>
                   <span class='name'>roll_days</span>
                   <span class='arguments'>(days)</span>
@@ -352,14 +365,14 @@
                   </table>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000027-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000073-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000027-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 174</span>&#x000A;174:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_days</span>(<span class="ruby-identifier">days</span>)&#x000A;175:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>))&#x000A;176:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000073-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 178</span>&#x000A;178:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_days</span>(<span class="ruby-identifier">days</span>)&#x000A;179:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>))&#x000A;180:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000028'>
-                <a name='M000028'></a>
+              <div class='method public-instance' id='method-M000074'>
+                <a name='M000074'></a>
                 <div class='synopsis'>
                   <span class='name'>roll_hours</span>
                   <span class='arguments'>(hours)</span>
@@ -376,14 +389,14 @@
                   </table>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000028-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000074-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000028-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 183</span>&#x000A;183:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_hours</span>(<span class="ruby-identifier">hours</span>)&#x000A;184:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>))&#x000A;185:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000074-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 187</span>&#x000A;187:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_hours</span>(<span class="ruby-identifier">hours</span>)&#x000A;188:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>))&#x000A;189:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000031'>
-                <a name='M000031'></a>
+              <div class='method public-instance' id='method-M000077'>
+                <a name='M000077'></a>
                 <div class='synopsis'>
                   <span class='name'>roll_milliseconds</span>
                   <span class='arguments'>(milliseconds)</span>
@@ -400,14 +413,14 @@
                   </table>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000031-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000077-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000031-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 210</span>&#x000A;210:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_milliseconds</span>(<span class="ruby-identifier">milliseconds</span>)&#x000A;211:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">milliseconds</span>)&#x000A;212:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000077-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 214</span>&#x000A;214:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_milliseconds</span>(<span class="ruby-identifier">milliseconds</span>)&#x000A;215:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">milliseconds</span>)&#x000A;216:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000029'>
-                <a name='M000029'></a>
+              <div class='method public-instance' id='method-M000075'>
+                <a name='M000075'></a>
                 <div class='synopsis'>
                   <span class='name'>roll_minutes</span>
                   <span class='arguments'>(minutes)</span>
@@ -424,14 +437,14 @@
                   </table>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000029-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000075-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000029-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 192</span>&#x000A;192:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_minutes</span>(<span class="ruby-identifier">minutes</span>)&#x000A;193:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>))&#x000A;194:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000075-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 196</span>&#x000A;196:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_minutes</span>(<span class="ruby-identifier">minutes</span>)&#x000A;197:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>))&#x000A;198:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000030'>
-                <a name='M000030'></a>
+              <div class='method public-instance' id='method-M000076'>
+                <a name='M000076'></a>
                 <div class='synopsis'>
                   <span class='name'>roll_seconds</span>
                   <span class='arguments'>(seconds)</span>
@@ -448,26 +461,26 @@
                   </table>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000030-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000076-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000030-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 201</span>&#x000A;201:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_seconds</span>(<span class="ruby-identifier">seconds</span>)&#x000A;202:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">seconds</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>))&#x000A;203:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000076-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 205</span>&#x000A;205:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">roll_seconds</span>(<span class="ruby-identifier">seconds</span>)&#x000A;206:       <span class="ruby-constant">SdlTimeSpan</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">seconds</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>))&#x000A;207:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000019'>
-                <a name='M000019'></a>
+              <div class='method public-instance' id='method-M000064'>
+                <a name='M000064'></a>
                 <div class='synopsis'>
                   <span class='name'>sec</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='description'>
                   <p>
-                  Alias for <a href="SdlTimeSpan.html#M000018">seconds</a>
+                  Alias for <a href="SdlTimeSpan.html#M000063">seconds</a>
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000018'>
-                <a name='M000018'></a>
+              <div class='method public-instance' id='method-M000063'>
+                <a name='M000063'></a>
                 <div class='synopsis'>
                   <span class='name'>seconds</span>
                   <span class='arguments'>()</span>
@@ -478,14 +491,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000018-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000063-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000018-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 115</span>&#x000A;115:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">seconds</span>&#x000A;116:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span>&#x000A;117:         ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>) <span class="ruby-operator">-</span>&#x000A;118:           (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span>&#x000A;119:             <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;120:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000063-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 115</span>&#x000A;115:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">seconds</span>&#x000A;116:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span>&#x000A;117:         ((<span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">-</span> (<span class="ruby-identifier">days</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_DAY</span>) <span class="ruby-operator">-</span> (<span class="ruby-identifier">hours</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>) <span class="ruby-operator">-</span>&#x000A;118:           (<span class="ruby-identifier">minutes</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)).<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span>&#x000A;119:             <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;120:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000011'>
-                <a name='M000011'></a>
+              <div class='method public-instance' id='method-M000056'>
+                <a name='M000056'></a>
                 <div class='synopsis'>
                   <span class='name'>sign</span>
                   <span class='arguments'>()</span>
@@ -497,17 +510,17 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000056-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000011-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 86</span>&#x000A;86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sign</span>&#x000A;87:       <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-value">0</span>&#x000A;88:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000056-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 86</span>&#x000A;86:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sign</span>&#x000A;87:       <span class="ruby-ivar">@totalMilliseconds</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-value">0</span>&#x000A;88:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000036'>
-                <a name='M000036'></a>
+              <div class='method public-instance' id='method-M000082'>
+                <a name='M000082'></a>
                 <div class='synopsis'>
                   <span class='name'>to_s</span>
-                  <span class='arguments'>()</span>
+                  <span class='arguments'>(force_show_days = false)</span>
                 </div>
                 <div class='description'>
                   <p>
@@ -530,14 +543,14 @@
                   <pre>23:13:00 (12 hours and 13 minutes)&#x000A;24d:12:13:09.234 (24 days, 12 hours, 13 minutes, 9 seconds,&#x000A;    234 milliseconds)</pre>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000036-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000082-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000036-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 250</span>&#x000A;250:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>&#x000A;251:       <span class="ruby-identifier">_days</span> = <span class="ruby-identifier">days</span>&#x000A;252:       <span class="ruby-identifier">_milliseconds</span> = <span class="ruby-identifier">milliseconds</span>&#x000A;253:       &#x000A;254:       <span class="ruby-identifier">s</span> = <span class="ruby-keyword kw">nil</span>&#x000A;255:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_days</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;256:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_milliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;257:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%d:%02d:%02d&quot;</span>, <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;258:         <span class="ruby-keyword kw">else</span>&#x000A;259:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%d:%02d:%02d.%03d&quot;</span>, <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">_milliseconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;260:         <span class="ruby-keyword kw">end</span>&#x000A;261:       <span class="ruby-keyword kw">else</span>&#x000A;262:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_milliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;263:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%dd:%02d:%02d:%02d&quot;</span>, <span class="ruby-identifier">_days</span>, <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;264:         <span class="ruby-keyword kw">else</span>&#x000A;265:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(&#x000A;266:             <span class="ruby-value str">&quot;%dd:%02d:%02d:%02d.%03d&quot;</span>,&#x000A;267:             <span class="ruby-identifier">_days</span>,&#x000A;268:             <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">abs</span>,&#x000A;269:             <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>,&#x000A;270:             <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>,&#x000A;271:             <span class="ruby-identifier">_milliseconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;272:         <span class="ruby-keyword kw">end</span>&#x000A;273:       <span class="ruby-keyword kw">end</span>&#x000A;274:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">s</span>&#x000A;275:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000082-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 254</span>&#x000A;254:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">force_show_days</span> = <span class="ruby-keyword kw">false</span>)&#x000A;255:       <span class="ruby-identifier">_days</span> = <span class="ruby-identifier">days</span>&#x000A;256:       <span class="ruby-identifier">_milliseconds</span> = <span class="ruby-identifier">milliseconds</span>&#x000A;257:       &#x000A;258:       <span class="ruby-identifier">s</span> = <span class="ruby-keyword kw">nil</span>&#x000A;259:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_days</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">force_show_days</span>&#x000A;260:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_milliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;261:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%d:%02d:%02d&quot;</span>, <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;262:         <span class="ruby-keyword kw">else</span>&#x000A;263:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%d:%02d:%02d.%03d&quot;</span>, <span class="ruby-identifier">hours</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">_milliseconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;264:         <span class="ruby-keyword kw">end</span>&#x000A;265:       <span class="ruby-keyword kw">else</span>&#x000A;266:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_milliseconds</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>&#x000A;267:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;%dd:%02d:%02d:%02d&quot;</span>, <span class="ruby-identifier">_days</span>, <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>, <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;268:         <span class="ruby-keyword kw">else</span>&#x000A;269:           <span class="ruby-identifier">s</span> = <span class="ruby-identifier">sprintf</span>(&#x000A;270:             <span class="ruby-value str">&quot;%dd:%02d:%02d:%02d.%03d&quot;</span>,&#x000A;271:             <span class="ruby-identifier">_days</span>,&#x000A;272:             <span class="ruby-identifier">hours</span>.<span class="ruby-identifier">abs</span>,&#x000A;273:             <span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">abs</span>,&#x000A;274:             <span class="ruby-identifier">seconds</span>.<span class="ruby-identifier">abs</span>,&#x000A;275:             <span class="ruby-identifier">_milliseconds</span>.<span class="ruby-identifier">abs</span>)&#x000A;276:         <span class="ruby-keyword kw">end</span>&#x000A;277:       <span class="ruby-keyword kw">end</span>&#x000A;278:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">s</span>&#x000A;279:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000022'>
-                <a name='M000022'></a>
+              <div class='method public-instance' id='method-M000068'>
+                <a name='M000068'></a>
                 <div class='synopsis'>
                   <span class='name'>total_hours</span>
                   <span class='arguments'>()</span>
@@ -549,14 +562,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000022-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000068-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000022-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 137</span>&#x000A;137:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_hours</span>&#x000A;138:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)&#x000A;139:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000068-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 141</span>&#x000A;141:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_hours</span>&#x000A;142:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_HOUR</span>)&#x000A;143:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000025'>
-                <a name='M000025'></a>
+              <div class='method public-instance' id='method-M000071'>
+                <a name='M000071'></a>
                 <div class='synopsis'>
                   <span class='name'>total_milliseconds</span>
                   <span class='arguments'>()</span>
@@ -568,14 +581,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000025-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000071-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000025-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 158</span>&#x000A;158:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_milliseconds</span>&#x000A;159:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@totalMilliseconds</span>&#x000A;160:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000071-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 162</span>&#x000A;162:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_milliseconds</span>&#x000A;163:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@totalMilliseconds</span>&#x000A;164:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000023'>
-                <a name='M000023'></a>
+              <div class='method public-instance' id='method-M000069'>
+                <a name='M000069'></a>
                 <div class='synopsis'>
                   <span class='name'>total_minutes</span>
                   <span class='arguments'>()</span>
@@ -587,14 +600,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000023-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000069-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000023-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 144</span>&#x000A;144:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_minutes</span>&#x000A;145:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)&#x000A;146:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000069-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 148</span>&#x000A;148:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_minutes</span>&#x000A;149:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_MINUTE</span>)&#x000A;150:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000024'>
-                <a name='M000024'></a>
+              <div class='method public-instance' id='method-M000070'>
+                <a name='M000070'></a>
                 <div class='synopsis'>
                   <span class='name'>total_seconds</span>
                   <span class='arguments'>()</span>
@@ -606,22 +619,23 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000024-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000070-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000024-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 151</span>&#x000A;151:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_seconds</span>&#x000A;152:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;153:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000070-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 155</span>&#x000A;155:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">total_seconds</span>&#x000A;156:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sign</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@totalMilliseconds</span>.<span class="ruby-identifier">abs</span> <span class="ruby-operator">/</span> <span class="ruby-constant">MILLISECONDS_IN_SECOND</span>)&#x000A;157:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000021'>
-                <a name='M000021'></a>
+              <div class='method public-instance' id='method-M000067'>
+                <a name='M000067'></a>
                 <div class='synopsis'>
                   <span class='name'>usec</span>
                   <span class='arguments'>()</span>
                 </div>
-                <div class='description'>
-                  <p>
-                  Alias for <a href="SdlTimeSpan.html#M000020">milliseconds</a>
-                  </p>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000067-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000067-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/sdl_time_span.rb, line 134</span>&#x000A;134:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usec</span>&#x000A;135:       <span class="ruby-identifier">milliseconds</span> <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>&#x000A;136:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

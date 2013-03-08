@@ -1,6 +1,98 @@
-== v0.9.8 (建設中)
+== v1.0 (建設中)
 
-== v0.9.7 (26-auf-2010)
+== v0.9.10 (26-12-2010)
+
+=== Major changes:
+
+* New pull parser implementation: better performance under all tested platforms (especially under
+  JRuby). You don't have to use the Tag class anymore, if you don't need to.
+
+  The old implementation is not available anymore.
+
+  Note that this is still slower than if it was fully implemented in C, of course.
+
+* New: SDL4R#dump(), SDL4R#load(), serialization/deserialization using Serializer (beta feature).
+
+    top = SDL4R::load(<<-EOS)
+      food name="chili con carne" {
+        ingredient "beans"
+        ingredient "chili"
+        ingredient "cheese"
+        score 8.9
+      }
+    EOS
+
+    puts top.food.name # >> "chili con carne"
+    puts top.food.ingredient # >> ["beans", "chili", "cheese"]
+    puts top.food.score # >> 8.9
+
+* Unicode characters are now allowed in SDL identifiers as per the specification
+  (supported where Unicode character classes are supported e.g. Ruby 1.9.2 or JRuby).
+
+* The methods SDL4R/Parser.new_date_time() have been removed and refactored into
+
+    Reader.new_time(year, month, day, hour, min, sec, msec, timezone_code)
+    SDL4R.new_time(year, month, day, hour, min, sec, msec, timezone_code)
+
+  The objective was to allow the two following features.
+
+* Support of Time: if you want SDL4R to generate Time instances instead of DateTimes.
+
+    SDL4R.use_datetime = false
+
+* Support of the TZInfo gem (http://tzinfo.rubyforge.org/) if you want a more complete support of
+  timezones, DST, etc. For the time being, the code relies on implementation features of TZInfo and
+  therefore, there is some risk using it as to future versions of that component.
+  To use SDL4R with TZInfo enabled:
+
+    require 'sdl4r_tzinfo'
+
+  or (for more complex use cases)
+
+    require 'sdl4r'
+    require 'sdl4r/sdl4r_tzinfo'
+    SDL4R::enable_tzinfo
+    ...
+    SDL4R::disable_tzinfo
+
+=== Minor changes:
+
+* New: SDL4R#valid_identifier?()
+* Methods of class Tag now takes Symbols as well as Strings for namespaces, tag names and attribute
+  names. You can now write:
+
+    tag.child(:my_child)
+    tag.attribute(:my_namespace, :my_attribute)
+
+* Fixed the formatting of date times so that the zone offset appears after a "-GMT" mention, which
+  was missing before. Fixed the formatting of Time instances.
+* Fixed Tag#to_xml_string
+
+== v0.9.9 (19-11-2010)
+
+=== Major changes:
+
+* SDL4R#to_attribute_map renamed to SDL4R#to_attribute_hash (as the doc stated previously).
+* Symbols are now converted to Strings when used as SDL values. It is therefore possible to write:
+
+    tag.set_attribute("type", :square) #tag.attribute("type") => "square"
+
+=== Minor changes:
+
+* New methods: Tag#has_attributes? and Tag#has_values?
+
+== v0.9.8 (16-sep-2010)
+
+=== Major changes:
+
+* Bug fix: dollar ($) is now supported as a valid identifier character.
+
+=== Minor changes:
+
+* New constants: SDL4R#ANONYMOUS_TAG_NAME and SDL4R#ROOT_TAG_NAME.
+* Bug fixes related to the error handling in the parser.
+
+== v0.9.7 (26-aug-2010)
 
 === Major changes:
 

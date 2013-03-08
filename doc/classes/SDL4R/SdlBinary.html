@@ -54,15 +54,15 @@
             <h2>Methods</h2>
             <h3>public class</h3>
             <ol>
-              <li><a href="#M000089">decode64</a></li>
-              <li><a href="#M000084">new</a></li>
+              <li><a href="#M000053">decode64</a></li>
+              <li><a href="#M000048">new</a></li>
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000085">==</a></li>
-              <li><a href="#M000086">eql?</a></li>
-              <li><a href="#M000087">hash</a></li>
-              <li><a href="#M000088">to_s</a></li>
+              <li><a href="#M000049">==</a></li>
+              <li><a href="#M000050">eql?</a></li>
+              <li><a href="#M000051">hash</a></li>
+              <li><a href="#M000052">to_s</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -80,8 +80,8 @@
             </div>
             <div id='methods'>
               <h2>Public class methods</h2>
-              <div class='method public-class' id='method-M000089'>
-                <a name='M000089'></a>
+              <div class='method public-class' id='method-M000053'>
+                <a name='M000053'></a>
                 <div class='synopsis'>
                   <span class='name'>decode64</span>
                   <span class='arguments'>(s)</span>
@@ -94,14 +94,14 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000089-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000053-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000089-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 57</span>&#x000A;57:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">s</span>)&#x000A;58:       <span class="ruby-identifier">s</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;\n\r\t &quot;</span>)&#x000A;59: &#x000A;60:       <span class="ruby-identifier">binary</span> = <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">s</span>)&#x000A;61:       &#x000A;62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">binary</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>&#x000A;63:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;bad binary literal&quot;</span>&#x000A;64:       <span class="ruby-keyword kw">end</span>&#x000A;65: &#x000A;66:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SdlBinary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">binary</span>)&#x000A;67:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000053-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 57</span>&#x000A;57:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">s</span>)&#x000A;58:       <span class="ruby-identifier">s</span> = <span class="ruby-identifier">s</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;\n\r\t &quot;</span>)&#x000A;59: &#x000A;60:       <span class="ruby-identifier">binary</span> = <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">decode64</span>(<span class="ruby-identifier">s</span>)&#x000A;61:       &#x000A;62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">binary</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">empty?</span>&#x000A;63:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;bad binary literal&quot;</span>&#x000A;64:       <span class="ruby-keyword kw">end</span>&#x000A;65: &#x000A;66:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">SdlBinary</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">binary</span>)&#x000A;67:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-class' id='method-M000084'>
-                <a name='M000084'></a>
+              <div class='method public-class' id='method-M000048'>
+                <a name='M000048'></a>
                 <div class='synopsis'>
                   <span class='name'>new</span>
                   <span class='arguments'>(bytes)</span>
@@ -112,28 +112,28 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000084-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000048-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000084-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 33</span>&#x000A;33:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">bytes</span>)&#x000A;34:       <span class="ruby-ivar">@bytes</span> = <span class="ruby-identifier">bytes</span>&#x000A;35:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000048-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 33</span>&#x000A;33:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">bytes</span>)&#x000A;34:       <span class="ruby-ivar">@bytes</span> = <span class="ruby-identifier">bytes</span>&#x000A;35:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
-              <div class='method public-instance' id='method-M000085'>
-                <a name='M000085'></a>
+              <div class='method public-instance' id='method-M000049'>
+                <a name='M000049'></a>
                 <div class='synopsis'>
                   <span class='name'>==</span>
                   <span class='arguments'>(o)</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000085-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000049-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000085-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 37</span>&#x000A;37:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">o</span>)&#x000A;38:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">o</span>)&#x000A;39:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>)&#x000A;40:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">bytes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">bytes</span>&#x000A;41:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000049-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 37</span>&#x000A;37:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">o</span>)&#x000A;38:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">o</span>)&#x000A;39:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_of?</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>)&#x000A;40:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">bytes</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">bytes</span>&#x000A;41:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000086'>
-                <a name='M000086'></a>
+              <div class='method public-instance' id='method-M000050'>
+                <a name='M000050'></a>
                 <div class='synopsis'>
                   <span class='name'>eql?</span>
                   <span class='arguments'>(o)</span>
@@ -144,21 +144,21 @@
                   </p>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000087'>
-                <a name='M000087'></a>
+              <div class='method public-instance' id='method-M000051'>
+                <a name='M000051'></a>
                 <div class='synopsis'>
                   <span class='name'>hash</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000087-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000051-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000087-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 45</span>&#x000A;45:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>&#x000A;46:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">bytes</span>.<span class="ruby-identifier">hash</span>&#x000A;47:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000051-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 45</span>&#x000A;45:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash</span>&#x000A;46:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">bytes</span>.<span class="ruby-identifier">hash</span>&#x000A;47:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000088'>
-                <a name='M000088'></a>
+              <div class='method public-instance' id='method-M000052'>
+                <a name='M000052'></a>
                 <div class='synopsis'>
                   <span class='name'>to_s</span>
                   <span class='arguments'>()</span>
@@ -169,10 +169,10 @@
                   </p>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000088-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000052-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000088-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 50</span>&#x000A;50:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>&#x000A;51:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">encode64</span>(<span class="ruby-identifier">bytes</span>)&#x000A;52:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000052-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/sdl_binary.rb, line 50</span>&#x000A;50:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>&#x000A;51:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Base64</span>.<span class="ruby-identifier">encode64</span>(<span class="ruby-identifier">bytes</span>)&#x000A;52:     <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

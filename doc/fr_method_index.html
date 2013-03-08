@@ -4331,156 +4331,158 @@
         
         Element.addMethods();
         var search_index = [
-          { method: '<<', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000041"><span class="method_name">&lt;&lt;</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: '<=>', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000035"><span class="method_name">&lt;=&gt;</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: '==', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000077"><span class="method_name">==</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: '==', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000034"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: '==', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000085"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'sdlbinary', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000001"><span class="method_name">SdlBinary</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: '_test_to_xml_string', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000123"><span class="method_name">_test_to_xml_string</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: '_to_xml_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000080"><span class="method_name">_to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'add_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000040"><span class="method_name">add_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'add_value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000054"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'assert_tags_equal', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000128"><span class="method_name">assert_tags_equal</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000061"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000063"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'attributes=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000067"><span class="method_name">attributes=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000049"><span class="method_name">child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'child_count', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000046"><span class="method_name">child_count</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'children', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000047"><span class="method_name">children</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'children_to_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000075"><span class="method_name">children_to_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'children_values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000048"><span class="method_name">children_values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'clear_attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000065"><span class="method_name">clear_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'clear_children', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000043"><span class="method_name">clear_children</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'clear_values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000057"><span class="method_name">clear_values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'coerce_or_fail', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000004"><span class="method_name">coerce_or_fail</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'day', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000013"><span class="method_name">day</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'days', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000012"><span class="method_name">days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'decode64', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000089"><span class="method_name">decode64</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'eql?', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000033"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'eql?', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000086"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'eql?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000076"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'format', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000002"><span class="method_name">format</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'get_test_sdl_file_path', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000129"><span class="method_name">get_test_sdl_file_path</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'has_attribute?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000062"><span class="method_name">has_attribute?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'has_child?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000050"><span class="method_name">has_child?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'has_children?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000051"><span class="method_name">has_children?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'has_value?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000055"><span class="method_name">has_value?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000078"><span class="method_name">hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'hash', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000032"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'hash', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000087"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'hour', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000015"><span class="method_name">hour</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000014"><span class="method_name">hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000020"><span class="method_name">milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'min', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000017"><span class="method_name">min</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000016"><span class="method_name">minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'name=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000068"><span class="method_name">name=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'namespace=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000069"><span class="method_name">namespace=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'negate', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000026"><span class="method_name">negate</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'new', module: 'sdl4r::parser', html: '<a href="classes/SDL4R/Parser.html#M000081"><span class="method_name">new</span> <span class="module_name">(SDL4R::Parser)</span></a>' },
-          { method: 'new', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000010"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'new', module: 'sdl4r::sdlparseerror', html: '<a href="classes/SDL4R/SdlParseError.html#M000037"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlParseError)</span></a>' },
-          { method: 'new', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000084"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'new', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000038"><span class="method_name">new</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'new_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000039"><span class="method_name">new_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'new_date_time', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000003"><span class="method_name">new_date_time</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'new_date_time', module: 'sdl4r::parser', html: '<a href="classes/SDL4R/Parser.html#M000083"><span class="method_name">new_date_time</span> <span class="module_name">(SDL4R::Parser)</span></a>' },
-          { method: 'parse', module: 'sdl4r::parser', html: '<a href="classes/SDL4R/Parser.html#M000082"><span class="method_name">parse</span> <span class="module_name">(SDL4R::Parser)</span></a>' },
-          { method: 'read', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000070"><span class="method_name">read</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'read', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000006"><span class="method_name">read</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'read_from_io', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000071"><span class="method_name">read_from_io</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'remove_attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000064"><span class="method_name">remove_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'remove_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000042"><span class="method_name">remove_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'remove_value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000056"><span class="method_name">remove_value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'roll_days', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000027"><span class="method_name">roll_days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'roll_hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000028"><span class="method_name">roll_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'roll_milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000031"><span class="method_name">roll_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'roll_minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000029"><span class="method_name">roll_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'roll_seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000030"><span class="method_name">roll_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'sec', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000019"><span class="method_name">sec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000018"><span class="method_name">seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'set_attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000060"><span class="method_name">set_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'set_attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000066"><span class="method_name">set_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'setup', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000130"><span class="method_name">setup</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'sign', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000011"><span class="method_name">sign</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'test_attributes', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000147"><span class="method_name">test_attributes</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_attributes', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000115"><span class="method_name">test_attributes</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_attributes_with_namespace', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000116"><span class="method_name">test_attributes_with_namespace</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_backquote_strings', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000108"><span class="method_name">test_backquote_strings</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_binaries', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000144"><span class="method_name">test_binaries</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_booleans', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000139"><span class="method_name">test_booleans</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_booleans', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000103"><span class="method_name">test_booleans</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_characters', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000136"><span class="method_name">test_characters</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_characters', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000107"><span class="method_name">test_characters</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_characters_unicode', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000137"><span class="method_name">test_characters_unicode</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_children', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000149"><span class="method_name">test_children</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_children', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000112"><span class="method_name">test_children</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_children_values', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000121"><span class="method_name">test_children_values</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_coerce_or_fail', module: 'sdl4r::sdltest', html: '<a href="classes/SDL4R/SDLTest.html#M000127"><span class="method_name">test_coerce_or_fail</span> <span class="module_name">(SDL4R::SDLTest)</span></a>' },
-          { method: 'test_comments', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000105"><span class="method_name">test_comments</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_date', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000099"><span class="method_name">test_date</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_date_time', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000101"><span class="method_name">test_date_time</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_date_times', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000143"><span class="method_name">test_date_times</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_dates', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000141"><span class="method_name">test_dates</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_double_quote_strings', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000106"><span class="method_name">test_double_quote_strings</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_empty', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000090"><span class="method_name">test_empty</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_empty_tag', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000145"><span class="method_name">test_empty_tag</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_eql?', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000120"><span class="method_name">test_eql?</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_initialize', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000111"><span class="method_name">test_initialize</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_namespaces', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000150"><span class="method_name">test_namespaces</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_null', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000140"><span class="method_name">test_null</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_null', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000104"><span class="method_name">test_null</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_numbers', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000102"><span class="method_name">test_numbers</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_numbers', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000138"><span class="method_name">test_numbers</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_omit_null_attributes_xml_option', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000125"><span class="method_name">test_omit_null_attributes_xml_option</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_one_tag_alone', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000091"><span class="method_name">test_one_tag_alone</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_parse_error', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000110"><span class="method_name">test_parse_error</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_set_attributes', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000117"><span class="method_name">test_set_attributes</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_stream_operator', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000114"><span class="method_name">test_stream_operator</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_strings', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000135"><span class="method_name">test_strings</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_sub_tags', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000109"><span class="method_name">test_sub_tags</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000131"><span class="method_name">test_tag</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_tag_with_attributes', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000098"><span class="method_name">test_tag_with_attributes</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_back_quote_string_values', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000095"><span class="method_name">test_tag_with_back_quote_string_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_base64_values', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000096"><span class="method_name">test_tag_with_base64_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_double_quote_string_values', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000094"><span class="method_name">test_tag_with_double_quote_string_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_one_attribute', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000097"><span class="method_name">test_tag_with_one_attribute</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_one_value', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000092"><span class="method_name">test_tag_with_one_value</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_with_two_values', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000093"><span class="method_name">test_tag_with_two_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_tag_write_parse', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000134"><span class="method_name">test_tag_write_parse</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_tag_write_parse_basic_types', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000132"><span class="method_name">test_tag_write_parse_basic_types</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_tag_write_parse_structures', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000133"><span class="method_name">test_tag_write_parse_structures</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_time', module: 'sdl4r::parsertest', html: '<a href="classes/SDL4R/ParserTest.html#M000100"><span class="method_name">test_time</span> <span class="module_name">(SDL4R::ParserTest)</span></a>' },
-          { method: 'test_time_spans', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000142"><span class="method_name">test_time_spans</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_to_child_hash', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000118"><span class="method_name">test_to_child_hash</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_to_child_string_hash', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000119"><span class="method_name">test_to_child_string_hash</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_to_xml_string', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000122"><span class="method_name">test_to_xml_string</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_to_xml_string_format', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000124"><span class="method_name">test_to_xml_string_format</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_values', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000146"><span class="method_name">test_values</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_values', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000113"><span class="method_name">test_values</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'test_values_and_attributes', module: 'sdl4r::sdl4rtest', html: '<a href="classes/SDL4R/SDL4RTest.html#M000148"><span class="method_name">test_values_and_attributes</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a>' },
-          { method: 'test_write', module: 'sdl4r::tagtest', html: '<a href="classes/SDL4R/TagTest.html#M000126"><span class="method_name">test_write</span> <span class="module_name">(SDL4R::TagTest)</span></a>' },
-          { method: 'to_attribute_map', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000009"><span class="method_name">to_attribute_map</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'to_child_hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000052"><span class="method_name">to_child_hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'to_child_string_hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000053"><span class="method_name">to_child_string_hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'to_s', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000036"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'to_s', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000073"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'to_s', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000088"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
-          { method: 'to_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000074"><span class="method_name">to_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'to_value', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000007"><span class="method_name">to_value</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'to_value_array', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000008"><span class="method_name">to_value_array</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'to_xml_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000079"><span class="method_name">to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'total_hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000022"><span class="method_name">total_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'total_milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000025"><span class="method_name">total_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'total_minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000023"><span class="method_name">total_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'total_seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000024"><span class="method_name">total_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'usec', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000021"><span class="method_name">usec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
-          { method: 'validate_identifier', module: 'sdl4r', html: '<a href="classes/SDL4R.html#M000005"><span class="method_name">validate_identifier</span> <span class="module_name">(SDL4R)</span></a>' },
-          { method: 'value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000045"><span class="method_name">value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'value=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000044"><span class="method_name">value=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000058"><span class="method_name">values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'values=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000059"><span class="method_name">values=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
-          { method: 'write', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000072"><span class="method_name">write</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: '<<', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000109"><span class="method_name">&lt;&lt;</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: '<=>', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000081"><span class="method_name">&lt;=&gt;</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: '==', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000049"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: '==', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000080"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: '==', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000147"><span class="method_name">==</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: '_initialize', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000002"><span class="method_name">_initialize</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: '_to_xml_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000150"><span class="method_name">_to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'actual_timezone', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000003"><span class="method_name">actual_timezone</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: 'add_attribute', module: 'sdl4r::element', html: '<a href="classes/SDL4R/Element.html#M000012"><span class="method_name">add_attribute</span> <span class="module_name">(SDL4R::Element)</span></a>' },
+          { method: 'add_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000108"><span class="method_name">add_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'add_value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000122"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'add_value', module: 'sdl4r::element', html: '<a href="classes/SDL4R/Element.html#M000013"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Element)</span></a>' },
+          { method: 'add_values_handler', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000014"><span class="method_name">add_values_handler</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000130"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'attribute', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000017"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'attribute_at', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000018"><span class="method_name">attribute_at</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'attribute_count', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000019"><span class="method_name">attribute_count</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000133"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'attributes', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000016"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'attributes=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000137"><span class="method_name">attributes=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'attributes?', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000020"><span class="method_name">attributes?</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000117"><span class="method_name">child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'child_count', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000114"><span class="method_name">child_count</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'children', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000115"><span class="method_name">children</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'children_to_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000145"><span class="method_name">children_to_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'children_values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000116"><span class="method_name">children_values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'clear_attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000135"><span class="method_name">clear_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'clear_children', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000111"><span class="method_name">clear_children</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'clear_values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000125"><span class="method_name">clear_values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'day', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000058"><span class="method_name">day</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'days', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000057"><span class="method_name">days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'decode64', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000053"><span class="method_name">decode64</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: 'deserialize', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000097"><span class="method_name">deserialize</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'deserialize_from_attributes', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000100"><span class="method_name">deserialize_from_attributes</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'deserialize_from_child_tags', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000102"><span class="method_name">deserialize_from_child_tags</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'deserialize_from_values', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000099"><span class="method_name">deserialize_from_values</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'deserialize_object', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000098"><span class="method_name">deserialize_object</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'each', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000029"><span class="method_name">each</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'each_tag', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000021"><span class="method_name">each_tag</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'eql?', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000050"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: 'eql?', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000079"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'eql?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000146"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'from_io', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000027"><span class="method_name">from_io</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'from_memory', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000028"><span class="method_name">from_memory</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'get', module: 'sdl4r::relativetimezone', html: '<a href="classes/SDL4R/RelativeTimezone.html#M000043"><span class="method_name">get</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a>' },
+          { method: 'get_deserialized_property_name', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000101"><span class="method_name">get_deserialized_property_name</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'get_method', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000090"><span class="method_name">get_method</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'get_proxy', module: 'sdl4r::relativetimezone', html: '<a href="classes/SDL4R/RelativeTimezone.html#M000044"><span class="method_name">get_proxy</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a>' },
+          { method: 'has_attribute?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000131"><span class="method_name">has_attribute?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'has_attributes?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000132"><span class="method_name">has_attributes?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'has_child?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000118"><span class="method_name">has_child?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'has_children?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000119"><span class="method_name">has_children?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'has_value?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000123"><span class="method_name">has_value?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'has_values?', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000128"><span class="method_name">has_values?</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'hash', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000078"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000148"><span class="method_name">hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'hash', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000051"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: 'hour', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000060"><span class="method_name">hour</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000059"><span class="method_name">hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'identifier', module: 'sdl4r::constanttimezone', html: '<a href="classes/SDL4R/ConstantTimezone.html#M000008"><span class="method_name">identifier</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a>' },
+          { method: 'identifier', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000004"><span class="method_name">identifier</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: 'inc', module: 'sdl4r::serializer::ref', html: '<a href="classes/SDL4R/Serializer/Ref.html#M000105"><span class="method_name">inc</span> <span class="module_name">(SDL4R::Serializer::Ref)</span></a>' },
+          { method: 'milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000065"><span class="method_name">milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'min', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000062"><span class="method_name">min</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000061"><span class="method_name">minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'msec', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000066"><span class="method_name">msec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'name=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000138"><span class="method_name">name=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'namespace=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000139"><span class="method_name">namespace=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'negate', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000072"><span class="method_name">negate</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'new', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000106"><span class="method_name">new</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'new', module: 'sdl4r::serializer::ref', html: '<a href="classes/SDL4R/Serializer/Ref.html#M000104"><span class="method_name">new</span> <span class="module_name">(SDL4R::Serializer::Ref)</span></a>' },
+          { method: 'new', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000083"><span class="method_name">new</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'new', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000015"><span class="method_name">new</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'new', module: 'sdl4r::element', html: '<a href="classes/SDL4R/Element.html#M000011"><span class="method_name">new</span> <span class="module_name">(SDL4R::Element)</span></a>' },
+          { method: 'new', module: 'sdl4r::relativetimezone', html: '<a href="classes/SDL4R/RelativeTimezone.html#M000045"><span class="method_name">new</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a>' },
+          { method: 'new', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000055"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'new', module: 'sdl4r::constanttimezone', html: '<a href="classes/SDL4R/ConstantTimezone.html#M000007"><span class="method_name">new</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a>' },
+          { method: 'new', module: 'sdl4r::sdlparseerror', html: '<a href="classes/SDL4R/SdlParseError.html#M000054"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlParseError)</span></a>' },
+          { method: 'new', module: 'sdl4r::token', html: '<a href="classes/SDL4R/Token.html#M000151"><span class="method_name">new</span> <span class="module_name">(SDL4R::Token)</span></a>' },
+          { method: 'new', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000048"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: 'new', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000001"><span class="method_name">new</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: 'new', module: 'sdl4r::tzabbreviationdb::record', html: '<a href="classes/SDL4R/TZAbbreviationDB/Record.html#M000152"><span class="method_name">new</span> <span class="module_name">(SDL4R::TZAbbreviationDB::Record)</span></a>' },
+          { method: 'new_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000107"><span class="method_name">new_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'new_plain_object', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000096"><span class="method_name">new_plain_object</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'new_ref_tag', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000086"><span class="method_name">new_ref_tag</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'new_tag', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000085"><span class="method_name">new_tag</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'new_time', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000033"><span class="method_name">new_time</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_character', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000038"><span class="method_name">parse_character</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_date', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000041"><span class="method_name">parse_date</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_double_quote_string', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000034"><span class="method_name">parse_double_quote_string</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_float', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000040"><span class="method_name">parse_float</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_integer', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000039"><span class="method_name">parse_integer</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_multiline_backquote_string', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000035"><span class="method_name">parse_multiline_backquote_string</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_multiline_binary', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000037"><span class="method_name">parse_multiline_binary</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_multiline_double_quote_string', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000036"><span class="method_name">parse_multiline_double_quote_string</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'parse_time_span', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000042"><span class="method_name">parse_time_span</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'period_for_utc', module: 'sdl4r::constanttimezone', html: '<a href="classes/SDL4R/ConstantTimezone.html#M000009"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a>' },
+          { method: 'period_for_utc', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000005"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: 'period_for_utc', module: 'sdl4r::relativetimezone', html: '<a href="classes/SDL4R/RelativeTimezone.html#M000046"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a>' },
+          { method: 'periods_for_local', module: 'sdl4r::abbreviationtimezoneproxy', html: '<a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000006"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a>' },
+          { method: 'periods_for_local', module: 'sdl4r::constanttimezone', html: '<a href="classes/SDL4R/ConstantTimezone.html#M000010"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a>' },
+          { method: 'periods_for_local', module: 'sdl4r::relativetimezone', html: '<a href="classes/SDL4R/RelativeTimezone.html#M000047"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a>' },
+          { method: 'raise_unexpected_token', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000031"><span class="method_name">raise_unexpected_token</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'read', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000140"><span class="method_name">read</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'read', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000030"><span class="method_name">read</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'read_from_io', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000141"><span class="method_name">read_from_io</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'reference_object', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000084"><span class="method_name">reference_object</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'remove_attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000134"><span class="method_name">remove_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'remove_child', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000110"><span class="method_name">remove_child</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'remove_value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000124"><span class="method_name">remove_value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'roll_days', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000073"><span class="method_name">roll_days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'roll_hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000074"><span class="method_name">roll_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'roll_milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000077"><span class="method_name">roll_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'roll_minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000075"><span class="method_name">roll_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'roll_seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000076"><span class="method_name">roll_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'sec', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000064"><span class="method_name">sec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000063"><span class="method_name">seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'self_closing?', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000022"><span class="method_name">self_closing?</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'serializable_property?', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000091"><span class="method_name">serializable_property?</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000087"><span class="method_name">serialize</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_array', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000093"><span class="method_name">serialize_array</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_array_as_child_tags', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000094"><span class="method_name">serialize_array_as_child_tags</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_hash', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000088"><span class="method_name">serialize_hash</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_object_or_ref', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000095"><span class="method_name">serialize_object_or_ref</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_plain_object', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000089"><span class="method_name">serialize_plain_object</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'serialize_property', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000092"><span class="method_name">serialize_property</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'set_attribute', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000129"><span class="method_name">set_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'set_attributes', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000136"><span class="method_name">set_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'set_mode', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000032"><span class="method_name">set_mode</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'set_serializable_property', module: 'sdl4r::serializer', html: '<a href="classes/SDL4R/Serializer.html#M000103"><span class="method_name">set_serializable_property</span> <span class="module_name">(SDL4R::Serializer)</span></a>' },
+          { method: 'sign', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000056"><span class="method_name">sign</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'to_child_hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000120"><span class="method_name">to_child_hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'to_child_string_hash', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000121"><span class="method_name">to_child_string_hash</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'to_s', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000143"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'to_s', module: 'sdl4r::sdlbinary', html: '<a href="classes/SDL4R/SdlBinary.html#M000052"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlBinary)</span></a>' },
+          { method: 'to_s', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000082"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'to_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000144"><span class="method_name">to_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'to_xml_string', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000149"><span class="method_name">to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'total_hours', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000068"><span class="method_name">total_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'total_milliseconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000071"><span class="method_name">total_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'total_minutes', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000069"><span class="method_name">total_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'total_seconds', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000070"><span class="method_name">total_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'usec', module: 'sdl4r::sdltimespan', html: '<a href="classes/SDL4R/SdlTimeSpan.html#M000067"><span class="method_name">usec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a>' },
+          { method: 'value', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000113"><span class="method_name">value</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'value', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000024"><span class="method_name">value</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'value=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000112"><span class="method_name">value=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'value?', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000026"><span class="method_name">value?</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'values', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000023"><span class="method_name">values</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'values', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000126"><span class="method_name">values</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'values=', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000127"><span class="method_name">values=</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
+          { method: 'values?', module: 'sdl4r::reader', html: '<a href="classes/SDL4R/Reader.html#M000025"><span class="method_name">values?</span> <span class="module_name">(SDL4R::Reader)</span></a>' },
+          { method: 'write', module: 'sdl4r::tag', html: '<a href="classes/SDL4R/Tag.html#M000142"><span class="method_name">write</span> <span class="module_name">(SDL4R::Tag)</span></a>' },
         ]
         $(document).observe('dom:loaded', function() {
         	// Setup search-during-typing.
@@ -4551,156 +4553,158 @@
       </form>
       <ol class='methods' id='search-results' style='display: none'></ol>
       <ol class='methods' id='index-entries'>
-        <li><a href="classes/SDL4R/Tag.html#M000041"><span class="method_name">&lt;&lt;</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000035"><span class="method_name">&lt;=&gt;</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000077"><span class="method_name">==</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000034"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000085"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000001"><span class="method_name">SdlBinary</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000123"><span class="method_name">_test_to_xml_string</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000080"><span class="method_name">_to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000040"><span class="method_name">add_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000054"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000128"><span class="method_name">assert_tags_equal</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000061"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000063"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000067"><span class="method_name">attributes=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000049"><span class="method_name">child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000046"><span class="method_name">child_count</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000047"><span class="method_name">children</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000075"><span class="method_name">children_to_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000048"><span class="method_name">children_values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000065"><span class="method_name">clear_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000043"><span class="method_name">clear_children</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000057"><span class="method_name">clear_values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000004"><span class="method_name">coerce_or_fail</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000013"><span class="method_name">day</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000012"><span class="method_name">days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000089"><span class="method_name">decode64</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000033"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000086"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000076"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000002"><span class="method_name">format</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000129"><span class="method_name">get_test_sdl_file_path</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000062"><span class="method_name">has_attribute?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000050"><span class="method_name">has_child?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000051"><span class="method_name">has_children?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000055"><span class="method_name">has_value?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000078"><span class="method_name">hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000032"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000087"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000015"><span class="method_name">hour</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000014"><span class="method_name">hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000020"><span class="method_name">milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000017"><span class="method_name">min</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000016"><span class="method_name">minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000068"><span class="method_name">name=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000069"><span class="method_name">namespace=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000026"><span class="method_name">negate</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/Parser.html#M000081"><span class="method_name">new</span> <span class="module_name">(SDL4R::Parser)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000010"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlParseError.html#M000037"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlParseError)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000084"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000038"><span class="method_name">new</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000039"><span class="method_name">new_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000003"><span class="method_name">new_date_time</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/Parser.html#M000083"><span class="method_name">new_date_time</span> <span class="module_name">(SDL4R::Parser)</span></a></li>
-        <li><a href="classes/SDL4R/Parser.html#M000082"><span class="method_name">parse</span> <span class="module_name">(SDL4R::Parser)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000070"><span class="method_name">read</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000006"><span class="method_name">read</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000071"><span class="method_name">read_from_io</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000064"><span class="method_name">remove_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000042"><span class="method_name">remove_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000056"><span class="method_name">remove_value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000027"><span class="method_name">roll_days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000028"><span class="method_name">roll_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000031"><span class="method_name">roll_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000029"><span class="method_name">roll_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000030"><span class="method_name">roll_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000019"><span class="method_name">sec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000018"><span class="method_name">seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000060"><span class="method_name">set_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000066"><span class="method_name">set_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000130"><span class="method_name">setup</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000011"><span class="method_name">sign</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000147"><span class="method_name">test_attributes</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000115"><span class="method_name">test_attributes</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000116"><span class="method_name">test_attributes_with_namespace</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000108"><span class="method_name">test_backquote_strings</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000144"><span class="method_name">test_binaries</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000139"><span class="method_name">test_booleans</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000103"><span class="method_name">test_booleans</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000136"><span class="method_name">test_characters</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000107"><span class="method_name">test_characters</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000137"><span class="method_name">test_characters_unicode</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000149"><span class="method_name">test_children</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000112"><span class="method_name">test_children</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000121"><span class="method_name">test_children_values</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDLTest.html#M000127"><span class="method_name">test_coerce_or_fail</span> <span class="module_name">(SDL4R::SDLTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000105"><span class="method_name">test_comments</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000099"><span class="method_name">test_date</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000101"><span class="method_name">test_date_time</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000143"><span class="method_name">test_date_times</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000141"><span class="method_name">test_dates</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000106"><span class="method_name">test_double_quote_strings</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000090"><span class="method_name">test_empty</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000145"><span class="method_name">test_empty_tag</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000120"><span class="method_name">test_eql?</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000111"><span class="method_name">test_initialize</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000150"><span class="method_name">test_namespaces</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000140"><span class="method_name">test_null</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000104"><span class="method_name">test_null</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000102"><span class="method_name">test_numbers</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000138"><span class="method_name">test_numbers</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000125"><span class="method_name">test_omit_null_attributes_xml_option</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000091"><span class="method_name">test_one_tag_alone</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000110"><span class="method_name">test_parse_error</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000117"><span class="method_name">test_set_attributes</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000114"><span class="method_name">test_stream_operator</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000135"><span class="method_name">test_strings</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000109"><span class="method_name">test_sub_tags</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000131"><span class="method_name">test_tag</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000098"><span class="method_name">test_tag_with_attributes</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000095"><span class="method_name">test_tag_with_back_quote_string_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000096"><span class="method_name">test_tag_with_base64_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000094"><span class="method_name">test_tag_with_double_quote_string_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000097"><span class="method_name">test_tag_with_one_attribute</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000092"><span class="method_name">test_tag_with_one_value</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000093"><span class="method_name">test_tag_with_two_values</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000134"><span class="method_name">test_tag_write_parse</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000132"><span class="method_name">test_tag_write_parse_basic_types</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000133"><span class="method_name">test_tag_write_parse_structures</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/ParserTest.html#M000100"><span class="method_name">test_time</span> <span class="module_name">(SDL4R::ParserTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000142"><span class="method_name">test_time_spans</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000118"><span class="method_name">test_to_child_hash</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000119"><span class="method_name">test_to_child_string_hash</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000122"><span class="method_name">test_to_xml_string</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000124"><span class="method_name">test_to_xml_string_format</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000146"><span class="method_name">test_values</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000113"><span class="method_name">test_values</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R/SDL4RTest.html#M000148"><span class="method_name">test_values_and_attributes</span> <span class="module_name">(SDL4R::SDL4RTest)</span></a></li>
-        <li><a href="classes/SDL4R/TagTest.html#M000126"><span class="method_name">test_write</span> <span class="module_name">(SDL4R::TagTest)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000009"><span class="method_name">to_attribute_map</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000052"><span class="method_name">to_child_hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000053"><span class="method_name">to_child_string_hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000036"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000073"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlBinary.html#M000088"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000074"><span class="method_name">to_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000007"><span class="method_name">to_value</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000008"><span class="method_name">to_value_array</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000079"><span class="method_name">to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000022"><span class="method_name">total_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000025"><span class="method_name">total_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000023"><span class="method_name">total_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000024"><span class="method_name">total_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000021"><span class="method_name">usec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
-        <li><a href="classes/SDL4R.html#M000005"><span class="method_name">validate_identifier</span> <span class="module_name">(SDL4R)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000045"><span class="method_name">value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000044"><span class="method_name">value=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000058"><span class="method_name">values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000059"><span class="method_name">values=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
-        <li><a href="classes/SDL4R/Tag.html#M000072"><span class="method_name">write</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000109"><span class="method_name">&lt;&lt;</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000081"><span class="method_name">&lt;=&gt;</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000049"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000080"><span class="method_name">==</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000147"><span class="method_name">==</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000002"><span class="method_name">_initialize</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000150"><span class="method_name">_to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000003"><span class="method_name">actual_timezone</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/Element.html#M000012"><span class="method_name">add_attribute</span> <span class="module_name">(SDL4R::Element)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000108"><span class="method_name">add_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000122"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Element.html#M000013"><span class="method_name">add_value</span> <span class="module_name">(SDL4R::Element)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000014"><span class="method_name">add_values_handler</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000130"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000017"><span class="method_name">attribute</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000018"><span class="method_name">attribute_at</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000019"><span class="method_name">attribute_count</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000133"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000016"><span class="method_name">attributes</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000137"><span class="method_name">attributes=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000020"><span class="method_name">attributes?</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000117"><span class="method_name">child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000114"><span class="method_name">child_count</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000115"><span class="method_name">children</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000145"><span class="method_name">children_to_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000116"><span class="method_name">children_values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000135"><span class="method_name">clear_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000111"><span class="method_name">clear_children</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000125"><span class="method_name">clear_values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000058"><span class="method_name">day</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000057"><span class="method_name">days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000053"><span class="method_name">decode64</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000097"><span class="method_name">deserialize</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000100"><span class="method_name">deserialize_from_attributes</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000102"><span class="method_name">deserialize_from_child_tags</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000099"><span class="method_name">deserialize_from_values</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000098"><span class="method_name">deserialize_object</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000029"><span class="method_name">each</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000021"><span class="method_name">each_tag</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000050"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000079"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000146"><span class="method_name">eql?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000027"><span class="method_name">from_io</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000028"><span class="method_name">from_memory</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/RelativeTimezone.html#M000043"><span class="method_name">get</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000101"><span class="method_name">get_deserialized_property_name</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000090"><span class="method_name">get_method</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/RelativeTimezone.html#M000044"><span class="method_name">get_proxy</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000131"><span class="method_name">has_attribute?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000132"><span class="method_name">has_attributes?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000118"><span class="method_name">has_child?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000119"><span class="method_name">has_children?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000123"><span class="method_name">has_value?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000128"><span class="method_name">has_values?</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000078"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000148"><span class="method_name">hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000051"><span class="method_name">hash</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000060"><span class="method_name">hour</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000059"><span class="method_name">hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/ConstantTimezone.html#M000008"><span class="method_name">identifier</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000004"><span class="method_name">identifier</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer/Ref.html#M000105"><span class="method_name">inc</span> <span class="module_name">(SDL4R::Serializer::Ref)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000065"><span class="method_name">milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000062"><span class="method_name">min</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000061"><span class="method_name">minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000066"><span class="method_name">msec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000138"><span class="method_name">name=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000139"><span class="method_name">namespace=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000072"><span class="method_name">negate</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000106"><span class="method_name">new</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer/Ref.html#M000104"><span class="method_name">new</span> <span class="module_name">(SDL4R::Serializer::Ref)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000083"><span class="method_name">new</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000015"><span class="method_name">new</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Element.html#M000011"><span class="method_name">new</span> <span class="module_name">(SDL4R::Element)</span></a></li>
+        <li><a href="classes/SDL4R/RelativeTimezone.html#M000045"><span class="method_name">new</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000055"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/ConstantTimezone.html#M000007"><span class="method_name">new</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/SdlParseError.html#M000054"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlParseError)</span></a></li>
+        <li><a href="classes/SDL4R/Token.html#M000151"><span class="method_name">new</span> <span class="module_name">(SDL4R::Token)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000048"><span class="method_name">new</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000001"><span class="method_name">new</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/TZAbbreviationDB/Record.html#M000152"><span class="method_name">new</span> <span class="module_name">(SDL4R::TZAbbreviationDB::Record)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000107"><span class="method_name">new_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000096"><span class="method_name">new_plain_object</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000086"><span class="method_name">new_ref_tag</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000085"><span class="method_name">new_tag</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000033"><span class="method_name">new_time</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000038"><span class="method_name">parse_character</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000041"><span class="method_name">parse_date</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000034"><span class="method_name">parse_double_quote_string</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000040"><span class="method_name">parse_float</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000039"><span class="method_name">parse_integer</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000035"><span class="method_name">parse_multiline_backquote_string</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000037"><span class="method_name">parse_multiline_binary</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000036"><span class="method_name">parse_multiline_double_quote_string</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000042"><span class="method_name">parse_time_span</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/ConstantTimezone.html#M000009"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000005"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/RelativeTimezone.html#M000046"><span class="method_name">period_for_utc</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/AbbreviationTimezoneProxy.html#M000006"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::AbbreviationTimezoneProxy)</span></a></li>
+        <li><a href="classes/SDL4R/ConstantTimezone.html#M000010"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::ConstantTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/RelativeTimezone.html#M000047"><span class="method_name">periods_for_local</span> <span class="module_name">(SDL4R::RelativeTimezone)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000031"><span class="method_name">raise_unexpected_token</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000140"><span class="method_name">read</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000030"><span class="method_name">read</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000141"><span class="method_name">read_from_io</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000084"><span class="method_name">reference_object</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000134"><span class="method_name">remove_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000110"><span class="method_name">remove_child</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000124"><span class="method_name">remove_value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000073"><span class="method_name">roll_days</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000074"><span class="method_name">roll_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000077"><span class="method_name">roll_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000075"><span class="method_name">roll_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000076"><span class="method_name">roll_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000064"><span class="method_name">sec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000063"><span class="method_name">seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000022"><span class="method_name">self_closing?</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000091"><span class="method_name">serializable_property?</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000087"><span class="method_name">serialize</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000093"><span class="method_name">serialize_array</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000094"><span class="method_name">serialize_array_as_child_tags</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000088"><span class="method_name">serialize_hash</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000095"><span class="method_name">serialize_object_or_ref</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000089"><span class="method_name">serialize_plain_object</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000092"><span class="method_name">serialize_property</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000129"><span class="method_name">set_attribute</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000136"><span class="method_name">set_attributes</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000032"><span class="method_name">set_mode</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Serializer.html#M000103"><span class="method_name">set_serializable_property</span> <span class="module_name">(SDL4R::Serializer)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000056"><span class="method_name">sign</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000120"><span class="method_name">to_child_hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000121"><span class="method_name">to_child_string_hash</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000143"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlBinary.html#M000052"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlBinary)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000082"><span class="method_name">to_s</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000144"><span class="method_name">to_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000149"><span class="method_name">to_xml_string</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000068"><span class="method_name">total_hours</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000071"><span class="method_name">total_milliseconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000069"><span class="method_name">total_minutes</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000070"><span class="method_name">total_seconds</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/SdlTimeSpan.html#M000067"><span class="method_name">usec</span> <span class="module_name">(SDL4R::SdlTimeSpan)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000113"><span class="method_name">value</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000024"><span class="method_name">value</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000112"><span class="method_name">value=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000026"><span class="method_name">value?</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000023"><span class="method_name">values</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000126"><span class="method_name">values</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000127"><span class="method_name">values=</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
+        <li><a href="classes/SDL4R/Reader.html#M000025"><span class="method_name">values?</span> <span class="module_name">(SDL4R::Reader)</span></a></li>
+        <li><a href="classes/SDL4R/Tag.html#M000142"><span class="method_name">write</span> <span class="module_name">(SDL4R::Tag)</span></a></li>
       </ol>
     </div>
   </body>

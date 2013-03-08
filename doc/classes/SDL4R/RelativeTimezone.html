@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: SDL4R::RelativeTimezone [RDoc: Simple Declarative Language for Ruby]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          SDL4R::RelativeTimezone
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sdl4r/relative_timezone_rb.html">lib/sdl4r/relative_timezone.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>TZInfo::Timezone</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Represents a Timezone which is distant from a standard timezone by a fixed
+            offset.
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000043">get</a></li>
+              <li><a href="#M000044">get_proxy</a></li>
+              <li><a href="#M000045">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000046">period_for_utc</a></li>
+              <li><a href="#M000047">periods_for_local</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='attribute-list'>
+              <h2 class='section-bar'>Attributes</h2>
+              <div class='name-list'>
+                <table>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>identifier</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>relative_offset</td>
+                    <td class='context-item-value'>[R]</td>
+                    <td class='context-item-desc'></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000043'>
+                <a name='M000043'></a>
+                <div class='synopsis'>
+                  <span class='name'>get</span>
+                  <span class='arguments'>(identifier)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a timezone by its identifier (e.g. &#8220;Europe/London&#8220;,
+                  &#8220;America/Chicago&#8220; or &#8220;UTC&#8221;).
+                  </p>
+                  <p>
+                  Supports relative timezones in the following formats: &#8220;UTC+2&#8221;,
+                  &#8220;GMT+01:30&#8221;, &#8220;Europe/Paris-10:00&#8221;.
+                  </p>
+                  <p>
+                  Raises InvalidTimezoneIdentifier if the timezone couldn&#8217;t be found.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000043-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000043-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/relative_timezone.rb, line 38</span>&#x000A;38:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">identifier</span>)&#x000A;39:       <span class="ruby-identifier">base_identifier</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span> = <span class="ruby-constant">RelativeTimezone</span><span class="ruby-operator">::</span><span class="ruby-identifier">parse_relative_identifier</span>(<span class="ruby-identifier">identifier</span>)&#x000A;40: &#x000A;41:       <span class="ruby-identifier">tz</span> = <span class="ruby-constant">TZAbbreviationDB</span>.<span class="ruby-identifier">get_timezone</span>(<span class="ruby-identifier">base_identifier</span>)&#x000A;42: &#x000A;43:       <span class="ruby-identifier">offset</span> <span class="ruby-value">?&#x000A;44: </span>        <span class="ruby-constant">RelativeTimezone</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base_identifier</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">offset_text</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">tz</span>) <span class="ruby-operator">:</span>&#x000A;45:         <span class="ruby-identifier">tz</span>&#x000A;46:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000044'>
+                <a name='M000044'></a>
+                <div class='synopsis'>
+                  <span class='name'>get_proxy</span>
+                  <span class='arguments'>(identifier)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a proxy for the Timezone with the given identifier. The proxy will
+                  cause the real timezone to be loaded when an attempt is made to find a
+                  period or convert a time. <a
+                  href="RelativeTimezone.html#M000044">get_proxy</a> will not validate the
+                  identifier. If an invalid identifier is specified, no exception will be
+                  raised until the proxy is used.
+                  </p>
+                  <p>
+                  Supports relative timezones in the following format:
+                  &#8220;GMT+01:30&#8221;, &#8220;CET-10:00&#8221;.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000044-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000044-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/relative_timezone.rb, line 56</span>&#x000A;56:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">get_proxy</span>(<span class="ruby-identifier">identifier</span>)&#x000A;57:       <span class="ruby-identifier">base_identifier</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span> = <span class="ruby-constant">RelativeTimezone</span><span class="ruby-operator">::</span><span class="ruby-identifier">parse_relative_identifier</span>(<span class="ruby-identifier">identifier</span>)&#x000A;58: &#x000A;59:       <span class="ruby-identifier">proxy</span> = <span class="ruby-constant">TZAbbreviationDB</span>.<span class="ruby-identifier">get_timezone_proxy</span>(<span class="ruby-identifier">base_identifier</span>)&#x000A;60: &#x000A;61:       <span class="ruby-identifier">offset</span> <span class="ruby-value">?&#x000A;62: </span>        <span class="ruby-constant">RelativeTimezone</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">base_identifier</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">offset_text</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">proxy</span>) <span class="ruby-operator">:</span>&#x000A;63:         <span class="ruby-identifier">proxy</span>&#x000A;64:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-class' id='method-M000045'>
+                <a name='M000045'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(identifier, offset_text, offset, base_timezone)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000045-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000045-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/relative_timezone.rb, line 103</span>&#x000A;103:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">base_timezone</span>)&#x000A;104:       <span class="ruby-identifier">o</span> = <span class="ruby-keyword kw">super</span>()&#x000A;105:       <span class="ruby-identifier">o</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:_initialize</span>, <span class="ruby-identifier">identifier</span>, <span class="ruby-identifier">offset_text</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">base_timezone</span>)&#x000A;106:       <span class="ruby-identifier">o</span>&#x000A;107:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000046'>
+                <a name='M000046'></a>
+                <div class='synopsis'>
+                  <span class='name'>period_for_utc</span>
+                  <span class='arguments'>(utc)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000046-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000046-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/relative_timezone.rb, line 127</span>&#x000A;127:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">period_for_utc</span>(<span class="ruby-identifier">utc</span>)&#x000A;128:       <span class="ruby-identifier">period</span> = <span class="ruby-ivar">@base_timezone</span>.<span class="ruby-identifier">period_for_utc</span>(<span class="ruby-identifier">utc</span>)&#x000A;129: &#x000A;130:       <span class="ruby-identifier">translated_offset</span> =&#x000A;131:         <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span> <span class="ruby-value">?&#x000A;132: </span>          <span class="ruby-constant">TZInfo</span><span class="ruby-operator">::</span><span class="ruby-constant">TimezoneOffsetInfo</span>.<span class="ruby-identifier">new</span>(&#x000A;133:             <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">utc_offset</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@relative_offset</span>,&#x000A;134:             <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">std_offset</span>,&#x000A;135:             (<span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">abbreviation</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@relative_offset_text</span>).<span class="ruby-identifier">to_sym</span>) <span class="ruby-operator">:</span>&#x000A;136:           <span class="ruby-keyword kw">nil</span>&#x000A;137: &#x000A;138:       <span class="ruby-keyword kw">return</span> <span class="ruby-constant">TZInfo</span><span class="ruby-operator">::</span><span class="ruby-constant">TimezonePeriod</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">translated_offset</span>)&#x000A;139:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000047'>
+                <a name='M000047'></a>
+                <div class='synopsis'>
+                  <span class='name'>periods_for_local</span>
+                  <span class='arguments'>(local)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000047-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000047-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/relative_timezone.rb, line 141</span>&#x000A;141:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">periods_for_local</span>(<span class="ruby-identifier">local</span>)&#x000A;142:       <span class="ruby-identifier">periods</span> = <span class="ruby-ivar">@base_timezone</span>.<span class="ruby-identifier">periods_for_local</span>(<span class="ruby-identifier">local</span>)&#x000A;143: &#x000A;144:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">periods</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">period</span><span class="ruby-operator">|</span>&#x000A;145:         <span class="ruby-identifier">translated_offset</span> =&#x000A;146:           <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span> <span class="ruby-value">?&#x000A;147: </span>            <span class="ruby-constant">TZInfo</span><span class="ruby-operator">::</span><span class="ruby-constant">TimezoneOffsetInfo</span>.<span class="ruby-identifier">new</span>(&#x000A;148:               <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">utc_offset</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@relative_offset</span>,&#x000A;149:               <span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">std_offset</span>,&#x000A;150:               (<span class="ruby-identifier">period</span>.<span class="ruby-identifier">offset</span>.<span class="ruby-identifier">abbreviation</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@relative_offset_text</span>).<span class="ruby-identifier">to_sym</span>) <span class="ruby-operator">:</span>&#x000A;151:             <span class="ruby-keyword kw">nil</span>&#x000A;152:         <span class="ruby-constant">TZInfo</span><span class="ruby-operator">::</span><span class="ruby-constant">TimezonePeriod</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">translated_offset</span>)&#x000A;153:       }&#x000A;154:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

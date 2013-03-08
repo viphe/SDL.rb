@@ -31,7 +31,7 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-08-06 13:03:22 +0900</span>
+          <span class='datetime'>2010-11-19 19:10:15 +0900</span>
         </div>
       </div>
       <div id='content'>
@@ -57,7 +57,7 @@
             
             </td></tr>
             </table>
-            <h2>Getting Started with <a href="../classes/SDL4R.html">SDL4R</a></h2>
+            <h2>Getting Started with SDL4R</h2>
             <p>
             To get the Ruby Gem:
             </p>
@@ -113,7 +113,7 @@
             </p>
             <p>
             SDL is often used for simple key-value mappings. To simplify things Tag has
-            the methods getValue and setValue which operate on the first element in the
+            the methods value and value= which operate on the first element in the
             values list. Also notice SDL understands types which are determined using
             type inference.
             </p>
@@ -148,7 +148,7 @@
             followed by zero or more additional literals and zero or more attributes.
             The examples section below demonstrates the use of anonymous tags.
             </p>
-            <pre>greetings {&#x000A;   &quot;hello&quot; language=&quot;English&quot;&#x000A;}&#x000A;&#x000A;# If we have a handle on the &quot;greetings&quot; tag we can access the&#x000A;# anonymous child tag by calling&#x000A;#    Tag child1 = greetingTag.getChild(&quot;content&quot;);</pre>
+            <pre>greetings {&#x000A;   &quot;hello&quot; language=&quot;English&quot;&#x000A;}&#x000A;&#x000A;# If we have a handle on the &quot;greetings&quot; tag we can access the&#x000A;# anonymous child tag by calling&#x000A;#    Tag child1 = greetingTag.child(&quot;content&quot;);</pre>
             <h2>String literals</h2>
             <p>
             There are two ways to write String literals.
@@ -286,7 +286,7 @@
             <p>
             An example SDL file:
             </p>
-            <pre># a tag having only a name&#x000A;my_tag&#x000A;&#x000A;# three tags acting as name value pairs&#x000A;first_name &quot;Akiko&quot;&#x000A;last_name &quot;Johnson&quot;&#x000A;height 68&#x000A;&#x000A;# a tag with a value list&#x000A;person &quot;Akiko&quot; &quot;Johnson&quot; 68&#x000A;&#x000A;# a tag with attributes&#x000A;person first_name=&quot;Akiko&quot; last_name=&quot;Johnson&quot; height=68&#x000A;&#x000A;# a tag with values and attributes&#x000A;person &quot;Akiko&quot; &quot;Johnson&quot; height=60&#x000A;&#x000A;# a tag with attributes using namespaces&#x000A;person name:first-name=&quot;Akiko&quot; name:last-name=&quot;Johnson&quot;&#x000A;&#x000A;# a tag with values, attributes, namespaces, and children&#x000A;my_namespace:person &quot;Akiko&quot; &quot;Johnson&quot; dimensions:height=68 {&#x000A;    son &quot;Nouhiro&quot; &quot;Johnson&quot;&#x000A;    daughter &quot;Sabrina&quot; &quot;Johnson&quot; location=&quot;Italy&quot; {&#x000A;        hobbies &quot;swimming&quot; &quot;surfing&quot;&#x000A;        languages &quot;English&quot; &quot;Italian&quot;&#x000A;        smoker false&#x000A;    }&#x000A;}&#x000A;&#x000A;------------------------------------------------------------------&#x000A;// (notice the separator style comment above...)&#x000A;&#x000A;# a log entry&#x000A;#     note - this tag has two values (date_time and string) and an&#x000A;#            attribute (error)&#x000A;entry 2005/11/23 10:14:23.253-GMT &quot;Something bad happened&quot; error=true&#x000A;&#x000A;# a long line&#x000A;mylist &quot;something&quot; &quot;another&quot; true &quot;shoe&quot; 2002/12/13 &quot;rock&quot; \&#x000A;    &quot;morestuff&quot; &quot;sink&quot; &quot;penny&quot; 12:15:23.425&#x000A;&#x000A;# a long string&#x000A;text &quot;this is a long rambling line of text with a continuation \&#x000A;   and it keeps going and going...&quot;&#x000A;&#x000A;# anonymous tag examples&#x000A;&#x000A;files {&#x000A;    &quot;/folder1/file.txt&quot;&#x000A;    &quot;/file2.txt&quot;&#x000A;}&#x000A;&#x000A;# To retrieve the files as a list of strings&#x000A;#&#x000A;#     List files = tag.getChild(&quot;files&quot;).getChildrenValues(&quot;content&quot;);&#x000A;#&#x000A;# We us the name &quot;content&quot; because the files tag has two children, each of&#x000A;# which are anonymous tags (values with no name.)  These tags are assigned&#x000A;# the name &quot;content&quot;&#x000A;&#x000A;matrix {&#x000A;    1 2 3&#x000A;    4 5 6&#x000A;}&#x000A;&#x000A;# To retrieve the values from the matrix (as a list of lists)&#x000A;#&#x000A;#     List rows = tag.getChild(&quot;matrix&quot;).getChildrenValues(&quot;content&quot;);</pre>
+            <pre># a tag having only a name&#x000A;my_tag&#x000A;&#x000A;# three tags acting as name value pairs&#x000A;first_name &quot;Akiko&quot;&#x000A;last_name &quot;Johnson&quot;&#x000A;height 68&#x000A;&#x000A;# a tag with a value list&#x000A;person &quot;Akiko&quot; &quot;Johnson&quot; 68&#x000A;&#x000A;# a tag with attributes&#x000A;person first_name=&quot;Akiko&quot; last_name=&quot;Johnson&quot; height=68&#x000A;&#x000A;# a tag with values and attributes&#x000A;person &quot;Akiko&quot; &quot;Johnson&quot; height=60&#x000A;&#x000A;# a tag with attributes using namespaces&#x000A;person name:first-name=&quot;Akiko&quot; name:last-name=&quot;Johnson&quot;&#x000A;&#x000A;# a tag with values, attributes, namespaces, and children&#x000A;my_namespace:person &quot;Akiko&quot; &quot;Johnson&quot; dimensions:height=68 {&#x000A;    son &quot;Nouhiro&quot; &quot;Johnson&quot;&#x000A;    daughter &quot;Sabrina&quot; &quot;Johnson&quot; location=&quot;Italy&quot; {&#x000A;        hobbies &quot;swimming&quot; &quot;surfing&quot;&#x000A;        languages &quot;English&quot; &quot;Italian&quot;&#x000A;        smoker false&#x000A;    }&#x000A;}&#x000A;&#x000A;------------------------------------------------------------------&#x000A;// (notice the separator style comment above...)&#x000A;&#x000A;# a log entry&#x000A;#     note - this tag has two values (date_time and string) and an&#x000A;#            attribute (error)&#x000A;entry 2005/11/23 10:14:23.253-GMT &quot;Something bad happened&quot; error=true&#x000A;&#x000A;# a long line&#x000A;mylist &quot;something&quot; &quot;another&quot; true &quot;shoe&quot; 2002/12/13 &quot;rock&quot; \&#x000A;    &quot;morestuff&quot; &quot;sink&quot; &quot;penny&quot; 12:15:23.425&#x000A;&#x000A;# a long string&#x000A;text &quot;this is a long rambling line of text with a continuation \&#x000A;   and it keeps going and going...&quot;&#x000A;&#x000A;# anonymous tag examples&#x000A;&#x000A;files {&#x000A;    &quot;/folder1/file.txt&quot;&#x000A;    &quot;/file2.txt&quot;&#x000A;}&#x000A;&#x000A;# To retrieve the files as a list of strings&#x000A;#&#x000A;#     List files = tag.child(&quot;files&quot;).children_values(&quot;content&quot;);&#x000A;#&#x000A;# We us the name &quot;content&quot; because the files tag has two children, each of&#x000A;# which are anonymous tags (values with no name.)  These tags are assigned&#x000A;# the name &quot;content&quot;&#x000A;&#x000A;matrix {&#x000A;    1 2 3&#x000A;    4 5 6&#x000A;}&#x000A;&#x000A;# To retrieve the values from the matrix (as a list of lists)&#x000A;#&#x000A;#     List rows = tag.child(&quot;matrix&quot;).children_values(&quot;content&quot;);</pre>
             <p>
             Example of getting the &#8220;location&#8221; attribute from the
             &#8220;daughter&#8221; tag above (ignoring exceptions)
@@ -333,9 +333,8 @@
             <tr><td valign="top">date (day):</td><td>Date
             
             </td></tr>
-            <tr><td valign="top">date time:</td><td>DateTime (see <a
-            href="../classes/SDL4R.html#M000003">SDL4R#new_date_time</a> if you want to
-            get Time instances from the parsers)
+            <tr><td valign="top">date time:</td><td>DateTime (see SDL4R#new_date_time if you want to get Time instances from
+            the parsers)
             
             </td></tr>
             <tr><td valign="top">time span:</td><td>SdlTimeSpan
@@ -350,8 +349,8 @@
             </table>
             <p>
             TO FIX: the handling of floating numbers in Ruby being different from the
-            Java world, the behavior of <a href="../classes/SDL4R.html">SDL4R</a> at
-            limits might not be perfect for the time being.
+            Java world, the behavior of SDL4R at limits might not be perfect for the
+            time being.
             </p>
             <h2>UTF-8 Support</h2>
             <p>
@@ -365,6 +364,11 @@
             options when launching the Ruby interpreter:
             </p>
             <pre>/path/to/ruby -Ku -rjcode</pre>
+            <h2>Ruby Support</h2>
+            <p>
+            SDL4R has been tested on:
+            </p>
+            <pre>* Ruby 1.8.7&#x000A;* Ruby 1.9.1&#x000A;* Ruby 1.9.2&#x000A;* JRuby 1.5.1</pre>
             <h2>License</h2>
             <p>
             Simple Declarative Language (SDL) for Ruby

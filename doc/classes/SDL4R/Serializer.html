@@ -1,0 +1,557 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>: SDL4R::Serializer [RDoc: Simple Declarative Language for Ruby]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='class' id='wrapper'>
+      <div class='header'>
+        <h1 class='name'>
+          <span class='type'>Class</span>
+          SDL4R::Serializer
+        </h1>
+        <ol class='paths'>
+          <li>
+            <a href="../../files/lib/sdl4r/serializer_rb.html">lib/sdl4r/serializer.rb</a>
+          </li>
+        </ol>
+        <div class='parent'>
+          Parent:
+          <strong>Object</strong>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <p>
+            Allows to serialize/deserialize between SDL and Ruby objects.
+            </p>
+            <p>
+            Classes which need to implement custom serialization/deserialization should
+            define the +to_sdl()+ and +from_sdl()+ methods as follows:
+            </p>
+            <pre>class MyClass&#x000A;&#x000A;  attr_accessor :firstname&#x000A;&#x000A;  def from_sdl(tag, serializer = Serializer.new)&#x000A;    self.firstname = tag.attribute(&quot;name&quot;)&#x000A;    self&#x000A;  end&#x000A;&#x000A;  def to_sdl(serializer = Serializer.new, tag = serializer.new_tag(nil, self, nil))&#x000A;    tag.set_attribute(&quot;name&quot;, self.firstname)&#x000A;    tag&#x000A;  end&#x000A;&#x000A;end</pre>
+            <p>
+            Custom serialization (using +to_sdl()+) or deserialization (using
+            +from_sdl()+) can be more efficient than the standard one as its logic is
+            more straightforward).
+            </p>
+            <h2>Author</h2>
+            <p>
+            Philippe Vosges
+            </p>
+          </div>
+          <div id='method-list'>
+            <h2>Methods</h2>
+            <h3>public class</h3>
+            <ol>
+              <li><a href="#M000083">new</a></li>
+            </ol>
+            <h3>public instance</h3>
+            <ol>
+              <li><a href="#M000097">deserialize</a></li>
+              <li><a href="#M000100">deserialize_from_attributes</a></li>
+              <li><a href="#M000102">deserialize_from_child_tags</a></li>
+              <li><a href="#M000099">deserialize_from_values</a></li>
+              <li><a href="#M000098">deserialize_object</a></li>
+              <li><a href="#M000101">get_deserialized_property_name</a></li>
+              <li><a href="#M000090">get_method</a></li>
+              <li><a href="#M000096">new_plain_object</a></li>
+              <li><a href="#M000086">new_ref_tag</a></li>
+              <li><a href="#M000085">new_tag</a></li>
+              <li><a href="#M000084">reference_object</a></li>
+              <li><a href="#M000091">serializable_property?</a></li>
+              <li><a href="#M000087">serialize</a></li>
+              <li><a href="#M000093">serialize_array</a></li>
+              <li><a href="#M000094">serialize_array_as_child_tags</a></li>
+              <li><a href="#M000088">serialize_hash</a></li>
+              <li><a href="#M000095">serialize_object_or_ref</a></li>
+              <li><a href="#M000089">serialize_plain_object</a></li>
+              <li><a href="#M000092">serialize_property</a></li>
+              <li><a href="#M000103">set_serializable_property</a></li>
+            </ol>
+          </div>
+          <div id='section'>
+            <div id='class-list'>
+              <h2>Classes and Modules</h2>
+              Class <a href="Serializer/Ref.html" class="link">SDL4R::Serializer::Ref</a><br />
+            </div>
+            <div id='constants-list'>
+              <h2>Constants</h2>
+              <div class='name-list'>
+                <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>OBJECT_ID_ATTR_NAME</td>
+                    <td>=</td>
+                    <td class='context-item-value'>'oid'</td>
+                  </tr>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>OBJECT_REF_ATTR_NAME</td>
+                    <td>=</td>
+                    <td class='context-item-value'>'oref'</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div id='methods'>
+              <h2>Public class methods</h2>
+              <div class='method public-class' id='method-M000083'>
+                <a name='M000083'></a>
+                <div class='synopsis'>
+                  <span class='name'>new</span>
+                  <span class='arguments'>(options = {})</span>
+                </div>
+                <div class='description'>
+                  <h3>options:</h3>
+                  <pre>[:omit_nil_properties]&#x000A;if true, nil object properties are not exported to the serialized SDL (default: false)&#x000A;[:default_namespace]&#x000A;the default namespace of the generated tags (default: &quot;&quot;). This namespace doesn't apply to&#x000A;attributes.</pre>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000083-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000083-source'>    <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 73</span>&#x000A;73:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})&#x000A;74:       <span class="ruby-ivar">@options</span> = {}.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@@DEFAULT_OPTIONS</span>).<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>)&#x000A;75:       <span class="ruby-ivar">@next_oid</span> = <span class="ruby-value">1</span>&#x000A;76:       <span class="ruby-ivar">@ref_by_oid</span> = {}&#x000A;77:       <span class="ruby-ivar">@ref_by_object</span> = {}&#x000A;78:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000097'>
+                <a name='M000097'></a>
+                <div class='synopsis'>
+                  <span class='name'>deserialize</span>
+                  <span class='arguments'>(tag, o = new_plain_object(tag))</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000097-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000097-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 363</span>&#x000A;363:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deserialize</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span> = <span class="ruby-identifier">new_plain_object</span>(<span class="ruby-identifier">tag</span>))&#x000A;364:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:from_sdl</span>&#x000A;365:         <span class="ruby-identifier">o</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">from_sdl</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-keyword kw">self</span>)&#x000A;366:         &#x000A;367:       <span class="ruby-keyword kw">else</span>&#x000A;368:         <span class="ruby-identifier">o</span> = <span class="ruby-identifier">deserialize_object</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;369:       <span class="ruby-keyword kw">end</span>&#x000A;370: &#x000A;371:       <span class="ruby-identifier">o</span>&#x000A;372:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000100'>
+                <a name='M000100'></a>
+                <div class='synopsis'>
+                  <span class='name'>deserialize_from_attributes</span>
+                  <span class='arguments'>(tag, o)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000100-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000100-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 412</span>&#x000A;412:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deserialize_from_attributes</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;413:       <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">attributes</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">attribute_namespace</span>, <span class="ruby-identifier">attribute_name</span>, <span class="ruby-identifier">attribute_value</span><span class="ruby-operator">|</span>&#x000A;414:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attribute_namespace</span> <span class="ruby-operator">==</span> <span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">attribute_name</span> <span class="ruby-operator">==</span> <span class="ruby-constant">OBJECT_REF_ATTR_NAME</span>&#x000A;415:           <span class="ruby-comment cmt"># ignore this technical attribute</span>&#x000A;416: &#x000A;417:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">attribute_namespace</span> <span class="ruby-operator">==</span> <span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">attribute_name</span> <span class="ruby-operator">==</span> <span class="ruby-constant">OBJECT_ID_ATTR_NAME</span>&#x000A;418:           <span class="ruby-comment cmt"># reference and make no impact on 'o'</span>&#x000A;419:           <span class="ruby-identifier">ref</span> = <span class="ruby-identifier">reference_object</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">attribute_value</span>)&#x000A;420:           <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">inc</span>&#x000A;421: &#x000A;422:         <span class="ruby-keyword kw">else</span>&#x000A;423:           <span class="ruby-identifier">set_serializable_property</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">attribute_name</span>, <span class="ruby-identifier">attribute_value</span>)&#x000A;424:         <span class="ruby-keyword kw">end</span>&#x000A;425:       <span class="ruby-keyword kw">end</span>&#x000A;426:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000102'>
+                <a name='M000102'></a>
+                <div class='synopsis'>
+                  <span class='name'>deserialize_from_child_tags</span>
+                  <span class='arguments'>(tag, o, handle_anonymous)</span>
+                </div>
+                <div class='description'>
+                  <table>
+                  <tr><td valign="top"><em>handle_anonymous</em>:</td><td>if true, this method only handles anonymous child tags, if false, it only
+                  handles named child tags
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000102-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000102-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 440</span>&#x000A;440:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deserialize_from_child_tags</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>, <span class="ruby-identifier">handle_anonymous</span>)&#x000A;441:       <span class="ruby-comment cmt"># Group the homonym tags together</span>&#x000A;442:       <span class="ruby-identifier">child_tags_by_name</span> = {}&#x000A;443:       <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">children</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>&#x000A;444:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle_anonymous</span> <span class="ruby-operator">==</span> (<span class="ruby-identifier">child</span>.<span class="ruby-identifier">namespace</span> <span class="ruby-operator">==</span> <span class="ruby-value str">''</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-constant">ANONYMOUS_TAG_NAME</span>)&#x000A;445:           <span class="ruby-identifier">property_name</span> = <span class="ruby-identifier">get_deserialized_property_name</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;446:           <span class="ruby-identifier">homonymous_children</span> = (<span class="ruby-identifier">child_tags_by_name</span>[<span class="ruby-identifier">property_name</span>] <span class="ruby-operator">||=</span> [])&#x000A;447:           <span class="ruby-identifier">homonymous_children</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>&#x000A;448:         <span class="ruby-keyword kw">end</span>&#x000A;449:       <span class="ruby-keyword kw">end</span>&#x000A;450: &#x000A;451:       <span class="ruby-identifier">child_tags_by_name</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">property_name</span>, <span class="ruby-identifier">homonymous_children</span><span class="ruby-operator">|</span>&#x000A;452:         <span class="ruby-comment cmt"># Check wether this variable is assignable</span>&#x000A;453:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">serializable_property?</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>)&#x000A;454:           <span class="ruby-identifier">property_values</span> = []&#x000A;455: &#x000A;456:           <span class="ruby-identifier">homonymous_children</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>&#x000A;457:             <span class="ruby-identifier">property_value</span> = <span class="ruby-keyword kw">nil</span>&#x000A;458: &#x000A;459:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">has_attribute?</span>(<span class="ruby-constant">OBJECT_REF_ATTR_NAME</span>)&#x000A;460:               <span class="ruby-comment cmt"># Object reference</span>&#x000A;461:               <span class="ruby-identifier">ref</span> = <span class="ruby-ivar">@ref_by_oid</span>[<span class="ruby-identifier">child</span>.<span class="ruby-identifier">attribute</span>(<span class="ruby-constant">OBJECT_REF_ATTR_NAME</span>)]&#x000A;462:               <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">deserialize</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">o</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ref</span>&#x000A;463: &#x000A;464:             <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">has_values?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">has_children?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">has_attributes?</span>&#x000A;465:               <span class="ruby-comment cmt"># If the object only has values (no children, no atttributes):</span>&#x000A;466:               <span class="ruby-comment cmt">#  then the values are the variable value</span>&#x000A;467:               <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">child</span>.<span class="ruby-identifier">values</span>&#x000A;468:               <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">property_value</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">property_value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;469: &#x000A;470:             <span class="ruby-keyword kw">else</span>&#x000A;471:               <span class="ruby-comment cmt"># Consider this tag as a plain object</span>&#x000A;472:               <span class="ruby-identifier">variable_name</span> = <span class="ruby-node">&quot;@#{property_name}&quot;</span>&#x000A;473:               <span class="ruby-identifier">previous_value</span> =&#x000A;474:                 (<span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_defined?</span> <span class="ruby-identifier">variable_name</span>) <span class="ruby-operator">?</span>&#x000A;475:                   <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">variable_name</span>) <span class="ruby-operator">:</span>&#x000A;476:                   <span class="ruby-keyword kw">nil</span>&#x000A;477:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">previous_value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">is_coercible?</span>(<span class="ruby-identifier">previous_value</span>)&#x000A;478:                 <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">deserialize</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">new_plain_object</span>(<span class="ruby-identifier">child</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">o</span>))&#x000A;479:               <span class="ruby-keyword kw">else</span>&#x000A;480:                 <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">deserialize</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">new_plain_object</span>(<span class="ruby-identifier">child</span>, <span class="ruby-identifier">previous_value</span>, <span class="ruby-identifier">o</span>))&#x000A;481:               <span class="ruby-keyword kw">end</span>&#x000A;482:             <span class="ruby-keyword kw">end</span>&#x000A;483: &#x000A;484:             <span class="ruby-identifier">property_values</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">property_value</span>&#x000A;485:           <span class="ruby-keyword kw">end</span>&#x000A;486: &#x000A;487:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;488:             <span class="ruby-identifier">o</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-identifier">property_values</span>)&#x000A;489:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">property_values</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;490:             <span class="ruby-identifier">set_serializable_property</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>, <span class="ruby-identifier">property_values</span>[<span class="ruby-value">0</span>])&#x000A;491:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">property_values</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>&#x000A;492:             <span class="ruby-identifier">set_serializable_property</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>, <span class="ruby-identifier">property_values</span>)&#x000A;493:           <span class="ruby-keyword kw">end</span>&#x000A;494:         <span class="ruby-keyword kw">end</span>&#x000A;495:       <span class="ruby-keyword kw">end</span>&#x000A;496:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000099'>
+                <a name='M000099'></a>
+                <div class='synopsis'>
+                  <span class='name'>deserialize_from_values</span>
+                  <span class='arguments'>(tag, o)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000099-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000099-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 388</span>&#x000A;388:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deserialize_from_values</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;389:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">has_values?</span>&#x000A;390:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">has_children?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">has_attributes?</span>&#x000A;391:           <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">values</span>&#x000A;392: &#x000A;393:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-value str">&quot;@value&quot;</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-value str">&quot;@values&quot;</span>)&#x000A;394:             <span class="ruby-comment cmt"># value is preferred</span>&#x000A;395:             <span class="ruby-identifier">property_name</span> = <span class="ruby-value str">&quot;value&quot;</span>&#x000A;396:             <span class="ruby-identifier">property_value</span> = <span class="ruby-identifier">property_value</span>[<span class="ruby-value">0</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">property_value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;397:           <span class="ruby-keyword kw">else</span>&#x000A;398:             <span class="ruby-identifier">property_name</span> = <span class="ruby-value str">&quot;values&quot;</span>&#x000A;399:           <span class="ruby-keyword kw">end</span>&#x000A;400: &#x000A;401:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">serializable_property?</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>)&#x000A;402:             <span class="ruby-identifier">set_serializable_property</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>, <span class="ruby-identifier">property_value</span>)&#x000A;403:           <span class="ruby-keyword kw">end</span>&#x000A;404: &#x000A;405:         <span class="ruby-keyword kw">else</span>&#x000A;406:           <span class="ruby-comment cmt"># the tag only has values</span>&#x000A;407:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">property_value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">property_value</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">:</span> <span class="ruby-identifier">property_value</span>&#x000A;408:         <span class="ruby-keyword kw">end</span>&#x000A;409:       <span class="ruby-keyword kw">end</span>&#x000A;410:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000098'>
+                <a name='M000098'></a>
+                <div class='synopsis'>
+                  <span class='name'>deserialize_object</span>
+                  <span class='arguments'>(tag, o = new_plain_object(tag))</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Called by <a href="Serializer.html#M000097">deserialize</a> when not using
+                  +from_sdl()+. Deserializes the specified tag into an object using values,
+                  attributes, child tags, etc.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000098-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000098-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 377</span>&#x000A;377:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deserialize_object</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span> = <span class="ruby-identifier">new_plain_object</span>(<span class="ruby-identifier">tag</span>))&#x000A;378:       <span class="ruby-identifier">deserialize_from_child_tags</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>, <span class="ruby-keyword kw">true</span>)&#x000A;379:       <span class="ruby-identifier">deserialize_from_values</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;380:       <span class="ruby-identifier">deserialize_from_attributes</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;381:       <span class="ruby-identifier">deserialize_from_child_tags</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>, <span class="ruby-keyword kw">false</span>)&#x000A;382: &#x000A;383:       <span class="ruby-identifier">o</span> = <span class="ruby-identifier">apply_anonymous_tag_list_idiom</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span>)&#x000A;384:       &#x000A;385:       <span class="ruby-identifier">o</span>&#x000A;386:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000101'>
+                <a name='M000101'></a>
+                <div class='synopsis'>
+                  <span class='name'>get_deserialized_property_name</span>
+                  <span class='arguments'>(tag, parent_tag, parent_object)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns the name of the property to which the specified <a
+                  href="Tag.html">Tag</a> is supposed to be assigned in the parent object.
+                  Default behavior: this implementation returns the tag&#8217;s name
+                  (ignoring the namespace).
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000101-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000101-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 432</span>&#x000A;432:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_deserialized_property_name</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">parent_tag</span>, <span class="ruby-identifier">parent_object</span>)&#x000A;433:       <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">name</span>&#x000A;434:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000090'>
+                <a name='M000090'></a>
+                <div class='synopsis'>
+                  <span class='name'>get_method</span>
+                  <span class='arguments'>(o, method_name, arity)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns the method of object &#8216;o&#8217;, which has the specified name
+                  and arity (with or without default parameters). Returns nil if no such
+                  method corresponds.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000090-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000090-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 254</span>&#x000A;254:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_method</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">arity</span>)&#x000A;255:       <span class="ruby-keyword kw">begin</span>&#x000A;256:         <span class="ruby-identifier">m</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">method_name</span>)&#x000A;257:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NameError</span>&#x000A;258:         <span class="ruby-identifier">m</span> = <span class="ruby-keyword kw">nil</span>&#x000A;259:       <span class="ruby-keyword kw">end</span>&#x000A;260: &#x000A;261:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">arity</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> (<span class="ruby-operator">-</span><span class="ruby-identifier">arity</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)&#x000A;262:         <span class="ruby-identifier">m</span> = <span class="ruby-keyword kw">nil</span>&#x000A;263:       <span class="ruby-keyword kw">end</span>&#x000A;264: &#x000A;265:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">m</span>&#x000A;266:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000096'>
+                <a name='M000096'></a>
+                <div class='synopsis'>
+                  <span class='name'>new_plain_object</span>
+                  <span class='arguments'>(tag, o = nil, parent_object = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Provides deserialized new plain object instances (i.e. &#8220;plain
+                  object&#8221; as opposed to special cases like SDL values). By default,
+                  returns &#8216;o&#8217; or a new instance of OpenStruct if &#8216;o&#8217;
+                  is <tt>nil</tt>.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>tag</em>:</td><td>the deserialized <a href="Tag.html">Tag</a>
+                  
+                  </td></tr>
+                  <tr><td valign="top"><em>o</em>:</td><td>the currently used object or nil if there is none yet
+                  
+                  </td></tr>
+                  <tr><td valign="top"><em>parent_object</em>:</td><td>the parent object or <tt>nil</tt> if root
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000096-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000096-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 355</span>&#x000A;355:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_plain_object</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">o</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">parent_object</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;356:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">nil?</span>&#x000A;357:         <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>&#x000A;358:       <span class="ruby-keyword kw">else</span>&#x000A;359:         <span class="ruby-identifier">o</span>&#x000A;360:       <span class="ruby-keyword kw">end</span>&#x000A;361:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000086'>
+                <a name='M000086'></a>
+                <div class='synopsis'>
+                  <span class='name'>new_ref_tag</span>
+                  <span class='arguments'>(name, ref, parent_tag)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a <a href="Tag.html">Tag</a> representing the provided <a
+                  href="Serializer/Ref.html">Ref</a>.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>name</em>:</td><td>name of the created <a href="Tag.html">Tag</a> (if <tt>nil</tt>, the
+                  definition <a href="Tag.html">Tag</a> name - i.e. the name of the
+                  
+                  </td></tr>
+                  </table>
+                  <pre>first Tag representing the referenced object - is used)</pre>
+                  <table>
+                  <tr><td valign="top"><em>ref</em>:</td><td>represented reference (<a href="Serializer/Ref.html">Ref</a>)
+                  
+                  </td></tr>
+                  <tr><td valign="top"><em>parent_tag</em>:</td><td>parent <a href="Tag.html">Tag</a> of the created <a href="Tag.html">Tag</a>
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000086-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000086-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 153</span>&#x000A;153:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_ref_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ref</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;154:       <span class="ruby-identifier">name</span> = <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">nil?</span>&#x000A;155: &#x000A;156:       <span class="ruby-identifier">ref_tag</span> = <span class="ruby-identifier">parent_tag</span>.<span class="ruby-identifier">new_child</span>(<span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:default_namespace</span>], <span class="ruby-identifier">name</span>)&#x000A;157:       <span class="ruby-identifier">ref_tag</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">''</span>, <span class="ruby-constant">OBJECT_REF_ATTR_NAME</span>, <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">oid</span>)&#x000A;158:       <span class="ruby-identifier">ref_tag</span>&#x000A;159:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000085'>
+                <a name='M000085'></a>
+                <div class='synopsis'>
+                  <span class='name'>new_tag</span>
+                  <span class='arguments'>(name, o, parent_tag = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Returns a new <a href="Tag.html">Tag</a> to be used for serializing
+                  &#8216;o&#8217;.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>name</em>:</td><td>name of the <a href="Tag.html">Tag</a> to create (can be <tt>nil</tt> for a
+                  root <a href="Tag.html">Tag</a>)
+                  
+                  </td></tr>
+                  </table>
+                  <pre>_o_:: object/value that the new tag will represent</pre>
+                  <table>
+                  <tr><td valign="top"><em>parent_tag</em>:</td><td>parent <a href="Tag.html">Tag</a> of the new tag
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000085-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000085-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 131</span>&#x000A;131:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">o</span>, <span class="ruby-identifier">parent_tag</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;132:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>&#x000A;133:         <span class="ruby-identifier">namespace</span> = <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:default_namespace</span>]&#x000A;134:       <span class="ruby-keyword kw">else</span>&#x000A;135:         <span class="ruby-identifier">namespace</span> = <span class="ruby-value str">''</span>&#x000A;136:         <span class="ruby-identifier">name</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-constant">ROOT_TAG_NAME</span>&#x000A;137:       <span class="ruby-keyword kw">end</span>&#x000A;138: &#x000A;139:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent_tag</span>.<span class="ruby-identifier">nil?</span>&#x000A;140:         <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>)&#x000A;141:       <span class="ruby-keyword kw">else</span>&#x000A;142:         <span class="ruby-identifier">parent_tag</span>.<span class="ruby-identifier">new_child</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>)&#x000A;143:       <span class="ruby-keyword kw">end</span>&#x000A;144:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000084'>
+                <a name='M000084'></a>
+                <div class='synopsis'>
+                  <span class='name'>reference_object</span>
+                  <span class='arguments'>(o, oid = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  References the provided object if it is not already referenced. If the
+                  object is referenced already, returns the corresponding <a
+                  href="Serializer/Ref.html">Ref</a>. The reference counter is not
+                  incremented by this method.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>oid</em>:</td><td>the Object ID (ignore if serializing, provide if deserializing).
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000084-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000084-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 109</span>&#x000A;109:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reference_object</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">oid</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;110:       <span class="ruby-identifier">ref</span> = <span class="ruby-ivar">@ref_by_object</span>[<span class="ruby-identifier">o</span>]&#x000A;111: &#x000A;112:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">ref</span>&#x000A;113:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">oid</span>&#x000A;114:           <span class="ruby-identifier">oid</span> = <span class="ruby-ivar">@next_oid</span>&#x000A;115:           <span class="ruby-ivar">@next_oid</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>&#x000A;116:         <span class="ruby-keyword kw">end</span>&#x000A;117:         &#x000A;118:         <span class="ruby-identifier">ref</span> = <span class="ruby-constant">Ref</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">oid</span>)&#x000A;119:         <span class="ruby-ivar">@ref_by_oid</span>[<span class="ruby-identifier">oid</span>] = <span class="ruby-ivar">@ref_by_object</span>[<span class="ruby-identifier">o</span>] = <span class="ruby-identifier">ref</span>&#x000A;120:       <span class="ruby-keyword kw">end</span>&#x000A;121: &#x000A;122:       <span class="ruby-identifier">ref</span>&#x000A;123:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000091'>
+                <a name='M000091'></a>
+                <div class='synopsis'>
+                  <span class='name'>serializable_property?</span>
+                  <span class='arguments'>(o, property_name)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Indicates whether the specified property is a serializable property for the
+                  given object.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000091-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000091-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 270</span>&#x000A;270:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serializable_property?</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>)&#x000A;271:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">OpenStruct</span>) <span class="ruby-operator">||</span>&#x000A;272:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">||</span>&#x000A;273:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-node">&quot;@#{property_name}&quot;</span>) <span class="ruby-operator">||</span>&#x000A;274:         (<span class="ruby-identifier">get_method</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">property_name</span>, <span class="ruby-value">0</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">get_method</span>(<span class="ruby-identifier">o</span>, <span class="ruby-node">&quot;#{property_name}=&quot;</span>, <span class="ruby-value">1</span>))&#x000A;275:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000087'>
+                <a name='M000087'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize</span>
+                  <span class='arguments'>(o, tag = nil, parent_tag = nil)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Serializes the given object into a returned <a href="Tag.html">Tag</a>.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>tag</em>:</td><td>a <a href="Tag.html">Tag</a> representing &#8216;o&#8217; (if not provided,
+                  one will be created).
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000087-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000087-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 165</span>&#x000A;165:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">tag</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">parent_tag</span> = <span class="ruby-keyword kw">nil</span>)&#x000A;166:       <span class="ruby-identifier">root</span> = <span class="ruby-identifier">serialize_impl</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">tag</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;167: &#x000A;168:       <span class="ruby-comment cmt"># Assign an OID attribute to tags of objects referenced more than once</span>&#x000A;169:       <span class="ruby-ivar">@ref_by_object</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ref</span><span class="ruby-operator">|</span>&#x000A;170:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>&#x000A;171:           <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-value str">''</span>, <span class="ruby-constant">OBJECT_ID_ATTR_NAME</span>, <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">oid</span>)&#x000A;172:         <span class="ruby-keyword kw">end</span>&#x000A;173:       }&#x000A;174: &#x000A;175:       <span class="ruby-identifier">root</span>&#x000A;176:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000093'>
+                <a name='M000093'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_array</span>
+                  <span class='arguments'>(name, array, parent_tag)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000093-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000093-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 305</span>&#x000A;305:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_array</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">array</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;306:       <span class="ruby-identifier">not_literal_values</span> = <span class="ruby-identifier">array</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">is_coercible?</span>(<span class="ruby-identifier">item</span>) }&#x000A;307:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">not_literal_values</span>.<span class="ruby-identifier">empty?</span>&#x000A;308:         <span class="ruby-comment cmt"># If it is an array of SDL-compatible values, we use SDL values.</span>&#x000A;309:         <span class="ruby-identifier">array_tag</span> = <span class="ruby-identifier">new_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">array</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;310:         <span class="ruby-identifier">array_tag</span>.<span class="ruby-identifier">values</span> = <span class="ruby-identifier">array</span>&#x000A;311: &#x000A;312:       <span class="ruby-keyword kw">else</span>&#x000A;313:         <span class="ruby-comment cmt"># Otherwise, we use separate child tags.</span>&#x000A;314:         <span class="ruby-identifier">serialize_array_as_child_tags</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">array</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;315:       <span class="ruby-keyword kw">end</span>&#x000A;316:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000094'>
+                <a name='M000094'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_array_as_child_tags</span>
+                  <span class='arguments'>(name, array, parent_tag)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000094-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000094-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 318</span>&#x000A;318:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_array_as_child_tags</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">array</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;319:       <span class="ruby-identifier">array</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>&#x000A;320:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">is_coercible?</span>(<span class="ruby-identifier">item</span>)&#x000A;321:           <span class="ruby-identifier">value_tag</span> = <span class="ruby-identifier">new_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">item</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;322:           <span class="ruby-identifier">value_tag</span>.<span class="ruby-identifier">values</span> = [<span class="ruby-identifier">item</span>]&#x000A;323:         <span class="ruby-keyword kw">else</span>&#x000A;324:           <span class="ruby-identifier">serialize_object_or_ref</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">item</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;325:         <span class="ruby-keyword kw">end</span>&#x000A;326:       }&#x000A;327:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000088'>
+                <a name='M000088'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_hash</span>
+                  <span class='arguments'>(hash, tag)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000088-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000088-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 211</span>&#x000A;211:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_hash</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">tag</span>)&#x000A;212:       <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each_pair</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>&#x000A;213:         <span class="ruby-identifier">serialize_property</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">tag</span>)&#x000A;214:       }&#x000A;215:       <span class="ruby-identifier">tag</span>&#x000A;216:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000095'>
+                <a name='M000095'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_object_or_ref</span>
+                  <span class='arguments'>(name, value, parent_tag)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Serializes an object (possibly using a reference).
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>name</em>:</td><td>name used for the object in the parent <a href="Tag.html">Tag</a>
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000095-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000095-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 333</span>&#x000A;333:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_object_or_ref</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;334:       <span class="ruby-identifier">ref</span> = <span class="ruby-identifier">reference_object</span>(<span class="ruby-identifier">value</span>)&#x000A;335:       <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">inc</span>&#x000A;336:       &#x000A;337:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>&#x000A;338:         <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">tag</span> = <span class="ruby-identifier">new_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;339:         <span class="ruby-identifier">serialize_impl</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">ref</span>.<span class="ruby-identifier">tag</span>)&#x000A;340:       <span class="ruby-keyword kw">else</span>&#x000A;341:         <span class="ruby-identifier">new_ref_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">ref</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;342:       <span class="ruby-keyword kw">end</span>&#x000A;343:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000089'>
+                <a name='M000089'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_plain_object</span>
+                  <span class='arguments'>(o, tag)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000089-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000089-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 218</span>&#x000A;218:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_plain_object</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">tag</span>)&#x000A;219:       <span class="ruby-identifier">processed_properties</span> = {}&#x000A;220: &#x000A;221:       <span class="ruby-comment cmt"># Read+write attributes are used rather than variables</span>&#x000A;222:       <span class="ruby-identifier">o</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>&#x000A;223:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\w/</span> <span class="ruby-keyword kw">and</span> <span class="ruby-comment cmt"># check this is not an operator</span>&#x000A;224:             <span class="ruby-identifier">name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^([^=]+)=$/</span> <span class="ruby-comment cmt"># check setter name pattern</span>&#x000A;225:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">get_method</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">name</span>, <span class="ruby-value">1</span>)&#x000A;226:             <span class="ruby-identifier">getter_name</span> = <span class="ruby-identifier">$1</span>&#x000A;227:             <span class="ruby-identifier">getter</span> = <span class="ruby-identifier">get_method</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">getter_name</span>, <span class="ruby-value">0</span>)&#x000A;228: &#x000A;229:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">getter</span>&#x000A;230:               <span class="ruby-comment cmt"># read and write accessors are defined</span>&#x000A;231:               <span class="ruby-identifier">value</span> = <span class="ruby-identifier">getter</span>.<span class="ruby-identifier">call</span>&#x000A;232:               <span class="ruby-identifier">serialize_property</span>(<span class="ruby-identifier">getter_name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">tag</span>)&#x000A;233:               <span class="ruby-identifier">processed_properties</span>[<span class="ruby-identifier">getter_name</span>] = <span class="ruby-keyword kw">true</span>&#x000A;234:             <span class="ruby-keyword kw">end</span>&#x000A;235:           <span class="ruby-keyword kw">end</span>&#x000A;236:         <span class="ruby-keyword kw">end</span>&#x000A;237:       }&#x000A;238: &#x000A;239:       <span class="ruby-comment cmt"># Otherwise, we read instance variables</span>&#x000A;240:       <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">variable_name</span><span class="ruby-operator">|</span>&#x000A;241:         <span class="ruby-identifier">name</span> = <span class="ruby-identifier">variable_name</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">variable_name</span>.<span class="ruby-identifier">size</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">variable_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^@/</span>&#x000A;242:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">processed_properties</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">name</span>)&#x000A;243:           <span class="ruby-identifier">value</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">variable_name</span>)&#x000A;244:           <span class="ruby-identifier">serialize_property</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">tag</span>)&#x000A;245:         <span class="ruby-keyword kw">end</span>&#x000A;246:       }&#x000A;247: &#x000A;248:       <span class="ruby-identifier">tag</span>&#x000A;249:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000092'>
+                <a name='M000092'></a>
+                <div class='synopsis'>
+                  <span class='name'>serialize_property</span>
+                  <span class='arguments'>(name, value, parent_tag)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Serializes a property under a given <a href="Tag.html">Tag</a>. Ignores any
+                  property whose name is not a valid SDL name.
+                  </p>
+                  <table>
+                  <tr><td valign="top"><em>name</em>:</td><td>property name
+                  
+                  </td></tr>
+                  <tr><td valign="top"><em>value</em>:</td><td>property value (SDL value, plain object or Array)
+                  
+                  </td></tr>
+                  </table>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000092-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000092-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 283</span>&#x000A;283:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serialize_property</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;284:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">valid_identifier?</span>(<span class="ruby-identifier">name</span>)&#x000A;285: &#x000A;286:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Array</span>&#x000A;287:         <span class="ruby-identifier">serialize_array</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;288: &#x000A;289:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">is_coercible?</span>(<span class="ruby-identifier">value</span>)&#x000A;290:         <span class="ruby-comment cmt"># SDL literal type</span>&#x000A;291:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:omit_nil_properties</span>]&#x000A;292:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent_tag</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-constant">ROOT_TAG_NAME</span>&#x000A;293:             <span class="ruby-identifier">value_tag</span> = <span class="ruby-identifier">new_tag</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;294:             <span class="ruby-identifier">value_tag</span>.<span class="ruby-identifier">values</span> = [<span class="ruby-identifier">value</span>]&#x000A;295:           <span class="ruby-keyword kw">else</span>&#x000A;296:             <span class="ruby-identifier">parent_tag</span>.<span class="ruby-identifier">set_attribute</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>)&#x000A;297:           <span class="ruby-keyword kw">end</span>&#x000A;298:         <span class="ruby-keyword kw">end</span>&#x000A;299: &#x000A;300:       <span class="ruby-keyword kw">else</span>&#x000A;301:         <span class="ruby-identifier">serialize_object_or_ref</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>, <span class="ruby-identifier">parent_tag</span>)&#x000A;302:       <span class="ruby-keyword kw">end</span>&#x000A;303:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000103'>
+                <a name='M000103'></a>
+                <div class='synopsis'>
+                  <span class='name'>set_serializable_property</span>
+                  <span class='arguments'>(o, name, value)</span>
+                </div>
+                <div class='description'>
+                  <p>
+                  Sets the given property in the given object. Returns whether the property
+                  has been assigned or not.
+                  </p>
+                  <p>
+                  This method could be redefined in order to convert a value to a custom one,
+                  for instance.
+                  </p>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000103-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000103-source'>     <span class="ruby-comment cmt"># File lib/sdl4r/serializer.rb, line 536</span>&#x000A;536:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_serializable_property</span>(<span class="ruby-identifier">o</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>)&#x000A;537:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">o</span>&#x000A;538:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>&#x000A;539:         <span class="ruby-identifier">o</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">value</span>&#x000A;540:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>&#x000A;541: &#x000A;542:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">OpenStruct</span>&#x000A;543:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">send</span> <span class="ruby-node">&quot;#{name}=&quot;</span>, <span class="ruby-identifier">value</span>&#x000A;544:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>&#x000A;545: &#x000A;546:       <span class="ruby-keyword kw">else</span>&#x000A;547:         <span class="ruby-identifier">accessor_name</span> = <span class="ruby-node">&quot;#{name}=&quot;</span>&#x000A;548:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">accessor_name</span>)&#x000A;549:           <span class="ruby-identifier">o</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">accessor_name</span>, <span class="ruby-identifier">value</span>&#x000A;550:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>&#x000A;551: &#x000A;552:         <span class="ruby-keyword kw">else</span>&#x000A;553:           <span class="ruby-identifier">variable_name</span> = <span class="ruby-node">&quot;@#{name}&quot;</span>&#x000A;554:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-identifier">variable_name</span>)&#x000A;555:             <span class="ruby-identifier">o</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">variable_name</span>, <span class="ruby-identifier">value</span>)&#x000A;556:             <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>&#x000A;557:             &#x000A;558:           <span class="ruby-keyword kw">else</span>&#x000A;559:             <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>&#x000A;560:           <span class="ruby-keyword kw">end</span>&#x000A;561:         <span class="ruby-keyword kw">end</span>&#x000A;562:       <span class="ruby-keyword kw">end</span>&#x000A;563:     <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>

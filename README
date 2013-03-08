@@ -71,7 +71,7 @@ attributes, and (if it has a body) child tags.  In the example above, the
 attributes, and no bodies.
 
 SDL is often used for simple key-value mappings.  To simplify things Tag
-has the methods getValue and setValue which operate on the first element in
+has the methods value and value= which operate on the first element in
 the values list.  Also notice SDL understands types which are determined
 using type inference.
 
@@ -112,7 +112,7 @@ demonstrates the use of anonymous tags.
 
     # If we have a handle on the "greetings" tag we can access the
     # anonymous child tag by calling
-    #    Tag child1 = greetingTag.getChild("content");
+    #    Tag child1 = greetingTag.child("content");
 
 == String literals
 
@@ -299,7 +299,7 @@ An example SDL file:
 
     # To retrieve the files as a list of strings
     #
-    #     List files = tag.getChild("files").getChildrenValues("content");
+    #     List files = tag.child("files").children_values("content");
     #
     # We us the name "content" because the files tag has two children, each of
     # which are anonymous tags (values with no name.)  These tags are assigned
@@ -312,7 +312,7 @@ An example SDL file:
 
     # To retrieve the values from the matrix (as a list of lists)
     #
-    #     List rows = tag.getChild("matrix").getChildrenValues("content");
+    #     List rows = tag.child("matrix").children_values("content");
 
 
 Example of getting the "location" attribute from the "daughter" tag
@@ -360,6 +360,14 @@ Alternatively you can use the following options when launching the Ruby interpre
 
     /path/to/ruby -Ku -rjcode
 
+== Ruby Support
+
+SDL4R has been tested on:
+
+ * Ruby 1.8.7
+ * Ruby 1.9.1
+ * Ruby 1.9.2
+ * JRuby 1.5.1
 
 == License
 

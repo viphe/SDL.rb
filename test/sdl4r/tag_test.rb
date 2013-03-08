@@ -18,15 +18,23 @@
 # 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 #++
 
+# Work-around a bug in NetBeans (http://netbeans.org/bugzilla/show_bug.cgi?id=188653)
+if ENV["NB_EXEC_EXTEXECUTION_PROCESS_UUID"]
+  $:[0] = File.join(File.dirname(__FILE__),'../../lib')
+  $:.unshift(File.join(File.dirname(__FILE__),'../../test'))
+end
+
 module SDL4R
 
   require 'test/unit'
   require "rexml/document"
 
-  require File.dirname(__FILE__) + '/../../lib/sdl4r/tag'
-  
+  require 'sdl4r/tag'
+
+  require "sdl4r/sdl_test_case"
 
   class TagTest < Test::Unit::TestCase
+    include SdlTestCase
 
     public
 
@@ -357,6 +365,9 @@ module SDL4R
 
       tag.set_attributes("", {}) # removes all attributes in the default namespace
       assert_equal({"ns1:a2" => 12, "ns1:a3" => 13}, tag.attributes)
+
+      tag.set_attributes("ns1", {})
+      assert_equal({}, tag.attributes)
     end
 
     def test_to_child_hash
@@ -452,7 +463,7 @@ module SDL4R
       assert !(tag1 == tag2)
       assert !(tag1.equal?(tag2))
       assert_not_equal tag1.hash, tag2.hash
-     end
+    end
 
     def test_children_values
       root = Tag.new "root"
@@ -504,7 +515,7 @@ EOF
       assert_equal "ns1", xml_doc[0].namespace
 
       tag = Tag.new "tag1" do
-        self << 123
+        self << "123"
       end
       xml_doc = REXML::Document.new(tag.to_xml_string(options))
       assert_equal "tag1", xml_doc[0].name
@@ -566,6 +577,7 @@ EOF
 
     def test_write
       root = Tag.new("root")
+      root << 999
 
       output = ""
       root.write(output)
@@ -573,7 +585,7 @@ EOF
 
       output = ""
       root.write(output, true)
-      assert_equal "root", output
+      assert_equal "root 999", output
 
       child1 = root.new_child "child1"
       child1 << 123
@@ -585,7 +597,7 @@ EOF
       output = ""
       root.write(output, true)
       assert_equal(
-        "root {\n" +
+        "root 999 {\n" +
         "\tchild1 123\n" +
         "}",
         output)
@@ -600,13 +612,114 @@ EOF
       output = ""
       root.write(output, true)
       assert_equal(
-        "root {\n" +
+        "root 999 {\n" +
         "\tchild1 123\n" +
         "\tchild2 \"abc\"\n" +
         "}",
         output)
-   end
+
+      output = ""
+      root.clear_children
+      root.clear_values
+      root << Date.civil(1876, 7, 1)
+      root << DateTime.civil(1592, 9, 13, 9, 5, 0, 0)
+      root << DateTime.civil(1592, 9, 13, 9, 5, 7, 0)
+      root << DateTime.civil(-98, 6, 15, 13, 47, 1234.to_r/100, 0)
+      root << DateTime.civil(3112, 1, 10, 0, 0, 0, 1.to_r/24)
+      root.write(output, true)
+      assert_equal(
+        "root 1876/07/01 1592/09/13 09:05:00 1592/09/13 09:05:07" +
+          " -98/06/15 13:47:12.340 3112/01/10 00:00:00-GMT+01:00",
+        output)
+    end
+
+    # Check that having a timespan after a date in a tag values doesn't fail when loaded.
+    #
+    def test_write_parse_date_timespan
+      tag1 = Tag.new("tag1") { |t|
+        t.values = [ "123", Date.today(), SdlTimeSpan.new(0, 12, 34, 56), 456 ]
+      }
+
+      parsed_tag1 = SDL4R::read(tag1.to_s).child("tag1")
+
+      assert_equal tag1.values, parsed_tag1.values
+    end
+
+    def test_symbol_as_value
+      tag1 = Tag.new("tag1") {
+        set_attribute("type", :square)
+      }
+      
+      assert_equal "square", tag1.attribute("type")
+    end
+
+    def test_symbol_as_identifier
+      # Tag identifiers
+      tag = Tag.new(:my_tag)
+      assert_equal "my_tag", tag.name
+
+      tag = Tag.new(:ns, :my_tag)
+      assert_equal "ns", tag.namespace
+      assert_equal "my_tag", tag.name
+
+      tag.namespace = :ns2
+      tag.name = :your_tag
+      assert_equal "ns2", tag.namespace
+      assert_equal "your_tag", tag.name
+
+      child = tag.new_child(:ns, :my_child)
+      assert_equal "ns", child.namespace
+      assert_equal "my_child", child.name
+
+      assert_equal child, tag.child(:ns, :my_child)
+      assert_equal [child], tag.children(false, :ns, :my_child)
+      assert tag.has_child?(:ns, :my_child)
+      assert !tag.has_child?(:ns2, :my_child)
+
+      child << 123
+      assert_equal [123], tag.children_values(:my_child)
+
+      # Attribute identifiers
+      tag.set_attribute(:ns1, :attr1, 2)
+      tag.set_attribute(:attr1, 1)
+      tag.set_attribute(:ns2, :attr1, 3)
+      assert_equal 1, tag.attribute(:attr1)
+      assert_equal 2, tag.attribute(:ns1, :attr1)
+      assert_equal 3, tag.attribute(:ns2, :attr1)
+      assert_equal({"attr1" => 1, "ns1:attr1" => 2, "ns2:attr1" => 3}, tag.attributes)
+      assert_equal({"attr1" => 2}, tag.attributes(:ns1))
+
+      tag.set_attributes(:attr2 => 20, :attr4 => 40)
+      tag.set_attributes(:ns1, :attr3 => 30)
+      assert_equal(
+        {"attr2" => 20, "ns1:attr3" => 30, "attr4" => 40, "ns2:attr1" => 3}, tag.attributes)
+      assert_equal({"attr3" => 30}, tag.attributes(:ns1))
+      assert tag.has_attribute?(:attr2)
+      assert tag.has_attribute?(:ns1, :attr3)
+      assert !tag.has_attribute?(:attr3)
+
+      tag.remove_attribute(:attr2)
+      assert_equal nil, tag.attribute(:attr2)
+      assert tag.has_attribute?(:ns1, :attr3)
+      tag.remove_attribute(:ns1, :attr3)
+      assert !tag.has_attribute?(:ns1, :attr3)
+
+      tag.clear_attributes()
+
+      tag.set_attributes(:ns2, :attr2 => 50, :attr3 => 60, :attr4 => 70)
+      assert_equal({"ns2:attr2" => 50, "ns2:attr3" => 60, "ns2:attr4" => 70}, tag.attributes)
+
+      tag.clear_attributes(:ns1)
+      assert_equal({"ns2:attr2" => 50, "ns2:attr3" => 60, "ns2:attr4" => 70}, tag.attributes)
+      tag.clear_attributes(:ns2)
+      assert !tag.has_attribute?
+      assert !tag.has_attributes?
+
+      tag.clear_attributes
+
+      tag << {:attr10 => 100, :"ns20:attr20" => 200}
+      assert_equal({"attr10" => 100, "ns20:attr20" => 200}, tag.attributes)
+    end
 
   end
-
 end

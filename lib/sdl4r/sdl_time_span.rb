@@ -129,7 +129,11 @@ module SDL4R
         (minutes * MILLISECONDS_IN_MINUTE) -
         (seconds * MILLISECONDS_IN_SECOND)
     end
-    alias_method :usec, :milliseconds
+    alias_method :msec, :milliseconds
+
+    def usec
+      milliseconds * 1000
+    end
     
     # Get the total number of hours in this time span.  For example, if
     # this time span represents two days, this method will return 48.
@@ -247,12 +251,12 @@ module SDL4R
     #     24d:12:13:09.234 (24 days, 12 hours, 13 minutes, 9 seconds,
     #         234 milliseconds)
     #
-    def to_s
+    def to_s(force_show_days = false)
       _days = days
       _milliseconds = milliseconds
       
       s = nil
-      if _days == 0
+      if _days == 0 and not force_show_days
         if _milliseconds == 0
           s = sprintf("%d:%02d:%02d", hours, minutes.abs, seconds.abs)
         else

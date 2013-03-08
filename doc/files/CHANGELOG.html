@@ -31,14 +31,120 @@
         </div>
         <div class='last-update'>
           Last Update:
-          <span class='datetime'>2010-08-26 22:49:12 +0900</span>
+          <span class='datetime'>2010-12-26 22:50:55 +0900</span>
         </div>
       </div>
       <div id='content'>
         <div id='text'>
           <div id='description'>
-            <h2>v0.9.8 (建設中)</h2>
-            <h2>v0.9.7 (26-auf-2010)</h2>
+            <h2>v1.0 (建設中)</h2>
+            <h2>v0.9.10 (26-12-2010)</h2>
+            <h3>Major changes:</h3>
+            <ul>
+            <li>New pull parser implementation: better performance under all tested
+            platforms (especially under JRuby). You don&#8217;t have to use the Tag
+            class anymore, if you don&#8217;t need to.
+            
+            <p>
+            The old implementation is not available anymore.
+            </p>
+            <p>
+            Note that this is still slower than if it was fully implemented in C, of
+            course.
+            </p>
+            </li>
+            <li>New: SDL4R#dump(), SDL4R#load(), serialization/deserialization using
+            Serializer (beta feature).
+            
+            <pre>top = SDL4R::load(&lt;&lt;-EOS)&#x000A;  food name=&quot;chili con carne&quot; {&#x000A;    ingredient &quot;beans&quot;&#x000A;    ingredient &quot;chili&quot;&#x000A;    ingredient &quot;cheese&quot;&#x000A;    score 8.9&#x000A;  }&#x000A;EOS&#x000A;&#x000A;puts top.food.name # &gt;&gt; &quot;chili con carne&quot;&#x000A;puts top.food.ingredient # &gt;&gt; [&quot;beans&quot;, &quot;chili&quot;, &quot;cheese&quot;]&#x000A;puts top.food.score # &gt;&gt; 8.9</pre>
+            </li>
+            <li>Unicode characters are now allowed in SDL identifiers as per the
+            specification (supported where Unicode character classes are supported e.g.
+            Ruby 1.9.2 or JRuby).
+            
+            </li>
+            <li>The methods SDL4R/Parser.new_date_time() have been removed and refactored
+            into
+            
+            <pre>Reader.new_time(year, month, day, hour, min, sec, msec, timezone_code)&#x000A;SDL4R.new_time(year, month, day, hour, min, sec, msec, timezone_code)</pre>
+            <p>
+            The objective was to allow the two following features.
+            </p>
+            </li>
+            <li>Support of Time: if you want SDL4R to generate Time instances instead of
+            DateTimes.
+            
+            <pre>SDL4R.use_datetime = false</pre>
+            </li>
+            <li>Support of the TZInfo gem (<a
+            href="http://tzinfo.rubyforge.org/">tzinfo.rubyforge.org/</a>) if you want
+            a more complete support of timezones, DST, etc. For the time being, the
+            code relies on implementation features of TZInfo and therefore, there is
+            some risk using it as to future versions of that component. To use SDL4R
+            with TZInfo enabled:
+            
+            <pre>require 'sdl4r_tzinfo'</pre>
+            <p>
+            or (for more complex use cases)
+            </p>
+            <pre>require 'sdl4r'&#x000A;require 'sdl4r/sdl4r_tzinfo'&#x000A;SDL4R::enable_tzinfo&#x000A;...&#x000A;SDL4R::disable_tzinfo</pre>
+            </li>
+            </ul>
+            <h3>Minor changes:</h3>
+            <ul>
+            <li>New: SDL4R#valid_identifier?()
+            
+            </li>
+            <li>Methods of class Tag now takes Symbols as well as Strings for namespaces,
+            tag names and attribute names. You can now write:
+            
+            <pre>tag.child(:my_child)&#x000A;tag.attribute(:my_namespace, :my_attribute)</pre>
+            </li>
+            <li>Fixed the formatting of date times so that the zone offset appears after a
+            &#8220;-GMT&#8221; mention, which was missing before. Fixed the formatting
+            of Time instances.
+            
+            </li>
+            <li>Fixed Tag#to_xml_string
+            
+            </li>
+            </ul>
+            <h2>v0.9.9 (19-11-2010)</h2>
+            <h3>Major changes:</h3>
+            <ul>
+            <li>SDL4R#to_attribute_map renamed to SDL4R#to_attribute_hash (as the doc
+            stated previously).
+            
+            </li>
+            <li>Symbols are now converted to Strings when used as SDL values. It is
+            therefore possible to write:
+            
+            <pre>tag.set_attribute(&quot;type&quot;, :square) #tag.attribute(&quot;type&quot;) =&gt; &quot;square&quot;</pre>
+            </li>
+            </ul>
+            <h3>Minor changes:</h3>
+            <ul>
+            <li>New methods: Tag#has_attributes? and Tag#has_values?
+            
+            </li>
+            </ul>
+            <h2>v0.9.8 (16-sep-2010)</h2>
+            <h3>Major changes:</h3>
+            <ul>
+            <li>Bug fix: dollar ($) is now supported as a valid identifier character.
+            
+            </li>
+            </ul>
+            <h3>Minor changes:</h3>
+            <ul>
+            <li>New constants: SDL4R#ANONYMOUS_TAG_NAME and SDL4R#ROOT_TAG_NAME.
+            
+            </li>
+            <li>Bug fixes related to the error handling in the parser.
+            
+            </li>
+            </ul>
+            <h2>v0.9.7 (26-aug-2010)</h2>
             <h3>Major changes:</h3>
             <ul>
             <li>It could prove a hassle to use the block idiom of Tag.new or Tag.new_child
@@ -115,8 +221,8 @@
             <h2>v0.9.5 (8-aug-2010)</h2>
             <h3>Major changes:</h3>
             <ul>
-            <li>Fixes in order to make <a href="../classes/SDL4R.html">SDL4R</a> work in
-            Ruby 1.9 (mainly concerning encodings and dates).
+            <li>Fixes in order to make SDL4R work in Ruby 1.9 (mainly concerning encodings
+            and dates).
             
             </li>
             <li>Commented out debug code (writing to files) inside sdl4r_test.rb.
@@ -143,9 +249,9 @@
             
             <pre>require 'sdl4r'</pre>
             </li>
-            <li><a href="../classes/SDL4R.html#M000004">SDL4R#coerce_or_fail</a> has been
-            implemented, which means that random objects cannot be added to a Tag as
-            before. Rational instances are coerced using Rational#to_f.
+            <li>SDL4R#coerce_or_fail has been implemented, which means that random objects
+            cannot be added to a Tag as before. Rational instances are coerced using
+            Rational#to_f.
             
             </li>
             <li>Added usual time methods to SdlTimeSpan: day(), hour(), min(), sec(),
