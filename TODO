@@ -1,14 +1,3 @@
-[x] Add more unit tests
-    [x] Attribute tests
-    [x] Date tests
-    [x] Date + time test
-    [x] Time zone tests
-    [x] Number literal tests
-    [x] Strings literals (especially with line continuations)
-    [x] Sub tags tests
-    [x] "null" value test
-    [x] Comment tests
-    [x] Bad syntax tests
 [f] Use YARD in order to generate documentation ?
     ==> alternatively, I tried to generate some RDoc templates but none worked in Rake...
 [x] @BUG the line number is too high by 1 (the column is correct).
@@ -278,7 +267,15 @@
   [x] @NOTE Gem.required_location is deprecated with no replacement. It will be removed on or after 2011-11-01.
   [x] @WARNING 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
 [x] do not commit .rvmrc ==> .gitignore
-[ ] need to commit "Gemfile"?
+[x] need to commit "Gemfile"? --> seems so (Gemfile.lock should not)
+[ ] Check whether Writer.write() and Writer.write_tag() used to implement the same spec as now
+  [ ] dig out the source from the Gem and commit to master (oldSVN being gone)
+  [ ] compare
+  [ ] possibly change Writer.write_tag() ==> Writer.write(tag.namespace, tag.name, tag)
+  [x] make sure the doc is clear as to what the root element and the top elements ares
+    --> maybe call the root "document" as in XML and the top elements as "roots" if necessary
+    ==> the README uses "root" as the "document" level. Guess "top" could be used for its children...
+[ ] +exoticDates rename sdl4r_date.rb?
 [ ] +Element should be renamed in something more appropriate and less confusing (with Tag)
   --> Node? NodeWriter?
   --> Event? EventWriter?
@@ -299,6 +296,9 @@
   [x] should be able to read Tags as SDL structure
   [x] to_sdl should be implemented through a special ElementWriter
 [x] +ObjectMapper need write_object_ref() anymore? ==> removed
+[ ] +SdlTestCase convert to a test helper (merge with new test_helper.rb)
+[ ] test exotic dates --> ideally be able to run all tests with the option on or off
+[ ] +Tag write() probably doesn't work (especially the 'include_root' option
 [ ] +ObjectMapper should have a mode where no oid is emitted but cycles are detected
   --> fast mode: cycles are not supported, writer is passed to to_sdl() (default mode?)
   --> slow mode: cycles are supported, ElementWriter is passed to to_sdl()
@@ -444,9 +444,8 @@
 [ ] Determine what the << operator should do on a Writer.
 [ ] Implement a "minimal output option set" for the Writer (backquotes, no line return, etc)
 [x] @BUG SDL4R::format_string() emits character literals for one-char strings
-[ ] Do not recreate a new Serializer for every call to AbstractWriter#write_object().
+[f] Do not recreate a new Serializer for every call to AbstractWriter#write_object().
 [x] new TagWriter
 [ ] We could use a Serializer.flush method in order to reset the cache of references.
     Coupled with an autoflush option, this allows scenarios where emitting SDL as in a log file (continuous)
     or just an object structure.
-

@@ -179,8 +179,8 @@ module SDL4R
 
           when TYPE_ELEMENT
             tag = Tag.new @element.prefix, @element.name
-            node.attributes.each do |attribute|
-              tag.set_attribute(attribute[0][0], attribute[0][1], attribute[1])
+            node.attributes.each do |attr_ns, attr_name, attr_value|
+              tag.set_attribute(attr_ns, attr_name, attr_value)
             end
             values = node.values
             tag.values = values if values

@@ -1,16 +1,18 @@
-require 'rake'
-require 'rake/clean'
-require 'rake/testtask'
-require 'rdoc/task'
-begin
-  require 'rubygems/package_task'
-rescue
-  require 'rake/gempackagetask'
-end
-require 'rake/packagetask'
-require 'rubygems'
-require 'rspec/core/rake_task'
+# encoding: utf-8
 
+require 'rubygems'
+require 'bundler'
+
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+
+require 'rake'
+require 'jeweler'
 
 def gem_available?(name)
    Gem::Specification.find_by_name(name)
@@ -20,50 +22,59 @@ rescue
    Gem.available?(name)
 end
 
-
 lib_dir = File.expand_path('lib')
 test_dir = File.expand_path('test')
 spec_dir = File.expand_path('spec')
 
-spec = Gem::Specification.new do |s|
-  s.platform = Gem::Platform::RUBY
-  s.summary = "Simple Declarative Language for Ruby library"
-  s.name = 'sdl4r'
 
-  require File.dirname(__FILE__) + "/lib/sdl4r/sdl4r_version.rb"
-  s.version = SDL4R::VERSION
+#  s.platform = Gem::Platform::RUBY
+#  s.summary = "Simple Declarative Language for Ruby library"
+#  s.name = 'sdl4r'
+#
+#  require File.dirname(__FILE__) + "/lib/sdl4r/sdl4r_version.rb"
+#  s.version = SDL4R::VERSION
+#
+#  s.requirements << 'none'
+#  s.require_path = 'lib'
+#  s.authors = ['Philippe Vosges', 'Daniel Leuck']
+#  s.email = 'sdl-users@ikayzo.org'
+#  s.rubyforge_project = 'sdl4r'
+#  s.homepage = 'http://sdl4r.rubyforge.org/'
+#  s.files = FileList['lib/sdl4r.rb', 'lib/sdl4r/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*', 'doc/**/*'].to_a
+#  s.test_files = FileList[ 'test/**/*test.rb' ].to_a
+#  s.description = <<-EOF
 
-  s.requirements << 'none'
-  s.require_path = 'lib'
-  s.authors = ['Philippe Vosges', 'Daniel Leuck']
-  s.email = 'sdl-users@ikayzo.org'
-  s.rubyforge_project = 'sdl4r'
-  s.homepage = 'http://sdl4r.rubyforge.org/'
-  s.files = FileList['lib/sdl4r.rb', 'lib/sdl4r/**/*.rb', 'bin/*', '[A-Z]*', 'test/**/*', 'doc/**/*'].to_a
-  s.test_files = FileList[ 'test/**/*test.rb' ].to_a
-  s.description = <<-EOF
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "sdl4r"
+  gem.homepage = "http://github.com/viphe/SDL.rb"
+  gem.license = "LGPL"
+  gem.summary = %Q{Simple Declarative Language for Ruby library}
+  gem.description = <<-EOF
     The Simple Declarative Language provides an easy way to describe lists, maps,
     and trees of typed data in a compact, easy to read representation.
     For property files, configuration files, logs, and simple serialization
     requirements, SDL provides a compelling alternative to XML and Properties
     files.
-  EOF
+EOF
+  gem.email = "philippe.vosges@gmail.com"
+  gem.authors = ["Philippe Vosges"]
+  # dependencies defined in Gemfile
 end
+Jeweler::RubygemsDotOrgTasks.new
 
-if defined? Rake::GemPackageTask
-  Rake::GemPackageTask.new(spec) do |pkg|
-    pkg.need_zip = true
-    pkg.need_tar = true
-  end
-end
-
+require 'rdoc/task'
 Rake::RDocTask.new do |rd|
   files = ['README.rdoc', 'LICENSE', 'CHANGELOG', 'lib/**/*.rb', 'doc/**/*.rdoc']
+  
+  require "#{lib_dir}/sdl4r/sdl4r_version"
+  version =  SDL4R::VERSION
+  
   rd.main = 'README.rdoc'
   rd.rdoc_files.include(files)
   rd.rdoc_files.exclude("lib/scratchpad.rb")
   rd.rdoc_dir = 'doc'
-  rd.title = "RDoc: Simple Declarative Language for Ruby"
+  rd.title = "RDoc: Simple Declarative Language for Ruby (v#{version})"
   rd.template = 'direct' # lighter template used on railsapi.com
   rd.options << '--charset' << 'utf-8'
   rd.options << '--line-numbers'
@@ -78,16 +89,25 @@ if gem_available? 'yard'
   end
 end
 
-Rake::TestTask.new do |t|
-  t.test_files = FileList['test/**/*test.rb']
-  t.verbose = true
-  t.libs = [lib_dir, test_dir]
-  t.warning = true
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
+  test.warning = true
 end
 
-RSpec::Core::RakeTask.new() do |t|
-  t.rcov = true
+if RUBY_VERSION =~ /^1\.8/
+  require 'rcov/rcovtask'
+  Rcov::RcovTask.new do |test|
+    test.libs << 'test'
+    test.pattern = 'test/**/test_*.rb'
+    test.verbose = true
+    test.rcov_opts << '--exclude "gems/*"'
+  end
 end
+
+task :default => :test
 
 # Generates the SDL4R site with Nanoc.
 nanoc_compile = task :nanoc_compile do

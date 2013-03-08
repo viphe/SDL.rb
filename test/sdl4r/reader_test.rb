@@ -116,9 +116,9 @@ module SDL4R
       assert_equal false, node.values?
       assert_equal true, node.attributes?
       assert_equal 2, node.attribute_count
-      assert_equal [[["", "party"], "today"], [["ever", "work"], false]], node.attributes
-      assert_equal [["", "party"], "today"], node.attribute_at(0)
-      assert_equal [["ever", "work"], false], node.attribute_at(1)
+      assert_equal [["", "party", "today"], ["ever", "work", false]], node.attributes
+      assert_equal ["", "party", "today"], node.attribute_at(0)
+      assert_equal ["ever", "work", false], node.attribute_at(1)
       assert_equal "today", node.attribute("party")
       assert_equal false, node.attribute("ever", "work")
       assert_equal nil, node.attribute("work")
@@ -132,8 +132,8 @@ module SDL4R
       assert_equal true, node.values?
       assert_equal true, node.attributes?
       assert_equal 1, node.attribute_count
-      assert_equal [[["", "attr1"], -145.99]], node.attributes
-      assert_equal [["", "attr1"], -145.99], node.attribute_at(0)
+      assert_equal [["", "attr1", -145.99]], node.attributes
+      assert_equal ["", "attr1", -145.99], node.attribute_at(0)
       assert_equal(-145.99, node.attribute("attr1"))
       assert_equal(-145.99, node.attribute("", "attr1"))
       assert_equal nil, node.attribute("kraken", "attr1")

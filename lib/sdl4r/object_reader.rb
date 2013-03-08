@@ -15,7 +15,7 @@ module SDL4R
   # result.
   #
   class ObjectReader
-    include AbstractReader, ReaderWithElement
+    include ReaderWithElement, AbstractReader
 
     # @param root root of the object graph to read from
     # @param object_mapper [ObjectMapper]

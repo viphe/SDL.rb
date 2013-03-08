@@ -22,13 +22,13 @@ module SDL4R
 
   # Used internally by SDL readers for keeping track of their state.
   #
-  # Element is a kind of lightweight and raw Tag, which can have simple objects as child elements.
+  # Element is a kind of lightweight and raw Tag, which can have plain objects as child elements.
   # This allows for refined behaviors in ObjectReader.
   #
   class Element
 
     attr_accessor :self_closing
-    attr_reader :name, :prefix, :attributes, :values, :children
+    attr_reader :name, :prefix, :values, :children
     alias_method :namespace, :prefix
 
     def initialize(prefix, name)
@@ -45,6 +45,12 @@ module SDL4R
       raise "bad args #{prefix.inspect} #{name.inspect}" if prefix.nil? or name.nil?
       @attributes << [prefix, name, value]
     end
+    
+    # Returns the attributes as an array with the following structure:
+    #
+    #   [ [namespace1, name1, value1], [namespace2, name2, value2], ... ]
+    #
+    attr_reader :attributes
 
     # @return the value of the specified attribute
     def attribute(prefix, name = nil)

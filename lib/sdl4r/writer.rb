@@ -176,7 +176,12 @@ module SDL4R
     # Writes the start of a tag body to the underlying IO.
     # @return [self]
     def start_body
-      @io << ' ' unless [:top, :body, :anonymous].include? @status
+      if [:top, :body, :anonymous].include? @status
+        @depth += 1 unless @status == :anonymous # no element declaration happened before
+      else
+        @io << ' '
+      end
+      
       @io << '{'
       new_line
       @status = :body
@@ -245,10 +250,10 @@ module SDL4R
     #   @param [Object] value attribute value
     # 
     def attribute(namespace, name, value = MISSING_PARAMETER)
-      raise "bad arguments #{namespace.inspect}, #{name.inspect}" if namespace.nil? or name.nil?
       raise InvalidOperationError, @status unless [:values, :attributes].include? @status
       
       value, name, namespace = name, namespace, '' if MISSING_PARAMETER.equal? value
+      raise "bad arguments #{namespace.inspect}, #{name.inspect}" if namespace.nil? or name.nil?
       namespace = namespace.id2name if namespace.is_a? Symbol
       name = name.id2name if name.is_a? Symbol
       

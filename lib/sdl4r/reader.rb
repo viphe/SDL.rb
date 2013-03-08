@@ -34,7 +34,7 @@ module SDL4R
   # Implementation of a pull parser for SDL designed after the model of Nokogiri::XML::Reader.
   #
   class Reader
-    include AbstractReader, ReaderWithElement
+    include ReaderWithElement, AbstractReader
 
     # @private
     def self.add_values_handler(map, handler)

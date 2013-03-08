@@ -529,7 +529,7 @@ EOS
           new_child("ns", "wine") do
             set_attribute("color", "white") # no namespace on attributes
             new_child("ns", "origin") do
-              set_attribute(Serializer::OBJECT_REF_ATTR_NAME, 2)
+              set_attribute(ObjectMapper::OBJECT_REF_ATTR_NAME, 2)
             end
           end
         end,

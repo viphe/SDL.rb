@@ -3,7 +3,7 @@
 
 #--
 # Simple Declarative Language (SDL) for Ruby
-# Copyright 2005 Ikayzo, inc.
+# Copyright 2013 Ikayzo, inc.
 #
 # This program is free software. You can distribute or modify it under the 
 # terms of the GNU Lesser General Public License version 2.1 as published by  
@@ -78,6 +78,17 @@ module SDL4R
   def self.use_datetime=(bool)
     @@use_datetime = bool
   end
+  
+  @@use_exotic_dates = false
+    
+  # Enables the support of exotic dates (e.g. dates beyond end of month).
+  # DateTime creation will be slower than the normal bare and strict creation.
+  # The same feature for Time is not supported yet.
+  # 
+  def self.enable_exotic_dates
+    require 'sdl4r/sdl4r_date'
+    @@use_exotic_dates = true
+  end
 
   # Creates and returns the object representing a time (DateTime by default).
   # This method is called by the Parser class.
@@ -88,7 +99,11 @@ module SDL4R
     if @@use_datetime
       timezone_code ||= Time.now.zone
       sec_msec = (msec == 0)? sec : Rational(sec * 1000 + msec, 1000)
-      return DateTime.civil(year, month, day, hour, min, sec_msec, timezone_code)
+      unless @@use_exotic_dates
+        return DateTime.civil(year, month, day, hour, min, sec_msec, timezone_code)
+      else
+        return new_exotic_date_time(year, month, day, hour, min, sec, timezone_code)
+      end
 
     else
       if timezone_code =~ /\A(?:GMT|UTC)([+-]\d+:\d+)\Z/
@@ -333,7 +348,7 @@ module SDL4R
 
   # Dumps the specified object to a given output or returns the corresponding SDL string if output is +nil+.
   #
-  # @param o Object dumped into SDL (via AbstractWriter#write)
+  # @param o Object dumped into SDL (via AbstractWriter#write) and considered as the root element
   # @param output AbstractWriter or any legal input of Writer#new
   #
   # @example

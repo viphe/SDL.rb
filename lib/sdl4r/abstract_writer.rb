@@ -236,7 +236,7 @@ module SDL4R
     end
     protected :write_impl
     
-    # Writes the specified Tag into the SDL stream.
+    # Writes the contents of the specified Tag into this SDL stream.
     # The default implementation translates the Tag tree into lower-level calls.
     #
     # @param [Tag] tag the tag to write

@@ -109,7 +109,7 @@ module SDL4R
 
       assert_tags_equal(t1, t2, TAG)
 
-      # Making sure tags with different structures return false from .equals
+      # Making sure tags with different structures are not equal with ==
       t2.value = "item"
       assert_not_equal(t1, t2, TAG)
 

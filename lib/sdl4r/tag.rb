@@ -3,7 +3,7 @@
 
 #--
 # Simple Declarative Language (SDL) for Ruby
-# Copyright 2005 Ikayzo, inc.
+# Copyright 2013 Ikayzo, inc.
 #
 # This program is free software. You can distribute or modify it under the
 # terms of the GNU Lesser General Public License version 2.1 as published by
@@ -573,7 +573,8 @@ module SDL4R
       key = key.id2name if key.is_a? Symbol
 
       raise ArgumentError,
-        "attribute namespace must be a String or a Symbol" unless namespace.is_a? String
+        "attribute namespace must be a String or a Symbol: #{namespace.class}" \
+          unless namespace.is_a? String
       raise ArgumentError, "attribute key must be a String or a Symbol" unless key.is_a? String
       raise ArgumentError, "attribute key cannot be empty" if key.empty?
 
@@ -812,18 +813,18 @@ module SDL4R
     # Write this tag out to the given IO or StringIO or String (optionally clipping the root.)
     # Returns +output+.
     # 
-    # _output_:: an IO or StringIO or a String to write to
-    # +include_root+:: if true this tag will be written out as the root element, if false only the
-    #   children will be written. False by default.
+    # @param [IO, String] output        an IO or StringIO or a String to write to
+    # @param [Boolean]    is_top_level  if true, this tag will be written as the root element (i.e. its children will be
+    #                                   top level. If false (default), this tag will be written as a top element.
+    # 
+    # @return output
     #
-    def write(output, include_root = false)
+    def write(output, as_top = false)
       Writer.new(output) do |writer|
-        if include_root
-          writer.write_tag(self)
+        if as_top
+          writer.write(self.namespace, self.name, self)
         else
-          children do |child|
-            writer.write_tag(child)
-          end
+          write(self)
         end
       end
 
@@ -844,7 +845,7 @@ module SDL4R
     #
     def to_string(indent = "\t")
       writer = Writer.new(:indent => indent)
-      writer.write(self)
+      writer.write(self.namespace, self.name, self)
       writer.io.string
     end
 
