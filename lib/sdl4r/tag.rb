@@ -808,7 +808,7 @@ module SDL4R
         end
       end
     end
-    private_methods :read_io
+    private_methods :read_from_io
     
     # Write this tag out to the given IO or StringIO or String (optionally clipping the root.)
     # Returns +output+.

@@ -268,9 +268,11 @@
   [x] @WARNING 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
 [x] do not commit .rvmrc ==> .gitignore
 [x] need to commit "Gemfile"? --> seems so (Gemfile.lock should not)
+[ ] +back_compatibility careful, I remove Serializer from the project when refactoring serialization
+  --> perhaps copy the class and its test and deprecate
 [ ] Check whether Writer.write() and Writer.write_tag() used to implement the same spec as now
-  [ ] dig out the source from the Gem and commit to master (oldSVN being gone)
-  [ ] compare
+  [x] dig out the source from the Gem and commit to master (old SVN being gone)
+  [x] compare ==> dumping an object/tag dumping at root level (XML doc) by default
   [ ] possibly change Writer.write_tag() ==> Writer.write(tag.namespace, tag.name, tag)
   [x] make sure the doc is clear as to what the root element and the top elements ares
     --> maybe call the root "document" as in XML and the top elements as "roots" if necessary

@@ -210,9 +210,10 @@ module SDL4R
     #
     # @param [String] namespace namespace of +o+ or +nil+ if +name+ is +nil+ (see below)
     # @param [String] name
-    #   name of the element to contain +o+ or +nil+ if +o+ is to be written directly at the current level
-    #
-    # @return self
+    #   name of the element to contain +o+ or +nil+ if +o+ is to be written directly at the current
+    #   level
+    # 
+    # @return +self+
     #
     def write_impl(namespace, name, o)
       if @object_mapper.collection?(o)
