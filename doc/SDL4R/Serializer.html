@@ -1,0 +1,1158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Serializer
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Serializer</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Serializer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Serializer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+      <dt class="r2">Extended by:</dt>
+      <dd class="r2">Forwardable</dd>
+      
+    
+  
+    
+      <dt class="r1">Includes:</dt>
+      <dd class="r1"><span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/sdl4r/serializer.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Allows to serialize/deserialize between SDL and Ruby objects.</p>
+
+<p>Classes which need to implement custom serialization/deserialization should
+define the <tt>to_sdl()</tt> and <tt>from_sdl()</tt> methods as follows:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyClass</span>
+
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">firstname</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">from_sdl</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">serializer</span> = <span class="ruby-constant">Serializer</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">attribute</span>(<span class="ruby-string">&quot;name&quot;</span>)
+    <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_sdl</span>(<span class="ruby-identifier">serializer</span> = <span class="ruby-constant">Serializer</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-identifier">serializer</span>.<span class="ruby-identifier">start_tag</span>(<span class="ruby-string">&quot;name&quot;</span>)
+    <span class="ruby-identifier">serializer</span>.<span class="ruby-identifier">writer</span>.<span class="ruby-identifier">value</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span>)
+    <span class="ruby-identifier">serializer</span>.<span class="ruby-identifier">end_tag</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Custom serialization (using <tt>to_sdl()</tt>) or deserialization (using
+<tt>from_sdl()</tt>) can be more efficient than the standard one as its logic is
+more straightforward).</p>
+
+<h2 id="label-Author">Author</h2>
+
+<p>Philippe Vosges</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractWriter.html#MISSING_PARAMETER-constant" title="SDL4R::AbstractWriter::MISSING_PARAMETER (constant)">AbstractWriter::MISSING_PARAMETER</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#object_mapper-instance_method" title="#object_mapper (instance method)">- (Object) <strong>object_mapper</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute object_mapper.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#writer-instance_method" title="#writer (instance method)">- (Object) <strong>writer</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute writer.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_element-instance_method" title="#end_element (instance method)">- (Object) <strong>end_element</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ends the currently written Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Serializer) <strong>initialize</strong>(writer = nil, object_mapper = ObjectMapper.new) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><dl class="rdoc-list note-list"><dt><em>writer</em>
+<dd>
+<p>underlying output writer (defaults to a Writer+StringIO).</p>
+</dd></dl>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize-instance_method" title="#serialize (instance method)">- (Object) <strong>serialize</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_array-instance_method" title="#serialize_array (instance method)">- (Object) <strong>serialize_array</strong>(name, array) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_array_as_child_tags-instance_method" title="#serialize_array_as_child_tags (instance method)">- (Object) <strong>serialize_array_as_child_tags</strong>(name, array) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_as_tag-instance_method" title="#serialize_as_tag (instance method)">- (Object) <strong>serialize_as_tag</strong>(name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Serializes an object as a new tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_hash-instance_method" title="#serialize_hash (instance method)">- (Object) <strong>serialize_hash</strong>(hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_plain_object-instance_method" title="#serialize_plain_object (instance method)">- (Object) <strong>serialize_plain_object</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#serialize_property-instance_method" title="#serialize_property (instance method)">- (Object) <strong>serialize_property</strong>(name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Serializes a property.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_element-instance_method" title="#start_element (instance method)">- (Object) <strong>start_element</strong>(namespace, name = nil, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the start of a new Tag (representing 'o').</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractWriter.html#attribute-instance_method" title="SDL4R::AbstractWriter#attribute (method)">#attribute</a></span>, <span class='object_link'><a href="AbstractWriter.html#depth-instance_method" title="SDL4R::AbstractWriter#depth (method)">#depth</a></span>, <span class='object_link'><a href="AbstractWriter.html#element-instance_method" title="SDL4R::AbstractWriter#element (method)">#element</a></span>, <span class='object_link'><a href="AbstractWriter.html#end_body-instance_method" title="SDL4R::AbstractWriter#end_body (method)">#end_body</a></span>, <span class='object_link'><a href="AbstractWriter.html#end_tag-instance_method" title="SDL4R::AbstractWriter#end_tag (method)">#end_tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#flush-instance_method" title="SDL4R::AbstractWriter#flush (method)">#flush</a></span>, <span class='object_link'><a href="AbstractWriter.html#start_body-instance_method" title="SDL4R::AbstractWriter#start_body (method)">#start_body</a></span>, <span class='object_link'><a href="AbstractWriter.html#start_tag-instance_method" title="SDL4R::AbstractWriter#start_tag (method)">#start_tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#tag-instance_method" title="SDL4R::AbstractWriter#tag (method)">#tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#value-instance_method" title="SDL4R::AbstractWriter#value (method)">#value</a></span>, <span class='object_link'><a href="AbstractWriter.html#values-instance_method" title="SDL4R::AbstractWriter#values (method)">#values</a></span>, <span class='object_link'><a href="AbstractWriter.html#write-instance_method" title="SDL4R::AbstractWriter#write (method)">#write</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Serializer (class)">Serializer</a></span></tt>) <strong>initialize</strong>(writer = nil, object_mapper = ObjectMapper.new) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <dl class="rdoc-list note-list"><dt><em>writer</em>
+<dd>
+<p>underlying output writer (defaults to a Writer+StringIO)</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_writer'>writer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span> <span class='op'>=</span> <span class='const'>ObjectMapper</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_writer'>writer</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_writer'>writer</span> <span class='kw'>if</span> <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'>Hash</span> <span class='kw'>and</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_writer'>writer</span> <span class='op'>||=</span> <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>writer should be a SDL4R::AbstractWriter</span><span class='tstring_end'>&quot;</span></span> \
+    <span class='kw'>unless</span> <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>AbstractWriter</span>
+
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  
+  <span class='ivar'>@writer</span> <span class='op'>=</span> <span class='id identifier rubyid_writer'>writer</span>
+  <span class='ivar'>@object_mapper</span> <span class='op'>=</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span>
+  <span class='ivar'>@depth</span> <span class='op'>=</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="object_mapper-instance_method">
+  
+    - (<tt>Object</tt>) <strong>object_mapper</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute object_mapper</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span>
+  <span class='ivar'>@object_mapper</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="writer-instance_method">
+  
+    - (<tt>Object</tt>) <strong>writer</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute writer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_writer'>writer</span>
+  <span class='ivar'>@writer</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="end_element-instance_method">
+  
+    - (<tt>Object</tt>) <strong>end_element</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Ends the currently written Tag.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_element'>end_element</span>
+  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_end_element'>end_element</span>
+  <span class='ivar'>@depth</span> <span class='op'>-=</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize</strong>(o) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize'>serialize</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_write_object'>write_object</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_array-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_array</strong>(name, array) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 241</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_array'>serialize_array</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_not_literal_values'>not_literal_values</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_is_coercible?'>is_coercible?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_not_literal_values'>not_literal_values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>and</span> <span class='ivar'>@depth</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='comment'># If it is an array of SDL-compatible values, we use SDL values.
+</span>    <span class='id identifier rubyid_start_tag'>start_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_end_tag'>end_tag</span>
+
+  <span class='kw'>else</span>
+    <span class='comment'># Otherwise, we use separate child tags.
+</span>    <span class='id identifier rubyid_serialize_array_as_child_tags'>serialize_array_as_child_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_array_as_child_tags-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_array_as_child_tags</strong>(name, array) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 255</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_array_as_child_tags'>serialize_array_as_child_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_is_coercible?'>is_coercible?</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_start_tag'>start_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_end_tag'>end_tag</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_serialize_as_tag'>serialize_as_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_as_tag-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_as_tag</strong>(name, value) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Serializes an object as a new tag.</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>name used for the object</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+271
+272
+273
+274
+275</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 271</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_as_tag'>serialize_as_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_start_tag'>start_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_serialize_impl'>serialize_impl</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_end_tag'>end_tag</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_hash</strong>(hash) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175
+176
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 175</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_hash'>serialize_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='id identifier rubyid_serialize_property'>serialize_property</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_plain_object-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_plain_object</strong>(o) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_plain_object'>serialize_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_processed_properties'>processed_properties</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='comment'># Read+write attributes are used rather than variables
+</span>  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_methods'>methods</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\w</span><span class='regexp_end'>/</span></span> <span class='kw'>and</span> <span class='comment'># check this is not an operator
+</span>        <span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^([^=]+)=$</span><span class='regexp_end'>/</span></span> <span class='comment'># check setter name pattern
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_get_method'>get_method</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_getter_name'>getter_name</span> <span class='op'>=</span> <span class='backref'>$1</span>
+        <span class='id identifier rubyid_getter'>getter</span> <span class='op'>=</span> <span class='id identifier rubyid_get_method'>get_method</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_getter_name'>getter_name</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_getter'>getter</span>
+          <span class='comment'># read and write accessors are defined
+</span>          <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_getter'>getter</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
+          <span class='id identifier rubyid_serialize_property'>serialize_property</span><span class='lparen'>(</span><span class='id identifier rubyid_getter_name'>getter_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_processed_properties'>processed_properties</span><span class='lbracket'>[</span><span class='id identifier rubyid_getter_name'>getter_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Otherwise, we read instance variables
+</span>  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variables'>instance_variables</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='op'>|</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_variable_name'>variable_name</span><span class='lbracket'>[</span><span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_variable_name'>variable_name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^@</span><span class='regexp_end'>/</span></span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_processed_properties'>processed_properties</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_serialize_property'>serialize_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="serialize_property-instance_method">
+  
+    - (<tt>Object</tt>) <strong>serialize_property</strong>(name, value) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Serializes a property. Ignores any property whose name is not a valid SDL
+name.</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>property name</p>
+</dd><dt><em>value</em>
+<dd>
+<p>property value (SDL value, plain object or Array)</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_serialize_property'>serialize_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>unless</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_valid_identifier?'>valid_identifier?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+    <span class='id identifier rubyid_serialize_array'>serialize_array</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+
+  <span class='kw'>elsif</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_is_coercible?'>is_coercible?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='comment'># SDL literal type
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:omit_nil_properties?</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='ivar'>@depth</span> <span class='op'>==</span> <span class='int'>0</span> <span class='comment'># at root level we use tags with single values rather than attributes
+</span>        <span class='id identifier rubyid_start_tag'>start_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+        <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_end_tag'>end_tag</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_serialize_as_tag'>serialize_as_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_element-instance_method">
+  
+    - (<tt>Object</tt>) <strong>start_element</strong>(namespace, name = nil, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the start of a new Tag (representing 'o').</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>name of the Tag to create (can be <code>nil</code> for a root Tag)</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/serializer.rb', line 87</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_element'>start_element</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='ivar'>@options</span><span class='lbracket'>[</span><span class='symbol'>:default_namespace</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span>
+
+  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_start_element'>start_element</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='id identifier rubyid_block'>block</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_end_element'>end_element</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@depth</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:41 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

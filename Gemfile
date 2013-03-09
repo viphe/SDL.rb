@@ -10,4 +10,5 @@ group :development do
     gem 'simplecov', :require => false
   end
   gem 'test-unit'
+  gem 'yard'
 end

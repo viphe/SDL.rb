@@ -1,0 +1,4036 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Tag
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Tag</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Tag
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Tag</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/sdl4r/tag.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>SDL documents are made of Tags.</p>
+
+<p>See the <a href="files/README.html">README</a> for a longer explanation on
+SDL documents.</p>
+
+<p>Do not assume that methods returning sets (Hash, Array, etc) of
+children/values/attributes/etc in this class returns copies or
+implementations. It can be one or the other depending on the method. The
+implementations are designed to be correct and somewhat efficient, not too
+protect the Tag internal state from ill-use of the returned values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Daniel Leuck, Philippe Vosges</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MISSING_PARAMETER-constant" class="">MISSING_PARAMETER =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Used to discriminate an unprovided parameter from <code>nil</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>the name of this Tag.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#namespace-instance_method" title="#namespace (instance method)">- (Object) <strong>namespace</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>the namespace of this Tag or an empty string when there is no namespace
+(i.e. default namespace).</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3C%3C-instance_method" title="#&lt;&lt; (instance method)">- (Object) <strong>&lt;&lt;</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds the given object as a child if it is a <code>Tag</code>, as an
+attribute if it is a Hash =&gt; value (supports namespaces), or as a
+value otherwise.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_child-instance_method" title="#add_child (instance method)">- (Object) <strong>add_child</strong>(child) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Add a child to this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_value-instance_method" title="#add_value (instance method)">- (Object) <strong>add_value</strong>(v) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds a value to this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attribute-instance_method" title="#attribute (instance method)">- (Object) <strong>attribute</strong>(namespace, key = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>attribute(key).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attributes-instance_method" title="#attributes (instance method)">- (Object) <strong>attributes</strong>(namespace = nil, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a Hash of the attributes of the specified <code>namespace</code>
+(default is all) or enumerates them.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attributes%3D-instance_method" title="#attributes= (instance method)">- (Object) <strong>attributes=</strong>(attribute_hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets all the attributes of the default namespace for this Tag in one
+operation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#child-instance_method" title="#child (instance method)">- (Object) <strong>child</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>child # =&gt; first child.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#child_count-instance_method" title="#child_count (instance method)">- (Object) <strong>child_count</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the number of children Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#children-instance_method" title="#children (instance method)">- (Object) <strong>children</strong>(*args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>children(recursive).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#children_to_string-instance_method" title="#children_to_string (instance method)">- (Object) <strong>children_to_string</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a string representation of the children tags.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#children_values-instance_method" title="#children_values (instance method)">- (Object) <strong>children_values</strong>(name = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the values of all the children with the given <code>name</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_attributes-instance_method" title="#clear_attributes (instance method)">- (Object) <strong>clear_attributes</strong>(namespace = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Clears the attributes of the specified namespace or all the attributes if
+<code>namespace</code> is <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_children-instance_method" title="#clear_children (instance method)">- (Object) <strong>clear_children</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes all children.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear_values-instance_method" title="#clear_values (instance method)">- (Object) <strong>clear_values</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes all values.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eql%3F-instance_method" title="#eql? (instance method)">- (Boolean) <strong>eql?</strong>(o) </a>
+    
+
+    
+      (also: #==)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if this tag (including all of its values, attributes, and
+children) is equivalent to the given tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_attribute%3F-instance_method" title="#has_attribute? (instance method)">- (Boolean) <strong>has_attribute?</strong>(namespace = nil, key = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether there is at least an attribute in this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_attributes%3F-instance_method" title="#has_attributes? (instance method)">- (Boolean) <strong>has_attributes?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_child%3F-instance_method" title="#has_child? (instance method)">- (Boolean) <strong>has_child?</strong>(namespace, name = :DEFAULT) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether the child Tag of given name exists.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_children%3F-instance_method" title="#has_children? (instance method)">- (Boolean) <strong>has_children?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether there are children Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_value%3F-instance_method" title="#has_value? (instance method)">- (Boolean) <strong>has_value?</strong>(v) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if <code>v</code> is a value of this Tag's.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_values%3F-instance_method" title="#has_values? (instance method)">- (Boolean) <strong>has_values?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hash-instance_method" title="#hash (instance method)">- (Object) <strong>hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns The hash (based on the output from toString()).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Tag) <strong>initialize</strong>(namespace, name = nil, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates an empty tag in the given namespace.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_child-instance_method" title="#new_child (instance method)">- (Object) <strong>new_child</strong>(*args, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a new child tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-instance_method" title="#read (instance method)">- (Object) <strong>read</strong>(input) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Adds all the tags specified in the given IO, String, Pathname or URI to
+this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_from_io-instance_method" title="#read_from_io (instance method)">- (Object) <strong>read_from_io</strong>(close_io) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Reads and parses the <code>io</code> returned by the specified block and
+closes this <code>io</code> if <code>close_io</code> is true.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_attribute-instance_method" title="#remove_attribute (instance method)">- (Object) <strong>remove_attribute</strong>(namespace, key = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>remove_attribute(key).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_child-instance_method" title="#remove_child (instance method)">- (Object) <strong>remove_child</strong>(child) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Remove a child from this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_value-instance_method" title="#remove_value (instance method)">- (Object) <strong>remove_value</strong>(v) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes the first occurence of the specified value from this Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_attribute-instance_method" title="#set_attribute (instance method)">- (Object) <strong>set_attribute</strong>(namespace, key, value = MISSING_PARAMETER) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>set_attribute(key, value).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_attributes-instance_method" title="#set_attributes (instance method)">- (Object) <strong>set_attributes</strong>(namespace, attribute_hash = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>set_attributes(attribute_hash).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_child_hash-instance_method" title="#to_child_hash (instance method)">- (Object) <strong>to_child_hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a new Hash where the children's names as keys and their values as
+the key's value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_child_string_hash-instance_method" title="#to_child_string_hash (instance method)">- (Object) <strong>to_child_string_hash</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a new Hash where the children's names as keys and their values as
+the key's value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (Object) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Get a String representation of this SDL Tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_string-instance_method" title="#to_string (instance method)">- (Object) <strong>to_string</strong>(indent = &quot;\t&quot;) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns A string representation of this tag using SDL.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_xml_string-instance_method" title="#to_xml_string (instance method)">- (Object) <strong>to_xml_string</strong>(options = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a string containing an XML representation of this tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value-instance_method" title="#value (instance method)">- (Object) <strong>value</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A convenience method that returns the first value.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value%3D-instance_method" title="#value= (instance method)">- (Object) <strong>value=</strong>(value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A convenience method that sets the first value in the value list.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values-instance_method" title="#values (instance method)">- (Object) <strong>values</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns an Array of the values of this Tag or enumerates them.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values%3D-instance_method" title="#values= (instance method)">- (Object) <strong>values=</strong>(someValues) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Set the values for this tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write-instance_method" title="#write (instance method)">- (Object) <strong>write</strong>(output, as_top_tag = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Write this tag out to the given IO or StringIO or String (optionally
+clipping the root.).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Tag (class)">Tag</a></span></tt>) <strong>initialize</strong>(namespace, name = nil, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates an empty tag in the given namespace.  If the <code>namespace</code>
+is nil it will be coerced to an empty String.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>namespace</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>fruit</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_add_value'>add_value</span> <span class='int'>2</span>
+  <span class='id identifier rubyid_new_child'>new_child</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orange</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_set_attribute'>set_attribute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>quantity</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>2</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+
+<p>which builds the following SDL structure</p>
+
+<pre class="code ruby"><code class="ruby">fruit 2 {
+  orange quantity=2
+}</code></pre>
+
+<p>If you provide a block that takes an argument, you will write the same
+example, as follows:</p>
+
+<pre class="ruby"><span class="ruby-identifier">tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;fruit&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">add_value</span> <span class="ruby-value">2</span>
+  <span class="ruby-identifier">t</span>.<span class="ruby-identifier">new_child</span>(<span class="ruby-string">&quot;orange&quot;</span>) <span class="ruby-keyword">do</span>
+    <span class="ruby-identifier">set_attribute</span>(<span class="ruby-string">&quot;quantity&quot;</span>, <span class="ruby-value">2</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>In this case, the current context is not the new Tag anymore but the
+context of your code.</p>
+
+<h3 id="label-Raises">Raises</h3>
+
+<p>ArgumentError if the name is not a legal SDL identifier (see
+SDL4R#validate_identifier) or the namespace is non-blank and is not a legal
+SDL identifier.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_to_ns_n'>to_ns_n</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tag namespace must be a String: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>tag name must be a String: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+
+  <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_validate_identifier'>validate_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='ivar'>@namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span>
+  
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Tag name cannot be nil or empty</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_validate_identifier'>validate_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
+  
+  <span class='ivar'>@children</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  
+  <span class='comment'># a Hash of Hash : {namespace =&gt; {name =&gt; value}}
+</span>  <span class='comment'># The default namespace is represented by an empty string.
+</span>  <span class='ivar'>@attributesByNamespace</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_block'>block</span><span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="name=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>the name of this Tag</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="namespace=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="namespace-instance_method">
+  
+    - (<tt>Object</tt>) <strong>namespace</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>the namespace of this Tag or an empty string when there is no namespace
+(i.e. default namespace).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_namespace'>namespace</span>
+  <span class='ivar'>@namespace</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="<<-instance_method">
+  
+    - (<tt>Object</tt>) <strong>&lt;&lt;</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds the given object as a child if it is a <code>Tag</code>, as an
+attribute if it is a Hash =&gt; value (supports namespaces), or as a
+value otherwise. If it is an Enumerable (e.g. Array), each of its elements
+is added to this Tag via this operator. If any of its elements is itself an
+Enumerable, then an anonymous tag is created and the Enumerable is passed
+to it via this operator (see the examples below).</p>
+
+<pre class="ruby"><span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;child&quot;</span>)
+<span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">123</span>                          <span class="ruby-comment"># new integer value</span>
+<span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;islamabad&quot;</span>                  <span class="ruby-comment"># new string value</span>
+<span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-string">&quot;metric:length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1027</span> }  <span class="ruby-comment"># new attribute (with namespace)</span>
+<span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-keyword">nil</span>, <span class="ruby-value">456</span>, <span class="ruby-string">&quot;abc&quot;</span>]            <span class="ruby-comment"># several values added</span>
+
+<span class="ruby-identifier">tag</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;tag&quot;</span>)
+<span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> [[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>, <span class="ruby-value">3</span>], [<span class="ruby-value">4</span>, <span class="ruby-value">5</span>, <span class="ruby-value">6</span>]]       <span class="ruby-comment"># tag {</span>
+                                    <span class="ruby-comment">#   1 2 3</span>
+                                    <span class="ruby-comment">#   4 5 6</span>
+                                    <span class="ruby-comment"># }</span>
+</pre>
+
+<p>Of course, despite the fact that String is an Enumerable, it is considered
+as the type of values.</p>
+
+<p>Returns <code>self</code>.</p>
+
+<p>Use other accessors (#add_child, #add_value, #attributes, etc) for a
+stricter and less "magical" behavior.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 234</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Tag</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+      <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+      <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>:</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>:</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_set_attribute'>set_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+    <span class='id identifier rubyid_add_value'>add_value</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Enumerable</span>
+    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Enumerable</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+        <span class='id identifier rubyid_anonymous'>anonymous</span> <span class='op'>=</span> <span class='id identifier rubyid_new_child'>new_child</span><span class='lparen'>(</span><span class='const'>ANONYMOUS_TAG_NAME</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_anonymous'>anonymous</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_item'>item</span>
+      <span class='kw'>else</span>
+        <span class='kw'>self</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_item'>item</span>
+      <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_add_value'>add_value</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_child-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_child</strong>(child) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Add a child to this Tag.</p>
+<dl class="rdoc-list note-list"><dt><em>child</em>
+<dd>
+<p>The child to add</p>
+</dd></dl>
+
+<p>Returns the added child.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+202
+203
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 202</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>child should be a Tag</span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Tag</span>
+  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_child'>child</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="add_value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>add_value</strong>(v) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds a value to this Tag. See SDL4R#coerce_or_fail to know about the
+allowable types.</p>
+<dl class="rdoc-list note-list"><dt><em>v</em>
+<dd>
+<p>The value to add</p>
+</dd></dl>
+
+<p>Raises an <code>ArgumentError</code> if the value is not a legal SDL type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+483
+484
+485
+486</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 483</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_add_value'>add_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_coerce_or_fail'>coerce_or_fail</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="attribute-instance_method">
+  
+    - (<tt>Object</tt>) <strong>attribute</strong>(namespace, key = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>attribute(key)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span></code></pre>
+
+<p>Returns the attribute of the specified <code>namespace</code> of specified
+<code>key</code> or <code>nil</code> if not found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+599
+600
+601
+602
+603</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 599</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_to_ns_n'>to_ns_n</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span>
+  <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="attributes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>attributes</strong>(namespace = nil, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a Hash of the attributes of the specified <code>namespace</code>
+(default is all) or enumerates them.</p>
+
+<pre class="ruby"><span class="ruby-identifier">tag</span>.<span class="ruby-identifier">attributes</span> <span class="ruby-comment"># =&gt; { &quot;length&quot; =&gt; 123, &quot;width&quot; = 25.4, &quot;orig:color&quot; =&gt; &quot;gray&quot; }</span>
+<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">attributes</span>(<span class="ruby-string">&quot;orig&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">p</span> <span class="ruby-node">&quot;#{namespace}:#{key} = #{value}&quot;</span>
+<span class="ruby-keyword">end</span>
+</pre>
+<dl class="rdoc-list note-list"><dt><em>namespace</em>
+<dd>
+<p>namespace of the returned attributes. If nil, all attributes are returned
+with qualified names (e.g. "meat:color"). If "", attributes of the default
+namespace are returned.</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 641</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='comment'># :yields: namespace, key, value
+</span>  <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='id identifier rubyid_each_attribute'>each_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+      <span class='id identifier rubyid_each_attribute'>each_attribute</span> <span class='kw'>do</span> <span class='op'>|</span> <span class='id identifier rubyid_attr_namespace'>attr_namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>|</span>
+        <span class='id identifier rubyid_qualified_name'>qualified_name</span> <span class='op'>=</span> <span class='id identifier rubyid_attr_namespace'>attr_namespace</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>:</span> <span class='id identifier rubyid_attr_namespace'>attr_namespace</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_key'>key</span>
+        <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_qualified_name'>qualified_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>return</span> <span class='id identifier rubyid_hash'>hash</span>
+
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="attributes=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>attributes=</strong>(attribute_hash) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets all the attributes of the default namespace for this Tag in one
+operation.</p>
+
+<p>See #set_attributes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+747
+748
+749</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 747</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attributes='>attributes=</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set_attributes'>set_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="child-instance_method">
+  
+    - (<tt>Object</tt>) <strong>child</strong>(*args) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>child # =&gt; first child</p>
+
+<pre class="ruby"><span class="ruby-identifier">child</span>(<span class="ruby-identifier">name</span>) <span class="ruby-comment"># =&gt; first child of specified name (any namespace)</span>
+<span class="ruby-identifier">child</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">name</span>) <span class="ruby-comment"># =&gt; first child (or descendant) of specified name (any namspace)</span>
+<span class="ruby-identifier">child</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>) <span class="ruby-comment"># =&gt; first child of specified namespace and name</span>
+<span class="ruby-identifier">child</span>(<span class="ruby-identifier">recursive</span>, <span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>)
+</pre>
+
+<p>Get the first child with the given name, optionally using a recursive
+search.</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>the name of the child Tag. If <code>nil</code>, the first child is returned
+(<code>nil</code> if there are</p>
+</dd></dl>
+
+<p>no children at all).</p>
+
+<p>Returns the first child tag having the given name or <code>nil</code> if no
+such child exists</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+382
+383
+384
+385
+386
+387
+388
+389
+390</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 382</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_child'>child</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_recursive'>recursive</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_to_rec_ns_n'>to_rec_ns_n</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>return</span> <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_each_child'>each_child</span><span class='lparen'>(</span><span class='id identifier rubyid_recursive'>recursive</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='kw'>return</span> <span class='id identifier rubyid_child'>child</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="child_count-instance_method">
+  
+    - (<tt>Object</tt>) <strong>child_count</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the number of children Tag.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+302
+303
+304</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 302</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_child_count'>child_count</span>
+  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="children-instance_method">
+  
+    - (<tt>Object</tt>) <strong>children</strong>(*args, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>children(recursive)</p>
+
+<pre class="ruby"><span class="ruby-identifier">children</span>(<span class="ruby-identifier">recursive</span>, <span class="ruby-identifier">name</span>)
+<span class="ruby-identifier">children</span>(<span class="ruby-identifier">recursive</span>, <span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>)
+
+<span class="ruby-identifier">children</span>(<span class="ruby-identifier">recursive</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-operator">...</span> }
+<span class="ruby-identifier">children</span>(<span class="ruby-identifier">recursive</span>, <span class="ruby-identifier">name</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-operator">...</span> }
+<span class="ruby-identifier">children</span>(<span class="ruby-identifier">recursive</span>, <span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">name</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span> <span class="ruby-operator">...</span> }
+</pre>
+
+<p>Returns an Array of the children Tags of this Tag or enumerates them.</p>
+<dl class="rdoc-list note-list"><dt><em>recursive</em>
+<dd>
+<p>if true children and all descendants will be returned. False by default.</p>
+</dd><dt><em>name</em>
+<dd>
+<p>if not nil, only children having this name will be returned. Nil by
+default.</p>
+</dd><dt><em>namespace</em>
+<dd>
+<p>use nil for all namespaces and "" for the default one. Nil by default.</p>
+</dd></dl>
+
+<pre class="ruby"><span class="ruby-identifier">tag</span>.<span class="ruby-identifier">children</span> <span class="ruby-comment"># =&gt; array of the children</span>
+<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">children</span>(<span class="ruby-keyword">true</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">descendant</span><span class="ruby-operator">|</span> <span class="ruby-operator">...</span> }
+
+<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">children</span>(<span class="ruby-keyword">false</span>, <span class="ruby-string">&quot;name&quot;</span>) <span class="ruby-comment"># =&gt; children of name &quot;name&quot;</span>
+<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">children</span>(<span class="ruby-keyword">false</span>, <span class="ruby-string">&quot;ns&quot;</span>, <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># =&gt; children of namespace &quot;ns&quot;</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 326</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_children'>children</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='comment'># :yields: child
+</span>  <span class='id identifier rubyid_recursive'>recursive</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_to_rec_ns_n'>to_rec_ns_n</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='id identifier rubyid_each_child'>each_child</span><span class='lparen'>(</span><span class='id identifier rubyid_recursive'>recursive</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+    
+  <span class='kw'>else</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_recursive'>recursive</span> <span class='kw'>or</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>or</span> <span class='id identifier rubyid_namespace'>namespace</span>
+      <span class='kw'>return</span> <span class='ivar'>@children</span>
+      
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_each_child'>each_child</span><span class='lparen'>(</span><span class='id identifier rubyid_recursive'>recursive</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_child'>child</span>
+      <span class='rbrace'>}</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="children_to_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>children_to_string</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a string representation of the children tags.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+854
+855
+856
+857
+858
+859
+860</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 854</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_children_to_string'>children_to_string</span>
+  <span class='id identifier rubyid_writer'>writer</span> <span class='op'>=</span> <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+    <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write_tag'>write_tag</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="children_values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>children_values</strong>(name = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the values of all the children with the given <code>name</code>. If
+the child has more than one value, all the values will be added as an
+array. If the child has no value, <code>nil</code> will be added. The
+search is not recursive.</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>if nil, all children are considered (nil by default).</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 352</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_children_values'>children_values</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  
+  <span class='id identifier rubyid_children_values'>children_values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_each_child'>each_child</span><span class='lparen'>(</span><span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+    <span class='kw'>when</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_children_values'>children_values</span> <span class='op'>&lt;&lt;</span> <span class='kw'>nil</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_children_values'>children_values</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_children_values'>children_values</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_children_values'>children_values</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear_attributes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clear_attributes</strong>(namespace = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Clears the attributes of the specified namespace or all the attributes if
+<code>namespace</code> is <code>nil</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+683
+684
+685
+686
+687
+688
+689
+690</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 683</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear_attributes'>clear_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@attributesByNamespace</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+    <span class='ivar'>@attributesByNamespace</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear_children-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clear_children</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes all children.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+273
+274
+275
+276</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 273</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear_children'>clear_children</span>
+  <span class='ivar'>@children</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="clear_values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>clear_values</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes all values.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+511
+512
+513
+514</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 511</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_clear_values'>clear_values</span>
+  <span class='ivar'>@values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eql?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>eql?</strong>(o) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='==-instance_method'>==</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if this tag (including all of its values, attributes, and
+children) is equivalent to the given tag.</p>
+
+<p>Returns true if the tags are equivalet</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+867
+868
+869
+870</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 867</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='comment'># this is safe because to_string() dumps the full state
+</span>  <span class='kw'>return</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Tag</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_string'>to_string</span> <span class='op'>==</span> <span class='id identifier rubyid_to_string'>to_string</span><span class='semicolon'>;</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_attribute?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_attribute?</strong>(namespace = nil, key = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether there is at least an attribute in this Tag.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_has_attribute?'>has_attribute?</span></code></pre>
+
+<p>Indicates whether there is the specified attribute exists in this Tag.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_has_attribute?'>has_attribute?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_has_attribute?'>has_attribute?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 612</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_attribute?'>has_attribute?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_to_ns_n'>to_ns_n</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='kw'>or</span> <span class='id identifier rubyid_key'>key</span>
+    <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_attributes'>attributes</span> <span class='lbrace'>{</span> <span class='kw'>return</span> <span class='kw'>true</span> <span class='rbrace'>}</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_attributes?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_attributes?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+625
+626
+627</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 625</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_attributes?'>has_attributes?</span>
+  <span class='op'>!</span><span class='ivar'>@attributesByNamespace</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_child?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_child?</strong>(namespace, name = :DEFAULT) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether the child Tag of given name exists.</p>
+<dl class="rdoc-list note-list"><dt><em>name</em>
+<dd>
+<p>name of the searched child Tag</p>
+</dd></dl>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_has_child?'>has_child?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_has_child?'>has_child?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span></code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+399
+400
+401
+402
+403
+404
+405
+406</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 399</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_child?'>has_child?</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='symbol'>:DEFAULT</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='symbol'>:DEFAULT</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span>
+    <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+  
+  <span class='op'>!</span><span class='id identifier rubyid_child'>child</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_children?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_children?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether there are children Tag.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+410
+411
+412</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 410</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_children?'>has_children?</span>
+  <span class='op'>!</span><span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_value?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_value?</strong>(v) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if <code>v</code> is a value of this Tag's.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+490
+491
+492</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 490</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_value?'>has_value?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_values?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_values?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+545
+546
+547</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 545</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_has_values?'>has_values?</span>
+  <span class='op'>!</span><span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>hash</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The hash (based on the output from toString())</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+875
+876
+877</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 875</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_to_string'>to_string</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_child-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_child</strong>(*args, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a new child tag. Can take a block so that you can write something
+like:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_car'>car</span> <span class='op'>=</span> <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>car</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_new_child'>new_child</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wheels</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='kw'>self</span> <span class='op'>&lt;&lt;</span> <span class='int'>4</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+
+<p>The context of execution of the given block is the child instance. If you
+provide a block that takes a parameter (see below), the context is the
+context of your code:</p>
+
+<pre class="ruby"><span class="ruby-identifier">car</span> = <span class="ruby-constant">Tag</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;car&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">child</span>.<span class="ruby-identifier">new_child</span>(<span class="ruby-string">&quot;wheels&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">grandchild</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">grandchild</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">4</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Returns the created child Tag.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+192
+193
+194</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 192</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_child'>new_child</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_add_child'>add_child</span> <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read</strong>(input) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Adds all the tags specified in the given IO, String, Pathname or URI to
+this Tag.</p>
+
+<p>Returns this Tag after adding all the children read from
+<code>input</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 777</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+    <span class='id identifier rubyid_read_from_io'>read_from_io</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='const'>StringIO</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Pathname</span>
+    <span class='id identifier rubyid_read_from_io'>read_from_io</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>r:UTF-8</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>URI</span>
+    <span class='id identifier rubyid_read_from_io'>read_from_io</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span> <span class='rbrace'>}</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_read_from_io'>read_from_io</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_input'>input</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>return</span> <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read_from_io-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read_from_io</strong>(close_io) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Reads and parses the <code>io</code> returned by the specified block and
+closes this <code>io</code> if <code>close_io</code> is true.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 796</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read_from_io'>read_from_io</span><span class='lparen'>(</span><span class='id identifier rubyid_close_io'>close_io</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_io'>io</span> <span class='op'>=</span> <span class='kw'>yield</span>
+
+  <span class='kw'>begin</span>
+    <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>Reader</span><span class='period'>.</span><span class='id identifier rubyid_from_io'>from_io</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each_tag'>each_tag</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tag'>tag</span><span class='op'>|</span>
+      <span class='id identifier rubyid_add_child'>add_child</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>ensure</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_close_io'>close_io</span>
+      <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='const'>IOError</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_attribute-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_attribute</strong>(namespace, key = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>remove_attribute(key)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_remove_attribute'>remove_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span></code></pre>
+
+<p>Removes the attribute, whose name and namespace are specified.</p>
+<dl class="rdoc-list note-list"><dt><em>key</em>
+<dd>
+<p>name of the removed atribute</p>
+</dd><dt><em>namespace</em>
+<dd>
+<p>namespace of the removed attribute (equal to "", default namespace, by
+default)</p>
+</dd></dl>
+
+<p>Returns the value of the removed attribute or <code>nil</code> if it didn't
+exist.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+674
+675
+676
+677
+678</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 674</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_attribute'>remove_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_to_ns_n'>to_ns_n</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span>
+  <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_child-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_child</strong>(child) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Remove a child from this Tag</p>
+<dl class="rdoc-list note-list"><dt><em>child</em>
+<dd>
+<p>the child to remove</p>
+</dd></dl>
+
+<p>Returns true if the child exists and is removed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+267
+268
+269</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 267</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_child'>remove_child</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@children</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_value</strong>(v) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes the first occurence of the specified value from this Tag.</p>
+<dl class="rdoc-list note-list"><dt><em>v</em>
+<dd>
+<p>The value to remove</p>
+</dd></dl>
+
+<p>Returns true If the value exists and is removed</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+500
+501
+502
+503
+504
+505
+506
+507</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 500</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_value'>remove_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span>
+    <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_attribute-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_attribute</strong>(namespace, key, value = MISSING_PARAMETER) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>set_attribute(key, value)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_set_attribute'>set_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span></code></pre>
+
+<p>Set an attribute in the given namespace for this tag.  The allowable
+attribute value types are the same as those allowed for #add_value.</p>
+<dl class="rdoc-list note-list"><dt><em>namespace</em>
+<dd>
+<p>The namespace for this attribute</p>
+</dd><dt><em>key</em>
+<dd>
+<p>The attribute key</p>
+</dd><dt><em>value</em>
+<dd>
+<p>The attribute value</p>
+</dd></dl>
+
+<p>Raises <code>ArgumentError</code> if the key is not a legal SDL identifier
+(see SDL4R#validate_identifier), or the namespace is non-blank and is not a
+legal SDL identifier, or the value is not a legal SDL type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 567</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_attribute'>set_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'>MISSING_PARAMETER</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'>MISSING_PARAMETER</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute namespace must be a String or a Symbol: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> \
+      <span class='kw'>unless</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute key must be a String or a Symbol</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute key cannot be empty</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_validate_identifier'>validate_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_validate_identifier'>validate_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span>
+  <span class='kw'>end</span>
+  
+  <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_coerce_or_fail'>coerce_or_fail</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_attributes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_attributes</strong>(namespace, attribute_hash = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>set_attributes(attribute_hash)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_set_attributes'>set_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='rparen'>)</span></code></pre>
+
+<p>Sets the attributes specified by a Hash in the given <code>namespace</code>
+in one operation. The previous attributes of the specified
+<code>namespace</code> are removed. See #set_attribute for allowable
+attribute value types.</p>
+<dl class="rdoc-list note-list"><dt><em>attributes</em>
+<dd>
+<p>a Hash where keys are attribute keys</p>
+</dd><dt><em>namespace</em>
+<dd>
+<p>"" (default namespace) by default</p>
+</dd></dl>
+
+<p>Raises an <code>ArgumentError</code> if any key in the map is not a legal
+SDL identifier (see SDL4R#validate_identifier), or any value is not a legal
+SDL type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 724</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_attributes'>set_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_hash'>attribute_hash</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>namespace can't be nil</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>attribute_hash should be a Hash</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Hash</span>
+
+  <span class='id identifier rubyid_namespace_attributes'>namespace_attributes</span> <span class='op'>=</span> <span class='ivar'>@attributesByNamespace</span><span class='lbracket'>[</span><span class='id identifier rubyid_namespace'>namespace</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_namespace_attributes'>namespace_attributes</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace_attributes'>namespace_attributes</span>
+  
+  <span class='id identifier rubyid_attribute_hash'>attribute_hash</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+      <span class='comment'># Calling set_attribute() is required to ensure validations
+</span>      <span class='id identifier rubyid_set_attribute'>set_attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_child_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_child_hash</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new Hash where the children's names as keys and their values as
+the key's value. Example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_child1'>child1</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>toto</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_child2'>child2</span> <span class='int'>2</span></code></pre>
+
+<p>would give</p>
+
+<pre class="ruby">{ <span class="ruby-string">&quot;child1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;toto&quot;</span>, <span class="ruby-string">&quot;child2&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+449
+450
+451
+452
+453</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 449</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_child_hash'>to_child_hash</span>
+  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_children'>children</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_child_string_hash-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_child_string_hash</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new Hash where the children's names as keys and their values as
+the key's value. Values are converted to Strings. <code>nil</code> values
+become empty Strings. Example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_child1'>child1</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>toto</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_child2'>child2</span> <span class='int'>2</span>
+<span class='id identifier rubyid_child3'>child3</span> <span class='id identifier rubyid_null'>null</span></code></pre>
+
+<p>would give</p>
+
+<pre class="ruby">{ <span class="ruby-string">&quot;child1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;toto&quot;</span>, <span class="ruby-string">&quot;child2&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;2&quot;</span>, <span class="ruby-string">&quot;child3&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span> }
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+467
+468
+469
+470
+471
+472
+473
+474
+475</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 467</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_child_string_hash'>to_child_string_hash</span>
+  <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_children'>children</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+    <span class='comment'># FIXME: it is quite hard to be sure whether we should mimic the Java version
+</span>    <span class='comment'># as there might be a lot of values that don't translate nicely to Strings.
+</span>    <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_s</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Get a String representation of this SDL Tag.  This method returns a
+complete description of the Tag's state using SDL (i.e. the output can be
+parsed by #read)</p>
+
+<p>Returns A string representation of this tag using SDL</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+840
+841
+842</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 840</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid_to_string'>to_string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_string</strong>(indent = &quot;\t&quot;) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns A string representation of this tag using SDL</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+846
+847
+848
+849
+850</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 846</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_string'>to_string</span><span class='lparen'>(</span><span class='id identifier rubyid_indent'>indent</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\t</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_writer'>writer</span> <span class='op'>=</span> <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:indent</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_indent'>indent</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_xml_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>to_xml_string</strong>(options = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a string containing an XML representation of this tag.  Values will
+be represented using _val0, _val1, etc.</p>
+<dl class="rdoc-list note-list"><dt><em>options</em>
+<dd>
+<p>a hash of the options</p>
+</dd></dl>
+
+<h3 id="label-options%3A">options:</h3>
+<dl class="rdoc-list label-list"><dt>:line_prefix
+<dd>
+<p>a text prefixing each line (default: "")</p>
+</dd><dt>:uri_by_namespace
+<dd>
+<p>a Hash giving the URIs for the namespaces</p>
+</dd><dt>:indent
+<dd>
+<p>text specifying one indentation (default: "t")</p>
+</dd><dt>:eol
+<dd>
+<p>end of line expression (default: "n")</p>
+</dd><dt>:omit_null_attributes
+<dd>
+<p>if true, null/nil attributes are not exported (default: false). Otherwise,
+they are exported as follows:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_tag'>tag</span> <span class='id identifier rubyid_attr'>attr</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>null</span><span class='tstring_end'>&quot;</span></span></code></pre>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 895</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_xml_string'>to_xml_string</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+    <span class='symbol'>:uri_by_namespace</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span>
+    <span class='symbol'>:indent</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\t</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:line_prefix</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:eol</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='symbol'>:omit_null_attributes</span> <span class='op'>=&gt;</span> <span class='kw'>false</span>
+  <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid__to_xml_string'>_to_xml_string</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:line_prefix</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>value</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A convenience method that returns the first value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+296
+297
+298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 296</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>value=</strong>(value) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A convenience method that sets the first value in the value list. See #
+#add_value for legal types.</p>
+<dl class="rdoc-list note-list"><dt><em>value</em>
+<dd>
+<p>The value to be set.</p>
+</dd></dl>
+
+<h3 id="label-Raises">Raises</h3>
+<dl class="rdoc-list note-list"><dt><em>ArgumentError</em>
+<dd>
+<p>if the value is not a legal SDL type</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+288
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 288</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value='>value=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_coerce_or_fail'>coerce_or_fail</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>values</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns an Array of the values of this Tag or enumerates them.</p>
+
+<pre class="ruby"><span class="ruby-identifier">tag</span>.<span class="ruby-identifier">values</span> <span class="ruby-comment"># =&gt; [123, &quot;spices&quot;]</span>
+<span class="ruby-identifier">tag</span>.<span class="ruby-identifier">values</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">value</span> }
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+521
+522
+523
+524
+525
+526
+527
+528</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 521</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span> <span class='comment'># :yields: value
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='kw'>yield</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+    <span class='kw'>nil</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='ivar'>@values</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>values=</strong>(someValues) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Set the values for this tag.  See #add_value for legal value types.</p>
+<dl class="rdoc-list note-list"><dt><em>values</em>
+<dd>
+<p>The new values</p>
+</dd></dl>
+
+<p>Raises an <code>ArgumentError</code> if the collection contains any values
+which are not legal SDL types.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+536
+537
+538
+539
+540
+541
+542
+543</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 536</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values='>values=</span><span class='lparen'>(</span><span class='id identifier rubyid_someValues'>someValues</span><span class='rparen'>)</span>
+  <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_someValues'>someValues</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='comment'># this is required to ensure validation of types
+</span>    <span class='id identifier rubyid_add_value'>add_value</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+  <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write-instance_method">
+  
+    - (<tt>Object</tt>) <strong>write</strong>(output, as_top_tag = false) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Write this tag out to the given IO or StringIO or String (optionally
+clipping the root.)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>output</span>
+      
+      
+        <span class='type'>(<tt>IO</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>any output compatible with <code>Writer</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>as_top_tag</span>
+      
+      
+        <span class='type'>(<tt>TrueClass</tt>, <tt>FalseClass</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if <code>true</code>, this tag will be written as the root element (i.e.
+its children will be top level). If <code>false</code> (default), this tag
+will be written as a top element.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p><code>output</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tag.rb', line 822</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='comma'>,</span> <span class='id identifier rubyid_as_top_tag'>as_top_tag</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_writer'>writer</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_as_top_tag'>as_top_tag</span>
+      <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_output'>output</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:42 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

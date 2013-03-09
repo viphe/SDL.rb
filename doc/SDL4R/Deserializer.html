@@ -1,0 +1,967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Deserializer
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Deserializer</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Deserializer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Deserializer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Serialization</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/sdl4r/deserializer.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Deserializes between SDL and Ruby objects.</p>
+
+<p>Classes which need to implement custom deserialization should define the
+<tt>from_sdl()</tt> methods as follows:</p>
+
+<pre class="ruby"><span class="ruby-keyword">class</span> <span class="ruby-constant">MyClass</span>
+
+  <span class="ruby-identifier">attr_accessor</span> :<span class="ruby-identifier">firstname</span>
+
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">from_sdl</span>(<span class="ruby-identifier">tag</span>, <span class="ruby-identifier">serializer</span> = <span class="ruby-constant">Serializer</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">firstname</span> = <span class="ruby-identifier">tag</span>.<span class="ruby-identifier">attribute</span>(<span class="ruby-string">&quot;name&quot;</span>)
+    <span class="ruby-keyword">self</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>Custom serialization (using <tt>to_sdl()</tt>) or deserialization (using
+<tt>from_sdl()</tt>) can be more efficient than the standard one as its logic is
+more straightforward).</p>
+
+<h2 id="label-Author">Author</h2>
+
+<p>Philippe Vosges</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_OPTIONS-classvariable" class="">@@DEFAULT_OPTIONS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize-instance_method" title="#deserialize (instance method)">- (Object) <strong>deserialize</strong>(tag, o = new_plain_object(tag)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize_from_attributes-instance_method" title="#deserialize_from_attributes (instance method)">- (Object) <strong>deserialize_from_attributes</strong>(tag, o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize_from_child_tags-instance_method" title="#deserialize_from_child_tags (instance method)">- (Object) <strong>deserialize_from_child_tags</strong>(tag, o, handle_anonymous) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p><em>handle_anonymous</em>::.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize_from_values-instance_method" title="#deserialize_from_values (instance method)">- (Object) <strong>deserialize_from_values</strong>(tag, o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#deserialize_object-instance_method" title="#deserialize_object (instance method)">- (Object) <strong>deserialize_object</strong>(tag, o = new_plain_object(tag)) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Called by #deserialize when not using <tt>from_sdl()</tt>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_deserialized_property_name-instance_method" title="#get_deserialized_property_name (instance method)">- (Object) <strong>get_deserialized_property_name</strong>(tag, parent_tag, parent_object) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the name of the property to which the specified Tag is supposed to
+be assigned in the parent object.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_plain_object-instance_method" title="#new_plain_object (instance method)">- (Object) <strong>new_plain_object</strong>(tag, o = nil, parent_object = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Provides deserialized new plain object instances (i.e. "plain object" as
+opposed to special cases like SDL values).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_serializable_property-instance_method" title="#set_serializable_property (instance method)">- (Object) <strong>set_serializable_property</strong>(o, name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the given property in the given object.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="deserialize-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deserialize</strong>(tag, o = new_plain_object(tag)) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='id identifier rubyid_new_plain_object'>new_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:from_sdl</span>
+    <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_from_sdl'>from_sdl</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+    
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='id identifier rubyid_deserialize_object'>deserialize_object</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_o'>o</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deserialize_from_attributes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deserialize_from_attributes</strong>(tag, o) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 118</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deserialize_from_attributes'>deserialize_from_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attribute_namespace'>attribute_namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_value'>attribute_value</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_attribute_namespace'>attribute_namespace</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span> <span class='op'>==</span> <span class='const'>OBJECT_REF_ATTR_NAME</span>
+      <span class='comment'># ignore this technical attribute
+</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attribute_namespace'>attribute_namespace</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span> <span class='op'>==</span> <span class='const'>OBJECT_ID_ATTR_NAME</span>
+      <span class='comment'># reference and make no impact on 'o'
+</span>      <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='id identifier rubyid_reference_object'>reference_object</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_value'>attribute_value</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_inc'>inc</span>
+
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_set_serializable_property'>set_serializable_property</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_value'>attribute_value</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deserialize_from_child_tags-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deserialize_from_child_tags</strong>(tag, o, handle_anonymous) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <dl class="rdoc-list note-list"><dt><em>handle_anonymous</em>
+<dd>
+<p>if true, this method only handles anonymous child tags, if false, it only
+handles named child tags</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 146</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deserialize_from_child_tags'>deserialize_from_child_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_handle_anonymous'>handle_anonymous</span><span class='rparen'>)</span>
+  <span class='comment'># Group the homonym tags together
+</span>  <span class='id identifier rubyid_child_tags_by_name'>child_tags_by_name</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_handle_anonymous'>handle_anonymous</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>and</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ANONYMOUS_TAG_NAME</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_property_name'>property_name</span> <span class='op'>=</span> <span class='id identifier rubyid_get_deserialized_property_name'>get_deserialized_property_name</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_homonym_children'>homonym_children</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_child_tags_by_name'>child_tags_by_name</span><span class='lbracket'>[</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_homonym_children'>homonym_children</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_child'>child</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_child_tags_by_name'>child_tags_by_name</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span> <span class='id identifier rubyid_homonym_children'>homonym_children</span><span class='op'>|</span>
+    <span class='comment'># Check whether this variable is assignable
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span> <span class='kw'>or</span> <span class='id identifier rubyid_serializable_property?'>serializable_property?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_property_name'>property_name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_property_values'>property_values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+
+      <span class='id identifier rubyid_homonym_children'>homonym_children</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_child'>child</span><span class='op'>|</span>
+        <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_has_attribute?'>has_attribute?</span><span class='lparen'>(</span><span class='const'>OBJECT_REF_ATTR_NAME</span><span class='rparen'>)</span>
+          <span class='comment'># Object reference
+</span>          <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='ivar'>@ref_by_oid</span><span class='lbracket'>[</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='const'>OBJECT_REF_ATTR_NAME</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+          <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ref'>ref</span>
+
+        <span class='kw'>elsif</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_has_values?'>has_values?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_has_children?'>has_children?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_has_attributes?'>has_attributes?</span>
+          <span class='comment'># If the object only has values (no children, no attributes):
+</span>          <span class='comment'>#  then the values are the variable value
+</span>          <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+          <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+
+        <span class='kw'>else</span>
+          <span class='comment'># Consider this tag as a plain object
+</span>          <span class='id identifier rubyid_variable_name'>variable_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+          <span class='id identifier rubyid_previous_value'>previous_value</span> <span class='op'>=</span>
+            <span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span> <span class='id identifier rubyid_variable_name'>variable_name</span><span class='rparen'>)</span> <span class='op'>?</span>
+              <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='rparen'>)</span> <span class='op'>:</span>
+              <span class='kw'>nil</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_previous_value'>previous_value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_is_coercible?'>is_coercible?</span><span class='lparen'>(</span><span class='id identifier rubyid_previous_value'>previous_value</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='id identifier rubyid_new_plain_object'>new_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='id identifier rubyid_new_plain_object'>new_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span><span class='comma'>,</span> <span class='id identifier rubyid_previous_value'>previous_value</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+
+        <span class='id identifier rubyid_property_values'>property_values</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_property_value'>property_value</span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Array</span>
+        <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_property_values'>property_values</span><span class='rparen'>)</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_property_values'>property_values</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_set_serializable_property'>set_serializable_property</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span> <span class='id identifier rubyid_property_values'>property_values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_property_values'>property_values</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_set_serializable_property'>set_serializable_property</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span> <span class='id identifier rubyid_property_values'>property_values</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deserialize_from_values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deserialize_from_values</strong>(tag, o) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 94</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deserialize_from_values'>deserialize_from_values</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_has_values?'>has_values?</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_has_children?'>has_children?</span> <span class='kw'>or</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_has_attributes?'>has_attributes?</span>
+      <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='kw'>not</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@values</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='comment'># value is preferred
+</span>        <span class='id identifier rubyid_property_name'>property_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>value</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_property_value'>property_value</span> <span class='op'>=</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_property_name'>property_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>values</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_serializable_property?'>serializable_property?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_property_name'>property_name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_set_serializable_property'>set_serializable_property</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+    <span class='kw'>else</span>
+      <span class='comment'># the tag only has values
+</span>      <span class='kw'>return</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>?</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_property_value'>property_value</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="deserialize_object-instance_method">
+  
+    - (<tt>Object</tt>) <strong>deserialize_object</strong>(tag, o = new_plain_object(tag)) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Called by #deserialize when not using <tt>from_sdl()</tt>. Deserializes the
+specified tag into an object using values, attributes, child tags, etc.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_deserialize_object'>deserialize_object</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='id identifier rubyid_new_plain_object'>new_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_deserialize_from_child_tags'>deserialize_from_child_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_deserialize_from_values'>deserialize_from_values</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_deserialize_from_attributes'>deserialize_from_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_deserialize_from_child_tags'>deserialize_from_child_tags</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_anonymous_tag_list_idiom'>apply_anonymous_tag_list_idiom</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  
+  <span class='id identifier rubyid_o'>o</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_deserialized_property_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>get_deserialized_property_name</strong>(tag, parent_tag, parent_object) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the name of the property to which the specified Tag is supposed to
+be assigned in the parent object. Default behavior: this implementation
+returns the tag's name (ignoring the namespace).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_deserialized_property_name'>get_deserialized_property_name</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_tag'>parent_tag</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_object'>parent_object</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tag'>tag</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_plain_object-instance_method">
+  
+    - (<tt>Object</tt>) <strong>new_plain_object</strong>(tag, o = nil, parent_object = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Provides deserialized new plain object instances (i.e. "plain object" as
+opposed to special cases like SDL values). By default, returns 'o' or a new
+instance of OpenStruct if 'o' is <code>nil</code>.</p>
+<dl class="rdoc-list note-list"><dt><em>tag</em>
+<dd>
+<p>the deserialized Tag</p>
+</dd><dt><em>o</em>
+<dd>
+<p>the currently used object or nil if there is none yet</p>
+</dd><dt><em>parent_object</em>
+<dd>
+<p>the parent object or <code>nil</code> if root</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+61
+62
+63
+64
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 61</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_plain_object'>new_plain_object</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_object'>parent_object</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_serializable_property-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_serializable_property</strong>(o, name, value) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the given property in the given object. This method could be redefined
+in order to convert a value to a custom one, for instance.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>whether the property has been assigned or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/deserializer.rb', line 243</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_serializable_property'>set_serializable_property</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_o'>o</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+
+  <span class='kw'>when</span> <span class='const'>OpenStruct</span>
+    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>return</span> <span class='kw'>true</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_accessor_name'>accessor_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_accessor_name'>accessor_name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span> <span class='id identifier rubyid_accessor_name'>accessor_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span>
+      <span class='kw'>return</span> <span class='kw'>true</span>
+
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_variable_name'>variable_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='id identifier rubyid_variable_name'>variable_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='kw'>true</span>
+        
+      <span class='kw'>else</span>
+        <span class='kw'>return</span> <span class='kw'>false</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:41 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

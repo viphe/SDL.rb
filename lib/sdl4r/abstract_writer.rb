@@ -32,7 +32,7 @@ module SDL4R
     # @return [Integer] 0 at the root level and a higher int otherwise.
     # @abstract
     def depth
-      raise 'not implemented'
+      raise 'abstract method'
     end
 
     # Writes the declaration of a tag.
@@ -49,7 +49,7 @@ module SDL4R
     # @return [self]
     #
     def start_element(namespace, name = nil)
-      raise 'not implemented'
+      raise 'abstract method'
     end
 
     # (see #start_element)
@@ -61,7 +61,7 @@ module SDL4R
     #
     # @abstract
     def end_element
-      raise 'not implemented'
+      raise 'abstract method'
     end
 
     # (see #end_element)
@@ -74,7 +74,7 @@ module SDL4R
     #
     # @abstract
     def start_body
-      raise 'not implemented'
+      raise 'abstract method'
     end
     
     # Writes the end of a tag body to the underlying stream.
@@ -82,7 +82,7 @@ module SDL4R
     #
     # @abstract
     def end_body
-      raise 'not implemented'
+      raise 'abstract method'
     end
     
     # Writes a tag. The tag is closed when the method exits.
@@ -118,7 +118,7 @@ module SDL4R
     # @return [self]
     #
     def value(*values)
-      raise 'not implemented'
+      raise 'abstract method'
     end
 
     # (see #value)
@@ -146,7 +146,7 @@ module SDL4R
     # @return [self]
     # 
     def attribute(namespace, name, value = MISSING_PARAMETER)
-      raise 'not implemented'
+      raise 'abstract method'
     end
     
     # Writes the given objects to the underlying stream.

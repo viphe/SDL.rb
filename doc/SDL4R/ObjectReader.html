@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::ObjectReader
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (O)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">ObjectReader</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::ObjectReader
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::ObjectReader</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span>, <span class='object_link'><a href="ReaderWithElement.html" title="SDL4R::ReaderWithElement (module)">ReaderWithElement</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/sdl4r/object_reader.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>A reader that turns object graphs into a SDL stream as per SDL
+serialization.</p>
+
+<p>If an encountered object responds to #to_sdl(AbstractWriter), this method
+is called. The result must be <code>nil</code> if there is nothing else to
+do. If the result is not nil, then the encountered object is substituted by
+that result.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractReader.html#TYPE_ELEMENT-constant" title="SDL4R::AbstractReader::TYPE_ELEMENT (constant)">AbstractReader::TYPE_ELEMENT</a></span>, <span class='object_link'><a href="AbstractReader.html#TYPE_END_ELEMENT-constant" title="SDL4R::AbstractReader::TYPE_END_ELEMENT (constant)">AbstractReader::TYPE_END_ELEMENT</a></span></p>
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#depth-instance_method" title="#depth (instance method)">- (Object) <strong>depth</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (ObjectReader) <strong>initialize</strong>(root, object_mapper = ObjectMapper.new) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of ObjectReader.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#node_type-instance_method" title="#node_type (instance method)">- (Object) <strong>node_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-instance_method" title="#read (instance method)">- (Object) <strong>read</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rewind-instance_method" title="#rewind (instance method)">- (Object) <strong>rewind</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rewindable%3F-instance_method" title="#rewindable? (instance method)">- (Boolean) <strong>rewindable?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ReaderWithElement.html" title="SDL4R::ReaderWithElement (module)">ReaderWithElement</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ReaderWithElement.html#attribute-instance_method" title="SDL4R::ReaderWithElement#attribute (method)">#attribute</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attribute_at-instance_method" title="SDL4R::ReaderWithElement#attribute_at (method)">#attribute_at</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attribute_count-instance_method" title="SDL4R::ReaderWithElement#attribute_count (method)">#attribute_count</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attributes-instance_method" title="SDL4R::ReaderWithElement#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attributes%3F-instance_method" title="SDL4R::ReaderWithElement#attributes? (method)">#attributes?</a></span>, <span class='object_link'><a href="ReaderWithElement.html#name-instance_method" title="SDL4R::ReaderWithElement#name (method)">#name</a></span>, <span class='object_link'><a href="ReaderWithElement.html#prefix-instance_method" title="SDL4R::ReaderWithElement#prefix (method)">#prefix</a></span>, <span class='object_link'><a href="ReaderWithElement.html#self_closing%3F-instance_method" title="SDL4R::ReaderWithElement#self_closing? (method)">#self_closing?</a></span>, <span class='object_link'><a href="ReaderWithElement.html#values-instance_method" title="SDL4R::ReaderWithElement#values (method)">#values</a></span>, <span class='object_link'><a href="ReaderWithElement.html#values%3F-instance_method" title="SDL4R::ReaderWithElement#values? (method)">#values?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractReader.html#attribute-instance_method" title="SDL4R::AbstractReader#attribute (method)">#attribute</a></span>, <span class='object_link'><a href="AbstractReader.html#attribute_at-instance_method" title="SDL4R::AbstractReader#attribute_at (method)">#attribute_at</a></span>, <span class='object_link'><a href="AbstractReader.html#attribute_count-instance_method" title="SDL4R::AbstractReader#attribute_count (method)">#attribute_count</a></span>, <span class='object_link'><a href="AbstractReader.html#attributes-instance_method" title="SDL4R::AbstractReader#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="AbstractReader.html#attributes%3F-instance_method" title="SDL4R::AbstractReader#attributes? (method)">#attributes?</a></span>, <span class='object_link'><a href="AbstractReader.html#each-instance_method" title="SDL4R::AbstractReader#each (method)">#each</a></span>, <span class='object_link'><a href="AbstractReader.html#each_tag-instance_method" title="SDL4R::AbstractReader#each_tag (method)">#each_tag</a></span>, <span class='object_link'><a href="AbstractReader.html#name-instance_method" title="SDL4R::AbstractReader#name (method)">#name</a></span>, <span class='object_link'><a href="AbstractReader.html#new_time-instance_method" title="SDL4R::AbstractReader#new_time (method)">#new_time</a></span>, <span class='object_link'><a href="AbstractReader.html#prefix-instance_method" title="SDL4R::AbstractReader#prefix (method)">#prefix</a></span>, <span class='object_link'><a href="AbstractReader.html#self_closing%3F-instance_method" title="SDL4R::AbstractReader#self_closing? (method)">#self_closing?</a></span>, <span class='object_link'><a href="AbstractReader.html#value-instance_method" title="SDL4R::AbstractReader#value (method)">#value</a></span>, <span class='object_link'><a href="AbstractReader.html#values-instance_method" title="SDL4R::AbstractReader#values (method)">#values</a></span>, <span class='object_link'><a href="AbstractReader.html#values%3F-instance_method" title="SDL4R::AbstractReader#values? (method)">#values?</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::ObjectReader (class)">ObjectReader</a></span></tt>) <strong>initialize</strong>(root, object_mapper = ObjectMapper.new) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A new instance of ObjectReader</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>root</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>root of the object graph to read from</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>object_mapper</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ObjectMapper.html" title="SDL4R::ObjectMapper (class)">ObjectMapper</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>ObjectMapper.new</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span> <span class='op'>=</span> <span class='const'>ObjectMapper</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+  <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_root'>root</span>
+  <span class='ivar'>@object_mapper</span> <span class='op'>=</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span>
+  <span class='ivar'>@stack</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@eof_reached</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_record_object_graph'>record_object_graph</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="depth-instance_method">
+  
+    - (<tt>Object</tt>) <strong>depth</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_depth'>depth</span>
+  <span class='ivar'>@stack</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="node_type-instance_method">
+  
+    - (<tt>Object</tt>) <strong>node_type</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 115</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_node_type'>node_type</span>
+  <span class='ivar'>@node_type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read-instance_method">
+  
+    - (<tt>Object</tt>) <strong>read</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 123</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span>
+  <span class='kw'>if</span> <span class='ivar'>@root</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@eof_reached</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='ivar'>@eof_reached</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@stack</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_enter_object'>enter_object</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ROOT_TAG_NAME</span><span class='comma'>,</span> <span class='ivar'>@root</span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+      <span class='kw'>if</span> <span class='ivar'>@node_type</span> <span class='op'>==</span> <span class='const'>TYPE_END_ELEMENT</span> <span class='comment'># current element already closed
+</span>        <span class='ivar'>@stack</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
+        <span class='kw'>if</span> <span class='ivar'>@stack</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+          <span class='ivar'>@eof_reached</span> <span class='op'>=</span> <span class='kw'>true</span>
+          <span class='kw'>return</span> <span class='kw'>nil</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_next_child'>next_child</span> <span class='op'>=</span> <span class='id identifier rubyid_element'>element</span><span class='period'>.</span><span class='id identifier rubyid_next_child'>next_child</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_next_child'>next_child</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+        <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='const'>TYPE_END_ELEMENT</span> <span class='comment'># close current element
+</span>      <span class='kw'>else</span>
+        <span class='id identifier rubyid_enter_object'>enter_object</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_next_child'>next_child</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rewind-instance_method">
+  
+    - (<tt>Object</tt>) <strong>rewind</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rewind'>rewind</span>
+  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@stack</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+  <span class='ivar'>@eof_reached</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rewindable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>rewindable?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/object_reader.rb', line 46</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rewindable?'>rewindable?</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:41 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

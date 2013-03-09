@@ -30,9 +30,9 @@ module SDL4R
     # @private
     MISSING_PARAMETER = Object.new # :nodoc:
 
-    # @override [Tag]
-    # @override [Tag, ObjectMapper]
-    # @override [ObjectMapper]
+    # @overload [Tag]
+    # @overload [Tag, ObjectMapper]
+    # @overload [ObjectMapper]
     #
     # @param [Tag] root tag (written data is added to this Tag)
     # @param [ObjectMapper] object_mapper used during serialization operations

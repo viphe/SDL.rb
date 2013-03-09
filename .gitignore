@@ -11,3 +11,4 @@
 .idea
 nbproject
 Gemfile.lock
+.yardoc/

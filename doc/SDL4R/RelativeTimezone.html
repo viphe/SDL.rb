@@ -1,0 +1,820 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::RelativeTimezone
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">RelativeTimezone</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::RelativeTimezone
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">TZInfo::Timezone</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TZInfo::Timezone</li>
+          
+            <li class="next">SDL4R::RelativeTimezone</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/sdl4r/relative_timezone.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Represents a Timezone which is distant from a standard timezone by a fixed
+offset.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#identifier-instance_method" title="#identifier (instance method)">- (Object) <strong>identifier</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute identifier.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#relative_offset-instance_method" title="#relative_offset (instance method)">- (Object) <strong>relative_offset</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute relative_offset.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get-class_method" title="get (class method)">+ (Object) <strong>get</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a timezone by its identifier (e.g. "Europe/London",
+"America/Chicago" or "UTC").</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_proxy-class_method" title="get_proxy (class method)">+ (Object) <strong>get_proxy</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns a proxy for the Timezone with the given identifier.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new-class_method" title="new (class method)">+ (Object) <strong>new</strong>(identifier, offset_text, offset, base_timezone) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_relative_identifier-class_method" title="parse_relative_identifier (class method)">+ (Object) <strong>parse_relative_identifier</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses the specified identifier of the shape "GMT" or "CET+7" or
+"Asia/Shanghai-03:30" and returns an array containing respectively the
+simple zone identifier (e.g. "CET", "Asia/Shanghai"), the offset part (e.g.
+"-6", "+08:30") and the offset (seconds).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#period_for_utc-instance_method" title="#period_for_utc (instance method)">- (Object) <strong>period_for_utc</strong>(utc) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#periods_for_local-instance_method" title="#periods_for_local (instance method)">- (Object) <strong>periods_for_local</strong>(local) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="identifier-instance_method">
+  
+    - (<tt>Object</tt>) <strong>identifier</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute identifier</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_identifier'>identifier</span>
+  <span class='ivar'>@identifier</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="relative_offset-instance_method">
+  
+    - (<tt>Object</tt>) <strong>relative_offset</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute relative_offset</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 125</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_relative_offset'>relative_offset</span>
+  <span class='ivar'>@relative_offset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="get-class_method">
+  
+    + (<tt>Object</tt>) <strong>get</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a timezone by its identifier (e.g. "Europe/London",
+"America/Chicago" or "UTC").</p>
+
+<p>Supports relative timezones in the following formats: "UTC+2", "GMT+01:30",
+"Europe/Paris-10:00".</p>
+
+<p>Raises InvalidTimezoneIdentifier if the timezone couldn't be found.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_base_identifier'>base_identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='const'>RelativeTimezone</span><span class='op'>::</span><span class='id identifier rubyid_parse_relative_identifier'>parse_relative_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>TZAbbreviationDB</span><span class='period'>.</span><span class='id identifier rubyid_get_timezone'>get_timezone</span><span class='lparen'>(</span><span class='id identifier rubyid_base_identifier'>base_identifier</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_offset'>offset</span> <span class='op'>?</span>
+    <span class='const'>RelativeTimezone</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_base_identifier'>base_identifier</span> <span class='op'>+</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_tz'>tz</span><span class='rparen'>)</span> <span class='op'>:</span>
+    <span class='id identifier rubyid_tz'>tz</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_proxy-class_method">
+  
+    + (<tt>Object</tt>) <strong>get_proxy</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a proxy for the Timezone with the given identifier. The proxy will
+cause the real timezone to be loaded when an attempt is made to find a
+period or convert a time. get_proxy will not validate the identifier. If an
+invalid identifier is specified, no exception will be raised until the
+proxy is used.</p>
+
+<p>Supports relative timezones in the following format: "GMT+01:30",
+"CET-10:00".</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 56</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_proxy'>get_proxy</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_base_identifier'>base_identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='const'>RelativeTimezone</span><span class='op'>::</span><span class='id identifier rubyid_parse_relative_identifier'>parse_relative_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_proxy'>proxy</span> <span class='op'>=</span> <span class='const'>TZAbbreviationDB</span><span class='period'>.</span><span class='id identifier rubyid_get_timezone_proxy'>get_timezone_proxy</span><span class='lparen'>(</span><span class='id identifier rubyid_base_identifier'>base_identifier</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_offset'>offset</span> <span class='op'>?</span>
+    <span class='const'>RelativeTimezone</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_base_identifier'>base_identifier</span> <span class='op'>+</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='rparen'>)</span> <span class='op'>:</span>
+    <span class='id identifier rubyid_proxy'>proxy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new-class_method">
+  
+    + (<tt>Object</tt>) <strong>new</strong>(identifier, offset_text, offset, base_timezone) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_base_timezone'>base_timezone</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:_initialize</span><span class='comma'>,</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_base_timezone'>base_timezone</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_relative_identifier-class_method">
+  
+    + (<tt>Object</tt>) <strong>parse_relative_identifier</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses the specified identifier of the shape "GMT" or "CET+7" or
+"Asia/Shanghai-03:30" and returns an array containing respectively the
+simple zone identifier (e.g. "CET", "Asia/Shanghai"), the offset part (e.g.
+"-6", "+08:30") and the offset (seconds).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_parse_relative_identifier'>parse_relative_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_identifier'>identifier</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^([a-zA-Z0-9\/_]+)(([+\-])(\d+)(?::(\d+))?)?$</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_sign_part'>sign_part</span><span class='comma'>,</span> <span class='id identifier rubyid_hour_part'>hour_part</span><span class='comma'>,</span> <span class='id identifier rubyid_minute_part'>minute_part</span> <span class='op'>=</span> <span class='backref'>$1</span><span class='comma'>,</span> <span class='backref'>$2</span><span class='comma'>,</span> <span class='backref'>$3</span><span class='comma'>,</span> <span class='backref'>$4</span><span class='comma'>,</span> <span class='backref'>$5</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_sign_part'>sign_part</span> <span class='comment'># relative offset
+</span>      <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_offset'>offset</span> <span class='op'>+=</span> <span class='int'>3600</span> <span class='op'>*</span> <span class='id identifier rubyid_hour_part'>hour_part</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='kw'>if</span> <span class='id identifier rubyid_hour_part'>hour_part</span>
+      <span class='id identifier rubyid_offset'>offset</span> <span class='op'>+=</span> <span class='int'>60</span> <span class='op'>*</span> <span class='id identifier rubyid_minute_part'>minute_part</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='kw'>if</span> <span class='id identifier rubyid_minute_part'>minute_part</span>
+      <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='op'>-</span><span class='id identifier rubyid_offset'>offset</span> <span class='kw'>if</span> <span class='id identifier rubyid_sign_part'>sign_part</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span>
+
+      <span class='id identifier rubyid_offset'>offset</span> <span class='op'>=</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>==</span> <span class='int'>0</span>
+
+      <span class='comment'># We regenerate/normalize the offset text &quot;+7:3&quot; ==&gt; &quot;+07:03&quot;.
+</span>      <span class='id identifier rubyid_offset_text'>offset_text</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_offset'>offset</span>
+        <span class='id identifier rubyid_offset_text'>offset_text</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>&gt;=</span> <span class='int'>0</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>+</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+
+        <span class='id identifier rubyid_hours'>hours</span> <span class='op'>=</span> <span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span> <span class='op'>/</span> <span class='int'>3600</span>
+        <span class='id identifier rubyid_minutes'>minutes</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span> <span class='op'>%</span> <span class='int'>3600</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='int'>60</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_minutes'>minutes</span> <span class='op'>==</span> <span class='int'>0</span>
+          <span class='id identifier rubyid_offset_text'>offset_text</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_hours'>hours</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_offset_text'>offset_text</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%02d:%02d</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_hours'>hours</span><span class='comma'>,</span> <span class='id identifier rubyid_minutes'>minutes</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_offset_text'>offset_text</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="period_for_utc-instance_method">
+  
+    - (<tt>Object</tt>) <strong>period_for_utc</strong>(utc) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_period_for_utc'>period_for_utc</span><span class='lparen'>(</span><span class='id identifier rubyid_utc'>utc</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_period'>period</span> <span class='op'>=</span> <span class='ivar'>@base_timezone</span><span class='period'>.</span><span class='id identifier rubyid_period_for_utc'>period_for_utc</span><span class='lparen'>(</span><span class='id identifier rubyid_utc'>utc</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_translated_offset'>translated_offset</span> <span class='op'>=</span>
+    <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>?</span>
+      <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>TimezoneOffsetInfo</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span> <span class='op'>+</span> <span class='ivar'>@relative_offset</span><span class='comma'>,</span>
+        <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_std_offset'>std_offset</span><span class='comma'>,</span>
+        <span class='lparen'>(</span><span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='ivar'>@relative_offset_text</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span> <span class='op'>:</span>
+      <span class='kw'>nil</span>
+
+  <span class='kw'>return</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>TimezonePeriod</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_translated_offset'>translated_offset</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="periods_for_local-instance_method">
+  
+    - (<tt>Object</tt>) <strong>periods_for_local</strong>(local) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/relative_timezone.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_periods_for_local'>periods_for_local</span><span class='lparen'>(</span><span class='id identifier rubyid_local'>local</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_periods'>periods</span> <span class='op'>=</span> <span class='ivar'>@base_timezone</span><span class='period'>.</span><span class='id identifier rubyid_periods_for_local'>periods_for_local</span><span class='lparen'>(</span><span class='id identifier rubyid_local'>local</span><span class='rparen'>)</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_periods'>periods</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_period'>period</span><span class='op'>|</span>
+    <span class='id identifier rubyid_translated_offset'>translated_offset</span> <span class='op'>=</span>
+      <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span> <span class='op'>?</span>
+        <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>TimezoneOffsetInfo</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span> <span class='op'>+</span> <span class='ivar'>@relative_offset</span><span class='comma'>,</span>
+          <span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_std_offset'>std_offset</span><span class='comma'>,</span>
+          <span class='lparen'>(</span><span class='id identifier rubyid_period'>period</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='ivar'>@relative_offset_text</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span> <span class='op'>:</span>
+        <span class='kw'>nil</span>
+    <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>TimezonePeriod</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_translated_offset'>translated_offset</span><span class='rparen'>)</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:41 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,2662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Reader
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (R)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Reader</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Reader
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Reader</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span>, <span class='object_link'><a href="ReaderWithElement.html" title="SDL4R::ReaderWithElement (module)">ReaderWithElement</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/sdl4r/reader.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Implementation of a pull parser for SDL designed after the model of
+Nokogiri::XML::Reader.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="SKIP_PROC-classvariable" class="">@@SKIP_PROC =
+          
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='kw'>false</span> <span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="ON_SELF_CLOSING_TAG_PROG-classvariable" class="">@@ON_SELF_CLOSING_TAG_PROG =
+          
+        </dt>
+        <dd><pre class="code"><span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_on_self_closing_tag'>on_self_closing_tag</span> <span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="comment_handler_set-classvariable" class="">@@comment_handler_set =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:INLINE_COMMENT</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_on_simple_comment'>on_simple_comment</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:ONE_LINE_COMMENT</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_on_simple_comment'>on_simple_comment</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:MULTILINE_COMMENT_START</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_on_multiline_comment'>on_multiline_comment</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="common_tag_set-classvariable" class="">@@common_tag_set =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Handlers that work the same at the top level or in any normal tag body.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:WHITESPACE</span> <span class='op'>=&gt;</span> <span class='cvar'>@@SKIP_PROC</span><span class='comma'>,</span>
+  <span class='symbol'>:EOL</span> <span class='op'>=&gt;</span> <span class='cvar'>@@SKIP_PROC</span><span class='comma'>,</span>
+  <span class='symbol'>:SEMICOLON</span> <span class='op'>=&gt;</span> <span class='cvar'>@@SKIP_PROC</span><span class='comma'>,</span>
+  <span class='symbol'>:IDENTIFIER</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_on_tag_start'>on_tag_start</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="handler_sets-classvariable" class="">@@handler_sets =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>The handlers are object with #call() (like Proc, etc) that should return
+false if the corresponding token is ignored, true otherwise.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="value_handlers-classvariable" class="">@@value_handlers =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:NULL</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='kw'>nil</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:INTEGER</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_integer'>parse_integer</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:FLOAT</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_float'>parse_float</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:BOOLEAN</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:true|on)\Z</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:CHARACTER</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_character'>parse_character</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:INLINE_BACKQUOTE_STRING</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:INLINE_DOUBLE_QUOTE_STRING</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_double_quote_string'>parse_double_quote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:MULTILINE_BACKQUOTE_STRING_START</span> <span class='op'>=&gt;</span>
+    <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_multiline_backquote_string'>parse_multiline_backquote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_START</span> <span class='op'>=&gt;</span>
+    <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_multiline_double_quote_string'>parse_multiline_double_quote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:INLINE_BINARY</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='const'>SdlBinary</span><span class='period'>.</span><span class='id identifier rubyid_decode64'>decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:MULTILINE_BINARY_START</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_multiline_binary'>parse_multiline_binary</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:DATE</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_date'>parse_date</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+  <span class='symbol'>:TIME_OR_TIMESPAN</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lambda'>lambda</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_reader'>reader</span><span class='op'>|</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_parse_time_span'>parse_time_span</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractReader.html#TYPE_ELEMENT-constant" title="SDL4R::AbstractReader::TYPE_ELEMENT (constant)">AbstractReader::TYPE_ELEMENT</a></span>, <span class='object_link'><a href="AbstractReader.html#TYPE_END_ELEMENT-constant" title="SDL4R::AbstractReader::TYPE_END_ELEMENT (constant)">AbstractReader::TYPE_END_ELEMENT</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#depth-instance_method" title="#depth (instance method)">- (Object) <strong>depth</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Depth of the current SDL node.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#name-instance_method" title="#name (instance method)">- (Object) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Name of the traversed SDL node.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#node_type-instance_method" title="#node_type (instance method)">- (Object) <strong>node_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Type of the traversed SDL node (e.g. TYPE_ELEMENT).</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefix-instance_method" title="#prefix (instance method)">- (Object) <strong>prefix</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Prefix (namespace) of the traversed SDL node.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#add_values_handler-class_method" title="add_values_handler (class method)">+ (Object) <strong>add_values_handler</strong>(map, handler) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#from_io-class_method" title="from_io (class method)">+ (Object) <strong>from_io</strong>(io) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#from_memory-class_method" title="from_memory (class method)">+ (Object) <strong>from_memory</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Reader) <strong>initialize</strong>(io) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Reader.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_anonymous_value-instance_method" title="#on_anonymous_value (instance method)">- (Object) <strong>on_anonymous_value</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Should only be called from :top or :tag_body modes.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_attribute-instance_method" title="#on_attribute (instance method)">- (Object) <strong>on_attribute</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_eof-instance_method" title="#on_eof (instance method)">- (Object) <strong>on_eof</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_multiline_comment-instance_method" title="#on_multiline_comment (instance method)">- (Object) <strong>on_multiline_comment</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_self_closing_tag-instance_method" title="#on_self_closing_tag (instance method)">- (Object) <strong>on_self_closing_tag</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_simple_comment-instance_method" title="#on_simple_comment (instance method)">- (Object) <strong>on_simple_comment</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_tag_body_end-instance_method" title="#on_tag_body_end (instance method)">- (Object) <strong>on_tag_body_end</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_tag_body_start-instance_method" title="#on_tag_body_start (instance method)">- (Object) <strong>on_tag_body_start</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_tag_start-instance_method" title="#on_tag_start (instance method)">- (Object) <strong>on_tag_start</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#on_value-instance_method" title="#on_value (instance method)">- (Object) <strong>on_value</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_character-instance_method" title="#parse_character (instance method)">- (Object) <strong>parse_character</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_date-instance_method" title="#parse_date (instance method)">- (Object) <strong>parse_date</strong>(literal) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses the <code>literal</code> into a returned Date object.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_double_quote_string-instance_method" title="#parse_double_quote_string (instance method)">- (Object) <strong>parse_double_quote_string</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_float-instance_method" title="#parse_float (instance method)">- (Object) <strong>parse_float</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_integer-instance_method" title="#parse_integer (instance method)">- (Object) <strong>parse_integer</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_multiline_backquote_string-instance_method" title="#parse_multiline_backquote_string (instance method)">- (Object) <strong>parse_multiline_backquote_string</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_multiline_binary-instance_method" title="#parse_multiline_binary (instance method)">- (Object) <strong>parse_multiline_binary</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_multiline_double_quote_string-instance_method" title="#parse_multiline_double_quote_string (instance method)">- (Object) <strong>parse_multiline_double_quote_string</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_time_span-instance_method" title="#parse_time_span (instance method)">- (Object) <strong>parse_time_span</strong>(literal) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses <code>literal</code> (String) into the corresponding SDLTimeSpan,
+which is then returned.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#raise_unexpected_token-instance_method" title="#raise_unexpected_token (instance method)">- (Object) <strong>raise_unexpected_token</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-instance_method" title="#read (instance method)">- (Reader) <strong>read</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Reads the next node in the SDL structure.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rewind-instance_method" title="#rewind (instance method)">- (Object) <strong>rewind</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rewindable%3F-instance_method" title="#rewindable? (instance method)">- (Boolean) <strong>rewindable?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values-instance_method" title="#values (instance method)">- (Object) <strong>values</strong> </a>
+    
+
+    
+      (also: #value)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#values%3F-instance_method" title="#values? (instance method)">- (Boolean) <strong>values?</strong> </a>
+    
+
+    
+      (also: #value?)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="ReaderWithElement.html" title="SDL4R::ReaderWithElement (module)">ReaderWithElement</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="ReaderWithElement.html#attribute-instance_method" title="SDL4R::ReaderWithElement#attribute (method)">#attribute</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attribute_at-instance_method" title="SDL4R::ReaderWithElement#attribute_at (method)">#attribute_at</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attribute_count-instance_method" title="SDL4R::ReaderWithElement#attribute_count (method)">#attribute_count</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attributes-instance_method" title="SDL4R::ReaderWithElement#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="ReaderWithElement.html#attributes%3F-instance_method" title="SDL4R::ReaderWithElement#attributes? (method)">#attributes?</a></span>, <span class='object_link'><a href="ReaderWithElement.html#self_closing%3F-instance_method" title="SDL4R::ReaderWithElement#self_closing? (method)">#self_closing?</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractReader.html#attribute-instance_method" title="SDL4R::AbstractReader#attribute (method)">#attribute</a></span>, <span class='object_link'><a href="AbstractReader.html#attribute_at-instance_method" title="SDL4R::AbstractReader#attribute_at (method)">#attribute_at</a></span>, <span class='object_link'><a href="AbstractReader.html#attribute_count-instance_method" title="SDL4R::AbstractReader#attribute_count (method)">#attribute_count</a></span>, <span class='object_link'><a href="AbstractReader.html#attributes-instance_method" title="SDL4R::AbstractReader#attributes (method)">#attributes</a></span>, <span class='object_link'><a href="AbstractReader.html#attributes%3F-instance_method" title="SDL4R::AbstractReader#attributes? (method)">#attributes?</a></span>, <span class='object_link'><a href="AbstractReader.html#each-instance_method" title="SDL4R::AbstractReader#each (method)">#each</a></span>, <span class='object_link'><a href="AbstractReader.html#each_tag-instance_method" title="SDL4R::AbstractReader#each_tag (method)">#each_tag</a></span>, <span class='object_link'><a href="AbstractReader.html#new_time-instance_method" title="SDL4R::AbstractReader#new_time (method)">#new_time</a></span>, <span class='object_link'><a href="AbstractReader.html#self_closing%3F-instance_method" title="SDL4R::AbstractReader#self_closing? (method)">#self_closing?</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Reader (class)">Reader</a></span></tt>) <strong>initialize</strong>(io) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A new instance of Reader</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>io == nil</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>io is not an IO</span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:gets</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>
+  <span class='ivar'>@tokenizer</span> <span class='op'>=</span> <span class='const'>Tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@io</span><span class='rparen'>)</span>
+  <span class='ivar'>@element</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@depth</span> <span class='op'>=</span> <span class='int'>1</span>
+
+  <span class='id identifier rubyid_clear_node'>clear_node</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='symbol'>:top</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="depth-instance_method">
+  
+    - (<tt>Object</tt>) <strong>depth</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Depth of the current SDL node. Depth of top nodes is 1 (0 would be the root
+that the Reader doesn't traverse).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_depth'>depth</span>
+  <span class='ivar'>@depth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>name</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Name of the traversed SDL node.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="node_type-instance_method">
+  
+    - (<tt>Object</tt>) <strong>node_type</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Type of the traversed SDL node (e.g. TYPE_ELEMENT).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_node_type'>node_type</span>
+  <span class='ivar'>@node_type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="prefix-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prefix</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Prefix (namespace) of the traversed SDL node.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 145</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_prefix'>prefix</span>
+  <span class='ivar'>@prefix</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="add_values_handler-class_method">
+  
+    + (<tt>Object</tt>) <strong>add_values_handler</strong>(map, handler) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_add_values_handler'>add_values_handler</span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span><span class='comma'>,</span> <span class='id identifier rubyid_handler'>handler</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:NULL</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:INTEGER</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:FLOAT</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:BOOLEAN</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:CHARACTER</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:INLINE_BACKQUOTE_STRING</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:INLINE_DOUBLE_QUOTE_STRING</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:MULTILINE_BACKQUOTE_STRING_START</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_START</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:INLINE_BINARY</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:MULTILINE_BINARY_START</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:DATE</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+  <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:TIME_OR_TIMESPAN</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_handler'>handler</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="from_io-class_method">
+  
+    + (<tt>Object</tt>) <strong>from_io</strong>(io) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_io'>from_io</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="from_memory-class_method">
+  
+    + (<tt>Object</tt>) <strong>from_memory</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 208</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_memory'>from_memory</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>StringIO</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="on_anonymous_value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_anonymous_value</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Should only be called from :top or :tag_body modes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+332
+333
+334
+335
+336
+337</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 332</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_anonymous_value'>on_anonymous_value</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_set_mode'>set_mode</span> <span class='symbol'>:tag_values</span>
+  <span class='ivar'>@element</span> <span class='op'>=</span> <span class='const'>Element</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ANONYMOUS_TAG_NAME</span>
+
+  <span class='id identifier rubyid_on_value'>on_value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_attribute-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_attribute</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+311
+312
+313
+314
+315
+316
+317
+318
+319</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 311</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_attribute'>on_attribute</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_read_name'>read_name</span>
+  <span class='id identifier rubyid_read_equal'>read_equal</span>
+  <span class='id identifier rubyid_read_value'>read_value</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span> <span class='symbol'>:tag_attributes</span>
+  <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_add_attribute'>add_attribute</span><span class='lparen'>(</span><span class='ivar'>@prefix</span><span class='comma'>,</span> <span class='ivar'>@name</span><span class='comma'>,</span> <span class='ivar'>@value</span><span class='rparen'>)</span>
+
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_eof-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_eof</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267
+268</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_eof'>on_eof</span> <span class='comment'># :nodoc:
+</span>  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_multiline_comment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_multiline_comment</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 271</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_multiline_comment'>on_multiline_comment</span> <span class='comment'># :nodoc:
+</span><span class='comment'>#        @node_type = TYPE_COMMENT
+</span>  <span class='ivar'>@value</span> <span class='op'>=</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span>
+
+  <span class='kw'>while</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='kw'>case</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_type'>token_type</span>
+    <span class='kw'>when</span> <span class='symbol'>:EOL</span>
+      <span class='ivar'>@value</span> <span class='op'>&lt;&lt;</span> <span class='CHAR'>?\n</span>
+    <span class='kw'>when</span> <span class='symbol'>:MULTILINE_COMMENT_PART</span>
+      <span class='ivar'>@value</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span>
+    <span class='kw'>when</span> <span class='symbol'>:MULTILINE_COMMENT_END</span>
+      <span class='ivar'>@value</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span>
+      <span class='kw'>break</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_raise_unexpected_token'>raise_unexpected_token</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_self_closing_tag-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_self_closing_tag</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+302
+303
+304
+305
+306
+307
+308</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 302</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_self_closing_tag'>on_self_closing_tag</span> <span class='comment'># :nodoc:
+</span>  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='const'>TYPE_ELEMENT</span>
+  <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_self_closing'>self_closing</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='ivar'>@depth</span> <span class='op'>&lt;=</span> <span class='int'>1</span> <span class='op'>?</span> <span class='symbol'>:top</span> <span class='op'>:</span> <span class='symbol'>:tag_body</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_simple_comment-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_simple_comment</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+259
+260
+261
+262</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 259</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_simple_comment'>on_simple_comment</span> <span class='comment'># :nodoc:
+</span><span class='comment'>#        @node_type = TYPE_COMMENT
+</span>  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_tag_body_end-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_tag_body_end</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 351</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_tag_body_end'>on_tag_body_end</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='ivar'>@depth</span> <span class='op'>&lt;=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unexpected end of tag</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_clear_node'>clear_node</span>
+  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='const'>TYPE_END_ELEMENT</span>
+  <span class='ivar'>@depth</span> <span class='op'>-=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='ivar'>@depth</span> <span class='op'>&lt;=</span> <span class='int'>1</span> <span class='op'>?</span> <span class='symbol'>:top</span> <span class='op'>:</span> <span class='symbol'>:tag_body</span><span class='rparen'>)</span>
+
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_tag_body_start-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_tag_body_start</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+340
+341
+342
+343
+344
+345
+346
+347
+348</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 340</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_tag_body_start'>on_tag_body_start</span> <span class='comment'># :nodoc:
+</span>  <span class='ivar'>@node_type</span> <span class='op'>=</span> <span class='const'>TYPE_ELEMENT</span>
+  <span class='ivar'>@prefix</span> <span class='op'>=</span> <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_prefix'>prefix</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+  <span class='ivar'>@depth</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span> <span class='symbol'>:tag_body</span>
+
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_tag_start-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_tag_start</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+293
+294
+295
+296
+297
+298
+299</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 293</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_tag_start'>on_tag_start</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_read_name'>read_name</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span> <span class='symbol'>:tag_values</span>
+  <span class='ivar'>@element</span> <span class='op'>=</span> <span class='const'>Element</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='ivar'>@prefix</span><span class='comma'>,</span> <span class='ivar'>@name</span>
+
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="on_value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>on_value</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+322
+323
+324
+325
+326
+327
+328</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 322</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_on_value'>on_value</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_read_value'>read_value</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span> <span class='symbol'>:tag_values</span>
+  <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_add_value'>add_value</span><span class='lparen'>(</span><span class='ivar'>@value</span><span class='rparen'>)</span>
+
+  <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_character-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_character</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 443</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_character'>parse_character</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_s'>s</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A.\Z</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_s'>s</span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\\\</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\'</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\n</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\r</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\r</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\t</span><span class='tstring_end'>&quot;</span></span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\t</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>illegal character literal </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_date-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_date</strong>(literal) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses the <code>literal</code> into a returned Date object.</p>
+
+<p>Raises an ArgumentError if <code>literal</code> has a bad format.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 487</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_date'>parse_date</span><span class='lparen'>(</span><span class='id identifier rubyid_literal'>literal</span><span class='rparen'>)</span>
+  <span class='comment'># here, we're being stricter than strptime() alone as we forbid trailing chars (also faster)
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_literal'>literal</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(-?\d+)\/(\d+)\/(\d+)\Z</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_date_year'>date_year</span> <span class='op'>=</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_date_month'>date_month</span> <span class='op'>=</span> <span class='backref'>$2</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='id identifier rubyid_date_day'>date_day</span> <span class='op'>=</span> <span class='backref'>$3</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+
+    <span class='id identifier rubyid_skip_whitespaces'>skip_whitespaces</span><span class='lparen'>(</span><span class='kw'>false</span><span class='rparen'>)</span>
+
+    <span class='comment'># Check whether the next tag is the time part
+</span>    <span class='kw'>if</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_type'>token_type</span> <span class='op'>==</span> <span class='symbol'>:TIME_OR_TIMESPAN</span>
+      <span class='comment'># Is it a time or timespan?
+</span>      <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_zone'>zone</span> <span class='op'>=</span>
+        <span class='id identifier rubyid_parse_time_span_and_time_zone'>parse_time_span_and_time_zone</span><span class='lparen'>(</span><span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+
+      <span class='kw'>if</span> <span class='id identifier rubyid_day'>day</span>
+        <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_unread'>unread</span>
+        <span class='kw'>return</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_civil'>civil</span><span class='lparen'>(</span><span class='id identifier rubyid_date_year'>date_year</span><span class='comma'>,</span> <span class='id identifier rubyid_date_month'>date_month</span><span class='comma'>,</span> <span class='id identifier rubyid_date_day'>date_day</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_new_time'>new_time</span><span class='lparen'>(</span><span class='id identifier rubyid_date_year'>date_year</span><span class='comma'>,</span> <span class='id identifier rubyid_date_month'>date_month</span><span class='comma'>,</span> <span class='id identifier rubyid_date_day'>date_day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_zone'>zone</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+    <span class='kw'>else</span>
+      <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_unread'>unread</span>
+      <span class='kw'>return</span> <span class='const'>Date</span><span class='period'>.</span><span class='id identifier rubyid_civil'>civil</span><span class='lparen'>(</span><span class='id identifier rubyid_date_year'>date_year</span><span class='comma'>,</span> <span class='id identifier rubyid_date_month'>date_month</span><span class='comma'>,</span> <span class='id identifier rubyid_date_day'>date_day</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Malformed Date &lt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_literal'>literal</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_double_quote_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_double_quote_string</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 365</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_double_quote_string'>parse_double_quote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_escaped'>escaped</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_each_char'>each_char</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c'>c</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_escaped'>escaped</span>
+      <span class='id identifier rubyid_escaped'>escaped</span> <span class='op'>=</span> <span class='kw'>false</span>
+
+      <span class='kw'>case</span> <span class='id identifier rubyid_c'>c</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_string'>string</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_c'>c</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>n</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_string'>string</span> <span class='op'>&lt;&lt;</span> <span class='CHAR'>?\n</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>r</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_string'>string</span> <span class='op'>&lt;&lt;</span> <span class='CHAR'>?\r</span>
+      <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>t</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_string'>string</span> <span class='op'>&lt;&lt;</span> <span class='CHAR'>?\t</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal escape character in string literal: '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_c'>c</span><span class='rbrace'>}</span><span class='tstring_content'>'.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_escaped'>escaped</span> <span class='op'>=</span> <span class='kw'>true</span>
+
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_string'>string</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_c'>c</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>orphan backslash</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_escaped'>escaped</span>
+
+  <span class='id identifier rubyid_string'>string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_float-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_float</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+472
+473
+474
+475
+476
+477
+478
+479
+480</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 472</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_float'>parse_float</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A([^BDF]+)BD\Z</span><span class='regexp_end'>/i</span></span>
+    <span class='kw'>return</span> <span class='const'>BigDecimal</span><span class='lparen'>(</span><span class='backref'>$1</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A([^BDF]+)[FD]\Z</span><span class='regexp_end'>/i</span></span>
+    <span class='kw'>return</span> <span class='const'>Float</span><span class='lparen'>(</span><span class='backref'>$1</span><span class='rparen'>)</span> <span class='kw'>rescue</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not a float '</span><span class='embexpr_beg'>#{</span><span class='backref'>$1</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='const'>Float</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='kw'>rescue</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>not a float '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_integer-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_integer</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+463
+464
+465
+466
+467
+468
+469</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 463</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_integer'>parse_integer</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A([^L]+)L\Z</span><span class='regexp_end'>/i</span></span>
+    <span class='kw'>return</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='backref'>$1</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='const'>Integer</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_multiline_backquote_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_multiline_backquote_string</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+425
+426
+427</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 425</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_multiline_backquote_string'>parse_multiline_backquote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse_multiline_string'>parse_multiline_string</span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_BACKQUOTE_STRING_PART</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_BACKQUOTE_STRING_END</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_multiline_binary-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_multiline_binary</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+437
+438
+439
+440</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 437</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_multiline_binary'>parse_multiline_binary</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_literal'>literal</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_multiline_string'>parse_multiline_string</span> <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_BINARY_PART</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_BINARY_END</span>
+  <span class='kw'>return</span> <span class='const'>SdlBinary</span><span class='period'>.</span><span class='id identifier rubyid_decode64'>decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_literal'>literal</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_multiline_double_quote_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_multiline_double_quote_string</strong>(s) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+430
+431
+432
+433
+434</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 430</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_multiline_double_quote_string'>parse_multiline_double_quote_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_parse_double_quote_string'>parse_double_quote_string</span><span class='lparen'>(</span>
+    <span class='id identifier rubyid_parse_multiline_string'>parse_multiline_string</span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_PART</span><span class='comma'>,</span> <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_END</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parse_time_span-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_time_span</strong>(literal) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses <code>literal</code> (String) into the corresponding SDLTimeSpan,
+which is then returned.</p>
+
+<p>Raises an ArgumentError if the literal is not a correct timespan literal.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 525</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parse_time_span'>parse_time_span</span><span class='lparen'>(</span><span class='id identifier rubyid_literal'>literal</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_days'>days</span><span class='comma'>,</span> <span class='id identifier rubyid_hours'>hours</span><span class='comma'>,</span> <span class='id identifier rubyid_minutes'>minutes</span><span class='comma'>,</span> <span class='id identifier rubyid_seconds'>seconds</span><span class='comma'>,</span> <span class='id identifier rubyid_milliseconds'>milliseconds</span><span class='comma'>,</span> <span class='id identifier rubyid_zone_code'>zone_code</span> <span class='op'>=</span>
+    <span class='id identifier rubyid_parse_time_span_and_time_zone'>parse_time_span_and_time_zone</span><span class='lparen'>(</span><span class='id identifier rubyid_literal'>literal</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_zone_code'>zone_code</span>
+    <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>got a time when expecting a timespan: \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_literal'>literal</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>SdlTimeSpan</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_days'>days</span> <span class='op'>||</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_hours'>hours</span><span class='comma'>,</span> <span class='id identifier rubyid_minutes'>minutes</span><span class='comma'>,</span> <span class='id identifier rubyid_seconds'>seconds</span><span class='comma'>,</span> <span class='id identifier rubyid_milliseconds'>milliseconds</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="raise_unexpected_token-instance_method">
+  
+    - (<tt>Object</tt>) <strong>raise_unexpected_token</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+243
+244
+245
+246
+247
+248</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 243</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_raise_unexpected_token'>raise_unexpected_token</span>
+  <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unexpected token </span><span class='embexpr_beg'>#{</span><span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_type'>token_type</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+    <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_line_no'>token_line_no</span><span class='comma'>,</span>
+    <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_pos'>token_pos</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Reader (class)">Reader</a></span></tt>) <strong>read</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Reads the next node in the SDL structure.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>sample.sdl</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span>
+  <span class='id identifier rubyid_reader'>reader</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>Reader</span><span class='period'>.</span><span class='id identifier rubyid_from_io'>from_io</span><span class='lparen'>(</span><span class='id identifier rubyid_io'>io</span><span class='rparen'>)</span>
+  <span class='kw'>while</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_node_type'>node_type</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="SDL4R::Reader (class)">Reader</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>returns a Reader if a new node has been reached or <code>nil</code> if the
+end of file has been reached.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 223</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span>
+  <span class='id identifier rubyid_clear_node'>clear_node</span>
+
+  <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>while</span> <span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    <span class='id identifier rubyid_handler'>handler</span> <span class='op'>=</span> <span class='ivar'>@handler_set</span><span class='lbracket'>[</span><span class='ivar'>@tokenizer</span><span class='period'>.</span><span class='id identifier rubyid_token_type'>token_type</span><span class='rbracket'>]</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_handler'>handler</span>
+      <span class='id identifier rubyid_raise_unexpected_token'>raise_unexpected_token</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_handler'>handler</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='kw'>self</span> <span class='kw'>if</span> <span class='ivar'>@node_type</span> <span class='comment'># otherwise, we reached the end of the file
+</span>      <span class='kw'>break</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_node'>node</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rewind-instance_method">
+  
+    - (<tt>Object</tt>) <strong>rewind</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+174
+175
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 174</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rewind'>rewind</span>
+  <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_rewind'>rewind</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rewindable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>rewindable?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rewindable?'>rewindable?</span>
+  <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>StringIO</span> <span class='kw'>or</span> <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>File</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values-instance_method">
+  
+    - (<tt>Object</tt>) <strong>values</strong> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='value-instance_method'>value</span></span>
+    </span>
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187
+188
+189
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
+  <span class='kw'>if</span> <span class='ivar'>@element</span>
+    <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@value</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>values?</strong> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='value?-instance_method'>value?</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197
+198
+199
+200
+201</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/reader.rb', line 195</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values?'>values?</span>
+  <span class='kw'>if</span> <span class='ivar'>@element</span>
+    <span class='op'>!</span><span class='ivar'>@element</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>else</span>
+    <span class='op'>!</span><span class='ivar'>@value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:41 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

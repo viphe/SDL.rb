@@ -1,0 +1,913 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::TZAbbreviationDB
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">TZAbbreviationDB</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::TZAbbreviationDB
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::TZAbbreviationDB</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/sdl4r/tz_abbreviation_db.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Gathers an index database of time zone abbreviations (e.g. "PST", "JST").</p>
+
+<p>For each abbreviation, there are 3 basic cases:</p>
+<ul><li>
+<p>no ambiguity: the abbreviation is always used with the same offsets (even
+if in different</p>
+</li></ul>
+
+<pre class="code ruby"><code class="ruby">countries).</code></pre>
+<ul><li>
+<p>time ambiguity: the abbreviation has been used in the same places but with
+different offsets</p>
+</li></ul>
+
+<pre class="code ruby"><code class="ruby">at different times. In this case, we base the timezone on one of the geographical time zones.</code></pre>
+<ul><li>
+<p>modern time ambiguity: the abbreviation has been used in different places
+but only before</p>
+</li></ul>
+
+<pre class="code ruby"><code class="ruby"><span class='int'>1970</span><span class='period'>.</span> <span class='const'>It</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>s been stable since. As it is the case of widely used abbreviations like &quot;CET&quot;, a
+modernly-used geographical timezone should be used as for the &quot;time ambiguity&quot; case, at least
+</span></span></code></pre>
+<ul><li>
+<p>location ambiguity: the abbreviation has been used in different places. In
+this case, there</p>
+</li></ul>
+
+<pre class="code ruby"><code class="ruby">is no way to tell, which place is the right one and therefore an error should be raised.</code></pre>
+
+<p>Note that 'utc_offset' and 'std_offset' of Record are meaningful only if
+the abbreviation is not ambiguous.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="TZAbbreviationDB/Record.html" title="SDL4R::TZAbbreviationDB::Record (class)">Record</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DB_FILENAME-constant" class="">DB_FILENAME =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/tz_abbreviation_db.csv</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="index-classvariable" class="">@@index =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
+      
+        <dt id="index_mutex-classvariable" class="">@@index_mutex =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clean_raw_record_index-class_method" title="clean_raw_record_index (class method)">+ (Object) <strong>clean_raw_record_index</strong>(raw_index) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_ambiguous_record-class_method" title="create_ambiguous_record (class method)">+ (Object) <strong>create_ambiguous_record</strong>(records, use, default_annotation) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Check the locations of the records and create a corresonding record
+annotated as ambiguous according to its level: either 'default_annotation'
+or :too_ambiguous if the locations where the abbreviation is used differ
+along time (for the given 'use').</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#generate_file-class_method" title="generate_file (class method)">+ (Object) <strong>generate_file</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates a CSV index file of abbreviations and their corresponding offsets
+and unambiguous corresponding zones.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_record-class_method" title="get_record (class method)">+ (Object) <strong>get_record</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the Record corresponding to the specified identifier or nil if not
+found.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_timezone-class_method" title="get_timezone (class method)">+ (Object) <strong>get_timezone</strong>(identifier, consider_modern_abbreviations = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_timezone_proxy-class_method" title="get_timezone_proxy (class method)">+ (Object) <strong>get_timezone_proxy</strong>(identifier, consider_modern_abbreviations = true) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_file-class_method" title="load_file (class method)">+ (Object) <strong>load_file</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Loads the CSV file (#DB_FILENAME) into memory.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="clean_raw_record_index-class_method">
+  
+    + (<tt>Object</tt>) <strong>clean_raw_record_index</strong>(raw_index) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_raw_record_index'>clean_raw_record_index</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_index'>raw_index</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='comment'># Clean up and annotate the ambiguous cases
+</span>  <span class='id identifier rubyid_raw_index'>raw_index</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_records'>records</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_records'>records</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='id identifier rubyid_records'>records</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>=</span> <span class='symbol'>:not_ambiguous</span>
+
+    <span class='kw'>else</span>
+      <span class='comment'># check whether locations differ
+</span>      <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='id identifier rubyid_create_ambiguous_record'>create_ambiguous_record</span><span class='lparen'>(</span><span class='id identifier rubyid_records'>records</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='symbol'>:time_ambiguous</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>==</span> <span class='symbol'>:too_ambiguous</span>
+        <span class='id identifier rubyid_salvaged_record'>salvaged_record</span> <span class='op'>=</span> <span class='id identifier rubyid_create_ambiguous_record'>create_ambiguous_record</span><span class='lparen'>(</span><span class='id identifier rubyid_records'>records</span><span class='comma'>,</span> <span class='symbol'>:modern</span><span class='comma'>,</span> <span class='symbol'>:modern_time_ambiguous</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='id identifier rubyid_salvaged_record'>salvaged_record</span> <span class='kw'>if</span> <span class='id identifier rubyid_salvaged_record'>salvaged_record</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_index'>index</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_record'>record</span>
+  <span class='rbrace'>}</span>
+  
+  <span class='kw'>return</span> <span class='id identifier rubyid_index'>index</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_ambiguous_record-class_method">
+  
+    + (<tt>Object</tt>) <strong>create_ambiguous_record</strong>(records, use, default_annotation) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Check the locations of the records and create a corresonding record
+annotated as ambiguous according to its level: either 'default_annotation'
+or :too_ambiguous if the locations where the abbreviation is used differ
+along time (for the given 'use').</p>
+
+<pre class="code ruby"><code class="ruby">_use_:: indicates the only kind of use considered or nil for all of them</code></pre>
+<dl class="rdoc-list note-list"><dt><em>default_annotation</em>
+<dd>
+<p>annotation to set if locations do not differ</p>
+</dd></dl>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_ambiguous_record'>create_ambiguous_record</span><span class='lparen'>(</span><span class='id identifier rubyid_records'>records</span><span class='comma'>,</span> <span class='id identifier rubyid_use'>use</span><span class='comma'>,</span> <span class='id identifier rubyid_default_annotation'>default_annotation</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_records'>records</span> <span class='op'>=</span> <span class='id identifier rubyid_records'>records</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='op'>!=</span> <span class='id identifier rubyid_use'>use</span> <span class='rbrace'>}</span> <span class='kw'>if</span> <span class='id identifier rubyid_use'>use</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_records'>records</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+
+  <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='id identifier rubyid_records'>records</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>=</span> <span class='id identifier rubyid_default_annotation'>default_annotation</span>
+
+  <span class='id identifier rubyid_locations'>locations</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_records'>records</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_locations'>locations</span>
+      <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>=</span> <span class='symbol'>:too_ambiguous</span> <span class='kw'>if</span> <span class='id identifier rubyid_locations'>locations</span> <span class='op'>!=</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_locations'>locations</span> <span class='op'>=</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_records'>records</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_loc'>loc</span><span class='op'>|</span>
+      <span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span><span class='lbracket'>[</span><span class='id identifier rubyid_loc'>loc</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='rbrace'>}</span>
+  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span> <span class='op'>=</span> <span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span>
+
+  <span class='kw'>return</span> <span class='id identifier rubyid_record'>record</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="generate_file-class_method">
+  
+    + (<tt>Object</tt>) <strong>generate_file</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates a CSV index file of abbreviations and their corresponding offsets
+and unambiguous corresponding zones.</p>
+
+<p>This method relies on unpublished internals of TZInfo. Therefore, it might
+easily break in the future.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_generate_file'>generate_file</span>
+  <span class='id identifier rubyid_abbreviation_index'>abbreviation_index</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+
+  <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>Timezone</span><span class='period'>.</span><span class='id identifier rubyid_all_data_zone_identifiers'>all_data_zone_identifiers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_tz_id'>tz_id</span><span class='op'>|</span>
+    <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>Timezone</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_tz_id'>tz_id</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='id identifier rubyid_tz'>tz</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='symbol'>:@info</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_offsets'>offsets</span> <span class='op'>=</span> <span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='symbol'>:@offsets</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_transitions'>transitions</span> <span class='op'>=</span> <span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='symbol'>:@transitions</span><span class='rparen'>)</span>
+
+    <span class='kw'>if</span> <span class='id identifier rubyid_offsets'>offsets</span>
+      <span class='id identifier rubyid_offsets'>offsets</span><span class='period'>.</span><span class='id identifier rubyid_each_value'>each_value</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_offset'>offset</span><span class='op'>|</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_tz'>tz</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span> <span class='op'>!=</span> <span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span>
+          <span class='id identifier rubyid_offset_key'>offset_key</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='period'>.</span><span class='id identifier rubyid_std_offset'>std_offset</span><span class='rbracket'>]</span>
+
+          <span class='id identifier rubyid_abbreviation_index'>abbreviation_index</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset_key'>offset_key</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:timezones</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:use</span> <span class='op'>=&gt;</span> <span class='symbol'>:historical</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_offset_record'>offset_record</span> <span class='op'>=</span> <span class='id identifier rubyid_abbreviation_index'>abbreviation_index</span><span class='lbracket'>[</span><span class='id identifier rubyid_offset_key'>offset_key</span><span class='rbracket'>]</span>
+
+          <span class='kw'>unless</span> <span class='id identifier rubyid_offset_record'>offset_record</span><span class='period'>.</span><span class='id identifier rubyid_timezones'>timezones</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_tz'>tz</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span>
+            <span class='id identifier rubyid_offset_record'>offset_record</span><span class='period'>.</span><span class='id identifier rubyid_timezones'>timezones</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_tz'>tz</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span>
+          <span class='kw'>end</span>
+
+          <span class='comment'># Find the last use of that offset
+</span>          <span class='id identifier rubyid_previous_transition'>previous_transition</span> <span class='op'>=</span> <span class='kw'>nil</span>
+          <span class='lparen'>(</span><span class='id identifier rubyid_transitions'>transitions</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_downto'>downto</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+            <span class='id identifier rubyid_transition'>transition</span> <span class='op'>=</span> <span class='id identifier rubyid_transitions'>transitions</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_offset'>offset</span> <span class='op'>==</span> <span class='id identifier rubyid_transition'>transition</span><span class='period'>.</span><span class='id identifier rubyid_offset'>offset</span>
+              <span class='kw'>if</span> <span class='id identifier rubyid_previous_transition'>previous_transition</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_previous_transition'>previous_transition</span><span class='period'>.</span><span class='id identifier rubyid_at'>at</span><span class='period'>.</span><span class='id identifier rubyid_year'>year</span> <span class='op'>&gt;=</span> <span class='int'>1970</span>
+                <span class='id identifier rubyid_offset_record'>offset_record</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span> <span class='op'>=</span> <span class='symbol'>:modern</span>
+              <span class='kw'>end</span>
+              <span class='kw'>break</span>
+            <span class='kw'>end</span>
+            <span class='id identifier rubyid_previous_transition'>previous_transition</span> <span class='op'>=</span> <span class='id identifier rubyid_transition'>transition</span>
+          <span class='rbrace'>}</span>
+        <span class='kw'>end</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Create a raw index of Records keyed by identifiers
+</span>  <span class='id identifier rubyid_raw_record_index'>raw_record_index</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_abbreviation_index'>abbreviation_index</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+    <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>Record</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_offset'>offset</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_offset'>offset</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_timezones'>timezones</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raw_record_index'>raw_record_index</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_raw_record_index'>raw_record_index</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbracket'>]</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_record'>record</span>
+  <span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_record_index'>record_index</span> <span class='op'>=</span> <span class='id identifier rubyid_clean_raw_record_index'>clean_raw_record_index</span><span class='lparen'>(</span><span class='id identifier rubyid_raw_record_index'>raw_record_index</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_sorted'>sorted</span> <span class='op'>=</span> <span class='id identifier rubyid_record_index'>record_index</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+  <span class='const'>CSV</span><span class='op'>::</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='const'>DB_FILENAME</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_writer'>writer</span><span class='op'>|</span>
+    <span class='id identifier rubyid_sorted'>sorted</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_offset'>offset</span><span class='comma'>,</span> <span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
+      <span class='id identifier rubyid_writer'>writer</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span>
+        <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span><span class='comma'>,</span> <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_std_offset'>std_offset</span><span class='comma'>,</span> <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span><span class='comma'>,</span> <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='rbracket'>]</span> <span class='op'>+</span>
+        <span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_record-class_method">
+  
+    + (<tt>Object</tt>) <strong>get_record</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the Record corresponding to the specified identifier or nil if not
+found. Be sure to check the 'annotation' property before using the data of
+the record.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+121
+122
+123
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 121</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_record'>get_record</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+  <span class='cvar'>@@index_mutex</span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_load_file'>load_file</span> <span class='kw'>unless</span> <span class='cvar'>@@index</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='cvar'>@@index</span><span class='lbracket'>[</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_timezone-class_method">
+  
+    + (<tt>Object</tt>) <strong>get_timezone</strong>(identifier, consider_modern_abbreviations = true) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_timezone'>get_timezone</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_consider_modern_abbreviations'>consider_modern_abbreviations</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>Timezone</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+    
+  <span class='kw'>rescue</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>InvalidTimezoneIdentifier</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_error1'>error1</span>
+    <span class='comment'># check whether we can find an abbreviation
+</span>    <span class='id identifier rubyid_abbreviation'>abbreviation</span> <span class='op'>=</span> <span class='const'>TZAbbreviationDB</span><span class='period'>.</span><span class='id identifier rubyid_get_record'>get_record</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_abbreviation'>abbreviation</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>==</span> <span class='symbol'>:not_ambiguous</span>
+        <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>ConstantTimezone</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+          <span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span><span class='comma'>,</span> <span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_std_offset'>std_offset</span><span class='rparen'>)</span>
+
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>==</span> <span class='symbol'>:time_ambiguous</span> <span class='kw'>or</span>
+          <span class='lparen'>(</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_annotation'>annotation</span> <span class='op'>==</span> <span class='symbol'>:modern_time_ambiguous</span> <span class='kw'>and</span> <span class='id identifier rubyid_consider_modern_abbreviations'>consider_modern_abbreviations</span><span class='rparen'>)</span>
+        <span class='kw'>begin</span>
+          <span class='id identifier rubyid_base_tz'>base_tz</span> <span class='op'>=</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>Timezone</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_linked_zone_ids'>linked_zone_ids</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>RelativeTimezone</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_abbreviation'>abbreviation</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_base_tz'>base_tz</span><span class='rparen'>)</span>
+        <span class='kw'>rescue</span> <span class='const'>TZInfo</span><span class='op'>::</span><span class='const'>InvalidTimezoneIdentifier</span>
+          <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='kw'>nil</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_error1'>error1</span> <span class='kw'>if</span> <span class='id identifier rubyid_tz'>tz</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_tz'>tz</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_timezone_proxy-class_method">
+  
+    + (<tt>Object</tt>) <strong>get_timezone_proxy</strong>(identifier, consider_modern_abbreviations = true) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_timezone_proxy'>get_timezone_proxy</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_consider_modern_abbreviations'>consider_modern_abbreviations</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>AbbreviationTimezoneProxy</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_consider_modern_abbreviations'>consider_modern_abbreviations</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load_file-class_method">
+  
+    + (<tt>Object</tt>) <strong>load_file</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Loads the CSV file (#DB_FILENAME) into memory.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132
+133
+134
+135
+136
+137
+138</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tz_abbreviation_db.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span>
+  <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='const'>CSV</span><span class='period'>.</span><span class='id identifier rubyid_foreach'>foreach</span><span class='lparen'>(</span><span class='const'>DB_FILENAME</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_row'>row</span><span class='op'>|</span>
+    <span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>Record</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='comma'>,</span> <span class='id identifier rubyid_row'>row</span><span class='lbracket'>[</span><span class='int'>5</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_index'>index</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='period'>.</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_record'>record</span>
+  <span class='kw'>end</span>
+  <span class='cvar'>@@index</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:42 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

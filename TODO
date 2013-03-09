@@ -268,8 +268,10 @@
   [x] @WARNING 'require 'rake/rdoctask'' is deprecated.  Please use 'require 'rdoc/task' (in RDoc 2.4.2+)' instead.
 [x] do not commit .rvmrc ==> .gitignore
 [x] need to commit "Gemfile"? --> seems so (Gemfile.lock should not)
-[ ] +back_compatibility careful, I remove Serializer from the project when refactoring serialization
+[x] Tag.write() should support parameters of type Writer
+[ ] @back_compatibility careful, I removed Serializer from the project when refactoring serialization
   --> perhaps copy the class and its test and deprecate
+[ ] should we use InvalidOperationError in other writers than Writer?
 [ ] Check whether Writer.write() and Writer.write_tag() used to implement the same spec as now
   [x] dig out the source from the Gem and commit to master (old SVN being gone)
   [x] compare ==> dumping an object/tag dumping at root level (XML doc) by default

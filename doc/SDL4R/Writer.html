@@ -1,0 +1,1967 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Writer
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (W)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Writer</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Writer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Writer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/sdl4r/writer.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Forward-only, non-cached SDL writer to IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="DEFAULT_OPTIONS-constant" class="">DEFAULT_OPTIONS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:indent_text</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\t</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:eol</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+  <span class='symbol'>:string_quote</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="BASE64_WRAP_LINE_LENGTH-constant" class="">BASE64_WRAP_LINE_LENGTH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>72</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractWriter.html#MISSING_PARAMETER-constant" title="SDL4R::AbstractWriter::MISSING_PARAMETER (constant)">AbstractWriter::MISSING_PARAMETER</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#depth-instance_method" title="#depth (instance method)">- (Object) <strong>depth</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The underlying IO.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#io-instance_method" title="#io (instance method)">- (Object) <strong>io</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The underlying IO.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes included from <span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractWriter.html#object_mapper-instance_method" title="SDL4R::AbstractWriter#object_mapper (method)">#object_mapper</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%3C%3C-instance_method" title="#&lt;&lt; (instance method)">- (Object) <strong>&lt;&lt;</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the provided object directly to the underlying IO.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#attribute-instance_method" title="#attribute (instance method)">- (Object) <strong>attribute</strong>(namespace, name, value = MISSING_PARAMETER) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the specified attribute.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#close-instance_method" title="#close (instance method)">- (Object) <strong>close</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Closes the underlying IO.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_body-instance_method" title="#end_body (instance method)">- (self) <strong>end_body</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the end of a tag body to the underlying IO.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#end_element-instance_method" title="#end_element (instance method)">- (Object) <strong>end_element</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Ends the current tag, closing its body if necessary.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format_literal-instance_method" title="#format_literal (instance method)">- (Object) <strong>format_literal</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Converts the given SDL value into a SDL literal and writes it to the
+underlying stream.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Writer) <strong>initialize</strong>(out = nil, options = nil, object_mapper = ObjectMapper.new) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Writer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_options-instance_method" title="#initialize_options (instance method)">- (Object) <strong>initialize_options</strong>(options) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_body-instance_method" title="#start_body (instance method)">- (self) <strong>start_body</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the start of a tag body to the underlying IO.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_element-instance_method" title="#start_element (instance method)">- (self) <strong>start_element</strong>(namespace, name = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes the declaration of a tag.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value-instance_method" title="#value (instance method)">- (Object) <strong>value</strong>(*values) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Writes one value or several.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#write_string-instance_method" title="#write_string (instance method)">- (Object) <strong>write_string</strong>(s, quote_char = @string_quote) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the specified string 's' formatted as a SDL string.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="AbstractWriter.html#element-instance_method" title="SDL4R::AbstractWriter#element (method)">#element</a></span>, <span class='object_link'><a href="AbstractWriter.html#end_tag-instance_method" title="SDL4R::AbstractWriter#end_tag (method)">#end_tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#flush-instance_method" title="SDL4R::AbstractWriter#flush (method)">#flush</a></span>, <span class='object_link'><a href="AbstractWriter.html#start_tag-instance_method" title="SDL4R::AbstractWriter#start_tag (method)">#start_tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#tag-instance_method" title="SDL4R::AbstractWriter#tag (method)">#tag</a></span>, <span class='object_link'><a href="AbstractWriter.html#values-instance_method" title="SDL4R::AbstractWriter#values (method)">#values</a></span>, <span class='object_link'><a href="AbstractWriter.html#write-instance_method" title="SDL4R::AbstractWriter#write (method)">#write</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Writer (class)">Writer</a></span></tt>) <strong>initialize</strong>(out = nil, options = nil, object_mapper = ObjectMapper.new) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A new instance of Writer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>out</span>
+      
+      
+        <span class='type'>(<tt>IO</tt>, <tt>Pathname</tt>, <tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO, Pathname of the file or String to write to (defaults to a StringIO)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>options of the created Writer</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>object_mapper</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="ObjectMapper.html" title="SDL4R::ObjectMapper (class)">ObjectMapper</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>ObjectMapper.new</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>support object for serialization</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>[String]</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span> <span class='op'>=</span> <span class='const'>ObjectMapper</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_out'>out</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_out'>out</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_out'>out</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Hash</span>
+
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_object_mapper'>object_mapper</span> <span class='op'>=</span> <span class='id identifier rubyid_object_mapper'>object_mapper</span>
+
+  <span class='id identifier rubyid_initialize_options'>initialize_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  
+  <span class='ivar'>@depth</span> <span class='op'>=</span> <span class='int'>0</span>
+
+  <span class='comment'># Possible statuses:
+</span>  <span class='comment'>#  :top           root level
+</span>  <span class='comment'>#  :body          inside a tag body,
+</span>  <span class='comment'>#  :anonymous     just after the declaration of an anonymous tag
+</span>  <span class='comment'>#  :values        after the tag name and before attributes
+</span>  <span class='comment'>#  :attributes    after the first attribute before end of tag or body start
+</span>  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:top</span>
+  
+  <span class='ivar'>@last_value_was_date</span> <span class='op'>=</span> <span class='kw'>false</span>
+  
+  <span class='kw'>case</span> <span class='id identifier rubyid_out'>out</span>
+  <span class='kw'>when</span> <span class='const'>Pathname</span>
+    <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_out'>out</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>w</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_autoclose'>autoclose</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>when</span> <span class='const'>String</span>
+    <span class='ivar'>@io</span> <span class='op'>=</span> <span class='const'>StringIO</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_out'>out</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_autoclose'>autoclose</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>when</span> <span class='kw'>nil</span>
+    <span class='ivar'>@io</span> <span class='op'>=</span> <span class='const'>StringIO</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_autoclose'>autoclose</span> <span class='op'>=</span> <span class='kw'>true</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_out'>out</span>
+    <span class='id identifier rubyid_autoclose'>autoclose</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+    <span class='kw'>yield</span> <span class='kw'>self</span>
+    <span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_autoclose'>autoclose</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="depth-instance_method">
+  
+    - (<tt>Object</tt>) <strong>depth</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The underlying IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_depth'>depth</span>
+  <span class='ivar'>@depth</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="io-instance_method">
+  
+    - (<tt>Object</tt>) <strong>io</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The underlying IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_io'>io</span>
+  <span class='ivar'>@io</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="<<-instance_method">
+  
+    - (<tt>Object</tt>) <strong>&lt;&lt;</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the provided object directly to the underlying IO. Allows to write
+raw text to the IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+207
+208
+209
+210</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 207</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="attribute-instance_method">
+  
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>attribute</strong>(name) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>attribute</strong>(namespace, name) </span>
+    
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the specified attribute.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>attribute</strong>(name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>attribute value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>attribute</strong>(namespace, name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>namespace</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>attribute value</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="InvalidOperationError.html" title="SDL4R::InvalidOperationError (class)">InvalidOperationError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 252</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_attribute'>attribute</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'>MISSING_PARAMETER</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidOperationError</span><span class='comma'>,</span> <span class='ivar'>@status</span> <span class='kw'>unless</span> <span class='lbracket'>[</span><span class='symbol'>:values</span><span class='comma'>,</span> <span class='symbol'>:attributes</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='ivar'>@status</span>
+  
+  <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='const'>MISSING_PARAMETER</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bad arguments </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>=</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_id2name'>id2name</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
+  
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:anonymous</span>
+  
+  <span class='kw'>unless</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span>
+  
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>=</span><span class='tstring_end'>'</span></span>
+  
+  <span class='id identifier rubyid_format_literal'>format_literal</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:attributes</span>
+  
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="close-instance_method">
+  
+    - (<tt>Object</tt>) <strong>close</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Closes the underlying IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 106</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_close'>close</span>
+  <span class='ivar'>@io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_body-instance_method">
+  
+    - (<tt>self</tt>) <strong>end_body</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the end of a tag body to the underlying IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="InvalidOperationError.html" title="SDL4R::InvalidOperationError (class)">InvalidOperationError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_body'>end_body</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidOperationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>can\'t end body at top level</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='ivar'>@depth</span> <span class='op'>&lt;=</span> <span class='int'>0</span>
+
+  <span class='ivar'>@depth</span> <span class='op'>-=</span> <span class='int'>1</span>
+
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@eol</span> <span class='kw'>unless</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:body</span>
+  <span class='id identifier rubyid_indent'>indent</span>
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>}</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_new_line'>new_line</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='ivar'>@depth</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='symbol'>:top</span> <span class='op'>:</span> <span class='symbol'>:body</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="end_element-instance_method">
+  
+    - (<tt>Object</tt>) <strong>end_element</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Ends the current tag, closing its body if necessary.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="InvalidOperationError.html" title="SDL4R::InvalidOperationError (class)">InvalidOperationError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_end_element'>end_element</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidOperationError</span><span class='comma'>,</span> <span class='ivar'>@status</span> <span class='kw'>if</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:top</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:body</span>
+    <span class='id identifier rubyid_end_body'>end_body</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@depth</span> <span class='op'>-=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_new_line'>new_line</span>
+    <span class='ivar'>@status</span> <span class='op'>=</span> <span class='ivar'>@depth</span> <span class='op'>==</span> <span class='int'>0</span> <span class='op'>?</span> <span class='symbol'>:top</span> <span class='op'>:</span> <span class='symbol'>:body</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@last_value_was_date</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="format_literal-instance_method">
+  
+    - (<tt>Object</tt>) <strong>format_literal</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Converts the given SDL value into a SDL literal and writes it to the
+underlying stream.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 277</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_format_literal'>format_literal</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>when</span> <span class='const'>String</span>
+    <span class='id identifier rubyid_write_string'>write_string</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='const'>Symbol</span>
+    <span class='id identifier rubyid_write_string'>write_string</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='const'>Bignum</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BD</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='const'>Integer</span>
+    <span class='kw'>if</span> <span class='const'>MIN_INTEGER_32</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_o'>o</span> <span class='kw'>and</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>&lt;=</span> <span class='const'>MAX_INTEGER_32</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='kw'>elsif</span> <span class='const'>MIN_INTEGER_64</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_o'>o</span> <span class='kw'>and</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>&lt;=</span> <span class='const'>MAX_INTEGER_64</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>L</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BD</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>when</span> <span class='const'>Float</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>F</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='const'>Rational</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>F</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='const'>BigDecimal</span>
+    <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>F</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_sub!'>sub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\.0$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_s'>s</span><span class='rbrace'>}</span><span class='tstring_content'>BD</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='const'>NilClass</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>null</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='const'>SdlBinary</span>
+    <span class='id identifier rubyid_encoded_o'>encoded_o</span> <span class='op'>=</span> <span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_encode64'>encode64</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_bytes'>bytes</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_encoded_o'>encoded_o</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\r\n]</span><span class='regexp_end'>/m</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># Remove the EOL inserted every 60 chars
+</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_encoded_o'>encoded_o</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>&gt;</span> <span class='const'>BASE64_WRAP_LINE_LENGTH</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_new_line'>new_line</span>
+
+      <span class='ivar'>@depth</span> <span class='op'>+=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_wrap_lines_in_ascii'>wrap_lines_in_ascii</span><span class='lparen'>(</span><span class='id identifier rubyid_encoded_o'>encoded_o</span><span class='rparen'>)</span>
+      <span class='ivar'>@depth</span> <span class='op'>-=</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_new_line'>new_line</span>
+
+      <span class='id identifier rubyid_indent'>indent</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
+
+    <span class='kw'>else</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_encoded_o'>encoded_o</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+  <span class='comment'># Below, we use &quot;#{o.year}&quot; instead of &quot;%Y&quot; because &quot;%Y&quot; always emit 4 chars at least even if
+</span>  <span class='comment'># the date is before 1000.
+</span>  <span class='kw'>when</span> <span class='const'>DateTime</span><span class='comma'>,</span> <span class='const'>Time</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_format_time'>format_time</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='const'>Date</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>%Q{</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_year'>year</span><span class='rbrace'>}</span><span class='tstring_content'>/%m/%d</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>}</span></span>
+
+  <span class='kw'>else</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="initialize_options-instance_method">
+  
+    - (<tt>Object</tt>) <strong>initialize_options</strong>(options) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize_options'>initialize_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span>
+    <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>DEFAULT_OPTIONS</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>DEFAULT_OPTIONS</span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@indent_text</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:indent_text</span><span class='rbracket'>]</span>
+  <span class='ivar'>@eol</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:eol</span><span class='rbracket'>]</span>
+  <span class='ivar'>@string_quote</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:string_quote</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>invalid string quote &lt;</span><span class='embvar'>#</span><span class='ivar'>@string_quote</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@string_quote</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[&quot;`]\Z</span><span class='regexp_end'>/</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_body-instance_method">
+  
+    - (<tt>self</tt>) <strong>start_body</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the start of a tag body to the underlying IO.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_body'>start_body</span>
+  <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:top</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='comma'>,</span> <span class='symbol'>:anonymous</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='ivar'>@status</span>
+    <span class='ivar'>@depth</span> <span class='op'>+=</span> <span class='int'>1</span> <span class='kw'>unless</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:anonymous</span> <span class='comment'># no element declaration happened before
+</span>  <span class='kw'>else</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span>
+  <span class='kw'>end</span>
+  
+  <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>{</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_new_line'>new_line</span>
+  <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:body</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_element-instance_method">
+  
+    
+      <span class="overload">- (<tt>self</tt>) <strong>start_element</strong>(name) </span>
+    
+      <span class="overload">- (<tt>self</tt>) <strong>start_element</strong>(namespace, name) </span>
+    
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes the declaration of a tag. No validity check as for legal characters
+is performed on <code>name</code> and <code>namespace</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>start_element</strong>(name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>(if empty, emits an anonymous tag)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>start_element</strong>(namespace, name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>namespace</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 131</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_element'>start_element</span><span class='lparen'>(</span><span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_namespace'>namespace</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span>
+
+  <span class='id identifier rubyid_start_body'>start_body</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:anonymous</span><span class='comma'>,</span> <span class='symbol'>:values</span><span class='comma'>,</span> <span class='symbol'>:attributes</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='ivar'>@status</span>
+  <span class='id identifier rubyid_indent'>indent</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_namespace'>namespace</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>empty element name</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_namespace'>namespace</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span>
+    <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:values</span>
+    
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ANONYMOUS_TAG_NAME</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ANONYMOUS_TAG_NAME</span>
+      <span class='comment'># No name is emitted, of course.
+</span>      <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:anonymous</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_name'>name</span>
+      <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:values</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@depth</span> <span class='op'>+=</span> <span class='int'>1</span>
+
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value-instance_method">
+  
+    - (<tt>Object</tt>) <strong>value</strong>(*values) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Writes one value or several.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="InvalidOperationError.html" title="SDL4R::InvalidOperationError (class)">InvalidOperationError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 216</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
+  <span class='comment'># if not at the start of a tag, start an anonymous one if possible
+</span>  <span class='id identifier rubyid_start_element'>start_element</span><span class='lparen'>(</span><span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>ANONYMOUS_TAG_NAME</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:top</span><span class='comma'>,</span> <span class='symbol'>:body</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='ivar'>@status</span>
+  
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>InvalidOperationError</span><span class='comma'>,</span> <span class='ivar'>@status</span> <span class='kw'>unless</span> <span class='lbracket'>[</span><span class='symbol'>:anonymous</span><span class='comma'>,</span> <span class='symbol'>:values</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='ivar'>@status</span>
+  
+  <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+    <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> </span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='ivar'>@status</span> <span class='op'>==</span> <span class='symbol'>:anonymous</span>
+    
+    <span class='kw'>if</span> <span class='ivar'>@last_value_was_date</span> <span class='kw'>and</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>SdlTimeSpan</span>
+      <span class='comment'># We force the writing of the days, otherwise we create an ambiguity with a timestamp
+</span>      <span class='comment'># literal.
+</span>      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+      <span class='ivar'>@last_value_was_date</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_format_literal'>format_literal</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+      <span class='ivar'>@last_value_was_date</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Date</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    
+    <span class='ivar'>@status</span> <span class='op'>=</span> <span class='symbol'>:values</span>
+  <span class='kw'>end</span>
+  
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="write_string-instance_method">
+  
+    - (<tt>Object</tt>) <strong>write_string</strong>(s, quote_char = @string_quote) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the specified string 's' formatted as a SDL string. See
+SDL4R#format.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>quote_char</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>@string_quote</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the quote character or nil to have no quotes at all.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+353
+354
+355
+356
+357
+358
+359</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/writer.rb', line 353</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_write_string'>write_string</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='comma'>,</span> <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>=</span> <span class='ivar'>@string_quote</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_quote_char'>quote_char</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_quote_char'>quote_char</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_quote_char'>quote_char</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@io</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:42 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

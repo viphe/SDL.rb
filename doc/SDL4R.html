@@ -1,0 +1,2243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: SDL4R
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SDL4R</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: SDL4R
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/sdl4r.rb<span class="defines">,<br />
+  lib/sdl4r/abbreviation_timezone_proxy.rb,<br /> lib/sdl4r/abstract_reader.rb,<br /> lib/sdl4r/abstract_writer.rb,<br /> lib/sdl4r/constant_timezone.rb,<br /> lib/sdl4r/deserializer.rb,<br /> lib/sdl4r/element.rb,<br /> lib/sdl4r/element_writer.rb,<br /> lib/sdl4r/invalid_operation_error.rb,<br /> lib/sdl4r/nil_writer.rb,<br /> lib/sdl4r/object_mapper.rb,<br /> lib/sdl4r/object_reader.rb,<br /> lib/sdl4r/reader.rb,<br /> lib/sdl4r/reader_with_element.rb,<br /> lib/sdl4r/relative_timezone.rb,<br /> lib/sdl4r/sdl4r.rb,<br /> lib/sdl4r/sdl4r_version.rb,<br /> lib/sdl4r/sdl_binary.rb,<br /> lib/sdl4r/sdl_parse_error.rb,<br /> lib/sdl4r/sdl_time_span.rb,<br /> lib/sdl4r/serializer.rb,<br /> lib/sdl4r/tag.rb,<br /> lib/sdl4r/tag_writer.rb,<br /> lib/sdl4r/token.rb,<br /> lib/sdl4r/tokenizer.rb,<br /> lib/sdl4r/tz_abbreviation_db.rb,<br /> lib/sdl4r/writer.rb,<br /> lib/sdl4r_tzinfo.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>-- Simple Declarative Language (SDL) for Ruby Copyright 2005 Ikayzo, inc.</p>
+
+<p>This program is free software. You can distribute or modify it under the
+terms of the GNU Lesser General Public License version 2.1 as published by
+the Free Software Foundation.</p>
+
+<p>This program is distributed AS IS and WITHOUT WARRANTY. OF ANY KIND,
+INCLUDING MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+Lesser General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU Lesser General Public License
+along with this program; if not, contact the Free Software Foundation,
+Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA. ++</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="SDL4R/AbstractReader.html" title="SDL4R::AbstractReader (module)">AbstractReader</a></span>, <span class='object_link'><a href="SDL4R/AbstractWriter.html" title="SDL4R::AbstractWriter (module)">AbstractWriter</a></span>, <span class='object_link'><a href="SDL4R/ReaderWithElement.html" title="SDL4R::ReaderWithElement (module)">ReaderWithElement</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SDL4R/AbbreviationTimezoneProxy.html" title="SDL4R::AbbreviationTimezoneProxy (class)">AbbreviationTimezoneProxy</a></span>, <span class='object_link'><a href="SDL4R/ConstantTimezone.html" title="SDL4R::ConstantTimezone (class)">ConstantTimezone</a></span>, <span class='object_link'><a href="SDL4R/Deserializer.html" title="SDL4R::Deserializer (class)">Deserializer</a></span>, <span class='object_link'><a href="SDL4R/Element.html" title="SDL4R::Element (class)">Element</a></span>, <span class='object_link'><a href="SDL4R/ElementWriter.html" title="SDL4R::ElementWriter (class)">ElementWriter</a></span>, <span class='object_link'><a href="SDL4R/InvalidOperationError.html" title="SDL4R::InvalidOperationError (class)">InvalidOperationError</a></span>, <span class='object_link'><a href="SDL4R/NilWriter.html" title="SDL4R::NilWriter (class)">NilWriter</a></span>, <span class='object_link'><a href="SDL4R/ObjectMapper.html" title="SDL4R::ObjectMapper (class)">ObjectMapper</a></span>, <span class='object_link'><a href="SDL4R/ObjectReader.html" title="SDL4R::ObjectReader (class)">ObjectReader</a></span>, <span class='object_link'><a href="SDL4R/Reader.html" title="SDL4R::Reader (class)">Reader</a></span>, <span class='object_link'><a href="SDL4R/RelativeTimezone.html" title="SDL4R::RelativeTimezone (class)">RelativeTimezone</a></span>, <span class='object_link'><a href="SDL4R/SdlBinary.html" title="SDL4R::SdlBinary (class)">SdlBinary</a></span>, <span class='object_link'><a href="SDL4R/SdlParseError.html" title="SDL4R::SdlParseError (class)">SdlParseError</a></span>, <span class='object_link'><a href="SDL4R/SdlTimeSpan.html" title="SDL4R::SdlTimeSpan (class)">SdlTimeSpan</a></span>, <span class='object_link'><a href="SDL4R/Serializer.html" title="SDL4R::Serializer (class)">Serializer</a></span>, <span class='object_link'><a href="SDL4R/TZAbbreviationDB.html" title="SDL4R::TZAbbreviationDB (class)">TZAbbreviationDB</a></span>, <span class='object_link'><a href="SDL4R/Tag.html" title="SDL4R::Tag (class)">Tag</a></span>, <span class='object_link'><a href="SDL4R/TagWriter.html" title="SDL4R::TagWriter (class)">TagWriter</a></span>, <span class='object_link'><a href="SDL4R/Token.html" title="SDL4R::Token (class)">Token</a></span>, <span class='object_link'><a href="SDL4R/Tokenizer.html" title="SDL4R::Tokenizer (class)">Tokenizer</a></span>, <span class='object_link'><a href="SDL4R/Writer.html" title="SDL4R::Writer (class)">Writer</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MAX_INTEGER_32-constant" class="">MAX_INTEGER_32 =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>2</span><span class='op'>**</span><span class='int'>31</span> <span class='op'>-</span> <span class='int'>1</span></pre></dd>
+      
+        <dt id="MIN_INTEGER_32-constant" class="">MIN_INTEGER_32 =
+          
+        </dt>
+        <dd><pre class="code"><span class='op'>-</span><span class='lparen'>(</span><span class='int'>2</span><span class='op'>**</span><span class='int'>31</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="MAX_INTEGER_64-constant" class="">MAX_INTEGER_64 =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>2</span><span class='op'>**</span><span class='int'>63</span> <span class='op'>-</span> <span class='int'>1</span></pre></dd>
+      
+        <dt id="MIN_INTEGER_64-constant" class="">MIN_INTEGER_64 =
+          
+        </dt>
+        <dd><pre class="code"><span class='op'>-</span><span class='lparen'>(</span><span class='int'>2</span><span class='op'>**</span><span class='int'>63</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="ANONYMOUS_TAG_NAME-constant" class="">ANONYMOUS_TAG_NAME =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>content</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="ROOT_TAG_NAME-constant" class="">ROOT_TAG_NAME =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>root</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="IDENTIFIER_START_CLASS-constant" class="">IDENTIFIER_START_CLASS =
+          
+        </dt>
+        <dd><pre class="code"><span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[\\p{Alpha}_]</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[a-zA-Z_]</span><span class='tstring_end'>'</span></span></pre></dd>
+      
+        <dt id="IDENTIFIER_START_REGEXP-constant" class="">IDENTIFIER_START_REGEXP =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Matches the first character of a valid SDL identifier.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_START_CLASS</span><span class='rbrace'>}</span><span class='regexp_end'>/u</span></span> <span class='op'>:</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_START_CLASS</span><span class='rbrace'>}</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="IDENTIFIER_PART_CLASS-constant" class="">IDENTIFIER_PART_CLASS =
+          
+        </dt>
+        <dd><pre class="code"><span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[\\p{Alnum}_\\-\\.$]</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[\\w\\-\\.$]</span><span class='tstring_end'>'</span></span></pre></dd>
+      
+        <dt id="IDENTIFIER_PART_REGEXP-constant" class="">IDENTIFIER_PART_REGEXP =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Matches characters of a valid SDL identifier after the first one. Works
+with one character long strings.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span> <span class='op'>?</span>
+<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_PART_CLASS</span><span class='rbrace'>}</span><span class='tstring_content'>\Z</span><span class='regexp_end'>/u</span></span> <span class='op'>:</span>
+<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_PART_CLASS</span><span class='rbrace'>}</span><span class='tstring_content'>\Z</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="IDENTIFIER_REGEXP-constant" class="">IDENTIFIER_REGEXP =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Matches a valid SDL identifier (start to end).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span> <span class='op'>?</span>
+<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_START_CLASS</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_PART_CLASS</span><span class='rbrace'>}</span><span class='tstring_content'>*\Z</span><span class='regexp_end'>/u</span></span> <span class='op'>:</span>
+<span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_START_CLASS</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='const'>IDENTIFIER_PART_CLASS</span><span class='rbrace'>}</span><span class='tstring_content'>*\Z</span><span class='regexp_end'>/</span></span></pre></dd>
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Version of the SDL library.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.9.11</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="use_datetime-classvariable" class="">@@use_datetime =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="use_exotic_dates-classvariable" class="">@@use_exotic_dates =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>false</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#coerce_or_fail-class_method" title="coerce_or_fail (class method)">+ (Object) <strong>coerce_or_fail</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Coerce the type to a standard SDL type or raises an ArgumentError.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disable_tzinfo-class_method" title="disable_tzinfo (class method)">+ (Object) <strong>disable_tzinfo</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dump-class_method" title="dump (class method)">+ (Object) <strong>dump</strong>(o, output = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Dumps the specified object to a given output or returns the corresponding
+SDL string if output is <code>nil</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enable_exotic_dates-class_method" title="enable_exotic_dates (class method)">+ (Object) <strong>enable_exotic_dates</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Enables the support of exotic dates (e.g. dates beyond end of month).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enable_tzinfo-class_method" title="enable_tzinfo (class method)">+ (Object) <strong>enable_tzinfo</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format-class_method" title="format (class method)">+ (Object) <strong>format</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates an SDL string representation for a given object and returns it.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format_time-class_method" title="format_time (class method)">+ (Object) <strong>format_time</strong>(time) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_coercible%3F-class_method" title="is_coercible? (class method)">+ (Boolean) <strong>is_coercible?</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether 'o' is coercible to a SDL literal type.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load-class_method" title="load (class method)">+ (Object) <strong>load</strong>(input) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Loads the specified 'input' and deserializes into the returned object.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_exotic_date_time-class_method" title="new_exotic_date_time (class method)">+ (Object) <strong>new_exotic_date_time</strong>(*args) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and returns a DateTime.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#new_time-class_method" title="new_time (class method)">+ (Object) <strong>new_time</strong>(year, month, day, hour, min, sec, msec, timezone_code) </a>
+    
+
+    
+      (also: tzinfo_orig_new_time)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and returns the object representing a time (DateTime by default).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-class_method" title="read (class method)">+ (Object) <strong>read</strong>(input) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and returns a tag named "root" and add all the tags specified in
+the given <code>input</code>.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#SdlBinary-class_method" title="SdlBinary (class method)">+ (Object) <strong>SdlBinary</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Try to coerce 'o' into a SdlBinary.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#supports_unicode_identifiers%3F-class_method" title="supports_unicode_identifiers? (class method)">+ (Boolean) <strong>supports_unicode_identifiers?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_attribute_hash-class_method" title="to_attribute_hash (class method)">+ (Object) <strong>to_attribute_hash</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parse a string representing the attributes portion of an SDL tag and return
+the results as a map.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_value-class_method" title="to_value (class method)">+ (Object) <strong>to_value</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Parses and returns the value corresponding with the specified SDL literal.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_value_array-class_method" title="to_value_array (class method)">+ (Object) <strong>to_value_array</strong>(s) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Example.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tzinfo_replac_new_time-class_method" title="tzinfo_replac_new_time (class method)">+ (Object) <strong>tzinfo_replac_new_time</strong>(year, month, day, hour, min, sec, msec, timezone_code) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Creates and returns the object representing a time (DateTime by default).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#use_datetime%3D-class_method" title="use_datetime= (class method)">+ (Object) <strong>use_datetime=</strong>(bool) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets whether DateTime should be used for representing times at parsing.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#use_datetime%3F-class_method" title="use_datetime? (class method)">+ (Boolean) <strong>use_datetime?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Indicates whether DateTime is used to represent times.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#valid_identifier%3F-class_method" title="valid_identifier? (class method)">+ (Boolean) <strong>valid_identifier?</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns whether the specified SDL identifier is valid.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_identifier-class_method" title="validate_identifier (class method)">+ (Object) <strong>validate_identifier</strong>(identifier) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Validates an SDL identifier String.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="coerce_or_fail-class_method">
+  
+    + (<tt>Object</tt>) <strong>coerce_or_fail</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Coerce the type to a standard SDL type or raises an ArgumentError.</p>
+
+<p>Returns <code>o</code> if of the following classes: NilClass, String,
+Numeric, Float, TrueClass, FalseClass, Date, DateTime, Time, SdlTimeSpan,
+SdlBinary,</p>
+
+<p>Rationals are turned into Floats using Rational#to_f. Symbols are turned
+into Strings using Symbol#to_s.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 136</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_coerce_or_fail'>coerce_or_fail</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
+
+  <span class='kw'>when</span> <span class='const'>Rational</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_f'>to_f</span>
+
+  <span class='kw'>when</span> <span class='const'>Symbol</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+
+  <span class='kw'>when</span> <span class='const'>NilClass</span><span class='comma'>,</span>
+      <span class='const'>String</span><span class='comma'>,</span>
+      <span class='const'>Numeric</span><span class='comma'>,</span>
+      <span class='const'>Float</span><span class='comma'>,</span>
+      <span class='const'>TrueClass</span><span class='comma'>,</span>
+      <span class='const'>FalseClass</span><span class='comma'>,</span>
+      <span class='const'>Date</span><span class='comma'>,</span>
+      <span class='const'>DateTime</span><span class='comma'>,</span>
+      <span class='const'>Time</span><span class='comma'>,</span>
+      <span class='const'>SdlTimeSpan</span><span class='comma'>,</span>
+      <span class='const'>SdlBinary</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_o'>o</span>
+
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'> is not coercible to an SDL type</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disable_tzinfo-class_method">
+  
+    + (<tt>Object</tt>) <strong>disable_tzinfo</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+69
+70
+71
+72
+73
+74</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r_tzinfo.rb', line 69</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disable_tzinfo'>disable_tzinfo</span>
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='id identifier rubyid_undef_method'>undef_method</span> <span class='symbol'>:new_time</span>
+    <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:new_time</span><span class='comma'>,</span> <span class='id identifier rubyid_instance_method'>instance_method</span><span class='lparen'>(</span><span class='symbol'>:tzinfo_orig_new_time</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dump-class_method">
+  
+    + (<tt>Object</tt>) <strong>dump</strong>(o, output = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Dumps the specified object to a given output or returns the corresponding
+SDL string if output is <code>nil</code>.</p>
+
+<pre class="code ruby"><code class="ruby">gives us
+
+  food comment=&quot;eat with bier&quot; name=&quot;french fries&quot; {
+    fan firstname=&quot;Homer&quot;
+  }</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>
+<span class='id identifier rubyid_food'>food</span> <span class='op'>=</span> <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>french fries</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>comment</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>eat with bier</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='id identifier rubyid_food'>food</span><span class='period'>.</span><span class='id identifier rubyid_fan'>fan</span> <span class='op'>=</span> <span class='const'>OpenStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:firstname</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Homer</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_puts'>puts</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='symbol'>:food</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_food'>food</span><span class='rparen'>)</span></code></pre>
+    
+  </div>
+<p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>o</span>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Object dumped into SDL (via AbstractWriter#write) and considered as the
+root element</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>output</span>
+      
+      
+        <span class='type'></span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>AbstractWriter or any legal input of Writer#new</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 367</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_writer'>writer</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>AbstractWriter</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_output'>output</span> <span class='op'>:</span> <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_output'>output</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+	<span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+  <span class='kw'>else</span>
+	<span class='id identifier rubyid_output'>output</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enable_exotic_dates-class_method">
+  
+    + (<tt>Object</tt>) <strong>enable_exotic_dates</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Enables the support of exotic dates (e.g. dates beyond end of month).
+DateTime creation will be slower than the normal bare and strict creation.
+The same feature for Time is not supported yet.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+88
+89
+90
+91</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 88</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_enable_exotic_dates'>enable_exotic_dates</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>sdl4r/sdl4r_date</span><span class='tstring_end'>'</span></span>
+  <span class='cvar'>@@use_exotic_dates</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="enable_tzinfo-class_method">
+  
+    + (<tt>Object</tt>) <strong>enable_tzinfo</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r_tzinfo.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enable_tzinfo'>enable_tzinfo</span>
+  <span class='kw'>class</span> <span class='op'>&lt;&lt;</span> <span class='kw'>self</span>
+    <span class='id identifier rubyid_undef_method'>undef_method</span> <span class='symbol'>:new_time</span> <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='symbol'>:new_time</span>
+    <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:new_time</span><span class='comma'>,</span> <span class='id identifier rubyid_instance_method'>instance_method</span><span class='lparen'>(</span><span class='symbol'>:tzinfo_replac_new_time</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="format-class_method">
+  
+    + (<tt>Object</tt>) <strong>format</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates an SDL string representation for a given object and returns it.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='const'>Writer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="format_time-class_method">
+  
+    + (<tt>Object</tt>) <strong>format_time</strong>(time) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_format_time'>format_time</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># important as strftime() tends to return a US-ASCII string
+</span>    <span class='id identifier rubyid_s'>s</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_year'>year</span><span class='rbrace'>}</span><span class='tstring_content'>/%m/%d %H:%M:%S</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># %Y tends to return &quot;88&quot; for 1988 in many implementations
+</span>
+    <span class='id identifier rubyid_milliseconds'>milliseconds</span> <span class='op'>=</span> <span class='id identifier rubyid_get_datetime_milliseconds'>get_datetime_milliseconds</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_s'>s</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.%03d</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_milliseconds'>milliseconds</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_milliseconds'>milliseconds</span> <span class='op'>!=</span> <span class='int'>0</span>
+
+    <span class='id identifier rubyid_zone_part'>zone_part</span> <span class='op'>=</span> <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%z</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># &gt;&gt; &quot;+0130&quot;  --  &quot;%:z&quot; is not supported by every interpreter
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_zone_part'>zone_part</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_zone_part'>zone_part</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>or</span> <span class='id identifier rubyid_zone_part'>zone_part</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+0000</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>or</span> <span class='kw'>not</span> <span class='id identifier rubyid_zone_part'>zone_part</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[+-]\d+</span><span class='regexp_end'>/</span></span>
+      <span class='id identifier rubyid_zone_part'>zone_part</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>3</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_s'>s</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-GMT</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_zone_part'>zone_part</span>
+    <span class='kw'>end</span>
+
+    <span class='kw'>return</span> <span class='id identifier rubyid_s'>s</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_coercible?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>is_coercible?</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether 'o' is coercible to a SDL literal type. See
+#coerce_or_fail</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168
+169
+170
+171
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_coercible?'>is_coercible?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_coerce_or_fail'>coerce_or_fail</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+    <span class='kw'>true</span>
+    
+  <span class='kw'>rescue</span> <span class='const'>ArgumentError</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="load-class_method">
+  
+    + (<tt>Object</tt>) <strong>load</strong>(input) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Loads the specified 'input' and deserializes into the returned object.</p>
+<dl class="rdoc-list note-list"><dt><em>input</em>
+<dd>
+<p>an input as accepted by SDL4R#read or a Tag.</p>
+</dd></dl>
+
+<p>example:</p>
+
+<pre class="ruby"><span class="ruby-identifier">top</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-value">&lt;&lt;EOS
+food name=&quot;chili con carne&quot; {
+  ingredient &quot;beans&quot;
+  ingredient &quot;chili&quot;
+  ingredient &quot;cheese&quot;
+  note 8.9
+}
+EOS</span>
+)
+
+<span class="ruby-identifier">top</span>.<span class="ruby-identifier">food</span>.<span class="ruby-identifier">name</span> <span class="ruby-comment"># =&gt; &quot;chili con carne&quot;</span>
+<span class="ruby-identifier">top</span>.<span class="ruby-identifier">food</span>.<span class="ruby-identifier">ingredient</span> <span class="ruby-comment"># =&gt; [&quot;beans&quot;, &quot;chili&quot;, &quot;cheese&quot;]</span>
+<span class="ruby-identifier">top</span>.<span class="ruby-identifier">food</span>.<span class="ruby-identifier">note</span> <span class="ruby-comment"># =&gt; 8.9</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+339
+340
+341
+342
+343
+344
+345
+346
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 339</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_input'>input</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Tag</span>
+    <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='id identifier rubyid_input'>input</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_tag'>tag</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>return</span> <span class='const'>Serializer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_deserialize'>deserialize</span><span class='lparen'>(</span><span class='id identifier rubyid_tag'>tag</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_exotic_date_time-class_method">
+  
+    + (<tt>Object</tt>) <strong>new_exotic_date_time</strong>(*args) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and returns a DateTime. This method supports non-standard values
+for fields, like negative ones for hours. Contrarily to DateTime, negative
+values can modify values of other fields. Example</p>
+
+<pre class="ruby"><span class="ruby-identifier">new_exotic_date_time</span>(<span class="ruby-value">2010</span>, <span class="ruby-value">01</span>, <span class="ruby-value">01</span>, <span class="ruby-value">-2</span>, <span class="ruby-value">55</span>, <span class="ruby-value">30</span>) =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2009</span><span class="ruby-operator">/</span><span class="ruby-value">12</span><span class="ruby-operator">/</span><span class="ruby-value">31</span> <span class="ruby-value">22</span>;<span class="ruby-value">55</span><span class="ruby-operator">:</span><span class="ruby-value">30</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>year</tt>, <tt>month</tt>, <tt>day</tt>, <tt>hour</tt>, <tt>min</tt>, <tt>sec</tt>, <tt>msec</tt>, <tt>timezone_code</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r_date.rb', line 36</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_new_exotic_date_time'>new_exotic_date_time</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_amend_args'>amend_args</span> <span class='op'>=</span> <span class='id identifier rubyid_prepare_amend_args'>prepare_amend_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>=</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
+
+  <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>||=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_zone'>zone</span>
+  <span class='id identifier rubyid_sec_msec'>sec_msec</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_msec'>msec</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span><span class='op'>?</span> <span class='id identifier rubyid_sec'>sec</span> <span class='op'>:</span> <span class='const'>Rational</span><span class='lparen'>(</span><span class='id identifier rubyid_sec'>sec</span> <span class='op'>*</span> <span class='int'>1000</span> <span class='op'>+</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='int'>1000</span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_date_time'>date_time</span> <span class='op'>=</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_civil'>civil</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec_msec'>sec_msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_amend_exotic_date_time'>amend_exotic_date_time</span><span class='lparen'>(</span><span class='id identifier rubyid_date_time'>date_time</span><span class='comma'>,</span> <span class='id identifier rubyid_amend_args'>amend_args</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="new_time-class_method">
+  
+    + (<tt>Object</tt>) <strong>new_time</strong>(year, month, day, hour, min, sec, msec, timezone_code) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='tzinfo_orig_new_time-class_method'>tzinfo_orig_new_time</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and returns the object representing a time (DateTime by default).
+This method is called by the Parser class.</p>
+
+<p>See #use_datetime=</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_time'>new_time</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='cvar'>@@use_datetime</span>
+    <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>||=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_zone'>zone</span>
+    <span class='id identifier rubyid_sec_msec'>sec_msec</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_msec'>msec</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span><span class='op'>?</span> <span class='id identifier rubyid_sec'>sec</span> <span class='op'>:</span> <span class='const'>Rational</span><span class='lparen'>(</span><span class='id identifier rubyid_sec'>sec</span> <span class='op'>*</span> <span class='int'>1000</span> <span class='op'>+</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='int'>1000</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='cvar'>@@use_exotic_dates</span>
+      <span class='kw'>return</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_civil'>civil</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec_msec'>sec_msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_new_exotic_date_time'>new_exotic_date_time</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:GMT|UTC)([+-]\d+:\d+)\Z</span><span class='regexp_end'>/</span></span>
+      <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>=</span> <span class='backref'>$1</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_timezone_offset'>timezone_offset</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_zone_offset'>zone_offset</span><span class='lparen'>(</span><span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='comma'>,</span> <span class='id identifier rubyid_year'>year</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_timezone_offset'>timezone_offset</span>
+      <span class='id identifier rubyid_timezone_offset_hour'>timezone_offset_hour</span> <span class='op'>=</span> <span class='id identifier rubyid_timezone_offset'>timezone_offset</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span> <span class='op'>/</span> <span class='int'>3600</span>
+      <span class='id identifier rubyid_timezone_offset_min'>timezone_offset_min</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_timezone_offset'>timezone_offset</span><span class='period'>.</span><span class='id identifier rubyid_abs'>abs</span> <span class='op'>%</span> <span class='int'>3600</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='int'>60</span>
+      <span class='kw'>return</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_xmlschema'>xmlschema</span><span class='lparen'>(</span>
+        <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%d-%02d-%02dT%02d:%02d:%02d.%03d</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_timezone_offset'>timezone_offset</span> <span class='op'>&gt;=</span> <span class='int'>0</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>+</span><span class='tstring_end'>'</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span><span class='tstring_content'>%02d:%02d</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+          <span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_offset_hour'>timezone_offset_hour</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_offset_min'>timezone_offset_min</span><span class='rparen'>)</span><span class='rparen'>)</span>
+
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_local'>local</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read-class_method">
+  
+    + (<tt>Object</tt>) <strong>read</strong>(input) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and returns a tag named "root" and add all the tags specified in
+the given <code>input</code>.</p>
+<dl class="rdoc-list note-list"><dt><code>input</code>
+<dd>
+<p>String, IO, Pathname or URI.</p>
+</dd></dl>
+
+<pre class="ruby"><span class="ruby-identifier">root</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">read</span>(<span class="ruby-value">&lt;&lt;EOS
+planets {
+  earth area_km2=510900000
+  mars
+}
+EOS</span>
+)
+
+<span class="ruby-identifier">root</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">read</span>(<span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;my_dir/my_file.sdl&quot;</span>))
+
+<span class="ruby-constant">IO</span>.<span class="ruby-identifier">open</span>(<span class="ruby-string">&quot;my_dir/my_file.sdl&quot;</span>, <span class="ruby-string">&quot;r&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">root</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">read</span>(<span class="ruby-identifier">io</span>)
+}
+
+<span class="ruby-identifier">root</span> = <span class="ruby-constant">SDL4R</span><span class="ruby-operator">::</span><span class="ruby-identifier">read</span>(<span class="ruby-constant">URI</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;http://my_site/my_file.sdl&quot;</span>))
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 276</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+  <span class='const'>Tag</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>ROOT_TAG_NAME</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="SdlBinary-class_method">
+  
+    + (<tt>Object</tt>) <strong>SdlBinary</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Try to coerce 'o' into a SdlBinary. Raise an ArgumentError if it fails.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl_binary.rb', line 72</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='const'>SdlBinary</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'>SdlBinary</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_kind_of?'>kind_of?</span> <span class='const'>String</span>
+    <span class='kw'>return</span> <span class='const'>SdlBinary</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>can't coerce argument</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="supports_unicode_identifiers?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>supports_unicode_identifiers?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_supports_unicode_identifiers?'>supports_unicode_identifiers?</span>
+  <span class='cvar'>@@UNICODE_REGEXP_SUPPORTED</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_attribute_hash-class_method">
+  
+    + (<tt>Object</tt>) <strong>to_attribute_hash</strong>(s) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parse a string representing the attributes portion of an SDL tag and return
+the results as a map.</p>
+
+<p>Example</p>
+
+<pre class="ruby"><span class="ruby-identifier">hash</span> = <span class="ruby-constant">SDL4R</span>.<span class="ruby-identifier">to_attribute_hash</span>(<span class="ruby-string">&quot;value=1 debugging=on time=12:24:01&quot;</span>);
+
+<span class="ruby-comment"># { &quot;value&quot; =&gt; 1, &quot;debugging&quot; =&gt; true, &quot;time&quot; =&gt; SdlTimeSpan.new(12, 24, 01) }</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+314
+315
+316
+317</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 314</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_attribute_hash'>to_attribute_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'s' cannot be null</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>atts </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_attributes'>attributes</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_value-class_method">
+  
+    + (<tt>Object</tt>) <strong>to_value</strong>(s) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Parses and returns the value corresponding with the specified SDL literal.</p>
+
+<pre class="ruby"><span class="ruby-constant">SDL4R</span>.<span class="ruby-identifier">to_value</span>(<span class="ruby-string">&quot;\&quot;abcd\&quot;&quot;</span>) <span class="ruby-comment"># =&gt; &quot;abcd&quot;</span>
+<span class="ruby-constant">SDL4R</span>.<span class="ruby-identifier">to_value</span>(<span class="ruby-string">&quot;1&quot;</span>) <span class="ruby-comment"># =&gt; 1</span>
+<span class="ruby-constant">SDL4R</span>.<span class="ruby-identifier">to_value</span>(<span class="ruby-string">&quot;null&quot;</span>) <span class="ruby-comment"># =&gt; nil</span>
+</pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+286
+287
+288
+289</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 286</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_value'>to_value</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'s' cannot be null</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="to_value_array-class_method">
+  
+    + (<tt>Object</tt>) <strong>to_value_array</strong>(s) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Example</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_array'>array</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='period'>.</span><span class='id identifier rubyid_to_value_array'>to_value_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>1 true 12:24:01</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span></code></pre>
+
+<p>Will return an int, a boolean, and a time span.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+300
+301
+302
+303</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 300</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_value_array'>to_value_array</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'s' cannot be null</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_child'>child</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="tzinfo_replac_new_time-class_method">
+  
+    + (<tt>Object</tt>) <strong>tzinfo_replac_new_time</strong>(year, month, day, hour, min, sec, msec, timezone_code) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Creates and returns the object representing a time (DateTime by default).
+This method is called by the Parser class.</p>
+
+<p>This implementation uses TZInfo in order to parse timezones (wider support
+of timezones and better support of DST and such issues).</p>
+
+<p>See #use_datetime=</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r_tzinfo.rb', line 40</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tzinfo_replac_new_time'>tzinfo_replac_new_time</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span>
+    <span class='id identifier rubyid_timezone'>timezone</span> <span class='op'>=</span> <span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>RelativeTimezone</span><span class='op'>::</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_timezone_code'>timezone_code</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_tz_ref_time'>tz_ref_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span>
+    <span class='comment'># Arbitrary decision: in ambiguous cases, we choose the not-DST offset.
+</span>    <span class='id identifier rubyid_timezone_period'>timezone_period</span> <span class='op'>=</span> <span class='id identifier rubyid_timezone'>timezone</span><span class='period'>.</span><span class='id identifier rubyid_period_for_local'>period_for_local</span><span class='lparen'>(</span><span class='id identifier rubyid_tz_ref_time'>tz_ref_time</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_use_datetime?'>use_datetime?</span>
+    <span class='id identifier rubyid_sec_msec'>sec_msec</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_msec'>msec</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span><span class='op'>?</span> <span class='id identifier rubyid_sec'>sec</span> <span class='op'>:</span> <span class='const'>Rational</span><span class='lparen'>(</span><span class='id identifier rubyid_sec'>sec</span> <span class='op'>*</span> <span class='int'>1000</span> <span class='op'>+</span> <span class='id identifier rubyid_msec'>msec</span><span class='comma'>,</span> <span class='int'>1000</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_timezone_offset'>timezone_offset</span> <span class='op'>=</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>?</span>
+      <span class='id identifier rubyid_timezone_period'>timezone_period</span><span class='period'>.</span><span class='id identifier rubyid_utc_total_offset_rational'>utc_total_offset_rational</span> <span class='op'>:</span>
+      <span class='const'>Rational</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_utc_offset'>utc_offset</span><span class='comma'>,</span> <span class='const'>SECONDS_IN_DAY</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='const'>DateTime</span><span class='period'>.</span><span class='id identifier rubyid_civil'>civil</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec_msec'>sec_msec</span><span class='comma'>,</span> <span class='id identifier rubyid_timezone_offset'>timezone_offset</span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_timezone_code'>timezone_code</span> <span class='op'>?</span>
+      <span class='id identifier rubyid_timezone_period'>timezone_period</span><span class='period'>.</span><span class='id identifier rubyid_to_utc'>to_utc</span><span class='lparen'>(</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>
+      <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_local'>local</span><span class='lparen'>(</span><span class='id identifier rubyid_year'>year</span><span class='comma'>,</span> <span class='id identifier rubyid_month'>month</span><span class='comma'>,</span> <span class='id identifier rubyid_day'>day</span><span class='comma'>,</span> <span class='id identifier rubyid_hour'>hour</span><span class='comma'>,</span> <span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_sec'>sec</span><span class='comma'>,</span> <span class='id identifier rubyid_msec'>msec</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="use_datetime=-class_method">
+  
+    + (<tt>Object</tt>) <strong>use_datetime=</strong>(bool) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets whether DateTime should be used for representing times at parsing. If
+set to false, Time will be used instead (true by default).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 78</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_use_datetime='>use_datetime=</span><span class='lparen'>(</span><span class='id identifier rubyid_bool'>bool</span><span class='rparen'>)</span>
+  <span class='cvar'>@@use_datetime</span> <span class='op'>=</span> <span class='id identifier rubyid_bool'>bool</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="use_datetime?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>use_datetime?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Indicates whether DateTime is used to represent times. If false, Time is
+used instead. True by default.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_use_datetime?'>use_datetime?</span>
+  <span class='cvar'>@@use_datetime</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="valid_identifier?-class_method">
+  
+    + (<tt>Boolean</tt>) <strong>valid_identifier?</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns whether the specified SDL identifier is valid. See
+SDL4R#validate_identifier.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+252
+253
+254</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 252</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_valid_identifier?'>valid_identifier?</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+  <span class='op'>!</span><span class='const'>IDENTIFIER_REGEXP</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_identifier-class_method">
+  
+    + (<tt>Object</tt>) <strong>validate_identifier</strong>(identifier) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Validates an SDL identifier String.  SDL Identifiers must start with a
+Unicode letter or underscore (_) and contain only unicode letters, digits,
+underscores (_), dashes(-), periods (.) and dollar signs ($).</p>
+
+<h2 id="label-Raises">Raises</h2>
+
+<p>ArgumentError if the identifier is not legal</p>
+
+<p>TODO: support UTF-8 identifiers</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/sdl4r.rb', line 221</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate_identifier'>validate_identifier</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SDL identifiers cannot be null or empty.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># in Java, was if(!Character.isJavaIdentifierStart(identifier.charAt(0)))
+</span>  <span class='kw'>unless</span> <span class='id identifier rubyid_identifier'>identifier</span> <span class='op'>=~</span> <span class='const'>IDENTIFIER_START_REGEXP</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^.</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span> <span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>' is not a legal first character for an SDL identifier. </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SDL Identifiers must start with a unicode letter or </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>an underscore (_). (identifier=&lt;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;)</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='int'>1</span> <span class='kw'>or</span> <span class='id identifier rubyid_identifier'>identifier</span> <span class='op'>=~</span> <span class='const'>IDENTIFIER_REGEXP</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>1</span><span class='op'>..</span><span class='id identifier rubyid_identifier'>identifier</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+      <span class='kw'>unless</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>..</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>=~</span> <span class='const'>IDENTIFIER_PART_REGEXP</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_identifier'>identifier</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>..</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span> <span class='op'>+</span> 
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>' is not a legal character for an SDL identifier. </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SDL Identifiers must start with a unicode letter or </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>underscore (_) followed by 0 or more unicode </span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span>
+          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>letters, digits, underscores (_), dashes (-), periodss (.) and dollar signs ($)</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:40 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

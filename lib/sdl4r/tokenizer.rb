@@ -75,11 +75,11 @@ module SDL4R
       self.freeze
     end
 
+    # @api private
     # A string used at the end of each line in order to trigger the EOL token.
-    # @private
     @@EOL_STRING = "\n"
 
-    # @private
+    # @api private
     @@matcher_sets = {
       :top => [
         Matcher.new(:EOL, /\A\n/),
@@ -233,7 +233,7 @@ module SDL4R
       ]
     }
 
-    # @param [IO] the IO to read from
+    # @param [IO] io the IO to read from
     # @raise [ArgumentError] if +io+ is +nil+.
     def initialize io
       raise ArgumentError, 'io' unless io
@@ -273,7 +273,7 @@ module SDL4R
 
     # Sets the current working mode of this Tokenizer.
     #
-    # @param [Symbol] new mode
+    # @param [Symbol] mode new mode
     #   * +:top+ (normal default mode)
     #   * +:multiline_comment+
     #   * +:multiline_backquote_string+

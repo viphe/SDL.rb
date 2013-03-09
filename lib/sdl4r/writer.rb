@@ -336,7 +336,7 @@ module SDL4R
         @io << SDL4R::format_time(o)
 
       when Date
-        @io << "#{o.strftime("#{o.year}/%m/%d")}"
+        @io << %Q{#{o.strftime("#{o.year}/%m/%d")}}
 
       else
         @io << o.to_s

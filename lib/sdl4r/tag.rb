@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby -w
+3#!/usr/bin/env ruby -w
 # encoding: UTF-8
 
 #--
@@ -30,8 +30,7 @@ module SDL4R
   # method. The implementations are designed to be correct and somewhat efficient, not too protect
   # the Tag internal state from ill-use of the returned values.
   #
-  # == Authors
-  # Daniel Leuck, Philippe Vosges
+  # @author Daniel Leuck, Philippe Vosges
   #
   class Tag
 
@@ -811,20 +810,21 @@ module SDL4R
     private_methods :read_from_io
     
     # Write this tag out to the given IO or StringIO or String (optionally clipping the root.)
-    # Returns +output+.
+    #  
+    # @param [IO, String]             output
+    #     any output compatible with +Writer+
+    # @param [TrueClass, FalseClass]  as_top_tag
+    #     if +true+, this tag will be written as the root element (i.e. its children
+    #     will be top level). If +false+ (default), this tag will be written as a top element.
     # 
-    # @param [IO, String] output        an IO or StringIO or a String to write to
-    # @param [Boolean]    is_top_level  if true, this tag will be written as the root element (i.e. its children will be
-    #                                   top level. If false (default), this tag will be written as a top element.
-    # 
-    # @return output
+    # @return +output+
     #
-    def write(output, as_top = false)
+    def write(output, as_top_tag = false)
       Writer.new(output) do |writer|
-        if as_top
+        if as_top_tag
           writer.write(self.namespace, self.name, self)
         else
-          write(self)
+          writer.write(self)
         end
       end
 

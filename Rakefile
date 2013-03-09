@@ -63,16 +63,18 @@ EOF
 end
 Jeweler::RubygemsDotOrgTasks.new
 
+
+documented_src_files = ['lib/**/*.rb']
+documented_doc_files = ['README.rdoc', 'LICENSE', 'CHANGELOG.rdoc']
+
 require 'rdoc/task'
 Rake::RDocTask.new do |rd|
-  files = ['README.rdoc', 'LICENSE', 'CHANGELOG', 'lib/**/*.rb', 'doc/**/*.rdoc']
   
   require "#{lib_dir}/sdl4r/sdl4r_version"
   version =  SDL4R::VERSION
   
-  rd.main = 'README.rdoc'
-  rd.rdoc_files.include(files)
-  rd.rdoc_files.exclude("lib/scratchpad.rb")
+  rd.main = documented_doc_files[0]
+  rd.rdoc_files.include(documented_src_files + documented_doc_files)
   rd.rdoc_dir = 'doc'
   rd.title = "RDoc: Simple Declarative Language for Ruby (v#{version})"
   rd.template = 'direct' # lighter template used on railsapi.com
@@ -83,8 +85,7 @@ end
 if gem_available? 'yard'
   require 'yard'
   YARD::Rake::YardocTask.new do |t|
-    files = FileList.new('README', 'LICENSE', 'CHANGELOG', 'lib/**/*.rb', 'doc/**/*.rdoc')
-    files.exclude("lib/scratchpad.rb")
+    files = FileList.new(*(documented_src_files + ['-'] + documented_doc_files))
     t.files = files.to_ary
   end
 end

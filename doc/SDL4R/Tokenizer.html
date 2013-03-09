@@ -1,0 +1,1452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: SDL4R::Tokenizer
+  
+    &mdash; Documentation by YARD 0.8.5.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../SDL4R.html" title="SDL4R (module)">SDL4R</a></span></span>
+     &raquo; 
+    <span class="title">Tokenizer</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: SDL4R::Tokenizer
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SDL4R::Tokenizer</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/sdl4r/tokenizer.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Tokenizer for SDL.</p>
+
+<p>As Ruby's IO standard libraries are not so much low-level, this class works
+on lines. This means that some token types reflect this line-oriented
+tokenizing.</p>
+
+<p>The other solution would be to implement a proper tokenizer natively, which
+I don't feel like doing right now.</p>
+
+<p>-- FIXME: implement a way of stacking the errors without raising an error
+immediately ++</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Tokenizer/Matcher.html" title="SDL4R::Tokenizer::Matcher (class)">Matcher</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="EOL_STRING-classvariable" class="">@@EOL_STRING =
+          <div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This classvariable is part of a private API.</strong>
+  You should avoid using this classvariable if possible, as it may be removed or be changed in the future.
+</p>
+
+<p>A string used at the end of each line in order to trigger the EOL token.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="matcher_sets-classvariable" class="">@@matcher_sets =
+          <div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This classvariable is part of a private API.</strong>
+  You should avoid using this classvariable if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span>
+  <span class='symbol'>:top</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EOL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:WHITESPACE</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\s+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:SEMICOLON</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:COLON</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A:</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EQUAL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A=</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:BLOCK_START</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\{</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:BLOCK_END</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\}</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:BOOLEAN</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\Atrue|false|on|off</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:NULL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\Anull</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:ONE_LINE_COMMENT</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:#|--|\/\/).*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:#|--|\/\/)</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INLINE_COMMENT</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\/\*[\s\S]*?\*\/</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\/\*|\*\/\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_COMMENT_START</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\/\*.*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:multiline_comment</span><span class='comma'>,</span>
+      <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\/\*</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:CHARACTER</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A'(?:[^\\']|\\.)'</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A'|'\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INLINE_BACKQUOTE_STRING</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A`[^`]*`</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:is_node</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A`|`\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INLINE_DOUBLE_QUOTE_STRING</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A&quot;(?:[^\\&quot;]|\\.)*&quot;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A&quot;|&quot;\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_BACKQUOTE_STRING_START</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A`[^`]*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:multiline_backquote_string</span><span class='comma'>,</span>
+      <span class='symbol'>:is_node</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A`</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_START</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A&quot;(?:[^\\&quot;]|\\\S)*\\\s*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:multiline_double_quote_string</span><span class='comma'>,</span>
+      <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A&quot;|\\\s*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INLINE_BINARY</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\[[\sA-Za-z0-9\/=\+]*\]</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\[|\s+|\]\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_BINARY_START</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\[[\sA-Za-z0-9\/=\+]*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:multiline_binary</span><span class='comma'>,</span>
+      <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\[|\s+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:IDENTIFIER</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A</span><span class='embexpr_beg'>#{</span><span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>IDENTIFIER_START_CLASS</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='const'>SDL4R</span><span class='op'>::</span><span class='const'>IDENTIFIER_PART_CLASS</span><span class='rbrace'>}</span><span class='tstring_content'>*</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:DATE</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A-?\d+\/\d+\/\d+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:is_node</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:TIME_OR_TIMESPAN</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:-?\d+d:)?-?\d+:\d+(?::\d+(?:\.\d+)?)?
+        (?:-[a-zA-Z\/]+(?:[+-]\d+(?::\d+)?)?)?</span><span class='regexp_end'>/ix</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INTEGER</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\+\-]?\d+L</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='comment'># takes precedence on floats
+</span>    <span class='comment'># the float regex is meant to also catch bad syntaxed floats like &quot;1.2.2&quot; (otherwise, we
+</span>    <span class='comment'># would not detect this kind of errors easily).
+</span>    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:FLOAT</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\+\-]?(?:\d+(?:F|D|BD)|\d*\.[\d\.]+(?:F|D|BD)?)</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:INTEGER</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\+\-]?\d+L?</span><span class='regexp_end'>/i</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:LINE_CONTINUATION</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\\\s*\Z</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='comment'># outside of comments, strings, etc
+</span>    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:UNCLOSED_DOUBLE_QUOTE_STRING</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A&quot;(?:[^\\&quot;]|\\\S)*</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:error</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unclosed string</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+  <span class='rbracket'>]</span><span class='comma'>,</span>
+   <span class='symbol'>:multiline_comment</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EOL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_COMMENT_END</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\s\S]*?\*\/</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:top</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\*\/\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_COMMENT_PART</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A.+\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='rbracket'>]</span><span class='comma'>,</span>
+   <span class='symbol'>:multiline_backquote_string</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EOL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_BACKQUOTE_STRING_END</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[^`]*`</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:top</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>`\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_BACKQUOTE_STRING_PART</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[^`]*\Z</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+  <span class='rbracket'>]</span><span class='comma'>,</span>
+   <span class='symbol'>:multiline_double_quote_string</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EOL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_END</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:[^\\&quot;]|\\\S)*&quot;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:top</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\s+|&quot;\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:MULTILINE_DOUBLE_QUOTE_STRING_PART</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:[^\\&quot;]|\\\S)*\\\s*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+        <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\s+|\\\s*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='symbol'>:UNCLOSED_DOUBLE_QUOTE_STRING</span><span class='comma'>,</span>
+      <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A(?:[^\\&quot;]|\\\S)*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span>
+      <span class='symbol'>:error</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unclosed multiline string</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='rbracket'>]</span><span class='comma'>,</span>
+   <span class='symbol'>:multiline_binary</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:EOL</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_BINARY_END</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\sA-Za-z0-9\/=\+]*\]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:next_mode</span> <span class='op'>=&gt;</span> <span class='symbol'>:top</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+|\]\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span><span class='comma'>,</span>
+    <span class='const'>Matcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:MULTILINE_BINARY_PART</span><span class='comma'>,</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\A[\sA-Za-z0-9\/=\+]*\Z</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='symbol'>:push_back_eol</span> <span class='op'>=&gt;</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>def</span> <span class='id identifier rubyid_process_token'>process_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_token'>token</span><span class='period'>.</span><span class='id identifier rubyid_gsub!'>gsub!</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='rbracket'>]</span>
+<span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Tokenizer) <strong>initialize</strong>(io) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Tokenizer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#previous_token_type-instance_method" title="#previous_token_type (instance method)">- (Symbol) <strong>previous_token_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The type of the previous Token.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#raise_parse_error-instance_method" title="#raise_parse_error (instance method)">- (Object) <strong>raise_parse_error</strong>(msg = &quot;parse error&quot;, line_no = @line_no, pos = @scanner.pos) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#raise_unexpected_char-instance_method" title="#raise_unexpected_char (instance method)">- (Object) <strong>raise_unexpected_char</strong>(msg = &quot;unexpected char&quot;) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Raises a standard "unexpected character" error.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read-instance_method" title="#read (instance method)">- (Symbol) <strong>read</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Goes to the next token.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_mode-instance_method" title="#set_mode (instance method)">- (self) <strong>set_mode</strong>(mode) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Sets the current working mode of this Tokenizer.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#token-instance_method" title="#token (instance method)">- (String) <strong>token</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Text of the current token.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#token_line_no-instance_method" title="#token_line_no (instance method)">- (Integer) <strong>token_line_no</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Position of the current token (only meant for error tracking for the time
+being).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#token_pos-instance_method" title="#token_pos (instance method)">- (Integer) <strong>token_pos</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Position of the current token (only meant for error tracking for the time
+being).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#token_type-instance_method" title="#token_type (instance method)">- (Symbol) <strong>token_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Type of the current token (e.g. <code>:WHITESPACE</code>).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#unread-instance_method" title="#unread (instance method)">- (Object) <strong>unread</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Unreads the current token.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="SDL4R::Tokenizer (class)">Tokenizer</a></span></tt>) <strong>initialize</strong>(io) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>A new instance of Tokenizer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>io</span>
+      
+      
+        <span class='type'>(<tt>IO</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the IO to read from</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if <code>io</code> is <code>nil</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 238</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_io'>io</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>io</span><span class='tstring_end'>'</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_io'>io</span>
+  <span class='ivar'>@io</span> <span class='op'>=</span> <span class='id identifier rubyid_io'>io</span>
+  <span class='ivar'>@scanner</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@line_no</span> <span class='op'>=</span> <span class='op'>-</span><span class='int'>1</span>
+  <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='symbol'>:top</span><span class='rparen'>)</span>
+
+  <span class='ivar'>@token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@pushed_back_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@previous_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='ivar'>@token_pool</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='comment'># a pool of reusable Tokens
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="previous_token_type-instance_method">
+  
+    - (<tt>Symbol</tt>) <strong>previous_token_type</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The type of the previous Token.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>the type of the previous Token.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+370
+371
+372</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 370</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_previous_token_type'>previous_token_type</span>
+  <span class='ivar'>@previous_token</span> <span class='op'>?</span> <span class='ivar'>@previous_token</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="raise_parse_error-instance_method">
+  
+    - (<tt>Object</tt>) <strong>raise_parse_error</strong>(msg = &quot;parse error&quot;, line_no = @line_no, pos = @scanner.pos) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="SdlParseError.html" title="SDL4R::SdlParseError (class)">SdlParseError</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+400
+401
+402
+403</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 400</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>parse error</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_line_no'>line_no</span> <span class='op'>=</span> <span class='ivar'>@line_no</span><span class='comma'>,</span> <span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_line_no'>line_no</span> <span class='op'>==</span> <span class='ivar'>@line_no</span><span class='rparen'>)</span><span class='op'>?</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span> <span class='op'>:</span> <span class='kw'>nil</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SdlParseError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='comma'>,</span> <span class='id identifier rubyid_line_no'>line_no</span> <span class='op'>+</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_pos'>pos</span> <span class='op'>+</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="raise_unexpected_char-instance_method">
+  
+    - (<tt>Object</tt>) <strong>raise_unexpected_char</strong>(msg = &quot;unexpected char&quot;) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Raises a standard "unexpected character" error.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+396
+397
+398</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 396</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_raise_unexpected_char'>raise_unexpected_char</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unexpected char</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='rbrace'>}</span><span class='tstring_content'>: &lt;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_peek'>peek</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read-instance_method">
+  
+    - (<tt>Symbol</tt>) <strong>read</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Goes to the next token.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p><code>nil</code> if eof has been reached, the current token type otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 312</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span>
+  <span class='kw'>if</span> <span class='ivar'>@pushed_back_token</span>
+    <span class='id identifier rubyid_read_pushed_back'>read_pushed_back</span>
+    <span class='kw'>return</span> <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_record_previous_token'>record_previous_token</span>
+  <span class='ivar'>@token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@line_no</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>or</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_eos?'>eos?</span> <span class='comment'># fetch a line if beginning or at end of line
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_read_line'>read_line</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_previous_token_type'>previous_token_type</span> <span class='op'>==</span> <span class='symbol'>:EOF</span>
+        <span class='kw'>return</span> <span class='kw'>nil</span>
+      <span class='kw'>else</span>
+        <span class='ivar'>@token</span> <span class='op'>=</span> <span class='const'>Token</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='symbol'>:EOF</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='ivar'>@line_no</span><span class='comma'>,</span> <span class='ivar'>@scanner</span> <span class='op'>?</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+        <span class='kw'>return</span> <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span>
+  <span class='ivar'>@matcher_set</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_matcher'>matcher</span><span class='op'>|</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_token_text'>token_text</span> <span class='op'>=</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='id identifier rubyid_matcher'>matcher</span><span class='period'>.</span><span class='id identifier rubyid_regex'>regex</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='id identifier rubyid_matcher'>matcher</span><span class='period'>.</span><span class='id identifier rubyid_error'>error</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_error'>error</span>
+        <span class='id identifier rubyid_raise_parse_error'>raise_parse_error</span><span class='lparen'>(</span><span class='id identifier rubyid_error'>error</span><span class='rparen'>)</span>
+
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_set_matcher_token'>set_matcher_token</span><span class='lparen'>(</span><span class='id identifier rubyid_matcher'>matcher</span><span class='comma'>,</span> <span class='id identifier rubyid_token_text'>token_text</span><span class='comma'>,</span> <span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_matcher'>matcher</span><span class='period'>.</span><span class='id identifier rubyid_push_back_eol'>push_back_eol</span> <span class='kw'>and</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_eos?'>eos?</span>
+          <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='ivar'>@scanner</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span> <span class='op'>-</span> <span class='cvar'>@@EOL_STRING</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='kw'>break</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_raise_unexpected_char'>raise_unexpected_char</span> <span class='kw'>unless</span> <span class='ivar'>@token</span>
+
+  <span class='kw'>return</span> <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="set_mode-instance_method">
+  
+    - (<tt>self</tt>) <strong>set_mode</strong>(mode) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Sets the current working mode of this Tokenizer.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>mode</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>new mode</p>
+<ul><li>
+<p><code>:top</code> (normal default mode)</p>
+</li><li>
+<p><code>:multiline_comment</code></p>
+</li><li>
+<p><code>:multiline_backquote_string</code></p>
+</li><li>
+<p><code>:multiline_double_quote_string</code></p>
+</li><li>
+<p><code>:multiline_binary</code></p>
+</li></ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>if the given mode is unknown.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+286
+287
+288
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 286</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ms'>ms</span> <span class='op'>=</span> <span class='cvar'>@@matcher_sets</span><span class='lbracket'>[</span><span class='id identifier rubyid_mode'>mode</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unknown tokenizer mode </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_mode'>mode</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_ms'>ms</span>
+  <span class='ivar'>@matcher_set</span> <span class='op'>=</span> <span class='id identifier rubyid_ms'>ms</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="token-instance_method">
+  
+    - (<tt>String</tt>) <strong>token</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Text of the current token.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>text of the current token.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_token'>token</span>
+  <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_text'>text</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="token_line_no-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>token_line_no</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Position of the current token (only meant for error tracking for the time
+being)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>position of the current token (only meant for error tracking for the time
+being)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+264
+265
+266</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 264</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_token_line_no'>token_line_no</span>
+  <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_line_no'>line_no</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="token_pos-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>token_pos</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Position of the current token (only meant for error tracking for the time
+being)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>position of the current token (only meant for error tracking for the time
+being)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_token_pos'>token_pos</span>
+  <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_pos'>pos</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="token_type-instance_method">
+  
+    - (<tt>Symbol</tt>) <strong>token_type</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Type of the current token (e.g. <code>:WHITESPACE</code>)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>type of the current token (e.g. <code>:WHITESPACE</code>)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+258
+259
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 258</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_token_type'>token_type</span>
+  <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unread-instance_method">
+  
+    - (<tt>Object</tt>) <strong>unread</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Unreads the current token. The previous token becomes the current one</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'>
+<p>if #unread has been called twice in a row (no call to #read)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sdl4r/tokenizer.rb', line 378</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unread'>unread</span>
+  <span class='kw'>if</span> <span class='ivar'>@pushed_back_token</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>only one token can be pushed back</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@pushed_back_token</span> <span class='op'>=</span> <span class='ivar'>@token</span>
+    <span class='ivar'>@token</span> <span class='op'>=</span> <span class='ivar'>@previous_token</span>
+
+    <span class='comment'># We have no memory of what happened before
+</span>    <span class='ivar'>@previous_token</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+    <span class='kw'>if</span> <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_matcher'>matcher</span>
+      <span class='id identifier rubyid_next_mode'>next_mode</span> <span class='op'>=</span> <span class='ivar'>@token</span><span class='period'>.</span><span class='id identifier rubyid_matcher'>matcher</span><span class='period'>.</span><span class='id identifier rubyid_next_mode'>next_mode</span>
+      <span class='id identifier rubyid_set_mode'>set_mode</span><span class='lparen'>(</span><span class='id identifier rubyid_next_mode'>next_mode</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_next_mode'>next_mode</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Sat Mar  9 08:41:42 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.5.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

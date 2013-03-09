@@ -632,6 +632,19 @@ EOF
           " -98/06/15 13:47:12.340 3112/01/10 00:00:00-GMT+01:00\n",
         output)
     end
+    
+    def test_write_with_writer
+     writer = Writer.new('');
+     root = SDL4R::read('city name="Montreal"')
+     root.write(writer)
+     assert_equal(%Q{city name="Montreal"\n}, writer.io.string)
+     
+     writer = Writer.new('')
+     tag = Tag.new('old', 'city')
+     tag << {:name => 'Bagdad'}
+     tag.write(writer, true)
+     assert_equal(%Q{old:city name="Bagdad"\n}, writer.io.string)
+    end
 
     # Check that having a timespan after a date in a tag values doesn't fail when loaded.
     #

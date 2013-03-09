@@ -20,7 +20,7 @@
 
 module SDL4R
   
-  # A do-nothing SDL writer (it will still go through the given blocks though).
+  # A +/dev/null+ kind of SDL writer (it will still visit the whole structure esp. when serializing).
   #
   class NilWriter
     include AbstractWriter
