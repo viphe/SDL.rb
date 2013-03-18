@@ -60,6 +60,7 @@ module SDL4R
     # @param [ObjectMapper] object_mapper support object for serialization
     #
     def initialize(out = nil, options = nil, object_mapper = ObjectMapper.new)
+      out, options, object_mapper = nil, nil, out if out.is_a? ObjectMapper
       out, options = nil, out if options.nil? and out.is_a? Hash
 
       self.object_mapper = object_mapper

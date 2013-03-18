@@ -34,7 +34,8 @@ module SDL4R
   # Implementation of a pull parser for SDL designed after the model of Nokogiri::XML::Reader.
   #
   class Reader
-    include ReaderWithElement, AbstractReader
+    include AbstractReader
+    include ReaderWithElement
 
     # @private
     def self.add_values_handler(map, handler)
@@ -154,14 +155,16 @@ module SDL4R
     attr_reader :element
     protected :element
 
-    def initialize(io)
+    def initialize(io, object_mapper = ObjectMapper.new)
       raise ArgumentError, 'io == nil' if io.nil?
       raise ArgumentError, 'io is not an IO' unless io.respond_to?(:gets)
+      raise ArgumentError, 'object_mapper == nil' if object_mapper.nil?
 
       @io = io
       @tokenizer = Tokenizer.new(@io)
       @element = nil
-      @depth = 1
+      @depth = 0
+      @object_mapper = object_mapper
 
       clear_node()
       set_mode(:top)
@@ -210,6 +213,7 @@ module SDL4R
     end
 
     # Reads the next node in the SDL structure.
+    # No event is emitted for the root element.
     #
     # @example
     #   open("sample.sdl") do |io|

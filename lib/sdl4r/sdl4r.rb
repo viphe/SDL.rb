@@ -22,16 +22,11 @@ require 'base64'
 require 'bigdecimal'
 require 'date'
 
-require 'sdl4r/sdl4r_version'
-
 # Utility methods and general constants for SDL4R.
 #
 # For more information about SDL4R, see the {link README file}[../../files/README.html]
 # 
 module SDL4R
-  
-  require 'sdl4r/writer'
-  require 'sdl4r/serializer'
 
   MAX_INTEGER_32 = 2**31 - 1
   MIN_INTEGER_32 = -(2**31)
@@ -315,10 +310,63 @@ module SDL4R
     raise ArgumentError, "'s' cannot be null" if s.nil?
     return read("atts " + s).child.attributes
   end
+  
+  # Opens a Reader based on the given +input+.
+  #
+  # @param input  supports AbstractReader, String (considered as SDL markup), IO, Pathname, URI.
+  #               If none of those, an ObjectReader will be open on +input+, thus, extending support
+  #               to Tag and basically any object structure.
+  #
+  # @return [AbstractReader, Object]  returns the opened reader or the result of the given block if
+  #                                   one is provided.
+  #
+  def self.open_reader(input, &block)
+    # auto_close will be set to true if we create an IO inside this method
+    case input
+      when AbstractReader
+        reader = input
+        auto_close = false
+        
+      when String
+        input = StringIO.new(input)
+        reader = Reader.new(input)
+        auto_close = true
+        
+      when Pathname
+        input = input.open("r:UTF-8")
+        reader = Reader.new(input)
+        auto_close = true
+        
+      when URI
+        input = input.open
+        reader = Reader.new(input)
+        auto_close = true
+        
+      when input.respond_to?(:gets) # some IO
+        reader = Reader.new(input)
+        auto_close = false
+        
+      else
+        reader = ObjectReader.new(input)
+        auto_close = false
+    end
+
+    if block_given?
+      begin
+        result = yield reader
+      ensure
+        input.close if auto_close
+      end
+      result
+      
+    else
+      reader
+    end
+  end
 
   # Loads the specified 'input' and deserializes into the returned object.
   #
-  # _input_:: an input as accepted by SDL4R#read or a Tag.
+  # @param input an input acceptable by #read 
   #
   # example:
   #
@@ -337,13 +385,9 @@ module SDL4R
   #   top.food.note # => 8.9
   #
   def self.load(input)
-    if input.is_a? Tag
-      tag = input
-    else
-      tag = read(input)
+    open_reader(input) do |reader|
+      return reader.load
     end
-
-    return Serializer.new.deserialize(tag)
   end
 
   # Dumps the specified object to a given output or returns the corresponding SDL string if output is +nil+.

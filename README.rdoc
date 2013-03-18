@@ -1,12 +1,8 @@
 = SDL (Simple Declarative Language)
 
-SDL version supported: 1.3
-
-Site:: http://www.ikayzo.org/confluence/display/SDL/Home
-Downloads:: http://www.ikayzo.org/confluence/display/SDL/Downloads
-
-Users mailing list:: sdl-users@ikayzo.org
-Developers mailing list:: sdl-developers@ikayzo.org
+A {Ruby implementation}[https://github.com/viphe/SDL.rb] of the Simple Declarative Language
+originally developed by Dan Leuck at Ikayzo[http://ikayzo.org/display/SDL/Home].
+It supports the v1.3 of the language specification.
 
 
 == Getting Started with SDL4R
@@ -16,30 +12,32 @@ To get the Ruby Gem:
     gem install sdl4r
 
 Then, you can start reading SDL documents:
-
-    require 'pathname'
-    require 'sdl4r'
+  
+  require 'pathname'
+  require 'sdl4r'
     
-    root = SDL4R::read(Pathname.new("my_directory/my_config.sdl"))
-    puts root.attribute("port")
+  root = SDL4R::read(Pathname.new("my_directory/my_config.sdl"))
+  puts root.attribute("port")
 
 Or you can create SDL documents with the API:
+  
+
+  require 'fileutils'
+  require 'sdl4r'
     
-    require 'fileutils'
-    require 'sdl4r'
-    
-    root = SDL4R::Tag.new("root") do
-        new_child("server") do
-            set_attribute("port", 1234)
-        end
+  root = SDL4R::Tag.new("root") do
+    new_child("server") do
+      set_attribute("port", 1234)
     end
-    File.open("my_directory/my_config.sdl", "w") { |io|
-        io.write(root.children_to_string)
-    }
+  end
+  File.open("my_directory/my_config.sdl", "w") { |io|
+    io.write(root.children_to_string)
+  }
+
 
 which will write the following in your file:
     
-    server port=1234
+  server port=1234
 
 == SDL Documents
 

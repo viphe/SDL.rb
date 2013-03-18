@@ -1,4 +1,4 @@
-3#!/usr/bin/env ruby -w
+#!/usr/bin/env ruby -w
 # encoding: UTF-8
 
 #--
@@ -23,7 +23,7 @@ module SDL4R
 
   # SDL documents are made of Tags.
   #
-  # See the README[link:files/README.html] for a longer explanation on SDL documents.
+  # See the {file:README} for a longer explanation on SDL documents.
   #
   # Do not assume that methods returning sets (Hash, Array, etc) of children/values/attributes/etc
   # in this class returns copies or implementations. It can be one or the other depending on the
@@ -37,9 +37,6 @@ module SDL4R
     require 'pathname'
     require 'open-uri'
     require 'stringio'
-
-    require 'sdl4r/sdl4r'
-    require 'sdl4r/reader'
     
     # the name of this Tag
     #
@@ -206,7 +203,7 @@ module SDL4R
     end
 
     # Adds the given object as a child if it is a +Tag+, as an attribute if it is a Hash
-    # {key => value} (supports namespaces), or as a value otherwise.
+    # (supports namespaces), or as a value otherwise.
     # If it is an Enumerable (e.g. Array), each of its elements is added to this Tag via this
     # operator. If any of its elements is itself an Enumerable, then an anonymous tag is created and
     # the Enumerable is passed to it via this operator (see the examples below).
@@ -770,44 +767,18 @@ module SDL4R
       @namespace = namespace
     end
         
-    # Adds all the tags specified in the given IO, String, Pathname or URI to this Tag.
+    # Adds all the tags specified in the given SDL stream (as supported by SDL4R#open_reader)
     # 
     # Returns this Tag after adding all the children read from +input+.
     #
     def read(input)
-      if input.is_a? String
-        read_from_io(true) { StringIO.new(input) }
-
-      elsif input.is_a? Pathname
-        read_from_io(true) { input.open("r:UTF-8") }
-
-      elsif input.is_a? URI
-        read_from_io(true) { input.open }
-
-      else
-        read_from_io(false) { input }
-      end
-      
-      return self
-    end
-
-    # Reads and parses the +io+ returned by the specified block and closes this +io+ if +close_io+
-    # is true.
-    def read_from_io(close_io)
-      io = yield
-
-      begin
-        SDL4R::Reader.from_io(io).each_tag(true) do |tag|
+      SDL4R::open_reader(input) do |reader|
+        reader.each_tag(true) do |tag|
           add_child(tag)
         end
-
-      ensure
-        if close_io
-          io.close rescue IOError
-        end
       end
+      self
     end
-    private_methods :read_from_io
     
     # Write this tag out to the given IO or StringIO or String (optionally clipping the root.)
     #  

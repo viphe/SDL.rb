@@ -31,8 +31,6 @@ module SDL4R
   require 'test/unit'
 
   require 'sdl4r'
-  require 'sdl4r/tag_writer'
-
   require 'sdl4r/sdl_test_case'
 
   class SerializerTest < Test::Unit::TestCase
@@ -92,7 +90,7 @@ EOS
       assert !car.radio.has_children?
 
       # deserialize and check
-      car2 = serializer.deserialize(tag)
+      car2 = SDL4R::load(tag).car
       assert_equal car.brand, car2.brand
       assert_equal car.wheels, car2.wheels
       assert_equal car.max_speed, car2.max_speed
@@ -204,7 +202,7 @@ EOS
     end
 
     def test_deserialize_object
-      tag = SDL4R::read(<<EOS
+      sdl = <<EOS
 books {
   book title="My Life, My Potatoes" {
     keywords "life" "potatoes"
@@ -222,43 +220,35 @@ books {
   }
 }
 EOS
-      )
 
-      serializer = Serializer.new
+      object_mapper = ObjectMapper.new
       
-      def serializer.new_plain_object(tag, o = nil, parent_object = nil)
-        if parent_object.nil?
+      def object_mapper.create_object(reader)
+        if reader.depth == 0
           Top.new
-        elsif tag.name == "book"
+        elsif reader.name == "book"
           Book.new
-        elsif parent_object.is_a? Book and ["introduction", "conclusion"].include?(tag.name)
+        elsif ["introduction", "conclusion"].include?(reader.name)
           Chapter.new
         else
-          super(tag, o, parent_object)
+          super(reader)
         end
       end
 
-      def serializer.serialize_array_as_child_tags(name, array, parent_tag)
-        if parent_tag.name == SDL4R::ROOT_TAG_NAME and name == "books"
-          super("book", array, new_tag("books", array, parent_tag))
-        else
-          return super(name, array, parent_tag)
-        end
-      end
-
-      def serializer.get_deserialized_property_name(tag, parent_tag, parent_object)
-        if parent_tag.name == "book" and tag.name == "chapter"
-          return "chapters"
-        else
-          super(tag, parent_tag, parent_object)
-        end
-      end
-
-      top = serializer.deserialize(tag)
+      reader = Reader.new(StringIO.new(sdl), object_mapper)
+      top = reader.load
       check_book_hierarchy(top)
 
-      top2 = serializer.deserialize(serializer.serialize(top))
+      top2 = Reader.new(Writer.new(object_mapper).write(top).io, object_mapper).load
       check_book_hierarchy(top2)
+    end
+    
+    def test_1
+      o = { :a => { :b => 1 } }
+      reader = ObjectReader.new(o)
+      while reader.read
+        puts "#{reader.node_type} #{reader.name}"
+      end
     end
 
     def check_book_hierarchy(top)
@@ -320,8 +310,9 @@ alone {
 }
 EOS
       )
-      serializer = Serializer.new
-      top = serializer.deserialize(tag)
+
+      serializer = ObjectReader.new(tag)
+      top = serializer.load
       assert_equal ["red", "blue", "yellow"], top.colors.content
       assert_equal 0.5, top.colors.alpha
       assert_equal ["readme.txt", "LICENSE.rtf"], top.files
@@ -510,30 +501,30 @@ EOS
     end
 
     def test_default_namespace
-      serializer = TagWriter.new(ObjectMapper.new(:default_namespace => "ns"))
+      serializer = TagWriter.new(ObjectMapper.new(:default_element_namespace => "ns"))
 
       origin = OpenStruct.new(:name => "Bourgogne")
       wine1 = OpenStruct.new(:color => "red", :origin => origin)
       wine2 = OpenStruct.new(:color => "white", :origin => origin)
 
-
+      expected_oid = 3 # the actual value is really implementation-dependent
       assert_equal(
         Tag.new(SDL4R::ROOT_TAG_NAME) do
           new_child("ns", "wine") do
             set_attribute("color", "red") # no namespace on attributes
             new_child("ns", "origin") do
               set_attribute("name", "Bourgogne")
-              set_attribute("oid", 2)
+              set_attribute("oid", expected_oid)
             end
           end
           new_child("ns", "wine") do
             set_attribute("color", "white") # no namespace on attributes
             new_child("ns", "origin") do
-              set_attribute(ObjectMapper::OBJECT_REF_ATTR_NAME, 2)
+              set_attribute(ObjectMapper::OBJECT_REF_ATTR_NAME, expected_oid)
             end
           end
         end,
-        serializer.serialize("wine" => [wine1, wine2]))
+        serializer.write("wine" => [wine1, wine2]).root)
     end
   end
 

@@ -52,6 +52,10 @@ module SDL4R
       @ref_by_object = {}
       @recording = false
 
+      if options and (default_ns = options[:default_namespace])
+        options[:default_element_namespace] = default_ns unless options.has_key? :default_element_namespace
+        options[:default_attribute_namespace] = default_ns unless options.has_key? :default_attribute_namespace
+      end
       @options = options ? DEFAULT_OPTIONS.merge(options) : DEFAULT_OPTIONS.clone
       @options.freeze
     end
@@ -143,9 +147,9 @@ module SDL4R
 
       if ref.multi_ref?
         if ref.count == 1
-          block.call(element_namespace, oid_attr, ref.oid, :attribute)
+          block.call(attribute_namespace, oid_attr, ref.oid, :attribute)
         else
-          block.call(element_namespace, oref_attr, ref.oid, :attribute)
+          block.call(attribute_namespace, oref_attr, ref.oid, :attribute)
           return true # just a reference to the object
         end
       end
@@ -379,11 +383,67 @@ module SDL4R
 
     # Indicates whether the specified property is a serializable property for the given object.
     #
-    def serializable_property?(object, property_name)
+    def property?(object, ns, name)
       object.is_a?(OpenStruct) ||
         object.is_a?(Hash) ||
-        object.instance_variable_defined?("@#{property_name}") ||
-        (get_method(object, property_name, 0) and get_method(object, "#{property_name}=", 1))
+        object.instance_variable_defined?("@#{name}") ||
+        (get_method(object, name, 0) and get_method(object, "#{name}=", 1))
+    end
+    
+    def get_property(object, ns, name)
+      if object.is_a? Hash
+        object[name]
+        
+      elsif get_method(object, name, 0)
+        object.send(name)
+        
+      else
+        field_name = "@#{name}"
+        o.instance_variable_defined?(field_name) ? o.instance_variable_get(field_name) : nil
+      end
+    end
+
+    # Sets the given property in the given object.
+    # @return whether the property has been assigned or not.
+    #
+    # This method could be redefined in order to convert a value to a custom one, for instance.
+    #
+    def set_property(o, ns, name, value)
+      if ns == '' and name == OBJECT_REF_ATTR_NAME
+        return false # ignore this technical attribute
+      elsif ns == '' and name == OBJECT_ID_ATTR_NAME
+        # reference and make no impact on 'o'
+        ref = reference_object(o, value)
+        ref.inc
+        return false
+      end
+    
+      case o
+      when Hash
+        o[name] = value
+        return true
+
+      when OpenStruct
+        o.send "#{name}=", value
+        return true
+
+      else
+        accessor_name = "#{name}="
+        if o.respond_to?(accessor_name)
+          o.send accessor_name, value
+          return true
+
+        else
+          variable_name = "@#{name}"
+          if o.instance_variable_defined?(variable_name)
+            o.instance_variable_set(variable_name, value)
+            return true
+            
+          else
+            return false
+          end
+        end
+      end
     end
 
     # Returns the method of object 'o', which has the specified name and arity (with or without
@@ -402,6 +462,27 @@ module SDL4R
 
       m
     end
-    
+ 
+    # Provides deserialized new plain object instances (i.e. "plain object" as opposed to special
+    # cases like SDL values).
+    # By default, returns +o+ or a new instance of OpenStruct if +o+ is +nil+.
+    #
+    # @param [AbstractReader] reader  at the object position in the SDL stream
+    # @param o                the object at the current position if already instantiated
+    #                         or +nil+ if none yet is
+    #
+    def create_object(reader, o = nil)
+      if not o.nil? and o.has_attribute?(OBJECT_REF_ATTR_NAME) # Object reference
+        ref = @ref_by_oid[child.attribute(OBJECT_REF_ATTR_NAME)]
+        return ref.o
+      end
+      
+      if o.nil?
+        OpenStruct.new
+      else
+        o
+      end
+    end
+   
   end
 end

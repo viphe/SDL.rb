@@ -43,7 +43,6 @@ module SDL4R
 
       assert_equal reader, reader.read
 
-      assert_equal AbstractReader::TYPE_ELEMENT, reader.node_type
       assert_equal '', reader.prefix
       assert_equal SDL4R::ROOT_TAG_NAME, reader.name
       assert_equal false, reader.values?

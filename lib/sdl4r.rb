@@ -19,5 +19,12 @@
 #++
 
 module SDL4R # :nodoc:
+  require File.dirname(__FILE__) + '/sdl4r/sdl4r'
+  require File.dirname(__FILE__) + '/sdl4r/sdl4r_version'
+  require File.dirname(__FILE__) + '/sdl4r/object_mapper'
+  require File.dirname(__FILE__) + '/sdl4r/reader'
+  require File.dirname(__FILE__) + '/sdl4r/object_reader'
+  require File.dirname(__FILE__) + '/sdl4r/writer'
+  require File.dirname(__FILE__) + '/sdl4r/tag_writer'
   require File.dirname(__FILE__) + '/sdl4r/tag'
 end

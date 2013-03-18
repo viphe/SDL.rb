@@ -26,6 +26,7 @@ module SDL4R
   #
   module AbstractWriter
 
+    # @attr [ObjectMapper] used during serialization operations
     attr_accessor :object_mapper
 
 
@@ -178,7 +179,7 @@ module SDL4R
           name = second.to_s
           args.slice!(0, 2)
         else
-          namespace = ''
+          namespace = object_mapper.element_namespace
           name = first.to_s
           args.delete_at(0)
         end

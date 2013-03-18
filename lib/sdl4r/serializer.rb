@@ -52,8 +52,8 @@ module SDL4R
   # Custom serialization (using +to_sdl()+) or deserialization (using +from_sdl()+) can be more
   # efficient than the standard one as its logic is more straightforward).
   #
-  # == Author
-  # Philippe Vosges
+  # @author Philippe Vosges
+  # @deprecated use Writer#write
   #
   class Serializer
     extend Forwardable

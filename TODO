@@ -269,7 +269,7 @@
 [x] do not commit .rvmrc ==> .gitignore
 [x] need to commit "Gemfile"? --> seems so (Gemfile.lock should not)
 [x] Tag.write() should support parameters of type Writer
-[ ] consider removing doc/ from repository and publish them in gh-pages branch (http://help.github.com)
+[ ] consider removing doc/ from repository and publish them in gh-pages branch (https://help.github.com/articles/creating-project-pages-manually)
 [ ] @back_compatibility careful, I removed Serializer from the project when refactoring serialization
   --> perhaps copy the class and its test and deprecate
 [ ] should we use InvalidOperationError in other writers than Writer?
